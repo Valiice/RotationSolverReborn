@@ -2,6 +2,7 @@
 using RotationSolver.Basic.Configuration.Conditions;
 
 namespace RotationSolver.Updaters;
+
 internal static class StateUpdater
 {
     private static bool CanUseHealAction =>
@@ -115,6 +116,8 @@ internal static class StateUpdater
         return DataCenter.InCombat && Service.Config.UseDefenseAbility && DataCenter.IsHostileCastingAOE;
     }
 
+    private static readonly Dictionary<ulong, int> _hostileAggroCounts = [];
+
     private static bool ShouldAddDefenseSingle()
     {
         if (!DataCenter.InCombat || !Service.Config.UseDefenseAbility)
@@ -124,20 +127,28 @@ internal static class StateUpdater
 
         if (DataCenter.Role == JobRole.Healer)
         {
-            foreach (IBattleChara tank in DataCenter.PartyMembers)
+            // Optimization: Map hostile targets to their current target first to avoid O(N*M) loop
+            _hostileAggroCounts.Clear();
+            foreach (IBattleChara hostile in DataCenter.AllHostileTargets)
             {
-                int attackingTankCount = 0;
-                foreach (IBattleChara hostile in DataCenter.AllHostileTargets)
+                ulong id = hostile.TargetObjectId;
+                if (id != 0)
                 {
-                    if (hostile.TargetObjectId == tank.GameObjectId)
+                    if (!_hostileAggroCounts.TryAdd(id, 1))
                     {
-                        attackingTankCount++;
+                        _hostileAggroCounts[id]++;
                     }
                 }
+            }
 
-                if (attackingTankCount == 1 && DataCenter.IsHostileCastingToTank)
+            foreach (IBattleChara tank in DataCenter.PartyMembers)
+            {
+                if (_hostileAggroCounts.TryGetValue(tank.GameObjectId, out int attackingTankCount))
                 {
-                    return true;
+                    if (attackingTankCount == 1 && DataCenter.IsHostileCastingToTank)
+                    {
+                        return true;
+                    }
                 }
             }
         }

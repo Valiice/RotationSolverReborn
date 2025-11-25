@@ -687,29 +687,31 @@ internal static class DataCenter
 
     #region HP
 
+    // OPTIMIZATION: Reuse dictionary for RefinedHP
+    private static readonly Dictionary<ulong, float> _refinedHpBuffer = [];
     public static Dictionary<ulong, float> RefinedHP
     {
         get
         {
-            Dictionary<ulong, float> refinedHP = [];
+            _refinedHpBuffer.Clear();
             foreach (IBattleChara member in PartyMembers)
             {
                 try
                 {
                     if (member == null || member.GameObjectId == 0)
                     {
-                        continue; // Skip invalid or null members
+                        continue;
                     }
 
-                    refinedHP[member.GameObjectId] = GetPartyMemberHPRatio(member);
+                    _refinedHpBuffer[member.GameObjectId] = GetPartyMemberHPRatio(member);
                 }
                 catch (AccessViolationException ex)
                 {
                     PluginLog.Error($"AccessViolationException in RefinedHP: {ex.Message}");
-                    continue; // Skip problematic members
+                    continue;
                 }
             }
-            return refinedHP;
+            return _refinedHpBuffer;
         }
     }
 
@@ -850,22 +852,22 @@ internal static class DataCenter
         get { UpdatePartyHpCache(); return _lowestPartyStdDevHp; }
     }
 
+    // OPTIMIZATION: Reuse List for PartyMembersHP to avoid enumerator allocation
+    private static readonly List<float> _partyHpListBuffer = [];
     public static IEnumerable<float> PartyMembersHP
     {
         get
         {
             UpdatePartyHpCache();
-            // Return a snapshot of the current frame's HPs
-            if (_partyHpCount == 0) yield break;
+            _partyHpListBuffer.Clear();
 
-            var hpList = new List<float>();
             foreach (var member in PartyMembers)
             {
                 try
                 {
                     if (member == null || member.GameObjectId == 0) continue;
                     float hp = GetPartyMemberHPRatio(member);
-                    if (hp > 0) hpList.Add(hp);
+                    if (hp > 0) _partyHpListBuffer.Add(hp);
                 }
                 catch (AccessViolationException ex)
                 {
@@ -873,10 +875,7 @@ internal static class DataCenter
                 }
             }
 
-            foreach (var hp in hpList)
-            {
-                yield return hp;
-            }
+            return _partyHpListBuffer;
         }
     }
 
@@ -1153,58 +1152,52 @@ internal static class DataCenter
 
     public static bool IsHostileCastingStopBase(IBattleChara h, Func<Action, bool> check)
     {
-        // Check if h is null
         if (h == null)
         {
             return false;
         }
 
-        // Check if the hostile character is casting
         if (!h.IsCasting)
         {
             return false;
         }
 
-        // Check if the cast is interruptible
         if (h.IsCastInterruptible)
         {
             return false;
         }
 
-        // Validate the cast time
         if ((h.TotalCastTime - h.CurrentCastTime) > (Service.Config.CastingStopCalculate ? 100 : Service.Config.CastingStopTime))
         {
             return false;
         }
 
-        // Get the action sheet
         Lumina.Excel.ExcelSheet<Action> actionSheet = Service.GetSheet<Action>();
         if (actionSheet == null)
-        {
-            return false; // Check if actionSheet is null
-        }
-
-        // Get the action being cast
-        Action action = actionSheet.GetRow(h.CastActionId);
-        if (action.RowId == 0)
-        {
-            return false; // Check if action is not initialized
-        }
-
-        // Invoke the check function on the action and return the result
-        return check?.Invoke(action) ?? false; // Check if check is null
-    }
-
-    public static bool IsCastingVfx(VfxNewData[] vfxData, Func<VfxNewData, bool> isVfx)
-    {
-        if (vfxData == null || vfxData.Length == 0)
         {
             return false;
         }
 
-        for (int i = 0, n = vfxData.Length; i < n; i++)
+        Action action = actionSheet.GetRow(h.CastActionId);
+        if (action.RowId == 0)
         {
-            if (isVfx(vfxData[i]))
+            return false;
+        }
+
+        return check?.Invoke(action) ?? false;
+    }
+
+    // OPTIMIZATION: Avoid array allocation by accepting IEnumerable
+    public static bool IsCastingVfx(IEnumerable<VfxNewData> vfxData, Func<VfxNewData, bool> isVfx)
+    {
+        if (vfxData == null)
+        {
+            return false;
+        }
+
+        foreach (var item in vfxData)
+        {
+            if (isVfx(item))
             {
                 return true;
             }
@@ -1214,14 +1207,14 @@ internal static class DataCenter
 
     public static bool IsCastingMultiHit()
     {
-        return IsCastingVfx([.. VfxDataQueue], s =>
+        // OPTIMIZATION: Iterate Queue directly, no [..] array copy
+        return IsCastingVfx(VfxDataQueue, s =>
         {
             if (!Player.AvailableThreadSafe)
             {
                 return false;
             }
 
-            // For x6fe, ignore target and player role checks.
             if (s.Path.StartsWith("vfx/lockon/eff/com_share5a1"))
             {
                 return true;
@@ -1238,20 +1231,19 @@ internal static class DataCenter
 
     public static bool IsCastingTankVfx()
     {
-        return IsCastingVfx([.. VfxDataQueue], s =>
+        // OPTIMIZATION: Iterate Queue directly
+        return IsCastingVfx(VfxDataQueue, s =>
         {
             if (!Player.AvailableThreadSafe)
             {
                 return false;
             }
 
-            // For x6fe, ignore target and player role checks.
             if (s.Path.StartsWith("vfx/lockon/eff/x6fe"))
             {
                 return true;
             }
 
-            // Preserve original checks for other tank lock-on effects.
             return (!Player.Object.IsJobCategory(JobRole.Tank) || s.ObjectId == Player.Object.GameObjectId)
                    && (s.Path.StartsWith("vfx/lockon/eff/tank_lockon")
                        || s.Path.StartsWith("vfx/lockon/eff/tank_laser"));
@@ -1260,7 +1252,8 @@ internal static class DataCenter
 
     public static bool IsCastingAreaVfx()
     {
-        return IsCastingVfx([.. VfxDataQueue], s =>
+        // OPTIMIZATION: Iterate Queue directly
+        return IsCastingVfx(VfxDataQueue, s =>
         {
             return Player.AvailableThreadSafe && (s.Path.StartsWith("vfx/lockon/eff/coshare")
             || s.Path.StartsWith("vfx/lockon/eff/share_laser")
@@ -1315,23 +1308,19 @@ internal static class DataCenter
             return false;
         }
 
-        // Check if the cast is interruptible
         if (h.IsCastInterruptible)
         {
             return false;
         }
 
-        // Calculate the time since the cast started
         float last = h.TotalCastTime - h.CurrentCastTime;
         float t = last - DefaultGCDTotal;
 
-        // Check if the total cast time is greater than the minimum cast time and if the calculated time is within a valid range
         if (!(h.TotalCastTime > DefaultGCDTotal && t > 0 && t < GCDTime(1)))
         {
             return false;
         }
 
-        // Get the action sheet
         Lumina.Excel.ExcelSheet<Action> actionSheet = Service.GetSheet<Action>();
         if (actionSheet == null)
         {
@@ -1339,7 +1328,6 @@ internal static class DataCenter
             return false;
         }
 
-        // Get the action being cast
         Action action = actionSheet.GetRow(h.CastActionId);
         if (action.RowId == 0)
         {
@@ -1347,7 +1335,6 @@ internal static class DataCenter
             return false;
         }
 
-        // Invoke the check function on the action and return the result
         return check?.Invoke(action) ?? false;
     }
     #endregion

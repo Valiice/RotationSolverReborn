@@ -99,22 +99,23 @@ public partial class PaladinRotation
     /// <inheritdoc/>
     public override void DisplayBaseStatus()
     {
-        ImGui.Text("RequiescatStacks: " + RequiescatStacks.ToString());
-        ImGui.Text("OathGauge: " + OathGauge.ToString());
-        ImGui.Text("HasDivineMight: " + HasDivineMight.ToString());
-        ImGui.Text("HasFightOrFlight: " + HasFightOrFlight.ToString());
-        ImGui.Text("Can Heal Area Ability: " + CanHealAreaAbility.ToString());
-        ImGui.Text("Can Heal Single Spell: " + CanHealSingleSpell.ToString());
+        // Optimization: Use string interpolation
+        ImGui.Text($"RequiescatStacks: {RequiescatStacks}");
+        ImGui.Text($"OathGauge: {OathGauge}");
+        ImGui.Text($"HasDivineMight: {HasDivineMight}");
+        ImGui.Text($"HasFightOrFlight: {HasFightOrFlight}");
+        ImGui.Text($"Can Heal Area Ability: {CanHealAreaAbility}");
+        ImGui.Text($"Can Heal Single Spell: {CanHealSingleSpell}");
         ImGui.Spacing();
-        ImGui.Text("HasConfiteorReady: " + HasConfiteorReady.ToString());
-        ImGui.Text("BladeOfFaithReady: " + BladeOfFaithReady.ToString());
-        ImGui.Text("BladeOfTruthReady: " + BladeOfTruthReady.ToString());
-        ImGui.Text("BladeOfValorReady: " + BladeOfValorReady.ToString());
-        ImGui.Text("BladeOfHonorReady: " + BladeOfHonorReady.ToString());
+        ImGui.Text($"HasConfiteorReady: {HasConfiteorReady}");
+        ImGui.Text($"BladeOfFaithReady: {BladeOfFaithReady}");
+        ImGui.Text($"BladeOfTruthReady: {BladeOfTruthReady}");
+        ImGui.Text($"BladeOfValorReady: {BladeOfValorReady}");
+        ImGui.Text($"BladeOfHonorReady: {BladeOfHonorReady}");
         ImGui.Spacing();
-        ImGui.Text("HasAtonementReady: " + HasAtonementReady.ToString());
-        ImGui.Text("SupplicationReady: " + SupplicationReady.ToString());
-        ImGui.Text("SepulchreReady: " + SepulchreReady.ToString());
+        ImGui.Text($"HasAtonementReady: {HasAtonementReady}");
+        ImGui.Text($"SupplicationReady: {SupplicationReady}");
+        ImGui.Text($"SepulchreReady: {SepulchreReady}");
     }
 
     #endregion

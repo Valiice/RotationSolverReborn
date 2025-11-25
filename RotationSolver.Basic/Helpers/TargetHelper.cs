@@ -13,6 +13,10 @@ namespace RotationSolver.Basic.Helpers
     {
         private static readonly HashSet<long> s_emptyStopTargets = [];
 
+        // Optimization: Cache the blacklist HashSet to avoid recreation every call
+        private static readonly HashSet<uint> _cachedBlacklist = [];
+        private static int _lastBlacklistCount = -1;
+
         /// <summary>
         /// Retrieves a collection of valid battle characters that can be targeted based on the specified criteria.
         /// </summary>
@@ -44,7 +48,15 @@ namespace RotationSolver.Basic.Helpers
                     : (DataCenter.AllTargets?.Count ?? 0);
             List<IBattleChara> targets = capacity > 0 ? new List<IBattleChara>(capacity) : [];
 
-            var blacklisted = new HashSet<uint>(DataCenter.BlacklistedNameIds);
+            // Optimization: Update blacklist cache only if changed (checking Count is a cheap proxy)
+            var currentBlacklist = DataCenter.BlacklistedNameIds;
+            if (currentBlacklist.Count != _lastBlacklistCount)
+            {
+                _cachedBlacklist.Clear();
+                foreach (var id in currentBlacklist) _cachedBlacklist.Add(id);
+                _lastBlacklistCount = currentBlacklist.Count;
+            }
+
             HashSet<long> stopTargets = Service.Config.FilterStopMark
                 ? [.. MarkingHelper.GetStopTargets()]
                 : s_emptyStopTargets;
@@ -55,7 +67,7 @@ namespace RotationSolver.Basic.Helpers
                 {
                     foreach (IBattleChara target in DataCenter.PartyMembers.GetObjectInRadius(searchRange))
                     {
-                        if (!ValidityCheck(target, blacklisted, stopTargets)) continue;
+                        if (!ValidityCheck(target, _cachedBlacklist, stopTargets)) continue;
                         targets.Add(target);
                     }
                 }
@@ -66,7 +78,7 @@ namespace RotationSolver.Basic.Helpers
                 {
                     foreach (IBattleChara target in DataCenter.AllHostileTargets.GetObjectInRadius(searchRange))
                     {
-                        if (!ValidityCheck(target, blacklisted, stopTargets)) continue;
+                        if (!ValidityCheck(target, _cachedBlacklist, stopTargets)) continue;
                         targets.Add(target);
                     }
                 }
@@ -77,7 +89,7 @@ namespace RotationSolver.Basic.Helpers
                 {
                     foreach (IBattleChara target in DataCenter.AllTargets.GetObjectInRadius(searchRange))
                     {
-                        if (!ValidityCheck(target, blacklisted, stopTargets)) continue;
+                        if (!ValidityCheck(target, _cachedBlacklist, stopTargets)) continue;
                         targets.Add(target);
                     }
                 }
@@ -161,6 +173,9 @@ namespace RotationSolver.Basic.Helpers
 
             try
             {
+                // Optimization: Check blacklist before accessing StatusList (which involves struct marshalling)
+                if (blacklisted.Contains(battleChara.NameId)) return false;
+
                 if (battleChara.StatusList == null) return false;
             }
             catch (Exception ex)
@@ -168,8 +183,6 @@ namespace RotationSolver.Basic.Helpers
                 PluginLog.Error($"Exception accessing StatusList for {battleChara?.NameId}: {ex.Message}");
                 return false;
             }
-
-            if (blacklisted.Contains(battleChara.NameId)) return false;
 
             if (battleChara.IsEnemy() && !battleChara.IsAttackable()) return false;
 

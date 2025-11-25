@@ -22,9 +22,15 @@ internal class OverlayWindow : Window
 
     // Async update support and throttling for sync path
     private volatile Task<IDrawing2D[]>? _updateTask;
-    private IDrawing2D[]? _elements;
+
+    // OPTIMIZATION 1: Reusable buffer to avoid allocating Lists/Arrays every frame in the draw loop
+    private readonly List<IDrawing2D> _renderBuffer = [];
+
     private readonly Stopwatch _throttle = Stopwatch.StartNew();
     private const int SyncUpdateMs = 33; // ~30 FPS updates in sync mode
+
+    // OPTIMIZATION 2: Cache the comparer to avoid delegate allocation (From your code)
+    private static readonly Comparison<IDrawing2D> _drawingComparer = (a, b) => GetDrawingOrder(a).CompareTo(GetDrawingOrder(b));
 
     public OverlayWindow()
         : base(nameof(OverlayWindow), BaseFlags, true)
@@ -64,20 +70,16 @@ internal class OverlayWindow : Window
                 }
                 if (_updateTask.IsCompletedSuccessfully)
                 {
-                    var result = _updateTask.Result ?? [];
-                    var list = new List<IDrawing2D>(result);
-                    list.Sort((a, b) => GetDrawingOrder(a).CompareTo(GetDrawingOrder(b)));
-                    _elements = [.. list];
+                    var result = _updateTask.Result;
+                    UpdateRenderBuffer(result);
                 }
             }
             else
             {
                 if (_throttle.ElapsedMilliseconds >= SyncUpdateMs)
                 {
-                    var result = HotbarHighlightManager.To2DAsync().GetAwaiter().GetResult() ?? [];
-                    var list = new List<IDrawing2D>(result);
-                    list.Sort((a, b) => GetDrawingOrder(a).CompareTo(GetDrawingOrder(b)));
-                    _elements = [.. list];
+                    var result = HotbarHighlightManager.To2DAsync().GetAwaiter().GetResult();
+                    UpdateRenderBuffer(result);
                     _throttle.Restart();
                 }
             }
@@ -89,13 +91,10 @@ internal class OverlayWindow : Window
                 return;
             }
 
-            var elements = _elements;
-            if (elements != null)
+            // OPTIMIZATION: Iterate the buffer directly
+            foreach (IDrawing2D item in _renderBuffer)
             {
-                foreach (IDrawing2D item in elements)
-                {
-                    item.Draw();
-                }
+                item.Draw();
             }
         }
         catch (Exception ex)
@@ -106,6 +105,17 @@ internal class OverlayWindow : Window
         {
             ImGui.GetStyle().AntiAliasedFill = prevAAFill;
         }
+    }
+
+    private void UpdateRenderBuffer(IDrawing2D[]? newElements)
+    {
+        _renderBuffer.Clear();
+        if (newElements != null)
+        {
+            _renderBuffer.AddRange(newElements);
+        }
+        // Use the cached comparer
+        _renderBuffer.Sort(_drawingComparer);
     }
 
     private static int GetDrawingOrder(object drawing)

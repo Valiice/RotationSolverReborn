@@ -8,6 +8,7 @@ using FFXIVClientStructs.FFXIV.Client.UI;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using Lumina.Data.Files;
 using RotationSolver.UI.HighlightTeachingMode.ElementSpecial;
+using System.Reflection;
 using static FFXIVClientStructs.FFXIV.Client.UI.Misc.RaptureHotbarModule;
 
 namespace RotationSolver.UI.HighlightTeachingMode;
@@ -149,14 +150,22 @@ public class DrawingHighlightHotbar : DrawingHighlightHotbarBase
 
     private static IDalamudTextureWrap? _texture = null;
 
+    // FIX: Added a cache dictionary to store the addon names so we don't use Reflection every frame.
+    private static readonly Dictionary<Type, string[]> _addonCache = [];
+
     private static unsafe List<nint> GetAddons<T>() where T : struct
     {
-        var attr = typeof(T).GetCustomAttribute<AddonAttribute>();
-        if (attr is not AddonAttribute on)
-            return [];
+        // Optimization: Check cache first before using Reflection
+        Type type = typeof(T);
+        if (!_addonCache.TryGetValue(type, out string[]? identifiers))
+        {
+            var attr = type.GetCustomAttribute<AddonAttribute>();
+            identifiers = (string[]?)(attr?.AddonIdentifiers ?? []);
+            _addonCache[type] = identifiers;
+        }
 
         List<nint> result = [];
-        foreach (var str in on.AddonIdentifiers)
+        foreach (var str in identifiers)
         {
             var ptr = Svc.GameGui.GetAddonByName(str, 1);
             if (ptr != nint.Zero)

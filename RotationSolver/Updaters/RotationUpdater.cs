@@ -23,6 +23,9 @@ internal static class RotationUpdater
 
     private static string _curDutyRotationName = string.Empty;
 
+    // Optimization: Cache the grouped actions to avoid Linq/Array allocation every frame
+    private static IEnumerable<IGrouping<string, IAction>>? _cachedGroupedActions;
+
     /// <summary>
     /// Loads custom rotation groups from the current assembly
     /// </summary>
@@ -178,10 +181,20 @@ internal static class RotationUpdater
         }
     }
 
+    // Optimization: Use cached result if available
     public static IEnumerable<IGrouping<string, IAction>>? AllGroupedActions
-        => GroupActions([
-            .. DataCenter.CurrentRotation?.AllActions ?? [],
-            .. DataCenter.CurrentDutyRotation?.AllActions ?? []]);
+    {
+        get
+        {
+            if (_cachedGroupedActions == null)
+            {
+                _cachedGroupedActions = GroupActions([
+                    .. DataCenter.CurrentRotation?.AllActions ?? [],
+                    .. DataCenter.CurrentDutyRotation?.AllActions ?? []]);
+            }
+            return _cachedGroupedActions;
+        }
+    }
 
     public static IEnumerable<IGrouping<string, IAction>>? GroupActions(IEnumerable<IAction> actions)
     {
@@ -335,6 +348,7 @@ internal static class RotationUpdater
                 DataCenter.CurrentDutyRotation.Dispose();
                 DataCenter.CurrentDutyRotation = null;
                 _curDutyRotationName = string.Empty;
+                _cachedGroupedActions = null; // Clear cache on change
             }
             return;
         }
@@ -352,6 +366,7 @@ internal static class RotationUpdater
             DataCenter.CurrentDutyRotation?.Dispose();
             DataCenter.CurrentDutyRotation = GetRotation(type);
             _curDutyRotationName = name;
+            _cachedGroupedActions = null; // Clear cache on change
         }
 
         static DutyRotation? GetRotation(Type? t)
@@ -429,6 +444,7 @@ internal static class RotationUpdater
 
         DataCenter.CurrentRotation = null;
         CurrentRotationActions = [];
+        _cachedGroupedActions = null;
     }
 
     public static void ChangeRotation(ICustomRotation rotation)
@@ -436,6 +452,7 @@ internal static class RotationUpdater
         rotation.OnTerritoryChanged();
         DataCenter.CurrentRotation = rotation;
         CurrentRotationActions = DataCenter.CurrentRotation?.AllActions ?? [];
+        _cachedGroupedActions = null; // Clear cache on change
     }
 
     private static ICustomRotation? GetRotation(Type? t)
