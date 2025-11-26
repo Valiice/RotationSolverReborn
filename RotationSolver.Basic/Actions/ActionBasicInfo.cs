@@ -252,6 +252,11 @@ public readonly struct ActionBasicInfo
             return false;
         }
 
+        if (!EnoughLevel)
+        {
+            return false;
+        }
+
         var type = ActionHelper.GetActionCate(_action.Action);
         if (type is ActionCate.Weaponskill)
         {
@@ -279,8 +284,7 @@ public readonly struct ActionBasicInfo
             return false;
         }
 
-        // 2. Basic requirements: not disabled, enough level, enough MP
-        if (IsActionDisabled() || !EnoughLevel || !HasEnoughMP())
+        if (IsActionDisabled() || !HasEnoughMP())
         {
             return false;
         }
@@ -302,7 +306,7 @@ public readonly struct ActionBasicInfo
 
         if (IsAbility && !IsRealGCD)
         {
-            if (ConfigurationHelper.BadStatusAbility.Contains(ActionManager.Instance()->GetActionStatus(ActionType.Ability, AdjustedID)))
+            if (ConfigurationHelper.BadStatusAbility.Contains(ActionManager.Instance()->GetActionStatus(ActionType.EventAction, AdjustedID)))
             {
                 return false;
             }
