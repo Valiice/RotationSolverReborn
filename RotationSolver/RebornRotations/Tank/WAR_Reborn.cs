@@ -32,6 +32,10 @@ public sealed class WAR_Reborn : WarriorRotation
     [RotationConfig(CombatType.PvE, Name = "Max distance you can be from the boss for Primal Rend use (Danger, setting too high will get you killed)")]
     public float PrimalRendDistance2 { get; set; } = 3.5f;
 
+    [Range(0, 20, ConfigUnitType.Yalms)]
+    [RotationConfig(CombatType.PvE, Name = "Min distance to use Tomahawk")]
+    public float TomahawkDistance { get; set; } = 1.5f;
+
     [Range(0, 1, ConfigUnitType.Percent)]
     [RotationConfig(CombatType.PvE, Name = "Nascent Flash Heal Threshold")]
     public float FlashHeal { get; set; } = 0.6f;
@@ -75,7 +79,6 @@ public sealed class WAR_Reborn : WarriorRotation
             return false;
         }
 
-        // Optimization: Cache status check to avoid repeated iteration
         bool hasSurgingTempest = Player.HasStatus(true, StatusID.SurgingTempest);
 
         if (!Player.WillStatusEndGCD(2, 0, true, StatusID.SurgingTempest)
@@ -91,7 +94,6 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
-        // Optimization: Cache property accesses
         bool isBurstStatus = IsBurstStatus;
         byte innerReleaseStacks = InnerReleaseStacks;
 
@@ -151,7 +153,6 @@ public sealed class WAR_Reborn : WarriorRotation
 
     protected override bool GeneralAbility(IAction nextGCD, out IAction? act)
     {
-        // Optimization: Check cheap conditions (Combat, Hostiles) before expensive ones (PartyMembers.Count)
         if (InCombat && NumberOfHostilesInRange > 0)
         {
             if (Player.GetHealthRatio() < HealIntuition || PartyMembers.Count() == 1)
@@ -258,7 +259,6 @@ public sealed class WAR_Reborn : WarriorRotation
     #region GCD Logic
     protected override bool GeneralGCD(out IAction? act)
     {
-        // Optimization: Cache expensive status checks used multiple times
         bool hasSurgingTempest = !Player.WillStatusEndGCD(3, 0, true, StatusID.SurgingTempest);
         byte innerReleaseStacks = InnerReleaseStacks;
 
@@ -315,7 +315,6 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
-        // AOE
         if (hasSurgingTempest)
         {
             if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true))
@@ -338,7 +337,6 @@ public sealed class WAR_Reborn : WarriorRotation
             return true;
         }
 
-        // Single Target
         if (hasSurgingTempest)
         {
             if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true))
@@ -371,10 +369,14 @@ public sealed class WAR_Reborn : WarriorRotation
             return true;
         }
 
-        // Ranged
         if (TomahawkPvE.CanUse(out act))
         {
-            return true;
+            if (TomahawkPvE.Target.Target != null && TomahawkPvE.Target.Target.DistanceToPlayer() >= TomahawkDistance)
+            {
+                return true;
+            }
+            act = null;
+            return false;
         }
 
         return base.GeneralGCD(out act);
@@ -400,7 +402,6 @@ public sealed class WAR_Reborn : WarriorRotation
     #endregion
 
     #region Extra Methods
-    // Optimization: Cached property instead of method call in loops
     private static bool IsBurstStatus => !Player.WillStatusEndGCD(0, 0, false, StatusID.InnerStrength);
     #endregion
 }
