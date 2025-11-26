@@ -210,7 +210,7 @@ namespace RotationSolver.Basic.Helpers
 
             if (checkRangeAndLoS)
             {
-                var player = Svc.ClientState.LocalPlayer;
+                var player = Svc.Objects.LocalPlayer;
                 if (player == null) return false;
                 var playerPtr = (GameObject*)player.Address;
                 var err = ActionManager.GetActionInRangeOrLoS(adjusted, playerPtr, go);
