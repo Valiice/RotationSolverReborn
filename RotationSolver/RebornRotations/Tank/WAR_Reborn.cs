@@ -34,7 +34,15 @@ public sealed class WAR_Reborn : WarriorRotation
 
     [Range(0, 20, ConfigUnitType.Yalms)]
     [RotationConfig(CombatType.PvE, Name = "Min distance to use Tomahawk")]
-    public float TomahawkDistance { get; set; } = 1.5f;
+    public float TomahawkDistance { get; set; } = 5.5f;
+
+    [Range(1, 50, ConfigUnitType.Seconds)]
+    [RotationConfig(CombatType.PvE, Name = "Seconds remaining on Surging Tempest to refresh Storm's Eye")]
+    public float StormsEyeRefreshTimer { get; set; } = 10.0f;
+
+    [Range(1, 10, ConfigUnitType.None)]
+    [RotationConfig(CombatType.PvE, Name = "Number of enemies to start using AOE (Overrides defaults)")]
+    public int AOECount { get; set; } = 3;
 
     [Range(0, 1, ConfigUnitType.Percent)]
     [RotationConfig(CombatType.PvE, Name = "Nascent Flash Heal Threshold")]
@@ -94,6 +102,16 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
+        if (NumberOfHostilesInRange >= AOECount && OrogenyPvE.CanUse(out act, skipAoeCheck: true))
+        {
+            return true;
+        }
+
+        if (UpheavalPvE.CanUse(out act))
+        {
+            return true;
+        }
+
         bool isBurstStatus = IsBurstStatus;
         byte innerReleaseStacks = InnerReleaseStacks;
 
@@ -108,16 +126,6 @@ public sealed class WAR_Reborn : WarriorRotation
         if (CombatElapsedLessGCD(4))
         {
             return false;
-        }
-
-        if (OrogenyPvE.CanUse(out act))
-        {
-            return true;
-        }
-
-        if (UpheavalPvE.CanUse(out act))
-        {
-            return true;
         }
 
         if (Player.HasStatus(false, StatusID.Wrathful) && PrimalWrathPvE.CanUse(out act, skipAoeCheck: true))
@@ -262,28 +270,19 @@ public sealed class WAR_Reborn : WarriorRotation
         bool hasSurgingTempest = !Player.WillStatusEndGCD(3, 0, true, StatusID.SurgingTempest);
         byte innerReleaseStacks = InnerReleaseStacks;
 
-        if (hasSurgingTempest)
+        // 1. Prioritize Inner Release Stacks (Fell Cleave/Decimate) above all else if Buff is up
+        if (hasSurgingTempest && innerReleaseStacks > 0)
         {
-            if (ChaoticCyclonePvE.CanUse(out act))
+            if (NumberOfHostilesInRange >= AOECount)
             {
-                return true;
-            }
-
-            if (InnerChaosPvE.CanUse(out act))
-            {
-                return true;
-            }
-        }
-
-        if (hasSurgingTempest && !Player.HasStatus(true, StatusID.NascentChaos) && innerReleaseStacks > 0)
-        {
-            if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true))
-            {
-                return true;
-            }
-            if (!DecimatePvE.Info.EnoughLevelAndQuest() && SteelCyclonePvE.CanUse(out act, skipStatusProvideCheck: true))
-            {
-                return true;
+                if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true))
+                {
+                    return true;
+                }
+                if (!DecimatePvE.Info.EnoughLevelAndQuest() && SteelCyclonePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true))
+                {
+                    return true;
+                }
             }
 
             if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true))
@@ -291,6 +290,19 @@ public sealed class WAR_Reborn : WarriorRotation
                 return true;
             }
             if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act, skipStatusProvideCheck: true))
+            {
+                return true;
+            }
+        }
+
+        if (hasSurgingTempest)
+        {
+            if (NumberOfHostilesInRange >= AOECount && ChaoticCyclonePvE.CanUse(out act, skipAoeCheck: true))
+            {
+                return true;
+            }
+
+            if (InnerChaosPvE.CanUse(out act))
             {
                 return true;
             }
@@ -317,24 +329,30 @@ public sealed class WAR_Reborn : WarriorRotation
 
         if (hasSurgingTempest)
         {
-            if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true))
+            if (NumberOfHostilesInRange >= AOECount)
             {
-                return true;
-            }
-            if (!DecimatePvE.Info.EnoughLevelAndQuest() && SteelCyclonePvE.CanUse(out act))
-            {
-                return true;
+                if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true))
+                {
+                    return true;
+                }
+                if (!DecimatePvE.Info.EnoughLevelAndQuest() && SteelCyclonePvE.CanUse(out act, skipAoeCheck: true))
+                {
+                    return true;
+                }
             }
         }
 
-        if (MythrilTempestPvE.CanUse(out act))
+        if (NumberOfHostilesInRange >= AOECount)
         {
-            return true;
-        }
+            if (MythrilTempestPvE.CanUse(out act, skipAoeCheck: true))
+            {
+                return true;
+            }
 
-        if (OverpowerPvE.CanUse(out act))
-        {
-            return true;
+            if (OverpowerPvE.CanUse(out act, skipAoeCheck: true))
+            {
+                return true;
+            }
         }
 
         if (hasSurgingTempest)
@@ -351,6 +369,11 @@ public sealed class WAR_Reborn : WarriorRotation
 
         if (StormsEyePvE.CanUse(out act))
         {
+            if (Player.StatusTime(true, StatusID.SurgingTempest) > StormsEyeRefreshTimer && StormsPathPvE.CanUse(out var actPath))
+            {
+                act = actPath;
+                return true;
+            }
             return true;
         }
 

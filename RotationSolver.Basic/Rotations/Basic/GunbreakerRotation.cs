@@ -143,47 +143,48 @@ public partial class GunbreakerRotation
     /// <inheritdoc/>
     public override void DisplayBaseStatus()
     {
-        ImGui.Text("InGnashingFang: " + InGnashingFang.ToString());
-        ImGui.Text("InReignCombo: " + InReignCombo.ToString());
-        ImGui.Text("HasNoMercy: " + HasNoMercy.ToString());
-        ImGui.Text("HasReadyToBreak: " + HasReadyToBreak.ToString());
-        ImGui.Text("HasReadyToReign: " + HasReadyToReign.ToString());
-        ImGui.Text("HasReadyToRip: " + HasReadyToRip.ToString());
-        ImGui.Text("HasReadyToTear: " + HasReadyToTear.ToString());
-        ImGui.Text("HasReadyToRaze: " + HasReadyToRaze.ToString());
-        ImGui.Text("HasReadyToGouge: " + HasReadyToGouge.ToString());
-        ImGui.Text("HasReadyToBlast: " + HasReadyToBlast.ToString());
+        // Optimization: Use string interpolation
+        ImGui.Text($"InGnashingFang: {InGnashingFang}");
+        ImGui.Text($"InReignCombo: {InReignCombo}");
+        ImGui.Text($"HasNoMercy: {HasNoMercy}");
+        ImGui.Text($"HasReadyToBreak: {HasReadyToBreak}");
+        ImGui.Text($"HasReadyToReign: {HasReadyToReign}");
+        ImGui.Text($"HasReadyToRip: {HasReadyToRip}");
+        ImGui.Text($"HasReadyToTear: {HasReadyToTear}");
+        ImGui.Text($"HasReadyToRaze: {HasReadyToRaze}");
+        ImGui.Text($"HasReadyToGouge: {HasReadyToGouge}");
+        ImGui.Text($"HasReadyToBlast: {HasReadyToBlast}");
         ImGui.Spacing();
         //ImGui.Text("NoMercyWindow: " + NoMercyWindow.ToString());
-        ImGui.Text("Ammo: " + Ammo.ToString());
-        ImGui.Text("AmmoComboStep: " + AmmoComboStep.ToString());
-        ImGui.Text("MaxAmmo: " + MaxAmmo().ToString());
-        ImGui.Text("Is Ammo Capped: " + IsAmmoCapped.ToString());
-        ImGui.Text("MaxTimerDuration: " + MaxTimerDuration.ToString());
+        ImGui.Text($"Ammo: {Ammo}");
+        ImGui.Text($"AmmoComboStep: {AmmoComboStep}");
+        ImGui.Text($"MaxAmmo: {MaxAmmo()}");
+        ImGui.Text($"Is Ammo Capped: {IsAmmoCapped}");
+        ImGui.Text($"MaxTimerDuration: {MaxTimerDuration}");
         ImGui.TextColored(ImGuiColors.DalamudViolet, "PvE Actions");
-        ImGui.Text("SavageClawPvEReady: " + SavageClawPvEReady.ToString());
-        ImGui.Text("WickedTalonPvEReady: " + WickedTalonPvEReady.ToString());
+        ImGui.Text($"SavageClawPvEReady: {SavageClawPvEReady}");
+        ImGui.Text($"WickedTalonPvEReady: {WickedTalonPvEReady}");
         ImGui.Spacing();
-        ImGui.Text("JugularRipPvEReady: " + JugularRipPvEReady.ToString());
-        ImGui.Text("AbdomenTearPvEReady: " + AbdomenTearPvEReady.ToString());
-        ImGui.Text("EyeGougePvEReady: " + EyeGougePvEReady.ToString());
-        ImGui.Text("HypervelocityPvEReady: " + HypervelocityPvEReady.ToString());
+        ImGui.Text($"JugularRipPvEReady: {JugularRipPvEReady}");
+        ImGui.Text($"AbdomenTearPvEReady: {AbdomenTearPvEReady}");
+        ImGui.Text($"EyeGougePvEReady: {EyeGougePvEReady}");
+        ImGui.Text($"HypervelocityPvEReady: {HypervelocityPvEReady}");
         ImGui.Spacing();
-        ImGui.Text("FatedBrandPvEReady: " + FatedBrandPvEReady.ToString());
+        ImGui.Text($"FatedBrandPvEReady: {FatedBrandPvEReady}");
         ImGui.Spacing();
-        ImGui.Text("NobleBloodPvEReady: " + NobleBloodPvEReady.ToString());
-        ImGui.Text("LionHeartPvEReady: " + LionHeartPvEReady.ToString());
+        ImGui.Text($"NobleBloodPvEReady: {NobleBloodPvEReady}");
+        ImGui.Text($"LionHeartPvEReady: {LionHeartPvEReady}");
         ImGui.TextColored(ImGuiColors.DalamudYellow, "PvP Actions");
-        ImGui.Text("SavageClawPvPReady: " + SavageClawPvPReady.ToString());
-        ImGui.Text("WickedTalonPvPReady: " + WickedTalonPvPReady.ToString());
+        ImGui.Text($"SavageClawPvPReady: {SavageClawPvPReady}");
+        ImGui.Text($"WickedTalonPvPReady: {WickedTalonPvPReady}");
         ImGui.Spacing();
-        ImGui.Text("HypervelocityPvPReady: " + HypervelocityPvPReady.ToString());
-        ImGui.Text("FatedBrandPvPReady: " + FatedBrandPvPReady.ToString());
-        ImGui.Text("JugularRipPvPReady: " + JugularRipPvPReady.ToString());
-        ImGui.Text("AbdomenTearPvPReady: " + AbdomenTearPvPReady.ToString());
-        ImGui.Text("EyeGougePvPReady: " + EyeGougePvPReady.ToString());
+        ImGui.Text($"HypervelocityPvPReady: {HypervelocityPvPReady}");
+        ImGui.Text($"FatedBrandPvPReady: {FatedBrandPvPReady}");
+        ImGui.Text($"JugularRipPvPReady: {JugularRipPvPReady}");
+        ImGui.Text($"AbdomenTearPvPReady: {AbdomenTearPvPReady}");
+        ImGui.Text($"EyeGougePvPReady: {EyeGougePvPReady}");
         ImGui.Spacing();
-        ImGui.Text("HasTerminalTrigger: " + HasTerminalTrigger.ToString());
+        ImGui.Text($"HasTerminalTrigger: {HasTerminalTrigger}");
     }
     #endregion
 
@@ -227,6 +228,7 @@ public partial class GunbreakerRotation
     static partial void ModifyRoyalGuardPvE(ref ActionSetting setting)
     {
         setting.IsFriendly = true;
+        setting.ActionCheck = () => !IsManual;
     }
 
     static partial void ModifyReleaseRoyalGuardPvE(ref ActionSetting setting)

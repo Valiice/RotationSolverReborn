@@ -118,6 +118,7 @@ public partial class WarriorRotation
     static partial void ModifyDefiancePvE(ref ActionSetting setting)
     {
         setting.IsFriendly = true;
+        setting.ActionCheck = () => !IsManual;
     }
 
     static partial void ModifyReleaseDefiancePvE(ref ActionSetting setting)
