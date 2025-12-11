@@ -60,6 +60,14 @@ public sealed class PLD_Reborn : PaladinRotation
     [Range(0, 1, ConfigUnitType.Percent)]
     [RotationConfig(CombatType.PvE, Name = "Minimum HP threshold party member needs to be to use Clemency without Requiescat")]
     public float ClemencyNoRequi { get; set; } = 0.4f;
+
+    [Range(1, 10, ConfigUnitType.None)]
+    [RotationConfig(CombatType.PvE, Name = "Number of enemies to start using AOE (Overrides defaults)")]
+    public int AOECount { get; set; } = 3;
+
+    [Range(0, 20, ConfigUnitType.Yalms)]
+    [RotationConfig(CombatType.PvE, Name = "Min distance to use Shield Lob")]
+    public float ShieldLobDistance { get; set; } = 5.5f;
     #endregion
 
     #region Tracking Properties
@@ -79,6 +87,11 @@ public sealed class PLD_Reborn : PaladinRotation
         }
 
         if (DivineVeilCountdown && remainTime < 15 && DivineVeilPvE.CanUse(out act))
+        {
+            return act;
+        }
+
+        if (remainTime < 0.54f && ShieldLobPvE.CanUse(out act))
         {
             return act;
         }
@@ -431,19 +444,22 @@ public sealed class PLD_Reborn : PaladinRotation
         }
 
         //AoE
-        if ((HasDivineMight || RequiescatStacks > 0) && HolyCirclePvE.CanUse(out act, skipCastingCheck: true))
+        if (NumberOfHostilesInRange >= AOECount)
         {
-            return true;
-        }
+            if ((HasDivineMight || RequiescatStacks > 0) && HolyCirclePvE.CanUse(out act, skipCastingCheck: true))
+            {
+                return true;
+            }
 
-        if (ProminencePvE.CanUse(out act, skipStatusProvideCheck: !EnhancedProminenceTrait.EnoughLevel))
-        {
-            return true;
-        }
+            if (ProminencePvE.CanUse(out act, skipStatusProvideCheck: !EnhancedProminenceTrait.EnoughLevel))
+            {
+                return true;
+            }
 
-        if (TotalEclipsePvE.CanUse(out act))
-        {
-            return true;
+            if (TotalEclipsePvE.CanUse(out act))
+            {
+                return true;
+            }
         }
 
         //Single Target
@@ -484,7 +500,12 @@ public sealed class PLD_Reborn : PaladinRotation
 
         if (ShieldLobPvE.CanUse(out act))
         {
-            return true;
+            if (ShieldLobPvE.Target.Target != null && ShieldLobPvE.Target.Target.DistanceToPlayer() >= ShieldLobDistance)
+            {
+                return true;
+            }
+            act = null;
+            return false;
         }
 
         return base.GeneralGCD(out act);

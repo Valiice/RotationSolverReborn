@@ -6,7 +6,13 @@ namespace RotationSolver.RebornRotations.Tank;
 public sealed class GNB_Reborn : GunbreakerRotation
 {
     #region Config Options
+    [Range(1, 10, ConfigUnitType.None)]
+    [RotationConfig(CombatType.PvE, Name = "Number of enemies to start using AOE (Overrides defaults)")]
+    public int AOECount { get; set; } = 3;
 
+    [Range(0, 20, ConfigUnitType.Yalms)]
+    [RotationConfig(CombatType.PvE, Name = "Min distance to use Lightning Shot")]
+    public float LightningShotDistance { get; set; } = 5.5f;
     #endregion
 
     #region Countdown Logic
@@ -56,24 +62,27 @@ public sealed class GNB_Reborn : GunbreakerRotation
         }
 
         // AOE No Mercy Logic
-        if (DemonSlicePvE.CanUse(out _) && nextGCD.IsTheSameTo(false, (ActionID)DoubleDownPvE.ID) && NoMercyPvE.CanUse(out act))
+        if (NumberOfHostilesInRange >= AOECount)
         {
-            return true;
-        }
+            if (DemonSlicePvE.CanUse(out _) && nextGCD.IsTheSameTo(false, (ActionID)DoubleDownPvE.ID) && NoMercyPvE.CanUse(out act))
+            {
+                return true;
+            }
 
-        if (!DoubleDownPvE.EnoughLevel && nextGCD.IsTheSameTo(false, (ActionID)FatedCirclePvE.ID) && NoMercyPvE.CanUse(out act))
-        {
-            return true;
-        }
+            if (!DoubleDownPvE.EnoughLevel && nextGCD.IsTheSameTo(false, (ActionID)FatedCirclePvE.ID) && NoMercyPvE.CanUse(out act))
+            {
+                return true;
+            }
 
-        if (!FatedCirclePvE.EnoughLevel && nextGCD.IsTheSameTo(false, (ActionID)DemonSlaughterPvE.ID) && NoMercyPvE.CanUse(out act))
-        {
-            return true;
-        }
+            if (!FatedCirclePvE.EnoughLevel && nextGCD.IsTheSameTo(false, (ActionID)DemonSlaughterPvE.ID) && NoMercyPvE.CanUse(out act))
+            {
+                return true;
+            }
 
-        if (!DemonSlaughterPvE.EnoughLevel && nextGCD.IsTheSameTo(false, (ActionID)DemonSlicePvE.ID) && NoMercyPvE.CanUse(out act))
-        {
-            return true;
+            if (!DemonSlaughterPvE.EnoughLevel && nextGCD.IsTheSameTo(false, (ActionID)DemonSlicePvE.ID) && NoMercyPvE.CanUse(out act))
+            {
+                return true;
+            }
         }
 
         if (Ammo == 0 && BloodfestPvE.CanUse(out act))
@@ -91,7 +100,7 @@ public sealed class GNB_Reborn : GunbreakerRotation
             return true;
         }
 
-        if (FatedBrandPvE.CanUse(out act))
+        if (NumberOfHostilesInRange >= AOECount && FatedBrandPvE.CanUse(out act))
         {
             return true;
         }
@@ -221,9 +230,12 @@ public sealed class GNB_Reborn : GunbreakerRotation
         if (HasNoMercy && BowShockPvE.CanUse(out act, skipAoeCheck: true))
         {
             //AOE CHECK
-            if (DemonSlicePvE.CanUse(out _) && !IsFullParty)
+            if (NumberOfHostilesInRange >= AOECount)
             {
-                return true;
+                if (DemonSlicePvE.CanUse(out _) && !IsFullParty)
+                {
+                    return true;
+                }
             }
 
             if (!SonicBreakPvE.EnoughLevel && HasNoMercy)
@@ -331,19 +343,22 @@ public sealed class GNB_Reborn : GunbreakerRotation
 
         if (!InGnashingFang && !InReignCombo)
         {
-            if (FatedCirclePvE.CanUse(out act))
+            if (NumberOfHostilesInRange >= AOECount)
             {
-                return true;
-            }
+                if (FatedCirclePvE.CanUse(out act))
+                {
+                    return true;
+                }
 
-            if (DemonSlaughterPvE.CanUse(out act))
-            {
-                return true;
-            }
+                if (DemonSlaughterPvE.CanUse(out act))
+                {
+                    return true;
+                }
 
-            if (DemonSlicePvE.CanUse(out act))
-            {
-                return true;
+                if (DemonSlicePvE.CanUse(out act))
+                {
+                    return true;
+                }
             }
 
             if (SolidBarrelPvE.CanUse(out act))
@@ -364,7 +379,12 @@ public sealed class GNB_Reborn : GunbreakerRotation
 
         if (LightningShotPvE.CanUse(out act))
         {
-            return true;
+            if (LightningShotPvE.Target.Target != null && LightningShotPvE.Target.Target.DistanceToPlayer() >= LightningShotDistance)
+            {
+                return true;
+            }
+            act = null;
+            return false;
         }
 
         return base.GeneralGCD(out act);

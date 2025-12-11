@@ -15,6 +15,14 @@ public sealed class DRK_Reborn : DarkKnightRotation
     [Range(0, 1, ConfigUnitType.Percent)]
     [RotationConfig(CombatType.PvE, Name = "Target health threshold needed to use Blackest Night with above option")]
     private float BlackLanternRatio { get; set; } = 0.5f;
+
+    [Range(1, 10, ConfigUnitType.None)]
+    [RotationConfig(CombatType.PvE, Name = "Number of enemies to start using AOE (Overrides defaults)")]
+    public int AOECount { get; set; } = 3;
+
+    [Range(0, 20, ConfigUnitType.Yalms)]
+    [RotationConfig(CombatType.PvE, Name = "Min distance to use Unmend")]
+    public float UnmendDistance { get; set; } = 5.5f;
     #endregion
 
     #region Countdown Logic
@@ -44,6 +52,11 @@ public sealed class DRK_Reborn : DarkKnightRotation
         }
 
         if (remainTime <= 4 && BloodWeaponPvE.CanUse(out act))
+        {
+            return act;
+        }
+
+        if (remainTime < 0.54f && UnmendPvE.CanUse(out act))
         {
             return act;
         }
@@ -84,7 +97,7 @@ public sealed class DRK_Reborn : DarkKnightRotation
         {
             return true;
         }
-        
+
         if (!InTwoMIsBurst && DarkMissionaryPvE.CanUse(out act))
         {
             return true;
@@ -210,7 +223,7 @@ public sealed class DRK_Reborn : DarkKnightRotation
             return true;
         }
 
-        if (NumberOfHostilesInRange >= 3 && AbyssalDrainPvE.CanUse(out act))
+        if (NumberOfHostilesInRange >= AOECount && AbyssalDrainPvE.CanUse(out act))
         {
             return true;
         }
@@ -246,14 +259,17 @@ public sealed class DRK_Reborn : DarkKnightRotation
         }
 
         //AOE Delirium
-        if (ImpalementPvE.CanUse(out act))
+        if (NumberOfHostilesInRange >= AOECount)
         {
-            return true;
-        }
+            if (ImpalementPvE.CanUse(out act))
+            {
+                return true;
+            }
 
-        if (QuietusPvE.CanUse(out act))
-        {
-            return true;
+            if (QuietusPvE.CanUse(out act))
+            {
+                return true;
+            }
         }
 
         // Single Target Delirium
@@ -278,9 +294,17 @@ public sealed class DRK_Reborn : DarkKnightRotation
         }
 
         //AOE
-        if (StalwartSoulPvE.CanUse(out act, skipAoeCheck: true))
+        if (NumberOfHostilesInRange >= AOECount)
         {
-            return true;
+            if (StalwartSoulPvE.CanUse(out act, skipAoeCheck: true))
+            {
+                return true;
+            }
+
+            if (UnleashPvE.CanUse(out act))
+            {
+                return true;
+            }
         }
 
         //Single Target
@@ -294,11 +318,6 @@ public sealed class DRK_Reborn : DarkKnightRotation
             return true;
         }
 
-        if (UnleashPvE.CanUse(out act))
-        {
-            return true;
-        }
-
         if (!HasDelirium && HardSlashPvE.CanUse(out act))
         {
             return true;
@@ -306,7 +325,12 @@ public sealed class DRK_Reborn : DarkKnightRotation
 
         if (UnmendPvE.CanUse(out act))
         {
-            return true;
+            if (UnmendPvE.Target.Target != null && UnmendPvE.Target.Target.DistanceToPlayer() >= UnmendDistance)
+            {
+                return true;
+            }
+            act = null;
+            return false;
         }
 
         return base.GeneralGCD(out act);
