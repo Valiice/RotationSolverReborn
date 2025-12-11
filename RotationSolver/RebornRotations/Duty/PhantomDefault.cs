@@ -11,6 +11,9 @@ public sealed class PhantomDefault : PhantomRotation
     [RotationConfig(CombatType.PvE, Name = "Save Phantom Attacks for class specific damage bonus?")]
     public bool SaveForBurstWindow { get; set; } = true;
 
+    [RotationConfig(CombatType.PvE, Name = "Prioritize Viper buff application and refresh over Phantom GCDs")]
+    public bool ViperTime { get; set; } = true;
+
     [Range(0, 1, ConfigUnitType.Percent)]
     [RotationConfig(CombatType.PvE, Name = "Player HP percent needed to use Occult Resuscitation", PhantomJob = PhantomJob.Freelancer)]
     public float OccultResuscitationThreshold { get; set; } = 0.7f;
@@ -74,7 +77,7 @@ public sealed class PhantomDefault : PhantomRotation
     public float PredictJudgementThreshold { get; set; } = 0.7f;
 
     [Range(0, 1, ConfigUnitType.Percent)]
-    [RotationConfig(CombatType.PvE, Name = "Average party HP percent to predict to heal instead of damage things", PhantomJob =PhantomJob.Oracle)]
+    [RotationConfig(CombatType.PvE, Name = "Average party HP percent to predict to heal instead of damage things", PhantomJob = PhantomJob.Oracle)]
     public float PredictBlessingThreshold { get; set; } = 0.5f;
 
     [Range(0, 1, ConfigUnitType.Percent)]
@@ -448,7 +451,7 @@ public sealed class PhantomDefault : PhantomRotation
 
     public override bool MyInterruptGCD(out IAction? act)
     {
-        if (HasLockoutStatus)
+        if (HasLockoutStatus || (ViperTime && NeedsViperBuffs))
         {
             return base.MyInterruptGCD(out act);
         }
@@ -463,7 +466,7 @@ public sealed class PhantomDefault : PhantomRotation
 
     public override bool RaiseGCD(out IAction? act)
     {
-        if (HasLockoutStatus)
+        if (HasLockoutStatus || (ViperTime && NeedsViperBuffs))
         {
             return base.RaiseGCD(out act);
         }
@@ -478,7 +481,7 @@ public sealed class PhantomDefault : PhantomRotation
 
     public override bool HealSingleGCD(out IAction? act)
     {
-        if (HasLockoutStatus)
+        if (HasLockoutStatus || (ViperTime && NeedsViperBuffs))
         {
             return base.HealSingleGCD(out act);
         }
@@ -501,7 +504,7 @@ public sealed class PhantomDefault : PhantomRotation
 
     public override bool HealAreaGCD(out IAction? act)
     {
-        if (HasLockoutStatus)
+        if (HasLockoutStatus || (ViperTime && NeedsViperBuffs))
         {
             return base.HealAreaGCD(out act);
         }
@@ -521,7 +524,7 @@ public sealed class PhantomDefault : PhantomRotation
 
     public override bool DefenseSingleGCD(out IAction? act)
     {
-        if (HasLockoutStatus)
+        if (HasLockoutStatus || (ViperTime && NeedsViperBuffs))
         {
             return base.DefenseSingleGCD(out act);
         }
@@ -536,7 +539,7 @@ public sealed class PhantomDefault : PhantomRotation
 
     public override bool DefenseAreaGCD(out IAction? act)
     {
-        if (HasLockoutStatus)
+        if (HasLockoutStatus || (ViperTime && NeedsViperBuffs))
         {
             return base.DefenseAreaGCD(out act);
         }
@@ -556,7 +559,7 @@ public sealed class PhantomDefault : PhantomRotation
 
     public override bool GeneralGCD(out IAction? act)
     {
-        if (HasLockoutStatus || Player.HasStatus(true, StatusID.Reassembled))
+        if (HasLockoutStatus || Player.HasStatus(true, StatusID.Reassembled) || (ViperTime && NeedsViperBuffs))
         {
             return base.GeneralGCD(out act);
         }
@@ -817,7 +820,17 @@ public sealed class PhantomDefault : PhantomRotation
 
         if (_remainingCards.Count == 2) // We have a little time but need to think it through
         {
-            if (_remainingCards.Contains(StarfallPvE)) // We still have a starfall in the deck
+            bool hasStarfall = false;
+            foreach (var card in _remainingCards)
+            {
+                if (card == StarfallPvE)
+                {
+                    hasStarfall = true;
+                    break;
+                }
+            }
+
+            if (hasStarfall) // We still have a starfall in the deck
             {
                 if (_currentCard == StarfallPvE) // We've opted not to use it above, so either we're below health threshold, or are tanking and not invuln
                 {

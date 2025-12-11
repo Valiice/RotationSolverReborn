@@ -137,7 +137,7 @@ public partial class RotationConfigWindow : Window
 
         TitleBarButtons.Add(new TitleBarButton()
         {
-            Icon = FontAwesomeIcon.Heart,
+            Icon = FontAwesomeIcon.MugHot,
             ShowTooltip = () =>
             {
                 ImGui.BeginTooltip();
@@ -369,7 +369,7 @@ public partial class RotationConfigWindow : Window
             _ = diagInfo.AppendLine($"Game Language: {_cachedDiagInfo.Language}");
             _ = diagInfo.AppendLine($"Update Frequency: {Service.Config.MinUpdatingTime}");
             _ = diagInfo.AppendLine($"Intercept: {Service.Config.InterceptAction2}");
-            _ = diagInfo.AppendLine($"Player Level: {Player.Level}");
+            _ = diagInfo.AppendLine($"Player Level: {DataCenter.PlayerSyncedLevel()}");
             _ = diagInfo.AppendLine($"Player Job: {Player.Job}");
             _ = diagInfo.AppendLine($"AutoFaceTargetOnActionSetting: {DataCenter.AutoFaceTargetOnActionSetting()}");
             var moveModeValue = DataCenter.MoveModeSetting();
@@ -3508,6 +3508,8 @@ public partial class RotationConfigWindow : Window
 
     private static unsafe void DrawStatus()
     {
+        ImGui.Text($"PlayerSyncedLevel: {DataCenter.PlayerSyncedLevel()}");
+        ImGui.Text($"PlayerUnsyncedLevel: {DataCenter.PlayerUnsyncedLevel}");
         ImGui.Text($"Merged Status: {DataCenter.MergedStatus}");
         ImGui.Text($"PlayerHasLockActions: {ActionUpdater.PlayerHasLockActions()}");
         ImGui.Text($"Height: {Player.Character->ModelContainer.CalculateHeight()}");
@@ -3696,6 +3698,7 @@ public partial class RotationConfigWindow : Window
         ImGui.Text($"TerritoryType: {DataCenter.Territory?.ContentType}");
         ImGui.Text($"Is in Alliance Raid: {DataCenter.IsInAllianceRaid}");
         ImGui.Spacing();
+        ImGui.Text($"IsPvP: {DataCenter.IsPvP}");
         ImGui.Text($"IsInFate: {DataCenter.IsInFate}");
         if ((IntPtr)FateManager.Instance() != IntPtr.Zero)
         {
@@ -3997,6 +4000,11 @@ public partial class RotationConfigWindow : Window
         {
             IPCProvider ipcProvider = new();
             ipcProvider.AutodutyChangeOperatingMode(StateCommandType.AutoDuty, TargetingType.HighHPPercent);
+        }
+        if (ImGui.Button("Test Henchman IPC support"))
+        {
+            IPCProvider ipcProvider = new();
+            ipcProvider.ChangeOperatingMode(StateCommandType.Henched);
         }
     }
 

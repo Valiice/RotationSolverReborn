@@ -42,6 +42,25 @@ internal static class DataCenter
 
     public static bool ResetActionConfigs { get; set; } = false;
 
+    public static int PlayerSyncedLevel()
+    {
+        if (Player.IsLevelSynced)
+        {
+            return Player.SyncedLevel;
+        }
+
+        if (PlayerCurrentLevel < PlayerUnsyncedLevel)
+        {
+            return PlayerCurrentLevel;
+        }
+
+        return PlayerUnsyncedLevel;
+    }
+
+    public unsafe static int PlayerCurrentLevel => PlayerState.Instance()->CurrentLevel;
+
+    public static int PlayerUnsyncedLevel => Player.UnsyncedLevel;
+
     public static bool IsActivated()
     {
         return Player.AvailableThreadSafe && (State || IsManual || Service.Config.TeachingMode);
@@ -258,6 +277,10 @@ internal static class DataCenter
 
     public static bool IsAutoDuty { get; set; } = false;
 
+    public static bool IsHenched { get; set; } = false;
+
+    public static bool IsPvPStateEnabled { get; set; } = false;
+
     public static bool IsTargetOnly { get; set; } = false;
 
     public static bool InCombat { get; set; } = false;
@@ -366,11 +389,18 @@ internal static class DataCenter
     {
         get
         {
-            HashSet<ushort> allianceTerritoryIds =
+            ushort[] allianceTerritoryIds =
             [
-            151, 174, 372, 508, 556, 627, 734, 776, 826, 882, 917, 966, 1054, 1118, 1178, 1248, 1241
+                151, 174, 372, 508, 556, 627, 734, 776, 826, 882, 917, 966, 1054, 1118, 1178, 1248, 1241
             ];
-            return allianceTerritoryIds.Contains(TerritoryID);
+
+            for (int i = 0; i < allianceTerritoryIds.Length; i++)
+            {
+                if (allianceTerritoryIds[i] == TerritoryID)
+                    return true;
+            }
+
+            return false;
         }
     }
 
@@ -401,7 +431,7 @@ internal static class DataCenter
             {
                 if ((IntPtr)FateManager.Instance() != IntPtr.Zero
                     && (IntPtr)FateManager.Instance()->CurrentFate != IntPtr.Zero
-                    && Player.Level <= FateManager.Instance()->CurrentFate->MaxLevel)
+                    && DataCenter.PlayerSyncedLevel() <= FateManager.Instance()->CurrentFate->MaxLevel)
                 {
                     return FateManager.Instance()->CurrentFate->FateId;
                 }
@@ -533,11 +563,11 @@ internal static class DataCenter
             return true;
         }
 
-        if ((Role == JobRole.Healer || Job == Job.SMN) && Player.Level >= 12)
+        if ((Role == JobRole.Healer || Job == Job.SMN) && DataCenter.PlayerSyncedLevel() >= 12)
         {
             return true;
         }
-        if (Job == Job.RDM && Player.Level >= 64)
+        if (Job == Job.RDM && DataCenter.PlayerSyncedLevel() >= 64)
         {
             return true;
         }
@@ -1148,7 +1178,15 @@ internal static class DataCenter
     public static bool IsHostileStop(IBattleChara h)
     {
         return IsHostileCastingStopBase(h,
-            (act) => act.RowId != 0 && OtherConfiguration.HostileCastingStop.Contains(act.RowId));
+            (act) =>
+            {
+                if (act.RowId == 0) return false;
+                foreach (var id in OtherConfiguration.HostileCastingStop)
+                {
+                    if (id == act.RowId) return true;
+                }
+                return false;
+            });
     }
 
     public static bool IsHostileCastingStopBase(IBattleChara h, Func<Action, bool> check)
@@ -1272,14 +1310,24 @@ internal static class DataCenter
     {
         return h != null && IsHostileCastingBase(h, (act) =>
         {
-            return OtherConfiguration.HostileCastingTank.Contains(act.RowId)
-                   || h.CastTargetObjectId == h.TargetObjectId;
+            foreach (var id in OtherConfiguration.HostileCastingTank)
+            {
+                if (id == act.RowId) return true;
+            }
+            return h.CastTargetObjectId == h.TargetObjectId;
         });
     }
 
     public static bool IsHostileCastingArea(IBattleChara h)
     {
-        return IsHostileCastingBase(h, (act) => { return OtherConfiguration.HostileCastingArea.Contains(act.RowId); });
+        return IsHostileCastingBase(h, (act) =>
+        {
+            foreach (var id in OtherConfiguration.HostileCastingArea)
+            {
+                if (id == act.RowId) return true;
+            }
+            return false;
+        });
     }
 
     public static bool AreHostilesCastingKnockback
@@ -1300,7 +1348,15 @@ internal static class DataCenter
     public static bool IsHostileCastingKnockback(IBattleChara h)
     {
         return IsHostileCastingBase(h,
-            (act) => act.RowId != 0 && OtherConfiguration.HostileCastingKnockback.Contains(act.RowId));
+            (act) =>
+            {
+                if (act.RowId == 0) return false;
+                foreach (var id in OtherConfiguration.HostileCastingKnockback)
+                {
+                    if (id == act.RowId) return true;
+                }
+                return false;
+            });
     }
 
     public static bool IsHostileCastingBase(IBattleChara h, Func<Action, bool> check)

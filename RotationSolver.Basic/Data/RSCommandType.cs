@@ -131,6 +131,18 @@ public enum StateCommandType : byte
     /// </summary>
     [Description("This mode is managed by the Autoduty plugin")]
     AutoDuty,
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Description("This mode is managed by the Henchman plugin, or any other plugin that requires RSR just do rotation and not targetting.")]
+    Henched,
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Description("Optional mode for PvP specific activities.")]
+    PvP,
 }
 
 /// <summary>
