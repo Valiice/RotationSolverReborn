@@ -126,6 +126,7 @@ public partial class PaladinRotation
     static partial void ModifyIronWillPvE(ref ActionSetting setting)
     {
         setting.IsFriendly = true;
+        setting.ActionCheck = () => !IsManual;
     }
 
     static partial void ModifyReleaseIronWillPvE(ref ActionSetting setting)

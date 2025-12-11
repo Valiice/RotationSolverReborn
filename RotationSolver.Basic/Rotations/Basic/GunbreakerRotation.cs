@@ -228,6 +228,7 @@ public partial class GunbreakerRotation
     static partial void ModifyRoyalGuardPvE(ref ActionSetting setting)
     {
         setting.IsFriendly = true;
+        setting.ActionCheck = () => !IsManual;
     }
 
     static partial void ModifyReleaseRoyalGuardPvE(ref ActionSetting setting)

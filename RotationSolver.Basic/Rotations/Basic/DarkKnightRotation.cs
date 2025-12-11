@@ -195,6 +195,7 @@ public partial class DarkKnightRotation
     static partial void ModifyGritPvE(ref ActionSetting setting)
     {
         setting.IsFriendly = true;
+        setting.ActionCheck = () => !IsManual;
     }
 
     static partial void ModifyReleaseGritPvE(ref ActionSetting setting)
