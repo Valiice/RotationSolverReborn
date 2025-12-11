@@ -37,6 +37,11 @@ internal static class MajorUpdater
                 return false;
             }
 
+            if (Svc.Condition[ConditionFlag.Mounted] || Svc.Condition[ConditionFlag.RidingPillion])
+            {
+                return false;
+            }
+
             return true;
         }
     }

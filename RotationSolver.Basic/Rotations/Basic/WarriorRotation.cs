@@ -70,15 +70,16 @@ public partial class WarriorRotation
     /// <inheritdoc/>
     public override void DisplayBaseStatus()
     {
-        ImGui.Text("InnerReleaseStacks: " + InnerReleaseStacks.ToString());
-        ImGui.Text("BerserkStacks: " + BerserkStacks.ToString());
-        ImGui.Text("BeastGaugeValue: " + BeastGauge.ToString());
-        ImGui.Text("OnslaughtMax: " + OnslaughtMax.ToString());
+        // Optimization: Use string interpolation instead of concatenation
+        ImGui.Text($"InnerReleaseStacks: {InnerReleaseStacks}");
+        ImGui.Text($"BerserkStacks: {BerserkStacks}");
+        ImGui.Text($"BeastGaugeValue: {BeastGauge}");
+        ImGui.Text($"OnslaughtMax: {OnslaughtMax}");
         ImGui.TextColored(ImGuiColors.DalamudViolet, "PvE Actions");
-        ImGui.Text("ChaoticCyclonePvEReady: " + ChaoticCyclonePvEReady.ToString());
-        ImGui.Text("InnerChaosPvEeady: " + InnerChaosPvEeady.ToString());
-        ImGui.Text("PrimalWrathPvEReady: " + PrimalWrathPvEReady.ToString());
-        ImGui.Text("PrimalRuinationPvEReady: " + PrimalRuinationPvEReady.ToString());
+        ImGui.Text($"ChaoticCyclonePvEReady: {ChaoticCyclonePvEReady}");
+        ImGui.Text($"InnerChaosPvEeady: {InnerChaosPvEeady}");
+        ImGui.Text($"PrimalWrathPvEReady: {PrimalWrathPvEReady}");
+        ImGui.Text($"PrimalRuinationPvEReady: {PrimalRuinationPvEReady}");
     }
     #endregion
 
@@ -247,7 +248,6 @@ public partial class WarriorRotation
 
     static partial void ModifyUpheavalPvE(ref ActionSetting setting)
     {
-        //TODO: Why is that status? Answer: This is Warrior's 10% damage buff. Don't want to cast Upheaval at the start of combat without the buff. 
         setting.StatusNeed = [StatusID.SurgingTempest];
     }
 
