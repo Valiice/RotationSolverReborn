@@ -77,7 +77,7 @@ public sealed class WAR_Reborn : WarriorRotation
             return true;
         }
 
-        if (!InnerReleasePvE.EnoughLevel && Player.HasStatus(true, StatusID.Berserk) && InfuriatePvE.CanUse(out act, usedUp: true))
+        if (!InnerReleasePvE.EnoughLevel && StatusHelper.PlayerHasStatus(true, StatusID.Berserk) && InfuriatePvE.CanUse(out act, usedUp: true))
         {
             return true;
         }
@@ -87,9 +87,7 @@ public sealed class WAR_Reborn : WarriorRotation
             return false;
         }
 
-        bool hasSurgingTempest = Player.HasStatus(true, StatusID.SurgingTempest);
-
-        if (!Player.WillStatusEndGCD(2, 0, true, StatusID.SurgingTempest)
+        if (!StatusHelper.PlayerWillStatusEndGCD(2, 0, true, StatusID.SurgingTempest)
             || !StormsEyePvE.EnoughLevel)
         {
             if (InnerReleasePvE.CanUse(out act))
@@ -128,7 +126,7 @@ public sealed class WAR_Reborn : WarriorRotation
             return false;
         }
 
-        if (Player.HasStatus(false, StatusID.Wrathful) && PrimalWrathPvE.CanUse(out act, skipAoeCheck: true))
+        if (StatusHelper.PlayerHasStatus(false, StatusID.Wrathful) && PrimalWrathPvE.CanUse(out act, skipAoeCheck: true))
         {
             return true;
         }
@@ -137,7 +135,7 @@ public sealed class WAR_Reborn : WarriorRotation
            !IsMoving &&
            !IsLastAction(false, OnslaughtPvE) &&
            !IsLastAction(false, UpheavalPvE) &&
-            hasSurgingTempest)
+            StatusHelper.PlayerHasStatus(true, StatusID.SurgingTempest))
         {
             return true;
         }
@@ -146,7 +144,7 @@ public sealed class WAR_Reborn : WarriorRotation
            !IsMoving &&
            !IsLastAction(false, OnslaughtPvE) &&
            OnslaughtPvE.Cooldown.WillHaveXChargesGCD(OnslaughtMax, 1) &&
-            hasSurgingTempest)
+            StatusHelper.PlayerHasStatus(true, StatusID.SurgingTempest))
         {
             return true;
         }
@@ -161,22 +159,19 @@ public sealed class WAR_Reborn : WarriorRotation
 
     protected override bool GeneralAbility(IAction nextGCD, out IAction? act)
     {
-        if (InCombat && NumberOfHostilesInRange > 0)
+        if ((InCombat && Player?.GetHealthRatio() < HealIntuition && NumberOfHostilesInRange > 0) || (InCombat && PartyMembers.Count() is 1 && NumberOfHostilesInRange > 0))
         {
-            if (Player.GetHealthRatio() < HealIntuition || PartyMembers.Count() == 1)
+            if (BloodwhettingPvE.CanUse(out act))
             {
-                if (BloodwhettingPvE.CanUse(out act))
-                {
-                    return true;
-                }
-                if (!BloodwhettingPvE.Info.EnoughLevelAndQuest() && RawIntuitionPvE.CanUse(out act))
-                {
-                    return true;
-                }
+                return true;
+            }
+            if (!BloodwhettingPvE.Info.EnoughLevelAndQuest() && RawIntuitionPvE.CanUse(out act))
+            {
+                return true;
             }
         }
 
-        if (Player.GetHealthRatio() < ThrillOfBattleHeal)
+        if (Player?.GetHealthRatio() < ThrillOfBattleHeal)
         {
             if (ThrillOfBattlePvE.CanUse(out act))
             {
@@ -184,9 +179,9 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
-        if (!Player.HasStatus(true, StatusID.Holmgang_409))
+        if (!StatusHelper.PlayerHasStatus(true, StatusID.Holmgang_409))
         {
-            if (Player.GetHealthRatio() < EquilibriumHeal)
+            if (Player?.GetHealthRatio() < EquilibriumHeal)
             {
                 if (EquilibriumPvE.CanUse(out act))
                 {
@@ -195,7 +190,7 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
-        if (Player.HasStatus(true, StatusID.PrimalRendReady) && InCombat && UseBurstMedicine(out act))
+        if (StatusHelper.PlayerHasStatus(true, StatusID.PrimalRendReady) && InCombat && UseBurstMedicine(out act))
         {
             return true;
         }
@@ -219,7 +214,7 @@ public sealed class WAR_Reborn : WarriorRotation
         bool RawSingleTargets = SoloIntuition;
         act = null;
 
-        if (Player.HasStatus(true, StatusID.Holmgang_409) && Player.GetHealthRatio() < 0.3f)
+        if (StatusHelper.PlayerHasStatus(true, StatusID.Holmgang_409) && Player?.GetHealthRatio() < 0.3f)
         {
             return false;
         }
@@ -229,7 +224,7 @@ public sealed class WAR_Reborn : WarriorRotation
             return true;
         }
 
-        if (!Player.WillStatusEndGCD(0, 0, true, StatusID.Bloodwhetting, StatusID.RawIntuition))
+        if (!StatusHelper.PlayerWillStatusEndGCD(0, 0, true, StatusID.Bloodwhetting, StatusID.RawIntuition))
         {
             return false;
         }
@@ -267,11 +262,20 @@ public sealed class WAR_Reborn : WarriorRotation
     #region GCD Logic
     protected override bool GeneralGCD(out IAction? act)
     {
-        bool hasSurgingTempest = !Player.WillStatusEndGCD(3, 0, true, StatusID.SurgingTempest);
-        byte innerReleaseStacks = InnerReleaseStacks;
+        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest))
+        {
+            if (ChaoticCyclonePvE.CanUse(out act))
+            {
+                return true;
+            }
 
-        // 1. Prioritize Inner Release Stacks (Fell Cleave/Decimate) above all else if Buff is up
-        if (hasSurgingTempest && innerReleaseStacks > 0)
+            if (InnerChaosPvE.CanUse(out act))
+            {
+                return true;
+            }
+        }
+
+        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest) && !StatusHelper.PlayerHasStatus(true, StatusID.NascentChaos) && InnerReleaseStacks > 0)
         {
             if (NumberOfHostilesInRange >= AOECount)
             {
@@ -279,15 +283,6 @@ public sealed class WAR_Reborn : WarriorRotation
                 {
                     return true;
                 }
-                if (!DecimatePvE.Info.EnoughLevelAndQuest() && SteelCyclonePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true))
-                {
-                    return true;
-                }
-            }
-
-            if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true))
-            {
-                return true;
             }
             if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act, skipStatusProvideCheck: true))
             {
@@ -295,7 +290,7 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
-        if (hasSurgingTempest)
+        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest))
         {
             if (NumberOfHostilesInRange >= AOECount && ChaoticCyclonePvE.CanUse(out act, skipAoeCheck: true))
             {
@@ -308,7 +303,7 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
-        if (hasSurgingTempest && innerReleaseStacks == 0)
+        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest) && InnerReleaseStacks == 0)
         {
             if (PrimalRendPvE.CanUse(out act, skipAoeCheck: true))
             {
@@ -327,9 +322,10 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
-        if (hasSurgingTempest)
+        // AOE
+        if (NumberOfHostilesInRange >= AOECount)
         {
-            if (NumberOfHostilesInRange >= AOECount)
+            if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest))
             {
                 if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true))
                 {
@@ -340,10 +336,7 @@ public sealed class WAR_Reborn : WarriorRotation
                     return true;
                 }
             }
-        }
 
-        if (NumberOfHostilesInRange >= AOECount)
-        {
             if (MythrilTempestPvE.CanUse(out act, skipAoeCheck: true))
             {
                 return true;
@@ -355,7 +348,8 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
-        if (hasSurgingTempest)
+        // Single Target
+        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest))
         {
             if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true))
             {
@@ -415,7 +409,7 @@ public sealed class WAR_Reborn : WarriorRotation
         }
 
         if (NeverscentFlash && NascentFlashPvE.CanUse(out act)
-            && (InCombat && !Player.HasStatus(true, StatusID.Defiance) && NascentFlashPvE.Target.Target?.GetHealthRatio() < FlashHeal))
+            && (InCombat && !StatusHelper.PlayerHasStatus(true, StatusID.Defiance) && NascentFlashPvE.Target.Target?.GetHealthRatio() < FlashHeal))
         {
             return true;
         }
@@ -425,6 +419,6 @@ public sealed class WAR_Reborn : WarriorRotation
     #endregion
 
     #region Extra Methods
-    private static bool IsBurstStatus => !Player.WillStatusEndGCD(0, 0, false, StatusID.InnerStrength);
+    private static bool IsBurstStatus => !StatusHelper.PlayerWillStatusEndGCD(0, 0, false, StatusID.InnerStrength);
     #endregion
 }

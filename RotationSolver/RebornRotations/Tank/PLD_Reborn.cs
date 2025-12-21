@@ -106,23 +106,23 @@ public sealed class PLD_Reborn : PaladinRotation
     protected override bool EmergencyAbility(IAction nextGCD, out IAction? act)
     {
         act = null;
-        if (PassageProtec && Player.HasStatus(true, StatusID.PassageOfArms))
+        if (PassageProtec && StatusHelper.PlayerHasStatus(true, StatusID.PassageOfArms))
         {
             return false;
         }
 
-        if (Player.HasStatus(true, StatusID.Cover) && HallowedWithCover && HallowedGroundPvE.CanUse(out act))
+        if (StatusHelper.PlayerHasStatus(true, StatusID.Cover) && HallowedWithCover && HallowedGroundPvE.CanUse(out act))
         {
             return true;
         }
 
         if (HallowedGroundPvE.CanUse(out act)
-        && Player.GetHealthRatio() <= HealthForDyingTanks)
+        && Player?.GetHealthRatio() <= HealthForDyingTanks)
         {
             return true;
         }
 
-        if ((Player.HasStatus(true, StatusID.Rampart) || Player.HasStatus(true, StatusID.Sentinel)) &&
+        if ((StatusHelper.PlayerHasStatus(true, StatusID.Rampart) || StatusHelper.PlayerHasStatus(true, StatusID.Sentinel)) &&
             InterventionPvE.CanUse(out act, skipTargetStatusNeedCheck: true) &&
             InterventionPvE.Target.Target?.GetHealthRatio() < InterventionClutch)
         {
@@ -157,7 +157,7 @@ public sealed class PLD_Reborn : PaladinRotation
                 return true;
             }
 
-            if (AtonementPvE.EnoughLevel && (Player.HasStatus(true, StatusID.AtonementReady, StatusID.SepulchreReady, StatusID.SupplicationReady, StatusID.DivineMight) || IsLastAction(true, RoyalAuthorityPvE)) && FightOrFlightPvE.CanUse(out act))
+            if (AtonementPvE.EnoughLevel && (StatusHelper.PlayerHasStatus(true, StatusID.AtonementReady, StatusID.SepulchreReady, StatusID.SupplicationReady, StatusID.DivineMight) || IsLastAction(true, RoyalAuthorityPvE)) && FightOrFlightPvE.CanUse(out act))
             {
                 return true;
             }
@@ -201,7 +201,7 @@ public sealed class PLD_Reborn : PaladinRotation
     protected override bool MoveForwardAbility(IAction nextGCD, out IAction? act)
     {
         act = null;
-        if (PassageProtec && Player.HasStatus(true, StatusID.PassageOfArms))
+        if (PassageProtec && StatusHelper.PlayerHasStatus(true, StatusID.PassageOfArms))
         {
             return false;
         }
@@ -218,7 +218,7 @@ public sealed class PLD_Reborn : PaladinRotation
     protected override bool DefenseAreaAbility(IAction nextGCD, out IAction? act)
     {
         act = null;
-        if (PassageProtec && Player.HasStatus(true, StatusID.PassageOfArms))
+        if (PassageProtec && StatusHelper.PlayerHasStatus(true, StatusID.PassageOfArms))
         {
             return false;
         }
@@ -240,7 +240,7 @@ public sealed class PLD_Reborn : PaladinRotation
     protected override bool DefenseSingleAbility(IAction nextGCD, out IAction? act)
     {
         act = null;
-        if (PassageProtec && Player.HasStatus(true, StatusID.PassageOfArms))
+        if (PassageProtec && StatusHelper.PlayerHasStatus(true, StatusID.PassageOfArms))
         {
             return false;
         }
@@ -251,7 +251,7 @@ public sealed class PLD_Reborn : PaladinRotation
         }
 
         // If the player has the Hallowed Ground status, don't use any abilities.
-        if (!Player.HasStatus(true, StatusID.HallowedGround))
+        if (!StatusHelper.PlayerHasStatus(true, StatusID.HallowedGround))
         {
             // If Bulwark can be used, use it and return true.
             if (BulwarkPvE.CanUse(out act, skipAoeCheck: true))
@@ -298,7 +298,7 @@ public sealed class PLD_Reborn : PaladinRotation
     protected override bool GeneralAbility(IAction nextGCD, out IAction? act)
     {
         act = null;
-        if (PassageProtec && Player.HasStatus(true, StatusID.PassageOfArms))
+        if (PassageProtec && StatusHelper.PlayerHasStatus(true, StatusID.PassageOfArms))
         {
             return false;
         }
@@ -320,7 +320,7 @@ public sealed class PLD_Reborn : PaladinRotation
     protected override bool AttackAbility(IAction nextGCD, out IAction? act)
     {
         act = null;
-        if (PassageProtec && Player.HasStatus(true, StatusID.PassageOfArms))
+        if (PassageProtec && StatusHelper.PlayerHasStatus(true, StatusID.PassageOfArms))
         {
             return false;
         }
@@ -359,7 +359,7 @@ public sealed class PLD_Reborn : PaladinRotation
     [RotationDesc(ActionID.ClemencyPvE)]
     protected override bool HealSingleGCD(out IAction? act)
     {
-        if (PassageProtec && Player.HasStatus(true, StatusID.PassageOfArms))
+        if (PassageProtec && StatusHelper.PlayerHasStatus(true, StatusID.PassageOfArms))
         {
             return base.HealSingleGCD(out act);
         }
@@ -381,7 +381,7 @@ public sealed class PLD_Reborn : PaladinRotation
     protected override bool MyInterruptGCD(out IAction? act)
     {
         act = null;
-        if (PassageProtec && Player.HasStatus(true, StatusID.PassageOfArms))
+        if (PassageProtec && StatusHelper.PlayerHasStatus(true, StatusID.PassageOfArms))
         {
             return false;
         }
@@ -397,7 +397,7 @@ public sealed class PLD_Reborn : PaladinRotation
     protected override bool GeneralGCD(out IAction? act)
     {
         act = null;
-        if (PassageProtec && Player.HasStatus(true, StatusID.PassageOfArms))
+        if (PassageProtec && StatusHelper.PlayerHasStatus(true, StatusID.PassageOfArms))
         {
             return false;
         }
@@ -414,21 +414,21 @@ public sealed class PLD_Reborn : PaladinRotation
         }
 
         // Atonement Combo
-        if ((!FightOrFlightPvE.Cooldown.WillHaveOneCharge(1) || HasFightOrFlight || Player.WillStatusEndGCD(1, 0, true, StatusID.AtonementReady)) && AtonementPvE.CanUse(out act))
+        if ((!FightOrFlightPvE.Cooldown.WillHaveOneCharge(1) || HasFightOrFlight || StatusHelper.PlayerWillStatusEndGCD(1, 0, true, StatusID.AtonementReady)) && AtonementPvE.CanUse(out act))
         {
             return true;
         }
 
         if (((!HasAtonementReady && (SepulchreReady || SupplicationReady || HasDivineMight)) ||
              (HasAtonementReady && !HasDivineMight)) &&
-            !Player.HasStatus(true, StatusID.Medicated) && !HasFightOrFlight && !RageOfHalonePvE.CanUse(out _, skipComboCheck: false))
+            !StatusHelper.PlayerHasStatus(true, StatusID.Medicated) && !HasFightOrFlight && !RageOfHalonePvE.CanUse(out _, skipComboCheck: false))
         {
             if (!TotalEclipsePvE.CanUse(out _) && (RiotBladePvE.CanUse(out act) || FastBladePvE.CanUse(out act)))
             {
                 return true;
             }
         }
-        if ((RageOfHalonePvE.CanUse(out _, skipComboCheck: false) || HasFightOrFlight || Player.WillStatusEndGCD(1, 0, true, StatusID.SupplicationReady)) && SupplicationPvE.CanUse(out act))
+        if ((RageOfHalonePvE.CanUse(out _, skipComboCheck: false) || HasFightOrFlight || StatusHelper.PlayerWillStatusEndGCD(1, 0, true, StatusID.SupplicationReady)) && SupplicationPvE.CanUse(out act))
         {
             return true;
         }
@@ -438,7 +438,7 @@ public sealed class PLD_Reborn : PaladinRotation
             return true;
         }
 
-        if ((RageOfHalonePvE.CanUse(out _, skipComboCheck: false) || HasFightOrFlight || Player.WillStatusEndGCD(1, 0, true, StatusID.SepulchreReady)) && SepulchrePvE.CanUse(out act))
+        if ((RageOfHalonePvE.CanUse(out _, skipComboCheck: false) || HasFightOrFlight || StatusHelper.PlayerWillStatusEndGCD(1, 0, true, StatusID.SepulchreReady)) && SepulchrePvE.CanUse(out act))
         {
             return true;
         }

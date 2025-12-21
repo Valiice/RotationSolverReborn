@@ -14,10 +14,7 @@ public sealed class WAR_DefaultPvP : WarriorRotation
     #region oGCDs
     protected override bool EmergencyAbility(IAction nextGCD, out IAction? action)
     {
-        // Optimization: Cache Guard check
-        bool inGuard = RespectGuard && Player.HasStatus(true, StatusID.Guard);
-
-        if (inGuard)
+        if (RespectGuard && HasPVPGuard)
         {
             return base.EmergencyAbility(nextGCD, out action);
         }
@@ -33,10 +30,7 @@ public sealed class WAR_DefaultPvP : WarriorRotation
     [RotationDesc(ActionID.BloodwhettingPvP)]
     protected override bool DefenseSingleAbility(IAction nextGCD, out IAction? action)
     {
-        // Optimization: Cache Guard check
-        bool inGuard = RespectGuard && Player.HasStatus(true, StatusID.Guard);
-
-        if (inGuard)
+        if (RespectGuard && HasPVPGuard)
         {
             return base.DefenseSingleAbility(nextGCD, out action);
         }
@@ -56,10 +50,7 @@ public sealed class WAR_DefaultPvP : WarriorRotation
 
     protected override bool AttackAbility(IAction nextGCD, out IAction? action)
     {
-        // Optimization: Cache Guard check
-        bool inGuard = RespectGuard && Player.HasStatus(true, StatusID.Guard);
-
-        if (inGuard)
+        if (RespectGuard && HasPVPGuard)
         {
             return base.AttackAbility(nextGCD, out action);
         }
@@ -101,10 +92,7 @@ public sealed class WAR_DefaultPvP : WarriorRotation
     #region GCDs
     protected override bool GeneralGCD(out IAction? action)
     {
-        // Optimization: Cache Guard check
-        bool inGuard = RespectGuard && Player.HasStatus(true, StatusID.Guard);
-
-        if (inGuard)
+        if (RespectGuard && HasPVPGuard)
         {
             return base.GeneralGCD(out action);
         }
