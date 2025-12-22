@@ -72,7 +72,8 @@ public sealed class WAR_Reborn : WarriorRotation
     #region oGCD Logic
     protected override bool AttackAbility(IAction nextGCD, out IAction? act)
     {
-        if (InfuriatePvE.CanUse(out act, gcdCountForAbility: 3))
+        if ((InnerReleaseStacks == 0 || InfuriatePvE.Cooldown.RecastTimeRemainOneCharge < 20 || CombatElapsedLessGCD(4))
+            && InfuriatePvE.CanUse(out act, gcdCountForAbility: 3))
         {
             return true;
         }
@@ -84,6 +85,7 @@ public sealed class WAR_Reborn : WarriorRotation
 
         if (CombatElapsedLessGCD(1))
         {
+            act = null;
             return false;
         }
 
@@ -113,7 +115,7 @@ public sealed class WAR_Reborn : WarriorRotation
         bool isBurstStatus = IsBurstStatus;
         byte innerReleaseStacks = InnerReleaseStacks;
 
-        if (isBurstStatus && (innerReleaseStacks == 0 || innerReleaseStacks == 3))
+        if (isBurstStatus && innerReleaseStacks == 0)
         {
             if (InfuriatePvE.CanUse(out act, usedUp: true))
             {
