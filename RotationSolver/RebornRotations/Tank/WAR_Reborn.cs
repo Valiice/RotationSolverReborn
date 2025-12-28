@@ -1,3 +1,7 @@
+using ECommons.GameHelpers;
+using FFXIVClientStructs.FFXIV.Client.Game;
+using RotationSolver.Basic.Actions;
+
 namespace RotationSolver.RebornRotations.Tank;
 
 [Rotation("Reborn", CombatType.PvE, GameVersion = "7.4")]
@@ -38,7 +42,7 @@ public sealed class WAR_Reborn : WarriorRotation
 
     [Range(1, 50, ConfigUnitType.Seconds)]
     [RotationConfig(CombatType.PvE, Name = "Seconds remaining on Surging Tempest to refresh Storm's Eye")]
-    public float StormsEyeRefreshTimer { get; set; } = 10.0f;
+    public float StormsEyeRefreshTimer { get; set; } = 15.0f;
 
     [Range(1, 10, ConfigUnitType.None)]
     [RotationConfig(CombatType.PvE, Name = "Number of enemies to start using AOE (Overrides defaults)")]
@@ -72,23 +76,37 @@ public sealed class WAR_Reborn : WarriorRotation
     #region oGCD Logic
     protected override bool AttackAbility(IAction nextGCD, out IAction? act)
     {
-        if ((InnerReleaseStacks == 0 || InfuriatePvE.Cooldown.RecastTimeRemainOneCharge < 20 || CombatElapsedLessGCD(4))
-            && InfuriatePvE.CanUse(out act, gcdCountForAbility: 3))
+        // 1. INFURIATE OPTIMIZATION
+        if (InfuriatePvE.CanUse(out act, gcdCountForAbility: 3))
         {
-            return true;
+            // SAFETY: Do not double-cast if we just used it or have the buff.
+            if (StatusHelper.PlayerHasStatus(true, StatusID.NascentChaos) || IsLastAction(false, InfuriatePvE))
+            {
+                act = null;
+            }
+            else
+            {
+                // Optimization: Dump if in burst, or if Opener, or if about to overcap.
+                // increased buffer to < 20s to prevent ever hitting 2 stacks during combat
+                bool isBurst = IsBurstStatus || StatusHelper.PlayerHasStatus(true, StatusID.SurgingTempest);
+
+                if (CombatElapsedLessGCD(4) ||
+                    isBurst ||
+                    (InfuriatePvE.Cooldown.CurrentCharges > 0 && InfuriatePvE.Cooldown.RecastTimeRemainOneCharge < 20))
+                {
+                    return true;
+                }
+            }
         }
 
-        if (!InnerReleasePvE.EnoughLevel && StatusHelper.PlayerHasStatus(true, StatusID.Berserk) && InfuriatePvE.CanUse(out act, usedUp: true))
-        {
-            return true;
-        }
-
-        if (CombatElapsedLessGCD(1))
+        // 2. Prevent oGCDs during the very first GCD
+        if (CombatElapsedLessGCD(2))
         {
             act = null;
             return false;
         }
 
+        // 3. INNER RELEASE
         if (!StatusHelper.PlayerWillStatusEndGCD(2, 0, true, StatusID.SurgingTempest)
             || !StormsEyePvE.EnoughLevel)
         {
@@ -102,6 +120,7 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
+        // 4. OROGENY / UPHEAVAL
         if (NumberOfHostilesInRange >= AOECount && OrogenyPvE.CanUse(out act, skipAoeCheck: true))
         {
             return true;
@@ -112,26 +131,14 @@ public sealed class WAR_Reborn : WarriorRotation
             return true;
         }
 
-        bool isBurstStatus = IsBurstStatus;
-        byte innerReleaseStacks = InnerReleaseStacks;
-
-        if (isBurstStatus && innerReleaseStacks == 0)
-        {
-            if (InfuriatePvE.CanUse(out act, usedUp: true))
-            {
-                return true;
-            }
-        }
-
-        if (CombatElapsedLessGCD(4))
-        {
-            return false;
-        }
-
+        // 5. PRIMAL WRATH
         if (StatusHelper.PlayerHasStatus(false, StatusID.Wrathful) && PrimalWrathPvE.CanUse(out act, skipAoeCheck: true))
         {
             return true;
         }
+
+        // 6. ONSLAUGHT
+        bool isBurstStatus = IsBurstStatus;
 
         if (YEETBurst && OnslaughtPvE.CanUse(out act, usedUp: isBurstStatus) &&
            !IsMoving &&
@@ -163,32 +170,20 @@ public sealed class WAR_Reborn : WarriorRotation
     {
         if ((InCombat && Player?.GetHealthRatio() < HealIntuition && NumberOfHostilesInRange > 0) || (InCombat && PartyMembers.Count() is 1 && NumberOfHostilesInRange > 0))
         {
-            if (BloodwhettingPvE.CanUse(out act))
-            {
-                return true;
-            }
-            if (!BloodwhettingPvE.Info.EnoughLevelAndQuest() && RawIntuitionPvE.CanUse(out act))
-            {
-                return true;
-            }
+            if (BloodwhettingPvE.CanUse(out act)) return true;
+            if (!BloodwhettingPvE.Info.EnoughLevelAndQuest() && RawIntuitionPvE.CanUse(out act)) return true;
         }
 
         if (Player?.GetHealthRatio() < ThrillOfBattleHeal)
         {
-            if (ThrillOfBattlePvE.CanUse(out act))
-            {
-                return true;
-            }
+            if (ThrillOfBattlePvE.CanUse(out act)) return true;
         }
 
         if (!StatusHelper.PlayerHasStatus(true, StatusID.Holmgang_409))
         {
             if (Player?.GetHealthRatio() < EquilibriumHeal)
             {
-                if (EquilibriumPvE.CanUse(out act))
-                {
-                    return true;
-                }
+                if (EquilibriumPvE.CanUse(out act)) return true;
             }
         }
 
@@ -264,136 +259,87 @@ public sealed class WAR_Reborn : WarriorRotation
     #region GCD Logic
     protected override bool GeneralGCD(out IAction? act)
     {
-        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest))
-        {
-            if (ChaoticCyclonePvE.CanUse(out act))
-            {
-                return true;
-            }
+        bool hasSurgingTempest = !StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest);
 
-            if (InnerChaosPvE.CanUse(out act))
-            {
-                return true;
-            }
+        // 1. Spend "Free" Resources (Inner Chaos / Primal Rend)
+        if (hasSurgingTempest)
+        {
+            if (ChaoticCyclonePvE.CanUse(out act)) return true;
+            if (InnerChaosPvE.CanUse(out act)) return true;
         }
 
-        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest) && !StatusHelper.PlayerHasStatus(true, StatusID.NascentChaos) && InnerReleaseStacks > 0)
+        // 2. Inner Release Window (Consume stacks immediately)
+        if (InnerReleaseStacks > 0)
         {
             if (NumberOfHostilesInRange >= AOECount)
             {
-                if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true))
-                {
-                    return true;
-                }
+                if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true)) return true;
+                if (!DecimatePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
             }
-            if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act, skipStatusProvideCheck: true))
-            {
-                return true;
-            }
+            if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
+            if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
         }
 
-        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest))
+        // 3. GAUGE DUMP (High Priority)
+        // If Infuriate is Urgent (has charges and is about to gain another), we MUST have <= 50 Gauge.
+        // If we have > 50 Gauge, we cannot press Infuriate. We must Fell Cleave immediately.
+        bool isInfuriateUrgent = InfuriatePvE.Cooldown.CurrentCharges > 0 && InfuriatePvE.Cooldown.RecastTimeRemainOneCharge < 20;
+
+        if (hasSurgingTempest && (BeastGauge >= 90 || (isInfuriateUrgent && BeastGauge > 50)))
         {
-            if (NumberOfHostilesInRange >= AOECount && ChaoticCyclonePvE.CanUse(out act, skipAoeCheck: true))
-            {
-                return true;
-            }
-
-            if (InnerChaosPvE.CanUse(out act))
-            {
-                return true;
-            }
+            if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
+            // Low level fallback
+            if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
         }
 
-        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest) && InnerReleaseStacks == 0)
+        // 4. Primal Rend 
+        if (hasSurgingTempest && InnerReleaseStacks == 0)
         {
             if (PrimalRendPvE.CanUse(out act, skipAoeCheck: true))
             {
-                if (PrimalRendPvE.Target.Target != null && PrimalRendPvE.Target.Target.DistanceToPlayer() <= PrimalRendDistance2)
-                {
-                    return true;
-                }
-                if (YEET || (YEETStill && !IsMoving))
-                {
-                    return true;
-                }
+                if (PrimalRendPvE.Target.Target != null && PrimalRendPvE.Target.Target.DistanceToPlayer() <= PrimalRendDistance2) return true;
+                if (YEET || (YEETStill && !IsMoving)) return true;
             }
-            if (PrimalRuinationPvE.CanUse(out act))
-            {
-                return true;
-            }
+            if (PrimalRuinationPvE.CanUse(out act)) return true;
         }
 
-        // AOE
+        // 5. AoE Combo
         if (NumberOfHostilesInRange >= AOECount)
         {
-            if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest))
+            if (!hasSurgingTempest)
             {
-                if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true))
-                {
-                    return true;
-                }
-                if (!DecimatePvE.Info.EnoughLevelAndQuest() && SteelCyclonePvE.CanUse(out act, skipAoeCheck: true))
-                {
-                    return true;
-                }
+                if (MythrilTempestPvE.CanUse(out act, skipAoeCheck: true)) return true;
+                if (OverpowerPvE.CanUse(out act, skipAoeCheck: true)) return true;
             }
-
-            if (MythrilTempestPvE.CanUse(out act, skipAoeCheck: true))
-            {
-                return true;
-            }
-
-            if (OverpowerPvE.CanUse(out act, skipAoeCheck: true))
-            {
-                return true;
-            }
+            if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true)) return true;
+            if (MythrilTempestPvE.CanUse(out act, skipAoeCheck: true)) return true;
+            if (OverpowerPvE.CanUse(out act, skipAoeCheck: true)) return true;
         }
 
-        // Single Target
-        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest))
-        {
-            if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true))
-            {
-                return true;
-            }
-            if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act))
-            {
-                return true;
-            }
-        }
-
+        // 6. Single Target Combo
         if (StormsEyePvE.CanUse(out act))
         {
-            if (Player.StatusTime(true, StatusID.SurgingTempest) > StormsEyeRefreshTimer && StormsPathPvE.CanUse(out var actPath))
+            bool irComingSoon = InnerReleasePvE.Cooldown.RecastTime < 10;
+            float buffTime = Player.StatusTime(true, StatusID.SurgingTempest);
+
+            if (buffTime > StormsEyeRefreshTimer || (irComingSoon && buffTime > 5))
             {
-                act = actPath;
-                return true;
+                if (StormsPathPvE.CanUse(out var actPath))
+                {
+                    act = actPath;
+                    return true;
+                }
             }
             return true;
         }
 
-        if (StormsPathPvE.CanUse(out act))
-        {
-            return true;
-        }
-
-        if (MaimPvE.CanUse(out act))
-        {
-            return true;
-        }
-
-        if (HeavySwingPvE.CanUse(out act))
-        {
-            return true;
-        }
+        if (StormsPathPvE.CanUse(out act)) return true;
+        if (MaimPvE.CanUse(out act)) return true;
+        if (HeavySwingPvE.CanUse(out act)) return true;
 
         if (TomahawkPvE.CanUse(out act))
         {
-            if (TomahawkPvE.Target.Target != null && TomahawkPvE.Target.Target.DistanceToPlayer() >= TomahawkDistance)
-            {
-                return true;
-            }
+            if (TomahawkPvE.Target.Target != null && TomahawkPvE.Target.Target.DistanceToPlayer() >= TomahawkDistance) return true;
             act = null;
             return false;
         }
