@@ -5,6 +5,7 @@ using ECommons.GameHelpers;
 using ECommons.Logging;
 using Lumina.Excel.Sheets;
 using RotationSolver.Commands;
+using RotationSolver.IPC;
 using RotationSolver.UI.HighlightTeachingMode;
 using static FFXIVClientStructs.FFXIV.Client.UI.Misc.RaptureHotbarModule;
 
@@ -178,7 +179,8 @@ internal static class MajorUpdater
             }
 
             ActionSequencerUpdater.UpdateActionSequencerAction();
-        }
+			Wrath_IPCSubscriber.DisableAutoRotation();
+		}
         catch (Exception ex)
         {
             LogOnce("RSRUpdate DC Exception", ex);
@@ -219,16 +221,18 @@ internal static class MajorUpdater
             }
         }
 
-        // Apply reddening of disabled actions on hotbars alongside highlight
-        try
-        {
-            HotbarDisabledColor.ApplyFrame();
-        }
-        catch (Exception ex)
-        {
-            LogOnce("Hotbar Disabled Redden Exception", ex);
-        }
-
+		// Apply reddening of disabled actions on hotbars alongside highlight
+		if (Service.Config.ReddenDisabledHotbarActions)
+		{
+			try
+			{
+				HotbarDisabledColor.ApplyFrame();
+			}
+			catch (Exception ex)
+			{
+				LogOnce("Hotbar Disabled Redden Exception", ex);
+			}
+		}
     }
 
 	private static void RSRCommonUpdate(IFramework framework)
