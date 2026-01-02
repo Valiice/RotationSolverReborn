@@ -82,7 +82,6 @@ public sealed class WAR_Reborn : WarriorRotation
             // SAFETY: Do not double-cast if we just used it or have the buff.
             if (StatusHelper.PlayerHasStatus(true, StatusID.NascentChaos) || IsLastAction(false, InfuriatePvE))
             {
-                act = null;
             }
             else
             {

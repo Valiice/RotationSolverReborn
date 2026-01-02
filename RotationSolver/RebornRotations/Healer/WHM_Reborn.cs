@@ -50,9 +50,13 @@ public sealed class WHM_Reborn : WhiteMageRotation
     [RotationConfig(CombatType.PvE, Name = "If a party member's health drops below this percentage, the Regen healing ability will not be used on them")]
     public float RegenHeal { get; set; } = 0.3f;
 
+    // NEW SLIDER HERE
+    [Range(0, 1, ConfigUnitType.Percent)]
+    [RotationConfig(CombatType.PvE, Name = "Force Afflatus Solace/Cure II on Tank if HP is below this (Ignores Auto Heal settings)")]
+    public float ForceHealTankHealth { get; set; } = 0.7f;
+
     [Range(0, 10000, ConfigUnitType.None, 100)]
     [RotationConfig(CombatType.PvE, Name = "Casting cost requirement for Thin Air to be used")]
-
     public float ThinAirNeed { get; set; } = 1000;
 
     [RotationConfig(CombatType.PvE, Name = "How to manage the last thin air charge")]
@@ -87,15 +91,8 @@ public sealed class WHM_Reborn : WhiteMageRotation
 
         if (UsePreRegen && remainTime <= 5 && remainTime > 3)
         {
-            if (RegenPvE.CanUse(out act))
-            {
-                return act;
-            }
-
-            if (DivineBenisonPvE.CanUse(out act))
-            {
-                return act;
-            }
+            if (RegenPvE.CanUse(out act)) return act;
+            if (DivineBenisonPvE.CanUse(out act)) return act;
         }
         return base.CountDownAction(remainTime);
     }
@@ -105,8 +102,11 @@ public sealed class WHM_Reborn : WhiteMageRotation
     protected override bool EmergencyAbility(IAction nextGCD, out IAction? act)
     {
         bool useLastThinAirCharge = ThinAirLastChargeUsage == ThinAirUsageStrategy.UseAllCharges || (ThinAirLastChargeUsage == ThinAirUsageStrategy.ReserveLastChargeForRaise && nextGCD == RaisePvE);
-        if (((nextGCD is IBaseAction action && action.Info.MPNeed >= ThinAirNeed && IsLastAction() == IsLastGCD()) || ((MergedStatus.HasFlag(AutoStatus.Raise) || (nextGCD == RaisePvE)) && IsLastAction() == IsLastGCD())) &&
-            ThinAirPvE.CanUse(out act, usedUp: useLastThinAirCharge))
+
+        bool isRaiseOrExpensive = (nextGCD is IBaseAction action && action.Info.MPNeed >= ThinAirNeed && IsLastAction() == IsLastGCD())
+                               || ((MergedStatus.HasFlag(AutoStatus.Raise) || (nextGCD == RaisePvE)) && IsLastAction() == IsLastGCD());
+
+        if (isRaiseOrExpensive && ThinAirPvE.CanUse(out act, usedUp: useLastThinAirCharge))
         {
             return true;
         }
@@ -169,7 +169,7 @@ public sealed class WHM_Reborn : WhiteMageRotation
             return true;
         }
 
-        if ((MultiHitRestrict && IsCastingMultiHit) || !MultiHitRestrict)
+        if (!MultiHitRestrict || IsCastingMultiHit)
         {
             if (LiturgyOfTheBellPvE.CanUse(out act, skipAoeCheck: true))
             {
@@ -278,27 +278,26 @@ public sealed class WHM_Reborn : WhiteMageRotation
         }
 
         int hasMedica2 = 0;
+        int partyCount = 0;
         foreach (IBattleChara n in PartyMembers)
         {
+            partyCount++;
             if (n.HasStatus(true, StatusID.MedicaIi))
             {
                 hasMedica2++;
             }
         }
 
-        int partyCount = 0;
-        foreach (IBattleChara _ in PartyMembers)
-        {
-            partyCount++;
-        }
         if (MedicaIiPvE.EnoughLevel)
         {
-            if (MedicaIiiPvE.EnoughLevel && MedicaIiiPvE.CanUse(out act) && hasMedica2 < partyCount / 2 && !IsLastAction(true, MedicaIiPvE))
+            bool needMedica = hasMedica2 < partyCount / 2 && !IsLastAction(true, MedicaIiPvE);
+
+            if (MedicaIiiPvE.EnoughLevel && MedicaIiiPvE.CanUse(out act) && needMedica)
             {
                 return true;
             }
 
-            if (!MedicaIiiPvE.EnoughLevel && MedicaIiPvE.CanUse(out act) && hasMedica2 < partyCount / 2 && !IsLastAction(true, MedicaIiPvE))
+            if (!MedicaIiiPvE.EnoughLevel && MedicaIiPvE.CanUse(out act) && needMedica)
             {
                 return true;
             }
@@ -325,11 +324,42 @@ public sealed class WHM_Reborn : WhiteMageRotation
             return base.HealSingleGCD(out act);
         }
 
+        // START OVERRIDE: Force Heal Tank if < Configured Threshold
+        // This runs before standard logic and ignores standard "Auto Heal Ratio" configs
+        if (InCombat)
+        {
+            foreach (var tank in PartyMembers.GetJobCategory(JobRole.Tank))
+            {
+                if (tank.IsDead || tank.DistanceToPlayer() > 30) continue;
+
+                // Use the new slider config
+                if (tank.GetHealthRatio() < ForceHealTankHealth)
+                {
+                    // 1. Try Lily (Solace)
+                    if (AfflatusSolacePvE.EnoughLevel && Lily > 0)
+                    {
+                        AfflatusSolacePvE.Target = new TargetResult(tank, [], null);
+                        act = AfflatusSolacePvE;
+                        return true;
+                    }
+                    // 2. Try Cure II
+                    if (CureIiPvE.EnoughLevel && CureIiPvE.Info.HasEnoughMP())
+                    {
+                        CureIiPvE.Target = new TargetResult(tank, [], null);
+                        act = CureIiPvE;
+                        return true;
+                    }
+                }
+            }
+        }
+        // END OVERRIDE
+
         if (AfflatusSolacePvE.CanUse(out act))
         {
             return true;
         }
 
+        // Standard Regen logic (skipped if HP is high/full)
         if (RegenPvE.CanUse(out act) && (RegenPvE.Target.Target?.GetHealthRatio() > RegenHeal))
         {
             return true;
@@ -360,7 +390,27 @@ public sealed class WHM_Reborn : WhiteMageRotation
             return base.GeneralGCD(out act);
         }
 
-        //if (NotInCombatDelay && RegenDefense.CanUse(out act)) return true;
+        // START OVERRIDE: Always keep Regen on Tank (regardless of movement/HP)
+        if (InCombat && RegenPvE.EnoughLevel)
+        {
+            foreach (var tank in PartyMembers.GetJobCategory(JobRole.Tank))
+            {
+                if (tank.IsDead || tank.DistanceToPlayer() > 30) continue;
+
+                // If missing Regen or < 3s remaining
+                if (tank.WillStatusEndGCD(3, 0, true, StatusID.Regen))
+                {
+                    // Use BasicCheck with explicit arguments to bypass strict filters
+                    if (RegenPvE.Info.BasicCheck(true, false, false, false))
+                    {
+                        RegenPvE.Target = new TargetResult(tank, [], null);
+                        act = RegenPvE;
+                        return true;
+                    }
+                }
+            }
+        }
+        // END OVERRIDE
 
         if (AfflatusMiseryPvE.CanUse(out act, skipAoeCheck: true))
         {
@@ -369,7 +419,8 @@ public sealed class WHM_Reborn : WhiteMageRotation
 
         bool liliesNearlyFull = Lily == 2 && LilyTime < LilyOvercapTime;
         bool liliesFullNoBlood = Lily == 3;
-        if (AfflatusMiseryPvE.EnoughLevel && UseLilyWhenFull && (liliesNearlyFull || liliesFullNoBlood) && AfflatusMiseryPvE.EnoughLevel && BloodLily < 3)
+
+        if (UseLilyWhenFull && AfflatusMiseryPvE.EnoughLevel && BloodLily < 3 && (liliesNearlyFull || liliesFullNoBlood))
         {
             if (AfflatusRapturePvE.CanUse(out act, skipAoeCheck: true))
             {
@@ -440,7 +491,7 @@ public sealed class WHM_Reborn : WhiteMageRotation
             return true;
         }
 
-        if (AfflatusMiseryPvE.EnoughLevel && UseLilyDowntime && (liliesNearlyFull || liliesFullNoBlood))
+        if (UseLilyDowntime && AfflatusMiseryPvE.EnoughLevel && (liliesNearlyFull || liliesFullNoBlood))
         {
             if (AfflatusRapturePvE.CanUse(out act, skipAoeCheck: true))
             {
