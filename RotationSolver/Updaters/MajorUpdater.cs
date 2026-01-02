@@ -142,10 +142,10 @@ internal static class MajorUpdater
         if (!_shouldRunThisCycle)
             return;
 
-        var autoOnEnabled = Service.Config.StartOnAllianceIsInCombat 
-            || Service.Config.StartOnAttackedBySomeone 
-            || Service.Config.StartOnFieldOpInCombat 
-            || Service.Config.StartOnPartyIsInCombat;
+        var autoOnEnabled = Service.Config.StartOnAllianceIsInCombat2 
+            || Service.Config.StartOnAttackedBySomeone2 
+            || Service.Config.StartOnFieldOpInCombat2 
+            || Service.Config.StartOnPartyIsInCombat2;
 
         try
         {
@@ -337,7 +337,7 @@ internal static class MajorUpdater
         {
             MiscUpdater.UpdateMisc();
 
-            if (Service.Config.TargetFreely && !DataCenter.IsPvP)
+            if (Service.Config.TargetFreely && !DataCenter.IsPvP && DataCenter.State)
             {
                 IAction? nextAction2 = ActionUpdater.NextAction;
                 if (nextAction2 == null)
