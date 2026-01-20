@@ -265,7 +265,7 @@ internal partial class Configs : IPluginConfiguration
     [ConditionBool, UI("Debug Mode", Filter = Debug)]
     private static readonly bool _inDebug = false;
 
-    [ConditionBool, UI("Make /rotation Manual a toggle command.",
+	[ConditionBool, UI("Make /rotation Manual a toggle command.",
         Filter = BasicParams)]
     private static readonly bool _toggleManual = false;
 
@@ -410,7 +410,7 @@ internal partial class Configs : IPluginConfiguration
     [ConditionBool, UI("Show Cooldown Window", Filter = UiWindows)]
     private static readonly bool _showCooldownWindow = false;
 
-    [ConditionBool, UI("Show Action Timeline Window (currently bugged)", Filter = UiWindows)]
+    [ConditionBool, UI("Show Action Timeline Window", Filter = UiWindows)]
     private static readonly bool _showActionTimelineWindow = false;
 
     [ConditionBool, UI("Only show timeline in combat", Parent = nameof(ShowActionTimelineWindow))]

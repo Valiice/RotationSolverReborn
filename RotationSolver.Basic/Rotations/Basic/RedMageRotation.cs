@@ -175,12 +175,12 @@ public partial class RedMageRotation
 	/// <summary>
 	/// Enough mana for starting melee, respecting asymmetric pooling.
 	/// </summary>
-	public bool EnoughManaComboPooling => JobGauge.WhiteMana >= ManaNeededWhite() && JobGauge.BlackMana >= ManaNeededBlack();
+	public bool EnoughManaComboPooling => CanMagickedSwordplay || (JobGauge.WhiteMana >= ManaNeededWhite() && JobGauge.BlackMana >= ManaNeededBlack());
 
 	/// <summary>
 	/// Enough mana for starting melee, respecting asymmetric pooling.
 	/// </summary>
-	public bool EnoughManaComboNoPooling => JobGauge.BlackMana >= ManaNeededNoPooling() && JobGauge.WhiteMana >= ManaNeededNoPooling();
+	public bool EnoughManaComboNoPooling => CanMagickedSwordplay || (JobGauge.BlackMana >= ManaNeededNoPooling() && JobGauge.WhiteMana >= ManaNeededNoPooling());
 
 	/// <summary>
 	/// 
@@ -200,13 +200,28 @@ public partial class RedMageRotation
             return "Equal";
         }
     }
-    #endregion
 
-    #region Status Check
-    /// <summary>
-    /// 
-    /// </summary>
-    public static bool HasEmbolden => StatusHelper.PlayerHasStatus(true, StatusID.Embolden);
+	/// <summary>
+	/// 
+	/// </summary>
+	public bool IsInMeleeCombo
+	{
+		get
+		{
+			if (IsLastComboAction(ActionID.RipostePvE, ActionID.EnchantedRipostePvE, ActionID.EnchantedRipostePvE_45960) && ZwerchhauPvE.EnoughLevel && (HasEnoughManaFor23Combo || CanMagickedSwordplay))
+				return true;
+			if (IsLastComboAction(ActionID.ZwerchhauPvE, ActionID.EnchantedZwerchhauPvE, ActionID.EnchantedZwerchhauPvE_45961) && RedoublementPvE.EnoughLevel && (HasEnoughManaFor23Combo || CanMagickedSwordplay))
+				return true;
+			return false;
+		}
+	}
+	#endregion
+
+	#region Status Check
+	/// <summary>
+	/// 
+	/// </summary>
+	public static bool HasEmbolden => StatusHelper.PlayerHasStatus(true, StatusID.Embolden);
 
     /// <summary>
     /// 
@@ -549,6 +564,10 @@ public partial class RedMageRotation
 	static partial void ModifyEnchantedRipostePvE_45960(ref ActionSetting setting)
 	{
 		setting.ActionCheck = () => HasManafication && (HasEnoughManaFor1Combo || CanMagickedSwordplay);
+		setting.CreateConfig = () => new ActionConfig()
+		{
+			AoeCount = 1,
+		};
 	}
 
 	static partial void ModifyEnchantedZwerchhauPvE(ref ActionSetting setting)
@@ -559,6 +578,10 @@ public partial class RedMageRotation
 	static partial void ModifyEnchantedZwerchhauPvE_45961(ref ActionSetting setting)
 	{
 		setting.ActionCheck = () => HasManafication && (HasEnoughManaFor23Combo || CanMagickedSwordplay);
+		setting.CreateConfig = () => new ActionConfig()
+		{
+			AoeCount = 1,
+		};
 	}
 
 	static partial void ModifyEnchantedRedoublementPvE(ref ActionSetting setting)
@@ -569,6 +592,10 @@ public partial class RedMageRotation
 	static partial void ModifyEnchantedRedoublementPvE_45962(ref ActionSetting setting)
 	{
 		setting.ActionCheck = () => HasManafication && (HasEnoughManaFor23Combo || CanMagickedSwordplay);
+		setting.CreateConfig = () => new ActionConfig()
+		{
+			AoeCount = 1,
+		};
 	}
 
 	static partial void ModifyEnchantedMoulinetPvE(ref ActionSetting setting)
