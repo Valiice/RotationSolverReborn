@@ -46,8 +46,6 @@ internal static class MajorUpdater
 
     public static void Enable()
     {
-        ActionSequencerUpdater.Enable(Svc.PluginInterface.ConfigDirectory.FullName + "\\Conditions");
-
         Svc.Framework.Update += RSRGateUpdate;
         Svc.Framework.Update += RSRTeachingClearUpdate;
         Svc.Framework.Update += RSRInvalidUpdate;
@@ -76,9 +74,13 @@ internal static class MajorUpdater
             _isValidThisCycle = IsValid;
             _isActivatedThisCycle = DataCenter.IsActivated();
             _shouldRunThisCycle = true;
+			if (!Service.Config.TutorialDone)
+			{
+				RotationSolverPlugin.OpenFirstStartTutorial();
+			}
 
-            // Opportunistically load rotations if not yet loaded
-            if (_isValidThisCycle && !_rotationsLoaded)
+			// Opportunistically load rotations if not yet loaded
+			if (_isValidThisCycle && !_rotationsLoaded)
             {
                 RotationUpdater.LoadBuiltInRotations();
                 _rotationsLoaded = true;
@@ -151,21 +153,22 @@ internal static class MajorUpdater
             if (!_isActivatedThisCycle)
                 return;
 
-            bool canDoAction = ActionUpdater.CanDoAction();
-            MovingUpdater.UpdateCanMove(canDoAction);
+			TargetUpdater.UpdateTargets();
 
-            if (canDoAction)
+            // Target updater always needs to be first to update
+			MacroUpdater.UpdateMacro();
+
+			StateUpdater.UpdateState();
+
+			ActionUpdater.UpdateNextAction();
+
+			bool canDoAction = ActionUpdater.CanDoAction();
+			MovingUpdater.UpdateCanMove(canDoAction);
+
+			if (canDoAction)
             {
                 RSCommands.DoAction();
             }
-
-            MacroUpdater.UpdateMacro();
-
-            TargetUpdater.UpdateTargets();
-
-            StateUpdater.UpdateState();
-
-            ActionUpdater.UpdateNextAction();
 
             // In Target-Only mode, update the player's target from the computed next action without executing it.
             if (DataCenter.IsTargetOnly)
@@ -173,7 +176,6 @@ internal static class MajorUpdater
                 RSCommands.UpdateTargetFromNextAction();
             }
 
-            ActionSequencerUpdater.UpdateActionSequencerAction();
 			Wrath_IPCSubscriber.DisableAutoRotation();
 		}
         catch (Exception ex)
@@ -435,7 +437,6 @@ internal static class MajorUpdater
         Svc.Framework.Update -= RSRResetUpdate;
 
         MiscUpdater.Dispose();
-        ActionSequencerUpdater.SaveFiles();
         ActionUpdater.ClearNextAction();
     }
 }

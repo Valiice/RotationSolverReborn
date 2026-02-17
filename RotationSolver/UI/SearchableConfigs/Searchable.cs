@@ -91,30 +91,31 @@ internal readonly struct JobFilter
     /// </summary>
     public Job[]? Jobs { get; init; }
 
-    public bool CanDraw
-    {
-        get
-        {
-            bool canDraw = true;
+	public bool CanDraw
+	{
+		get
+		{
+			bool canDraw = true;
 
-            if (JobRoles != null)
-            {
-                JobRole? role = DataCenter.CurrentRotation?.Role;
-                if (role.HasValue)
-                {
-                    canDraw = JobRoles.Contains(role.Value);
-                }
-            }
+			if (JobRoles is { Length: > 0 })
+			{
+				JobRole? role = DataCenter.CurrentRotation?.Role;
+				if (role.HasValue)
+				{
+					canDraw = JobRoles.Contains(role.Value);
+				}
+			}
 
-            if (Jobs != null)
-            {
-                canDraw |= Jobs.Contains(DataCenter.Job);
-            }
-            return canDraw;
-        }
-    }
+			if (Jobs is { Length: > 0 })
+			{
+				canDraw |= Jobs.Contains(DataCenter.Job);
+			}
 
-    public Job[] AllJobs
+			return canDraw;
+		}
+	}
+
+	public Job[] AllJobs
     {
         get
         {
@@ -227,8 +228,8 @@ internal abstract class Searchable(PropertyInfo property) : ISearchable
         }
     }
     public virtual string ID => _property.Name;
-    private string Popup_Key => "Rotation Solver RightClicking: " + ID;
-    protected bool IsJob => _property.GetCustomAttribute<JobConfigAttribute>() != null
+	private string Popup_Key => $"Rotation Solver RightClicking##{ID}_{GetHashCode()}";
+	protected bool IsJob => _property.GetCustomAttribute<JobConfigAttribute>() != null
         || _property.GetCustomAttribute<JobChoiceConfigAttribute>() != null;
 
     public uint Color { get; set; } = 0;
