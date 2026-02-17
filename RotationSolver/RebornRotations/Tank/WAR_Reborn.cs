@@ -91,7 +91,7 @@ public sealed class WAR_Reborn : WarriorRotation
 
                 if (CombatElapsedLessGCD(4) ||
                     isBurst ||
-                    (InfuriatePvE.Cooldown.CurrentCharges > 0 && InfuriatePvE.Cooldown.RecastTimeRemainOneCharge < 20))
+                    IsInfuriateUrgentExtended)
                 {
                     return true;
                 }
@@ -111,7 +111,17 @@ public sealed class WAR_Reborn : WarriorRotation
         {
             if (InnerReleasePvE.CanUse(out act))
             {
-                return true;
+                // Delay IR if gauge > 50 and Infuriate would overcap during the IR window
+                // unless NascentChaos is active (Inner Chaos will dump gauge)
+                if (BeastGauge > 50 && WouldInfuriateOvercapDuringIR()
+                    && !StatusHelper.PlayerHasStatus(true, StatusID.NascentChaos))
+                {
+                    act = null;
+                }
+                else
+                {
+                    return true;
+                }
             }
             if (!InnerReleasePvE.Info.EnoughLevelAndQuest() && BerserkPvE.CanUse(out act))
             {
@@ -275,6 +285,20 @@ public sealed class WAR_Reborn : WarriorRotation
             if (InnerChaosPvE.CanUse(out act)) return true;
         }
 
+        // 1b. Pre-IR gauge dump: if IR is imminent and Infuriate would overcap, dump gauge first
+        if (hasSurgingTempest && BeastGauge > 50
+            && InnerReleasePvE.Cooldown.WillHaveOneCharge(5f)
+            && WouldInfuriateOvercapDuringIR()
+            && !StatusHelper.PlayerHasStatus(true, StatusID.NascentChaos))
+        {
+            if (NumberOfHostilesInRange >= AOECount)
+            {
+                if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true)) return true;
+            }
+            if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
+            if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
+        }
+
         // 2. Inner Release Window (Consume stacks immediately)
         if (InnerReleaseStacks > 0)
         {
@@ -290,7 +314,7 @@ public sealed class WAR_Reborn : WarriorRotation
         // 3. GAUGE DUMP (High Priority)
         // If Infuriate is Urgent (has charges and is about to gain another), we MUST have <= 50 Gauge.
         // If we have > 50 Gauge, we cannot press Infuriate. We must Fell Cleave immediately.
-        bool isInfuriateUrgent = InfuriatePvE.Cooldown.CurrentCharges > 0 && InfuriatePvE.Cooldown.RecastTimeRemainOneCharge < 20;
+        bool isInfuriateUrgent = IsInfuriateUrgentExtended;
 
         if (hasSurgingTempest && (BeastGauge >= 90 || (isInfuriateUrgent && BeastGauge > 50)))
         {
@@ -326,7 +350,7 @@ public sealed class WAR_Reborn : WarriorRotation
         // 6. Single Target Combo
         if (StormsEyePvE.CanUse(out act))
         {
-            bool irComingSoon = InnerReleasePvE.Cooldown.RecastTime < 10;
+            bool irComingSoon = InnerReleasePvE.Cooldown.RecastTimeRemain < 10;
             float buffTime = Player.StatusTime(true, StatusID.SurgingTempest);
 
             if (buffTime > StormsEyeRefreshTimer || (irComingSoon && buffTime > 5))
@@ -375,5 +399,44 @@ public sealed class WAR_Reborn : WarriorRotation
 
     #region Extra Methods
     private static bool IsBurstStatus => !StatusHelper.PlayerWillStatusEndGCD(0, 0, false, StatusID.InnerStrength);
+
+    /// <summary>
+    /// Predicts whether Infuriate will gain a charge during an Inner Release window,
+    /// accounting for the Enhanced Infuriate trait (5s CD reduction per beast gauge weaponskill).
+    /// </summary>
+    private bool WouldInfuriateOvercapDuringIR(int fellCleaveCount = 3)
+    {
+        // Already at max charges - would overcap immediately
+        if (InfuriatePvE.Cooldown.CurrentCharges >= InfuriatePvE.Cooldown.MaxCharges)
+            return true;
+
+        // Without Enhanced Infuriate trait, no CD reduction occurs from weaponskills
+        if (!EnhancedInfuriateTrait.EnoughLevel)
+            return false;
+
+        // Each beast gauge weaponskill reduces Infuriate CD by 5s + takes ~1 GCD of real time
+        float effectiveReduction = fellCleaveCount * 5f + fellCleaveCount * DataCenter.DefaultGCDTotal;
+        return InfuriatePvE.Cooldown.RecastTimeRemainOneCharge <= effectiveReduction;
+    }
+
+    /// <summary>
+    /// Extended urgency check for Infuriate that combines the standard 20s threshold
+    /// with a predictive check for Inner Release causing charge overcap.
+    /// </summary>
+    private bool IsInfuriateUrgentExtended
+    {
+        get
+        {
+            // Standard urgency: has a charge and close to gaining another
+            bool standardUrgent = InfuriatePvE.Cooldown.CurrentCharges > 0
+                && InfuriatePvE.Cooldown.RecastTimeRemainOneCharge < 20;
+
+            // Predictive urgency: IR is ready/imminent and would cause overcap
+            bool irWouldCauseOvercap = InnerReleasePvE.Cooldown.WillHaveOneCharge(5f)
+                && WouldInfuriateOvercapDuringIR();
+
+            return standardUrgent || irWouldCauseOvercap;
+        }
+    }
     #endregion
 }
