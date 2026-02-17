@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace RotationSolver.RebornRotations.Healer;
 
-[Rotation("Reborn", CombatType.PvE, GameVersion = "7.4")]
+[Rotation("Reborn", CombatType.PvE, GameVersion = "7.41")]
 [SourceCode(Path = "main/RebornRotations/Healer/SCH_Reborn.cs")]
 
 public sealed class SCH_Reborn : ScholarRotation
@@ -614,7 +614,18 @@ public sealed class SCH_Reborn : ScholarRotation
         return base.DefenseAreaGCD(out act);
     }
 
-    protected override bool GeneralGCD(out IAction? act)
+	[RotationDesc(ActionID.ResurrectionPvE)]
+	protected override bool RaiseGCD(out IAction? act)
+	{
+		if (ResurrectionPvE.CanUse(out act))
+		{
+			return true;
+		}
+
+		return base.RaiseGCD(out act);
+	}
+
+	protected override bool GeneralGCD(out IAction? act)
     {
         if ((HasSwift || IsLastAction(ActionID.SwiftcastPvE)) && SwiftLogic && MergedStatus.HasFlag(AutoStatus.Raise))
         {

@@ -1,3 +1,5 @@
+using ECommons.DalamudServices;
+
 namespace RotationSolver.Basic.Rotations;
 
 public partial class CustomRotation
@@ -17,6 +19,11 @@ public partial class CustomRotation
 			return false;
 		}
 
+		if (WeaponRemain <= 0.5f && WeaponRemain > 0f)
+		{
+			return false;
+		}
+
 		IBaseAction.ForceEnable = true;
         if (act is IBaseAction a && a != null && !a.Info.IsRealGCD && a.CanUse(out _, usedUp: true, skipAoeCheck: true, skipStatusProvideCheck: true))
         {
@@ -29,7 +36,12 @@ public partial class CustomRotation
             return false;
         }
 
-        if (act is IBaseItem i && i.CanUse(out _, true))
+		if (DataCenter.IsPvP && Service.Config.PvpGuardControl && HasPVPGuard)
+		{
+			return false;
+		}
+
+		if (act is IBaseItem i && i.CanUse(out _, true))
         {
             return true;
         }
@@ -555,7 +567,32 @@ public partial class CustomRotation
     /// <returns>True if the emergency ability can be used; otherwise, false.</returns>
     protected virtual bool EmergencyAbility(IAction nextGCD, out IAction? act)
     {
-        if (nextGCD is BaseAction action)
+		#region PvP
+		if (DataCenter.IsPvP)
+		{
+			if (PurifyPvP.CanUse(out act))
+			{
+				return true;
+			}
+
+			if (GuardPvP.CanUse(out act) && Player?.GetHealthRatio() <= Service.Config.HealthForGuard && !StatusHelper.PlayerHasStatus(true, StatusID.UndeadRedemption) && !StatusHelper.PlayerHasStatus(true, StatusID.InnerRelease_1303))
+			{
+				return true;
+			}
+
+			if (RecuperatePvP.CanUse(out act))
+			{
+				return true;
+			}
+
+			if (StandardissueElixirPvP.CanUse(out act))
+			{
+				return true;
+			}
+		}
+		#endregion
+
+		if (nextGCD is BaseAction action)
         {
             if (Role is JobRole.RangedMagical &&
                 action.Info.CastTime >= 5 && IActionHelper.IsLastActionGCD() && SwiftcastPvE.CanUse(out act))
@@ -579,18 +616,6 @@ public partial class CustomRotation
                 return true;
             }
         }
-
-        #region PvP
-        if (GuardPvP.CanUse(out act) && Player?.GetHealthRatio() <= Service.Config.HealthForGuard && !StatusHelper.PlayerHasStatus(true, StatusID.UndeadRedemption) && !StatusHelper.PlayerHasStatus(true, StatusID.InnerRelease_1303))
-        {
-            return true;
-        }
-
-        if (DataCenter.IsPvP && RecuperatePvP.CanUse(out act) && !HasPVPGuard)
-        {
-            return true;
-        }
-        #endregion
 
         act = null;
         return false;
@@ -700,7 +725,7 @@ public partial class CustomRotation
             return true;
         }
 
-        if (DataCenter.IsPvP && !DataCenter.InCombat && SprintPvP.CanUse(out act))
+        if (DataCenter.IsPvP && (!DataCenter.InCombat || (Service.Config.PvpAllowSprintWithoutTarget&& Svc.Targets.Target == null)) && SprintPvP.CanUse(out act))
         {
             return true;
         }

@@ -184,7 +184,21 @@ public struct ActionTargetInfo(IBaseAction action)
                 if (isRestricted) continue;
             }
 
-            if (CheckStatus(tar, skipStatusProvideCheck, skipTargetStatusNeedCheck) && CheckTimeToKill(tar) && CheckResistance(tar))
+			if (DataCenter.IsInM9S && action.AdjustedID == 36982 && DataCenter.RestrictedActionNameIds != null)
+			{
+				bool isRestrictedAction = false;
+				for (int i = 0; i < DataCenter.RestrictedActionNameIds.Count; i++)
+				{
+					if (tar.NameId == DataCenter.RestrictedActionNameIds[i])
+					{
+						isRestrictedAction = true;
+						break;
+					}
+				}
+				if (isRestrictedAction) continue;
+			}
+
+			if (CheckStatus(tar, skipStatusProvideCheck, skipTargetStatusNeedCheck) && CheckTimeToKill(tar) && CheckResistance(tar))
             {
                 validTargets.Add(tar);
             }
@@ -671,8 +685,33 @@ public struct ActionTargetInfo(IBaseAction action)
             return new TargetResult(player, [.. GetAffectsVector(player.Position, canAffects)], player.Position);
         }
 
-        // --- Try OnLocations logic first ---
-        _ = OtherConfiguration.BeneficialPositions.TryGetValue(Svc.ClientState.TerritoryType, out Vector3[]? pts);
+		if (Service.Config.UseTargetTankForGroundHeal && DataCenter.PartyMembers != null)
+		{
+			IBattleChara? tankWithStance = null;
+			IBattleChara? tankWithoutStance = null;
+			foreach (var member in DataCenter.PartyMembers)
+			{
+				if (member == null || member.GameObjectId == player.GameObjectId) continue;
+				if (member.IsJobCategory(JobRole.Tank))
+				{
+					if (member.HasStatus(false, StatusHelper.TankStanceStatus))
+					{
+						tankWithStance = member;
+						break; // Prefer tank with stance
+					}
+					else tankWithoutStance ??= member;
+				}
+			}
+			IBattleChara? tankTarget = tankWithStance ?? tankWithoutStance;
+			if (tankTarget != null)
+			{
+				List<IBattleChara> affectsList = [.. GetAffectsVector(tankTarget.Position, canAffects)];
+				return new TargetResult(tankTarget, [.. affectsList], tankTarget.Position);
+			}
+		}
+
+		// --- Try OnLocations logic first ---
+		_ = OtherConfiguration.BeneficialPositions.TryGetValue(Svc.ClientState.TerritoryType, out Vector3[]? pts);
         pts ??= [];
 
         // Use fallback points if no beneficial positions are found
@@ -918,7 +957,7 @@ public struct ActionTargetInfo(IBaseAction action)
         }
 
         // Cleave mode
-        if (aoeCount > 1 && Service.Config.AoEType == AoEType.Cleave)
+        if (aoeCount > 1 && (Service.Config.AoEType == AoEType.Cleave || (DataCenter.IsInM9S && Service.Config.M9SCleaveOnly)))
         {
             yield break;
         }
@@ -2134,7 +2173,8 @@ public struct ActionTargetInfo(IBaseAction action)
             {
                 if (m == null) continue;
                 if (m == Player.Object) continue; // never card self
-                if (m.IsDead) continue;
+				if (ObjectHelper.IsPlayerCharacterChocobo(m)) continue;
+				if (m.IsDead) continue;
                 if (m.IsConditionCannotTarget()) continue;
                 //if (StatusHelper.IsStatusCapped(m)) continue; // cannot receive more statuses
                 if (m.HasStatus(false, StatusID.DamageDown_2911, StatusID.DamageDown, StatusID.Weakness, StatusID.BrinkOfDeath)) continue; // poor target value
@@ -2233,7 +2273,8 @@ public struct ActionTargetInfo(IBaseAction action)
             {
                 if (m == null) continue;
                 if (m == Player.Object) continue; // never card self
-                if (m.IsDead) continue;
+				if (ObjectHelper.IsPlayerCharacterChocobo(m)) continue;
+				if (m.IsDead) continue;
                 if (m.IsConditionCannotTarget()) continue;
                 //if (StatusHelper.IsStatusCapped(m)) continue; // cannot receive more statuses
                 if (m.HasStatus(false, StatusID.DamageDown_2911, StatusID.DamageDown, StatusID.Weakness, StatusID.BrinkOfDeath)) continue; // poor target value

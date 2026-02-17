@@ -4,7 +4,6 @@ using ECommons.ExcelServices;
 using ECommons.GameHelpers;
 using ECommons.Logging;
 using RotationSolver.Basic.Configuration;
-using RotationSolver.Helpers;
 using RotationSolver.Updaters;
 
 namespace RotationSolver.Commands
@@ -20,6 +19,8 @@ namespace RotationSolver.Commands
 		private static Job _previousJob = Job.ADV;
 		private static readonly Random random = Random.Shared;
 
+		internal static IBaseAction? CurrentAction { get; set; } = null;
+
 		public static void IncrementState()
 		{
 			if (!DataCenter.State) { DoStateCommandType(StateCommandType.Auto); return; }
@@ -30,7 +31,6 @@ namespace RotationSolver.Commands
 
 		internal static unsafe bool CanDoAnAction(bool isGCD)
 		{
-			// Cache frequently accessed properties to avoid redundant calls
 			bool currentState = DataCenter.State;
 
 			if (!_lastState || !currentState)
@@ -40,7 +40,6 @@ namespace RotationSolver.Commands
 			}
 			_lastState = currentState;
 
-			// Precompute the delay range to avoid recalculating it multiple times
 			TimeSpan delayRange = TimeSpan.FromMilliseconds(random.Next(
 				(int)(Service.Config.ClickingDelay.X * 1000),
 				(int)(Service.Config.ClickingDelay.Y * 1000)));
@@ -52,7 +51,6 @@ namespace RotationSolver.Commands
 
 			_lastClickTime = DateTime.Now;
 
-			// Avoid unnecessary checks if isGCD is true
 			return isGCD || ActionUpdater.NextAction is not IBaseAction nextAction || !nextAction.Info.IsRealGCD;
 		}
 
@@ -89,7 +87,7 @@ namespace RotationSolver.Commands
 
 			float minStatusTime = float.MaxValue;
 			int statusTimesCount = 0;
-			if (Player.Object != null)
+			if (Player.Object != null && !DataCenter.IsPvP)
 			{
 				foreach (float t in Player.Object.StatusTimes(false, noCastingStatusArray))
 				{
@@ -141,6 +139,8 @@ namespace RotationSolver.Commands
 				}
 			}
 
+			CurrentAction = nextAction as IBaseAction;
+
 			if (Service.Config.KeyBoardNoise)
 			{
 				MiscUpdater.PulseActionBar(nextAction.AdjustedID);
@@ -155,6 +155,21 @@ namespace RotationSolver.Commands
 
 				_lastActionID = nextAction.AdjustedID;
 				_lastUsedTime = DateTime.Now;
+
+				// If this action was the one intercepted by the user, clear intercepted state and end the intercept window early
+				try
+				{
+					if (DataCenter.CurrentInterceptedAction != null && DataCenter.CurrentInterceptedAction.AdjustedID == nextAction.AdjustedID)
+					{
+						DataCenter.CurrentInterceptedAction = null;
+						// End the special intercepting state without showing toast
+						DoSpecialCommandType(SpecialCommandType.EndSpecial, false);
+					}
+				}
+				catch (Exception ex)
+				{
+					PluginLog.Warning($"Failed to clear CurrentInterceptedAction after execution: {ex}");
+				}
 
 				if (nextAction is BaseAction finalAct)
 				{
@@ -236,7 +251,6 @@ namespace RotationSolver.Commands
 				return;
 			}
 
-			// If no delay configured, set immediately
 			float min = Service.Config.TargetDelay.X;
 			float max = Service.Config.TargetDelay.Y;
 			double delay = Math.Max(0, min + (random.NextDouble() * Math.Max(0, max - min)));
@@ -313,21 +327,28 @@ namespace RotationSolver.Commands
 					return;
 				}
 
-				// Avoid redundant checks for AutoCancelTime
 				if (ActionUpdater.AutoCancelTime != DateTime.MinValue &&
 					(!DataCenter.State || DataCenter.InCombat))
 				{
 					ActionUpdater.AutoCancelTime = DateTime.MinValue;
 				}
 
-				// Precompute hostile target object IDs for O(1) lookup
 				var hostileTargetObjectIds = new HashSet<ulong>();
-				foreach (var ht in DataCenter.AllHostileTargets)
+				for (int i = 0; i < DataCenter.AllHostileTargets.Count; i++)
 				{
-					if (ht != null && ht.TargetObjectId != 0) hostileTargetObjectIds.Add(ht.TargetObjectId);
+					var ht = DataCenter.AllHostileTargets[i];
+					try
+					{
+						if (ht != null && ht.TargetObjectId != 0)
+							hostileTargetObjectIds.Add(ht.TargetObjectId);
+					}
+					catch (AccessViolationException)
+					{
+						// Log or ignore; object is invalid
+						continue;
+					}
 				}
 
-				// Combine conditions to reduce redundant checks
 				if (Svc.Condition[ConditionFlag.LoggingOut] ||
 					(Service.Config.AutoOffWhenDead && DataCenter.Territory != null && !DataCenter.Territory.IsPvP && Player.Object != null && Player.Object.CurrentHp == 0) ||
 					(Service.Config.AutoOffWhenDeadPvP && DataCenter.Territory != null && DataCenter.Territory.IsPvP && Player.Object != null && Player.Object.CurrentHp == 0) ||
@@ -348,7 +369,6 @@ namespace RotationSolver.Commands
 					return;
 				}
 
-				// Simplify PvP match start condition
 				if (Service.Config.AutoOnPvPMatchStart &&
 					Svc.Condition[ConditionFlag.BetweenAreas] &&
 					Svc.Condition[ConditionFlag.BoundByDuty] &&
@@ -359,45 +379,38 @@ namespace RotationSolver.Commands
 					return;
 				}
 
-				//PluginLog.Debug($"AllTargetsCount = {DataCenter.AllTargets.Count} && AllHostileTargets: {DataCenter.AllHostileTargets.Count} && PartyCount: {DataCenter.PartyMembers.Count} && DataCenter.State = {DataCenter.State} && StartOnPartyIsInCombat = {Service.Config.StartOnPartyIsInCombat} && StartOnAllianceIsInCombat = {Service.Config.StartOnAllianceIsInCombat} && StartOnFieldOpInCombat = {Service.Config.StartOnFieldOpInCombat}");
-
 				if (Service.Config.StartOnPartyIsInCombat2 && !DataCenter.State && DataCenter.PartyMembers.Count > 1)
 				{
-					foreach (var p in DataCenter.PartyMembers)
+					for (int i = 0; i < DataCenter.PartyMembers.Count; i++)
 					{
-
+						var p = DataCenter.PartyMembers[i];
 						if (p != null && p.InCombat())
 						{
-							//PluginLog.Debug($"StartOnPartyIsInCombat: {p.Name} InCombat: {p.InCombat()}.");
 							DoStateCommandType(StateCommandType.Auto);
 							return;
 						}
 
 						if (p != null && hostileTargetObjectIds.Contains(p.GameObjectId))
 						{
-							//PluginLog.Debug($"StartOnPartyIsInCombat: {p.Name} Is Targeted By Hostile.");
 							DoStateCommandType(StateCommandType.Auto);
 							return;
 						}
 					}
-
 				}
 
 				if ((Service.Config.StartOnAllianceIsInCombat2 && !DataCenter.State && DataCenter.AllianceMembers.Count > 1) && !(DataCenter.IsInBozjanFieldOp || DataCenter.IsInBozjanFieldOpCE || DataCenter.IsInOccultCrescentOp))
 				{
-					foreach (var a in DataCenter.AllianceMembers)
+					for (int i = 0; i < DataCenter.AllianceMembers.Count; i++)
 					{
-
+						var a = DataCenter.AllianceMembers[i];
 						if (a != null && a.InCombat())
 						{
-							//PluginLog.Debug($"StartOnAllianceIsInCombat: {a.Name} InCombat: {a.InCombat()}.");
 							DoStateCommandType(StateCommandType.Auto);
 							return;
 						}
 
 						if (a != null && hostileTargetObjectIds.Contains(a.GameObjectId))
 						{
-							//PluginLog.Debug($"StartOnAllianceIsInCombat: {a.Name} Is Targeted By Hostile.");
 							DoStateCommandType(StateCommandType.Auto);
 							return;
 						}
@@ -406,8 +419,10 @@ namespace RotationSolver.Commands
 
 				if (Service.Config.StartOnFieldOpInCombat2 && !DataCenter.State && (DataCenter.IsInBozjanFieldOp || DataCenter.IsInBozjanFieldOpCE || DataCenter.IsInOccultCrescentOp) && Player.Object != null)
 				{
-					foreach (var t in TargetHelper.GetTargetsByRange(30f))
+					var targets = TargetHelper.GetTargetsByRange(30f);
+					for (int i = 0; i < targets.Count; i++)
 					{
+						var t = targets[i];
 						if (t != null && DataCenter.AllHostileTargets.Contains(t) && !ObjectHelper.IsDummy(t))
 						{
 							continue;
@@ -419,13 +434,11 @@ namespace RotationSolver.Commands
 
 						if (t != null && t.InCombat())
 						{
-							//PluginLog.Debug($"StartOnFieldOpInCombat: {t.Name} InCombat: {t.InCombat()}.");
 							DoStateCommandType(StateCommandType.Auto);
 							return;
 						}
 						if (t != null && hostileTargetObjectIds.Contains(t.GameObjectId))
 						{
-							//PluginLog.Debug($"StartOnFieldOpInCombat: {t.Name} Is Targeted By Hostile.");
 							DoStateCommandType(StateCommandType.Auto);
 							return;
 						}
@@ -434,12 +447,24 @@ namespace RotationSolver.Commands
 				IBattleChara? target = null;
 				if (Service.Config.StartOnAttackedBySomeone2 && !DataCenter.State && Player.Object != null)
 				{
-					foreach (var t in DataCenter.AllHostileTargets)
+					for (int i = 0; i < DataCenter.AllHostileTargets.Count; i++)
 					{
-						if (t != null && t is IBattleChara battleChara && battleChara.TargetObjectId == Player.Object.GameObjectId)
+						var t = DataCenter.AllHostileTargets[i];
+						if (t != null && t is IBattleChara battleChara)
 						{
-							target = battleChara;
-							break;
+							try
+							{
+								if (battleChara.TargetObjectId == Player.Object.GameObjectId)
+								{
+									target = battleChara;
+									break;
+								}
+							}
+							catch (AccessViolationException)
+							{
+								// Object became invalid while reading TargetObjectId.
+								continue;
+							}
 						}
 					}
 					if (target != null && !ObjectHelper.IsDummy(target))
@@ -466,19 +491,6 @@ namespace RotationSolver.Commands
 						_lastCountdownTime = 0;
 						CancelState();
 						return;
-					}
-				}
-
-				// Combine manual and auto condition checks
-				if (!DataCenter.State)
-				{
-					if (DataCenter.CurrentConditionValue.SwitchManualConditionSet?.IsTrue(DataCenter.CurrentRotation) ?? false)
-					{
-						DoStateCommandType(StateCommandType.Manual);
-					}
-					else if (DataCenter.CurrentConditionValue.SwitchAutoConditionSet?.IsTrue(DataCenter.CurrentRotation) ?? false)
-					{
-						DoStateCommandType(StateCommandType.Auto);
 					}
 				}
 			}

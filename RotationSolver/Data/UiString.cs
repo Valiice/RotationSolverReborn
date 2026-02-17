@@ -460,7 +460,37 @@ namespace RotationSolver.Data
         [Description("Rotation is null. Please log in or switch jobs!")]
         ConfigWindow_Condition_RotationNullWarning,
 
-        [Description("Delay its transition to true")]
+		[Description("Ultimate")]
+		ConfigWindow_Duty_Ultimate,
+
+		[Description("Savage")]
+		ConfigWindow_Duty_Savage,
+
+		[Description("Chaotic Alliance Raid")]
+		ConfigWindow_Duty_ChaoticAlliance,
+
+		[Description("Extreme")]
+		ConfigWindow_Duty_Extreme,
+
+		[Description("Dungeon")]
+		ConfigWindow_Duty_Dungeon,
+
+		[Description("Deep Dungeon")]
+		ConfigWindow_Duty_DeepDungeon,
+
+		[Description("Variant Dungeon")]
+		ConfigWindow_Duty_VariantDungeon,
+
+		[Description("Alliance Raid")]
+		ConfigWindow_Duty_Alliance,
+
+		[Description("Field Ops")]
+		ConfigWindow_Duty_FieldOps,
+
+		[Description("PvP")]
+		ConfigWindow_Duty_PvP,
+
+		[Description("Delay its transition to true")]
         ActionSequencer_Delay_Description,
 
         [Description("Delay its transition")]
@@ -501,18 +531,6 @@ namespace RotationSolver.Data
 
         [Description("Please separately bind damage reduction/shield cooldowns in case RSR fails at a crucial moment in {0}!")]
         HighEndWarning,
-
-        [Description("Use Forced Enable Condition")]
-        ForcedEnableCondition,
-
-        [Description("The conditions that force this to be true")]
-        ForcedEnableConditionDesc,
-
-        [Description("Use Forced Disable Condition")]
-        ForcedDisableCondition,
-
-        [Description("The conditions that force this to be false")]
-        ForcedDisableConditionDesc,
 
         [Description("Click to execute the command")]
         ConfigWindow_Helper_RunCommand,
@@ -639,9 +657,6 @@ namespace RotationSolver.Data
 
         [Description("Recent Changes:")]
         WelcomeWindow_Changelog,
-
-        [Description("PvP-Specific Controls")]
-        ConfigWindow_Auto_PvPSpecific,
     }
 
     public static class EnumExtensions

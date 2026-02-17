@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace RotationSolver.RebornRotations.Healer;
 
-[Rotation("Reborn", CombatType.PvE, GameVersion = "7.4")]
+[Rotation("Reborn", CombatType.PvE, GameVersion = "7.41")]
 [SourceCode(Path = "main/RebornRotations/Healer/AST_Reborn.cs")]
 
 public sealed class AST_Reborn : AstrologianRotation
@@ -601,7 +601,18 @@ public sealed class AST_Reborn : AstrologianRotation
         return base.HealAreaGCD(out act);
     }
 
-    protected override bool GeneralGCD(out IAction? act)
+	[RotationDesc(ActionID.AscendPvE)]
+	protected override bool RaiseGCD(out IAction? act)
+	{
+		if (AscendPvE.CanUse(out act))
+		{
+			return true;
+		}
+
+		return base.RaiseGCD(out act);
+	}
+
+	protected override bool GeneralGCD(out IAction? act)
     {
         if (BubbleProtec && HasCollectiveUnconscious)
         {

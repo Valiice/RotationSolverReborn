@@ -13,6 +13,8 @@ public sealed class Rabbs_BLM : BlackMageRotation
     #region Config Options
     [RotationConfig(CombatType.PvE, Name = "Use Countdown Ability (Fire 3)")]
     public bool Usecountdown { get; set; } = true;
+    [RotationConfig(CombatType.PvE, Name = "Use Triple Cast for Blizzard 3 instant casts after transpose (false to save for movement only)")]
+    public bool TCB3 { get; set; } = true;
 
     [RotationConfig(CombatType.PvE, Name = "When to use Opener")]
     [Range(1, 4, ConfigUnitType.None, 1)]
@@ -373,7 +375,7 @@ public sealed class Rabbs_BLM : BlackMageRotation
                 if (InUmbralIce)
                 {
                     //if (GetAoeCount(FlarePvE) >= 3 && lastAction != null && (lastAction.Action.RowId == FoulPvE.ID || lastAction.Action.RowId == ThunderIiiPvE.ID || lastAction.Action.RowId == ParadoxPvE.ID))
-                    if (GetAoeCount(FlarePvE) >= 3 && (IsLastAction(true, FoulPvE) || IsLastAction(true, ThunderIiiPvE) || IsLastAction(true, ParadoxPvE)))
+                    if (IsLastAction(true, FoulPvE) || IsLastAction(true, ThunderIiiPvE) || IsLastAction(true, ParadoxPvE))
                     {
                         return true;
                     }
@@ -402,7 +404,7 @@ public sealed class Rabbs_BLM : BlackMageRotation
                 }
                 if (InUmbralIce)
                 {
-                    if (UmbralHearts == 3 && UmbralIceStacks == 3 && !IsParadoxActive && CurrentMp == 10000)
+                    if (UmbralHearts == 3 && UmbralIceStacks == 3 && !IsParadoxActive)
                     { return true; }
                 }
             }
@@ -613,7 +615,7 @@ public sealed class Rabbs_BLM : BlackMageRotation
                 if (TransposePvE.CanUse(out act, skipCastingCheck: true, skipComboCheck: true, skipAoeCheck: true, skipStatusProvideCheck: true, skipTargetStatusNeedCheck: true, skipTTKCheck: true, usedUp: true)) return true;
             }
 
-            if (nextGCD.IsTheSameTo(true, BlizzardIiiPvE))
+            if (nextGCD.IsTheSameTo(true, BlizzardIiiPvE) && ManafontPvE.Cooldown.IsCoolingDown)
             {
                 if (!NextGCDisInstant && CanMakeInstant && InCombat)
                 {
@@ -622,6 +624,7 @@ public sealed class Rabbs_BLM : BlackMageRotation
                         if (TriplecastPvE.CanUse(out act, usedUp: true)) return true;
                     }
                     if (SwiftcastPvE.CanUse(out act)) return true;
+                    if (TriplecastPvE.CanUse(out act, usedUp: true) && TCB3) return true;
                 }
             }
 
@@ -985,7 +988,7 @@ public sealed class Rabbs_BLM : BlackMageRotation
                 }
                 if (InAstralFire)
                 {
-                    if ((InCombat && GetTimeSinceNoHostilesInCombat() > 5f) || (!InCombat && TimeSinceLastAction.TotalSeconds > 4.5))
+                    if ((InCombat && GetTimeSinceNoHostilesInCombat() > 5f) || (!InCombat && TimeSinceLastAction.TotalSeconds > 4.5) && AstralSoulStacks < 6)
                     {
                         if (TransposePvE.CanUse(out act)) return true;
                     }
@@ -1144,7 +1147,7 @@ public sealed class Rabbs_BLM : BlackMageRotation
                     if (ParadoxPvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
                     if (!NextGCDisInstant)
                     {
-                        if (SwiftcastPvE.Cooldown.IsCoolingDown)
+
                         {
                             if (BlizzardIiiPvE.CanUse(out act)) return true; // skip transpose if we can't make b3 instant per balance stuff
                         }
@@ -1166,29 +1169,48 @@ public sealed class Rabbs_BLM : BlackMageRotation
                         }
                     }
                 }
-
+                
                 if (InUmbralIce)
                 {
                     if (UmbralIceStacks < 3)
                     {
-                        if (BlizzardIiiPvE.CanUse(out act)) return true;
+                        if (BlizzardIiiPvE.CanUse(out act) && !IsLastGCD(true, BlizzardIiiPvE)) return true;
                     }
 
                     if (UmbralHearts < 3)
                     {
-                        if (BlizzardIvPvE.CanUse(out act)) return true;
+                        if (BlizzardIvPvE.CanUse(out act) && !IsLastGCD(true, BlizzardIvPvE)) return true;
                     }
                     if (IsParadoxActive)
                     {
                         if (ParadoxPvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
                     }
 
-                    if (BlizzardIiiPvE.CanUse(out act) && CurrentMp < 10000) return true;
+                    if (BlizzardIiiPvE.CanUse(out act) && CurrentMp < 10000 && !IsLastGCD(true,BlizzardIvPvE) && !IsLastGCD(true, BlizzardIiiPvE)) return true;
+                    if (InCombat && IsMoving && !NextGCDisInstant && HasHostilesInRange && NextAbilityToNextGCD < 0.5)
+                    {
+                        if (PolyglotStacks > 0)
+                        {
+                            if (XenoglossyPvE.CanUse(out act, usedUp: true)) return true;
+                        }
+                        if (CanMakeInstant)
+                        {
+
+                            if (TriplecastPvE.CanUse(out act, usedUp: true)) return true;
+
+                            if (SwiftcastPvE.CanUse(out act)) return true;
+                        }
+                    }
 
                 }
-                if (!InUmbralIce && !InAstralFire)
+                
+                if (!InUmbralIce && !InAstralFire && !IsCasting)
                 {
-                    if (BlizzardIiiPvE.CanUse(out act, skipAoeCheck: true)) return true;
+                    if (CurrentMp == Player?.MaxMp)
+                    {
+                        if (FireIiiPvE.CanUse(out act)) return true;
+                    }
+                    if (BlizzardIiiPvE.CanUse(out act, skipAoeCheck: true))   return true;
                 }
             }
         }
@@ -1215,6 +1237,7 @@ public sealed class Rabbs_BLM : BlackMageRotation
         ImGui.Text("Player.BaseCastTime " + Player?.BaseCastTime);
         ImGui.Text("Player.CurrentCastTime) " + Player?.CurrentCastTime);
         ImGui.Text("Player.TotalCastTime " + Player?.TotalCastTime);
+        ImGui.Text("NextAbilityToNextGCD " + NextAbilityToNextGCD);
 
         base.DisplayRotationStatus();
     }

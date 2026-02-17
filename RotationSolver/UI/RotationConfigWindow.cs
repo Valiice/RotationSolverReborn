@@ -70,19 +70,13 @@ public partial class RotationConfigWindow : Window
 	"Chaos_co",
     "Chris",
 	"clean",
-	"Cole",
 	"DeadCode",
 	"Drama",
 	"Ecliptive",
 	"Elena",
-	"Elita",
 	"Endings",
 	"Ephi",
-	"eudesu39",
-	"Ghosty !",
-	"Hawa",
 	"kaen",
-	"Kialdir",
 	"kuromiromi",
 	"Lemon",
 	"LouBird",
@@ -90,27 +84,22 @@ public partial class RotationConfigWindow : Window
 	"Miracle Ace",
 	"Mirai",
 	"Miri",
+	"Moniika",
 	"Nefertem",
-	"Nekomimi Bakeneko",
-	"no name",
-	"Nyakaze",
 	"Papaya",
 	"Plogons",
-	"poop dealer",
 	"prismagreen",
 	"purrpletime",
+	"q",
 	"Rini",
 	"Rockabye",
 	"sambaggins",
-	"smf26",
-	"Sware",
-	"Taazaam",
+	"Savage",
 	"That One Aura",
 	"Toska",
 	"TuckingFypo-",
 	"Vaex_Darastrix",
-	"wax",
-	"Yona",
+	"vivi",
 	"KuwoBlack"
 	];
 
@@ -270,15 +259,20 @@ public partial class RotationConfigWindow : Window
         base.OnOpen();
     }
 
-    public override void OnClose()
-    {
-        Service.Config.Save();
-        ActionSequencerUpdater.SaveFiles();
-        _cachedDiagInfo = null;
-        base.OnClose();
-    }
+	public override void OnClose()
+	{
+		Service.Config.Save();
+		_cachedDiagInfo = null;
+		base.OnClose();
+	}
 
-    public override void Draw()
+	internal void SetActiveTab(RotationConfigWindowTab tab)
+	{
+		_activeTab = tab;
+		_searchResults = [];
+	}
+
+	public override void Draw()
     {
         if (_showResetPopup)
         {
@@ -543,7 +537,7 @@ public partial class RotationConfigWindow : Window
                 {
                     displayName = Player.Job.ToString(); // Use the current player's job name
                 }
-                else if (item == RotationConfigWindowTab.Duty && Player.Object != null)
+                else if (item == RotationConfigWindowTab.DutyRotation && Player.Object != null)
                 {
                     if (!DataCenter.IsInDuty || DataCenter.CurrentDutyRotation == null)
                     {
@@ -608,7 +602,7 @@ public partial class RotationConfigWindow : Window
                 }
 
                 // Add a separator after the "Duty" tab
-                if (item == RotationConfigWindowTab.Duty)
+                if (item == RotationConfigWindowTab.DutyRotation)
                 {
                     ImGui.Separator();
                 }
@@ -618,7 +612,7 @@ public partial class RotationConfigWindow : Window
                 {
                     ImGui.Separator();
                 }
-            }
+			}
             DrawDiagnosticInfoCube();
             ImGui.Spacing();
         }
@@ -903,7 +897,7 @@ public partial class RotationConfigWindow : Window
 			{
 				ImGui.PushTextWrapPos(ImGui.GetCursorPos().X + availableWidth);
 				ImGui.PushStyleColor(ImGuiCol.Text, ImGuiColors.DalamudOrange);
-				ImGui.TextWrapped($"Warning: You are running the staging branch of Dalamud. For best compatibility, use the XIVLauncher and switch back to 'release' branch if available for your current version of FFXIV.");
+				ImGui.TextWrapped($"Notice: You are running the staging branch of Dalamud. For best compatibility, use the XIVLauncher and switch back to 'release' branch if available for your current version of FFXIV.");
 				ImGui.PopStyleColor();
 				ImGui.PopTextWrapPos();
 				ImGui.Spacing();
@@ -1104,7 +1098,7 @@ public partial class RotationConfigWindow : Window
                         DrawAbout();
                         break;
 
-                    case RotationConfigWindowTab.Duty:
+                    case RotationConfigWindowTab.DutyRotation:
                         DrawDutyRotationBody();
                         break;
 
@@ -1148,7 +1142,11 @@ public partial class RotationConfigWindow : Window
                         DrawTarget();
                         break;
 
-                    case RotationConfigWindowTab.Extra:
+					case RotationConfigWindowTab.Duty:
+						DrawDutySpecific();
+						break;
+
+					case RotationConfigWindowTab.Extra:
                         DrawExtra();
                         break;
 
@@ -1179,9 +1177,15 @@ public partial class RotationConfigWindow : Window
             Configs.BasicAutoSwitch => $"Auto > {UiString.ConfigWindow_Basic_AutoSwitch.GetDescription()}",
             Configs.AutoActionUsage => $"Auto > {UiString.ConfigWindow_Auto_ActionUsage.GetDescription()}",
             Configs.HealingActionCondition => $"Auto > {UiString.ConfigWindow_Auto_HealingCondition.GetDescription()}",
-            Configs.PvPSpecificControls => $"Auto > {UiString.ConfigWindow_Auto_PvPSpecific.GetDescription()}",
+            Configs.DutySpecifcUltimate => $"Auto > {UiString.ConfigWindow_Duty_Ultimate.GetDescription()}",
+			Configs.DutySpecifcSavage => $"Auto > {UiString.ConfigWindow_Duty_Savage.GetDescription()}",
+			Configs.DutySpecifcExtreme => $"Auto > {UiString.ConfigWindow_Duty_Extreme.GetDescription()}",
+			Configs.DutySpecifcAlliance => $"Auto > {UiString.ConfigWindow_Duty_Alliance.GetDescription()}",
+			Configs.DutySpecifcDungeon => $"Auto > {UiString.ConfigWindow_Duty_Dungeon.GetDescription()}",
+			Configs.DutySpecifcFieldOps => $"Auto > {UiString.ConfigWindow_Duty_FieldOps.GetDescription()}",
+			Configs.DutySpecifcPvP => $"Auto > {UiString.ConfigWindow_Duty_PvP.GetDescription()}",
 
-            Configs.TargetConfig => $"Target > {UiString.ConfigWindow_Target_Config.GetDescription()}",
+			Configs.TargetConfig => $"Target > {UiString.ConfigWindow_Target_Config.GetDescription()}",
 
             Configs.Extra => $"Extra > {UiString.ConfigWindow_Extra_Others.GetDescription()}",
 
@@ -1229,12 +1233,36 @@ public partial class RotationConfigWindow : Window
                 _activeTab = RotationConfigWindowTab.Auto;
                 _autoHeader.OpenHeaderByTitle(UiString.ConfigWindow_Auto_HealingCondition.GetDescription());
                 break;
-            case Configs.PvPSpecificControls:
-                _activeTab = RotationConfigWindowTab.Auto;
-                _autoHeader.OpenHeaderByTitle(UiString.ConfigWindow_Auto_PvPSpecific.GetDescription());
+            case Configs.DutySpecifcUltimate:
+                _activeTab = RotationConfigWindowTab.Duty;
+                _autoHeader.OpenHeaderByTitle(UiString.ConfigWindow_Duty_Ultimate.GetDescription());
                 break;
+			case Configs.DutySpecifcSavage:
+				_activeTab = RotationConfigWindowTab.Duty;
+				_autoHeader.OpenHeaderByTitle(UiString.ConfigWindow_Duty_Savage.GetDescription());
+				break;
+			case Configs.DutySpecifcExtreme:
+				_activeTab = RotationConfigWindowTab.Duty;
+				_autoHeader.OpenHeaderByTitle(UiString.ConfigWindow_Duty_Extreme.GetDescription());
+				break;
+			case Configs.DutySpecifcAlliance:
+				_activeTab = RotationConfigWindowTab.Duty;
+				_autoHeader.OpenHeaderByTitle(UiString.ConfigWindow_Duty_Alliance.GetDescription());
+				break;
+			case Configs.DutySpecifcDungeon:
+				_activeTab = RotationConfigWindowTab.Duty;
+				_autoHeader.OpenHeaderByTitle(UiString.ConfigWindow_Duty_Dungeon.GetDescription());
+				break;
+			case Configs.DutySpecifcFieldOps:
+				_activeTab = RotationConfigWindowTab.Duty;
+				_autoHeader.OpenHeaderByTitle(UiString.ConfigWindow_Duty_FieldOps.GetDescription());
+				break;
+			case Configs.DutySpecifcPvP:
+				_activeTab = RotationConfigWindowTab.Duty;
+				_autoHeader.OpenHeaderByTitle(UiString.ConfigWindow_Duty_PvP.GetDescription());
+				break;
 
-            case Configs.TargetConfig:
+			case Configs.TargetConfig:
                 _activeTab = RotationConfigWindowTab.Target;
                 _targetHeader.OpenHeaderByTitle(UiString.ConfigWindow_Target_Config.GetDescription());
                 break;
@@ -1307,9 +1335,10 @@ public partial class RotationConfigWindow : Window
             if (!config.Type.HasFlag(CombatType.PvE)) continue;
             if (!ShouldShowRotationConfig(config, set)) continue;
 
-            string key = rotation.GetType().FullName ?? rotation.GetType().Name + "." + config.Name;
-            string name = $"##{config.GetHashCode()}_{key}.Name";
-            string command = ToCommandStr(OtherCommandType.DutyRotations, config.Name, config.DefaultValue);
+			string typeName = rotation.GetType().FullName ?? rotation.GetType().Name;
+			string key = $"{typeName}.{config.Name}";
+			string name = $"##{config.GetHashCode()}_{key}.Name";
+			string command = ToCommandStr(OtherCommandType.DutyRotations, config.Name, config.DefaultValue);
             void Reset() => config.Value = config.DefaultValue;
 
             ImGuiHelper.PrepareGroup(key, command, Reset);
@@ -1414,67 +1443,138 @@ public partial class RotationConfigWindow : Window
             ImGuiHelper.ReactPopup(key, command, Reset, false);
         }
     }
-    #endregion
+	#endregion
 
-    #region About
-    private static void DrawAbout()
-    {
-        // Draw the punchline with a specific font and color
-        using (ImRaii.Font font = ImRaii.PushFont(FontManager.GetFont(18)))
-        {
-            using ImRaii.Color color = ImRaii.PushColor(ImGuiCol.Text, ImGui.ColorConvertFloat4ToU32(ImGuiColors.DalamudYellow));
-            ImGui.TextWrapped(UiString.ConfigWindow_About_Punchline.GetDescription());
-        }
+	#region DutySpecifc
+	private static void DrawDutySpecific()
+	{
+		_dutySpecificHeader?.Draw();
+	}
 
-        ImGui.Spacing();
+	private static readonly CollapsingHeaderGroup _dutySpecificHeader = new(new Dictionary<Func<string>, Action>
+	{
+		{ UiString.ConfigWindow_Duty_Ultimate.GetDescription, DrawDutySpecificUltimate },
+		{ UiString.ConfigWindow_Duty_Savage.GetDescription, DrawDutySpecificSavage },
+		{ UiString.ConfigWindow_Duty_Extreme.GetDescription, DrawDutySpecifcExtreme },
+		{ UiString.ConfigWindow_Duty_ChaoticAlliance.GetDescription, DrawDutySpecifcChaoticAlliance },
+		{ UiString.ConfigWindow_Duty_Alliance.GetDescription, DrawDutySpecifcAlliance },
+		{ UiString.ConfigWindow_Duty_Dungeon.GetDescription, DrawDutySpecifcDungeon },
+		{ UiString.ConfigWindow_Duty_DeepDungeon.GetDescription, DrawDutySpecifcDeepDungeon },
+		{ UiString.ConfigWindow_Duty_VariantDungeon.GetDescription, DrawDutySpecifcVariantDungeon },
+		{ UiString.ConfigWindow_Duty_FieldOps.GetDescription, DrawDutySpecifcFieldOps },
+		{ UiString.ConfigWindow_Duty_PvP.GetDescription, DrawDutySpecifcPvP },
+	})
+	{
+		HeaderSize = HeaderSize,
+	};
 
-        // Draw the description
-        ImGui.TextWrapped(UiString.ConfigWindow_About_Description.GetDescription());
+	private static void DrawDutySpecificUltimate()
+	{
+		_allSearchable.DrawItems(Configs.DutySpecifcUltimate);
+	}
+	private static void DrawDutySpecificSavage()
+	{
+		_allSearchable.DrawItems(Configs.DutySpecifcSavage);
+	}
+	private static void DrawDutySpecifcExtreme()
+	{
+		_allSearchable.DrawItems(Configs.DutySpecifcExtreme);
+	}
+	private static void DrawDutySpecifcChaoticAlliance()
+	{
+		_allSearchable.DrawItems(Configs.DutySpecifcChaoticAlliance);
+	}
+	private static void DrawDutySpecifcAlliance()
+	{
+		_allSearchable.DrawItems(Configs.DutySpecifcAlliance);
+	}
+	private static void DrawDutySpecifcDungeon()
+	{
+		_allSearchable.DrawItems(Configs.DutySpecifcDungeon);
+	}
+	private static void DrawDutySpecifcDeepDungeon()
+	{
+		_allSearchable.DrawItems(Configs.DutySpecifcDeepDungeon);
+	}
+	private static void DrawDutySpecifcVariantDungeon()
+	{
+		_allSearchable.DrawItems(Configs.DutySpecifcVariantDungeon);
+	}
+	private static void DrawDutySpecifcFieldOps()
+	{
+		_allSearchable.DrawItems(Configs.DutySpecifcFieldOps);
+	}
+	private static void DrawDutySpecifcPvP()
+	{
+		_allSearchable.DrawItems(Configs.DutySpecifcPvP);
+	}
 
-        ImGui.Spacing();
+	#endregion
+	#region About
+	private static void DrawAbout()
+	{
+		// Draw the punchline with a specific font and color
+		using (ImRaii.Font font = ImRaii.PushFont(FontManager.GetFont(18)))
+		{
+			using ImRaii.Color color = ImRaii.PushColor(ImGuiCol.Text, ImGui.ColorConvertFloat4ToU32(ImGuiColors.DalamudYellow));
+			ImGui.TextWrapped(UiString.ConfigWindow_About_Punchline.GetDescription());
+		}
 
-        // Draw the warning with a specific color
-        using (ImRaii.Color color = ImRaii.PushColor(ImGuiCol.Text, ImGui.ColorConvertFloat4ToU32(ImGuiColors.DalamudOrange)))
-        {
-            ImGui.TextWrapped(UiString.ConfigWindow_About_Warning.GetDescription());
-        }
+		ImGui.Spacing();
 
-        ImGui.Spacing();
-        float width2 = ImGui.GetWindowWidth();
-        if (IconSet.GetTexture("https://storage.ko-fi.com/cdn/brandasset/kofi_button_red.png", out Dalamud.Interface.Textures.TextureWraps.IDalamudTextureWrap? icon2) && ImGuiHelper.TextureButton(icon2, width2, 250 * Scale, "Ko-fi link"))
-        {
-            Util.OpenLink("https://ko-fi.com/ltscombatreborn");
-        }
+		// Draw the description
+		ImGui.TextWrapped(UiString.ConfigWindow_About_Description.GetDescription());
 
-        float width = ImGui.GetWindowWidth();
+		ImGui.Spacing();
 
-        // Draw the Discord link button
-        if (IconSet.GetTexture("https://discordapp.com/api/guilds/1064448004498653245/embed.png?style=banner2", out Dalamud.Interface.Textures.TextureWraps.IDalamudTextureWrap? icon) && ImGuiHelper.TextureButton(icon, width, 250 * Scale, "Discord link"))
-        {
-            Util.OpenLink("https://discord.gg/p54TZMPnC9");
-        }
+		// Draw the warning with a specific color
+		using (ImRaii.Color color = ImRaii.PushColor(ImGuiCol.Text, ImGui.ColorConvertFloat4ToU32(ImGuiColors.DalamudOrange)))
+		{
+			ImGui.TextWrapped(UiString.ConfigWindow_About_Warning.GetDescription());
+		}
 
-        uint clickingCount = OtherConfiguration.RotationSolverRecord.ClickingCount;
-        if (clickingCount > 0)
-        {
-            // Draw the clicking count with a specific color
-            using ImRaii.Color color = ImRaii.PushColor(ImGuiCol.Text, new Vector4(0.2f, 0.6f, 0.95f, 1));
-            string countStr = UiString.ConfigWindow_About_ClickingCount.GetDescription();
-            if (countStr != null)
-            {
-                countStr = string.Format(countStr, clickingCount);
-                ImGuiHelper.DrawItemMiddle(() =>
-                {
-                    ImGui.TextWrapped(countStr);
-                }, width, ImGui.CalcTextSize(countStr).X);
-            }
-        }
+		ImGui.Spacing();
+		if (ImGui.Button("Open First Start Tutorial"))
+		{
+            Service.Config.TutorialDone = false;
+		}
 
-        // Draw the about headers
-        _aboutHeaders.Draw();
-    }
+		ImGui.Spacing();
+		float width2 = ImGui.GetWindowWidth();
+		if (IconSet.GetTexture("https://storage.ko-fi.com/cdn/brandasset/kofi_button_red.png", out IDalamudTextureWrap? icon2) && ImGuiHelper.TextureButton(icon2, width2, 250 * Scale, "Ko-fi link"))
+		{
+			Util.OpenLink("https://ko-fi.com/ltscombatreborn");
+		}
 
-    private static readonly CollapsingHeaderGroup _aboutHeaders = new(new()
+		float width = ImGui.GetWindowWidth();
+
+		// Draw the Discord link button
+		if (IconSet.GetTexture("https://discordapp.com/api/guilds/1064448004498653245/embed.png?style=banner2", out Dalamud.Interface.Textures.TextureWraps.IDalamudTextureWrap? icon) && ImGuiHelper.TextureButton(icon, width, 250 * Scale, "Discord link"))
+		{
+			Util.OpenLink("https://discord.gg/p54TZMPnC9");
+		}
+
+		uint clickingCount = OtherConfiguration.RotationSolverRecord.ClickingCount;
+		if (clickingCount > 0)
+		{
+			// Draw the clicking count with a specific color
+			using ImRaii.Color color = ImRaii.PushColor(ImGuiCol.Text, new Vector4(0.2f, 0.6f, 0.95f, 1));
+			string countStr = UiString.ConfigWindow_About_ClickingCount.GetDescription();
+			if (countStr != null)
+			{
+				countStr = string.Format(countStr, clickingCount);
+				ImGuiHelper.DrawItemMiddle(() =>
+				{
+					ImGui.TextWrapped(countStr);
+				}, width, ImGui.CalcTextSize(countStr).X);
+			}
+		}
+
+		// Draw the about headers
+		_aboutHeaders.Draw();
+	}
+
+	private static readonly CollapsingHeaderGroup _aboutHeaders = new(new()
     {
 		{ UiString.ConfigWindow_About_ThanksToSupporters.GetDescription, DrawThanksToSupporters },
 		{ UiString.ConfigWindow_About_Macros.GetDescription, DrawAboutMacros },
@@ -2183,9 +2283,10 @@ public partial class RotationConfigWindow : Window
 
             if (!ShouldShowRotationConfig(config, set)) continue;
 
-            string key = rotation.GetType().FullName ?? rotation.GetType().Name + "." + config.Name;
-            string name = $"##{config.GetHashCode()}_{key}.Name";
-            string command = ToCommandStr(OtherCommandType.Rotations, config.Name, config.DefaultValue);
+			string typeName = rotation.GetType().FullName ?? rotation.GetType().Name;
+			string key = $"{typeName}.{config.Name}";
+			string name = $"##{config.GetHashCode()}_{key}.Name";
+			string command = ToCommandStr(OtherCommandType.Rotations, config.Name, config.DefaultValue);
             void Reset() => config.Value = config.DefaultValue;
 
             ImGuiHelper.PrepareGroup(key, command, Reset);
@@ -2281,6 +2382,50 @@ public partial class RotationConfigWindow : Window
 
             ImGui.SameLine();
             ImGui.TextWrapped($"{config.DisplayName}");
+
+            string? tooltip = null;
+            {
+	            var prop = rotation.GetType().GetProperty(config.Name,
+		            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+	            if (prop != null)
+	            {
+		            var rotAttr = prop.GetCustomAttribute<RotationConfigAttribute>();
+		            tooltip = rotAttr?.Tooltip;
+	            }
+            }
+
+            if (string.IsNullOrEmpty(tooltip))
+            {
+	            var tProp = config.GetType().GetProperty("Tooltip", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+	            if (tProp != null)
+		            tooltip = tProp.GetValue(config) as string;
+            }
+
+            // Only render the small help marker and ImGui tooltip when we have a non-empty tooltip
+            if (!string.IsNullOrEmpty(tooltip))
+            {
+	            ImGui.SameLine();
+	            ImGui.TextDisabled("(?)");
+	            if (ImGui.IsItemHovered())
+	            {
+		            ImGui.BeginTooltip();
+
+		            // Limit tooltip width so very long tooltips wrap nicely.
+		            // `Scale` is the existing global UI scale in this file.
+		            const float BASE_MAX_TOOLTIP_PX = 520f;
+		            float maxWidth = BASE_MAX_TOOLTIP_PX * Scale;
+		            float screenMax = ImGui.GetIO().DisplaySize.X * 0.8f; // don't exceed most of the screen
+		            float wrapWidth = Math.Min(maxWidth, screenMax);
+
+		            // Push wrap position relative to current cursor X
+		            ImGui.PushTextWrapPos(ImGui.GetCursorPosX() + wrapWidth);
+		            ImGui.TextWrapped(tooltip);
+		            ImGui.PopTextWrapPos();
+
+		            ImGui.EndTooltip();
+	            }
+            }
+
             ImGuiHelper.ReactPopup(key, command, Reset, false);
         }
 

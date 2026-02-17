@@ -25688,9 +25688,10 @@ EnhancedEggAcuity = 4412,
 GoldenEye = 4413,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4414"&gt;&lt;strong&gt;Multihook&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Able to hook twice as many fish on next catch.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_4414 = 4414,
+Multihook = 4414,
 
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#status/4415"&gt;&lt;strong&gt;Star Contributor&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
@@ -25822,9 +25823,10 @@ UnnamedStatus_4435 = 4435,
 VulnerabilityDown_4436 = 4436,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4437"&gt;&lt;strong&gt;Greater Reach Ready&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Able to execute Greater Reach.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_4437 = 4437,
+GreaterReachReady = 4437,
 
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#status/4438"&gt;&lt;strong&gt;Tritonic Gravity&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
@@ -27960,9 +27962,10 @@ UnnamedStatus_4837 = 4837,
 UnnamedStatus_4838 = 4838,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4839"&gt;&lt;strong&gt;Stellar Steady Hand&lt;/strong&gt;&lt;/see&gt; ↑ (Disciple of the Hand)
+/// &lt;para&gt;Actions are guaranteed to succeed.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_4839 = 4839,
+StellarSteadyHand = 4839,
 
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#status/4840"&gt;&lt;strong&gt;Alexandrian Barrier&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
@@ -28756,9 +28759,10 @@ UnnamedStatus_4994 = 4994,
 UnnamedStatus_4995 = 4995,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4996"&gt;&lt;strong&gt;Attractor Beam Charged&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Able to use the Attractor Beam.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_4996 = 4996,
+AttractorBeamCharged = 4996,
 
 /// &lt;summary&gt;
 /// &lt;para&gt;&lt;/para&gt;
@@ -28991,14 +28995,16 @@ UnnamedStatus_5041 = 5041,
 UnnamedStatus_5042 = 5042,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5043"&gt;&lt;strong&gt;Stun&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Unable to execute actions.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_5043 = 5043,
+Stun_5043 = 5043,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5044"&gt;&lt;strong&gt;Heavy&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Movement speed is reduced.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_5044 = 5044,
+Heavy_5044 = 5044,
 
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#status/5045"&gt;&lt;strong&gt;Fire Resistance Down II&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
@@ -38214,7 +38220,7 @@ FlareStarPvE = 36989,
 NecrotizePvE = 36990,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/36991"&gt;&lt;strong&gt;Searing Flash&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [36991] [Ability]
-/// &lt;para&gt;Deals unaspected damage with a potency of 600 to target and all enemies nearby it. Can only be executed while under the effect of Ruby's Glimmer.&lt;/para&gt;
+/// &lt;para&gt;Deals unaspected damage with a potency of 700 to target and all enemies nearby it. Can only be executed while under the effect of Ruby's Glimmer.&lt;/para&gt;
 /// &lt;/summary&gt;
 SearingFlashPvE = 36991,
 /// &lt;summary&gt;
@@ -38229,17 +38235,17 @@ SummonSolarBahamutPvE = 36992,
 LuxwavePvE = 36993,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/36994"&gt;&lt;strong&gt;Umbral Impulse&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [36994] [Spell]
-/// &lt;para&gt;Deals unaspected damage with a potency of 620. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Ruin III changes to Umbral Impulse when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Deals unaspected damage with a potency of 640. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Ruin III changes to Umbral Impulse when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 UmbralImpulsePvE = 36994,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/36995"&gt;&lt;strong&gt;Umbral Flare&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [36995] [Spell]
-/// &lt;para&gt;Deals unaspected damage with a potency of 280 to target and all enemies nearby it. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Tri-disaster changes to Umbral Flare when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Deals unaspected damage with a potency of 300 to target and all enemies nearby it. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Tri-disaster changes to Umbral Flare when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 UmbralFlarePvE = 36995,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/36996"&gt;&lt;strong&gt;Sunflare&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [36996] [Ability]
-/// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 800 for the first enemy and 50% less for all remaining enemies. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Astral Flow changes to Sunflare when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 1,000 for the first enemy and 50% less for all remaining enemies. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Astral Flow changes to Sunflare when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 SunflarePvE = 36996,
 /// &lt;summary&gt;
@@ -39543,25 +39549,25 @@ MegaPotionPvE_44247 = 44247,
 /// &lt;/summary&gt;
 UnveilPvE_44492 = 44492,
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#action/44501"&gt;&lt;strong&gt;Cheer Jump: Red&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44501] [Special]
+/// &lt;see href="https://garlandtools.org/db/#action/44501"&gt;&lt;strong&gt;Cheer Rhythm: Red&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44501] [Special]
 /// &lt;para&gt;Might as well use a red light to cheer on your favorite performer.&lt;/para&gt;
 /// &lt;/summary&gt;
-CheerJumpRedPvE = 44501,
+CheerRhythmRedPvE = 44501,
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#action/44502"&gt;&lt;strong&gt;Cheer Wave: Yellow&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44502] [Special]
+/// &lt;see href="https://garlandtools.org/db/#action/44502"&gt;&lt;strong&gt;Cheer Light: Yellow&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44502] [Special]
 /// &lt;para&gt;Use a yellow light to cheer on your favorite performer like you just don't care.&lt;/para&gt;
 /// &lt;/summary&gt;
-CheerWaveYellowPvE = 44502,
+CheerLightYellowPvE = 44502,
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#action/44503"&gt;&lt;strong&gt;Cheer On: Blue&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44503] [Special]
-/// &lt;para&gt;Use a pair of blue lights to clear your favorite performer for landing.&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#action/44503"&gt;&lt;strong&gt;Cheer Light: Blue&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44503] [Special]
+/// &lt;para&gt;Might as well use a blue light to cheer on your favorite performer.&lt;/para&gt;
 /// &lt;/summary&gt;
-CheerOnBluePvE = 44503,
+CheerLightBluePvE = 44503,
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#action/44504"&gt;&lt;strong&gt;Cheer Wave: Violet&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44504] [Special]
+/// &lt;see href="https://garlandtools.org/db/#action/44504"&gt;&lt;strong&gt;Cheer Rhythm: Violet&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44504] [Special]
 /// &lt;para&gt;Use a violet light to cheer on your favorite performer like you just don't care.&lt;/para&gt;
 /// &lt;/summary&gt;
-CheerWaveVioletPvE = 44504,
+CheerRhythmVioletPvE = 44504,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/44628"&gt;&lt;strong&gt;Rocky Roll&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44628] [Special]
 /// &lt;para&gt;Quickly dash 25 yalms forward dealing damage to targets in your path.&lt;/para&gt;
@@ -52356,98 +52362,98 @@ public abstract partial class DutyRotation
     /// &lt;/summary&gt;
     [ID(44492)]
     public IBaseAction UnveilPvE_44492 =&gt; _UnveilPvE_44492Creator.Value;
-    private readonly Lazy&lt;IBaseAction&gt; _CheerJumpRedPvECreator = new(() =&gt; 
+    private readonly Lazy&lt;IBaseAction&gt; _CheerRhythmRedPvECreator = new(() =&gt; 
     {
         IBaseAction action = new BaseAction((ActionID)44501, true);
         CustomRotation.LoadActionSetting(ref action);
     
         var setting = action.Setting;
-        ModifyCheerJumpRedPvE(ref setting);
+        ModifyCheerRhythmRedPvE(ref setting);
         action.Setting = setting;
     
         return action;
     });
     
     /// &lt;summary&gt;
-    /// Modify &lt;see href="https://garlandtools.org/db/#action/44501"&gt;&lt;strong&gt;Cheer Jump: Red&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44501] [Special] Duty Action
+    /// Modify &lt;see href="https://garlandtools.org/db/#action/44501"&gt;&lt;strong&gt;Cheer Rhythm: Red&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44501] [Special] Duty Action
     /// &lt;/summary&gt;
-    static partial void ModifyCheerJumpRedPvE(ref ActionSetting setting);
+    static partial void ModifyCheerRhythmRedPvE(ref ActionSetting setting);
     
     /// &lt;summary&gt;
-    /// &lt;see href="https://garlandtools.org/db/#action/44501"&gt;&lt;strong&gt;Cheer Jump: Red&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44501] [Special] Duty Action
+    /// &lt;see href="https://garlandtools.org/db/#action/44501"&gt;&lt;strong&gt;Cheer Rhythm: Red&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44501] [Special] Duty Action
     /// &lt;para&gt;Might as well use a red light to cheer on your favorite performer.&lt;/para&gt;
     /// &lt;/summary&gt;
     [ID(44501)]
-    public IBaseAction CheerJumpRedPvE =&gt; _CheerJumpRedPvECreator.Value;
-    private readonly Lazy&lt;IBaseAction&gt; _CheerWaveYellowPvECreator = new(() =&gt; 
+    public IBaseAction CheerRhythmRedPvE =&gt; _CheerRhythmRedPvECreator.Value;
+    private readonly Lazy&lt;IBaseAction&gt; _CheerLightYellowPvECreator = new(() =&gt; 
     {
         IBaseAction action = new BaseAction((ActionID)44502, true);
         CustomRotation.LoadActionSetting(ref action);
     
         var setting = action.Setting;
-        ModifyCheerWaveYellowPvE(ref setting);
+        ModifyCheerLightYellowPvE(ref setting);
         action.Setting = setting;
     
         return action;
     });
     
     /// &lt;summary&gt;
-    /// Modify &lt;see href="https://garlandtools.org/db/#action/44502"&gt;&lt;strong&gt;Cheer Wave: Yellow&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44502] [Special] Duty Action
+    /// Modify &lt;see href="https://garlandtools.org/db/#action/44502"&gt;&lt;strong&gt;Cheer Light: Yellow&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44502] [Special] Duty Action
     /// &lt;/summary&gt;
-    static partial void ModifyCheerWaveYellowPvE(ref ActionSetting setting);
+    static partial void ModifyCheerLightYellowPvE(ref ActionSetting setting);
     
     /// &lt;summary&gt;
-    /// &lt;see href="https://garlandtools.org/db/#action/44502"&gt;&lt;strong&gt;Cheer Wave: Yellow&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44502] [Special] Duty Action
+    /// &lt;see href="https://garlandtools.org/db/#action/44502"&gt;&lt;strong&gt;Cheer Light: Yellow&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44502] [Special] Duty Action
     /// &lt;para&gt;Use a yellow light to cheer on your favorite performer like you just don't care.&lt;/para&gt;
     /// &lt;/summary&gt;
     [ID(44502)]
-    public IBaseAction CheerWaveYellowPvE =&gt; _CheerWaveYellowPvECreator.Value;
-    private readonly Lazy&lt;IBaseAction&gt; _CheerOnBluePvECreator = new(() =&gt; 
+    public IBaseAction CheerLightYellowPvE =&gt; _CheerLightYellowPvECreator.Value;
+    private readonly Lazy&lt;IBaseAction&gt; _CheerLightBluePvECreator = new(() =&gt; 
     {
         IBaseAction action = new BaseAction((ActionID)44503, true);
         CustomRotation.LoadActionSetting(ref action);
     
         var setting = action.Setting;
-        ModifyCheerOnBluePvE(ref setting);
+        ModifyCheerLightBluePvE(ref setting);
         action.Setting = setting;
     
         return action;
     });
     
     /// &lt;summary&gt;
-    /// Modify &lt;see href="https://garlandtools.org/db/#action/44503"&gt;&lt;strong&gt;Cheer On: Blue&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44503] [Special] Duty Action
+    /// Modify &lt;see href="https://garlandtools.org/db/#action/44503"&gt;&lt;strong&gt;Cheer Light: Blue&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44503] [Special] Duty Action
     /// &lt;/summary&gt;
-    static partial void ModifyCheerOnBluePvE(ref ActionSetting setting);
+    static partial void ModifyCheerLightBluePvE(ref ActionSetting setting);
     
     /// &lt;summary&gt;
-    /// &lt;see href="https://garlandtools.org/db/#action/44503"&gt;&lt;strong&gt;Cheer On: Blue&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44503] [Special] Duty Action
-    /// &lt;para&gt;Use a pair of blue lights to clear your favorite performer for landing.&lt;/para&gt;
+    /// &lt;see href="https://garlandtools.org/db/#action/44503"&gt;&lt;strong&gt;Cheer Light: Blue&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44503] [Special] Duty Action
+    /// &lt;para&gt;Might as well use a blue light to cheer on your favorite performer.&lt;/para&gt;
     /// &lt;/summary&gt;
     [ID(44503)]
-    public IBaseAction CheerOnBluePvE =&gt; _CheerOnBluePvECreator.Value;
-    private readonly Lazy&lt;IBaseAction&gt; _CheerWaveVioletPvECreator = new(() =&gt; 
+    public IBaseAction CheerLightBluePvE =&gt; _CheerLightBluePvECreator.Value;
+    private readonly Lazy&lt;IBaseAction&gt; _CheerRhythmVioletPvECreator = new(() =&gt; 
     {
         IBaseAction action = new BaseAction((ActionID)44504, true);
         CustomRotation.LoadActionSetting(ref action);
     
         var setting = action.Setting;
-        ModifyCheerWaveVioletPvE(ref setting);
+        ModifyCheerRhythmVioletPvE(ref setting);
         action.Setting = setting;
     
         return action;
     });
     
     /// &lt;summary&gt;
-    /// Modify &lt;see href="https://garlandtools.org/db/#action/44504"&gt;&lt;strong&gt;Cheer Wave: Violet&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44504] [Special] Duty Action
+    /// Modify &lt;see href="https://garlandtools.org/db/#action/44504"&gt;&lt;strong&gt;Cheer Rhythm: Violet&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44504] [Special] Duty Action
     /// &lt;/summary&gt;
-    static partial void ModifyCheerWaveVioletPvE(ref ActionSetting setting);
+    static partial void ModifyCheerRhythmVioletPvE(ref ActionSetting setting);
     
     /// &lt;summary&gt;
-    /// &lt;see href="https://garlandtools.org/db/#action/44504"&gt;&lt;strong&gt;Cheer Wave: Violet&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44504] [Special] Duty Action
+    /// &lt;see href="https://garlandtools.org/db/#action/44504"&gt;&lt;strong&gt;Cheer Rhythm: Violet&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (All Classes) [44504] [Special] Duty Action
     /// &lt;para&gt;Use a violet light to cheer on your favorite performer like you just don't care.&lt;/para&gt;
     /// &lt;/summary&gt;
     [ID(44504)]
-    public IBaseAction CheerWaveVioletPvE =&gt; _CheerWaveVioletPvECreator.Value;
+    public IBaseAction CheerRhythmVioletPvE =&gt; _CheerRhythmVioletPvECreator.Value;
     private readonly Lazy&lt;IBaseAction&gt; _RockyRollPvECreator = new(() =&gt; 
     {
         IBaseAction action = new BaseAction((ActionID)44628, true);
@@ -64670,7 +64676,7 @@ public abstract partial class SummonerRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/36991"&gt;&lt;strong&gt;Searing Flash&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [36991] [Ability]
-    /// &lt;para&gt;Deals unaspected damage with a potency of 600 to target and all enemies nearby it. Can only be executed while under the effect of Ruby's Glimmer.&lt;/para&gt;
+    /// &lt;para&gt;Deals unaspected damage with a potency of 700 to target and all enemies nearby it. Can only be executed while under the effect of Ruby's Glimmer.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction SearingFlashPvE =&gt; _SearingFlashPvECreator.Value;
@@ -64739,7 +64745,7 @@ public abstract partial class SummonerRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/36994"&gt;&lt;strong&gt;Umbral Impulse&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [36994] [Spell]
-    /// &lt;para&gt;Deals unaspected damage with a potency of 620. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Ruin III changes to Umbral Impulse when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Deals unaspected damage with a potency of 640. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Ruin III changes to Umbral Impulse when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction UmbralImpulsePvE =&gt; _UmbralImpulsePvECreator.Value;
@@ -64762,7 +64768,7 @@ public abstract partial class SummonerRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/36995"&gt;&lt;strong&gt;Umbral Flare&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [36995] [Spell]
-    /// &lt;para&gt;Deals unaspected damage with a potency of 280 to target and all enemies nearby it. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Tri-disaster changes to Umbral Flare when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Deals unaspected damage with a potency of 300 to target and all enemies nearby it. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Tri-disaster changes to Umbral Flare when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction UmbralFlarePvE =&gt; _UmbralFlarePvECreator.Value;
@@ -64785,7 +64791,7 @@ public abstract partial class SummonerRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/36996"&gt;&lt;strong&gt;Sunflare&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [36996] [Ability]
-    /// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 800 for the first enemy and 50% less for all remaining enemies. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Astral Flow changes to Sunflare when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 1,000 for the first enemy and 50% less for all remaining enemies. Can only be executed while in Lightwyrm Trance. ※This action cannot be assigned to a hotbar. ※Astral Flow changes to Sunflare when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction SunflarePvE =&gt; _SunflarePvECreator.Value;
@@ -88857,385 +88863,385 @@ private sealed protected override IBaseAction LimitBreakPvP =&gt; AdventOfChocob
   </data>
   <data name="OpCode" xml:space="preserve">
     <value>/// &lt;summary&gt;
-///Airship Exploration Result
-/// &lt;/summary&gt;
-[Description("Airship Exploration Result")]
-AirshipExplorationResult = 584,
-/// &lt;summary&gt;
 ///Actor Set Pos
 /// &lt;/summary&gt;
 [Description("Actor Set Pos")]
-ActorSetPos = 460,
-/// &lt;summary&gt;
-///Actor Control Target
-/// &lt;/summary&gt;
-[Description("Actor Control Target")]
-ActorControlTarget = 985,
-/// &lt;summary&gt;
-///Actor Gauge
-/// &lt;/summary&gt;
-[Description("Actor Gauge")]
-ActorGauge = 156,
-/// &lt;summary&gt;
-///Actor Control
-/// &lt;/summary&gt;
-[Description("Actor Control")]
-ActorControl = 411,
-/// &lt;summary&gt;
-///Actor Move
-/// &lt;/summary&gt;
-[Description("Actor Move")]
-ActorMove = 724,
-/// &lt;summary&gt;
-///Airship Status List
-/// &lt;/summary&gt;
-[Description("Airship Status List")]
-AirshipStatusList = 338,
-/// &lt;summary&gt;
-///Airship Timers
-/// &lt;/summary&gt;
-[Description("Airship Timers")]
-AirshipTimers = 981,
+ActorSetPos = 514,
 /// &lt;summary&gt;
 ///Actor Cast
 /// &lt;/summary&gt;
 [Description("Actor Cast")]
-ActorCast = 754,
+ActorCast = 417,
+/// &lt;summary&gt;
+///Actor Move
+/// &lt;/summary&gt;
+[Description("Actor Move")]
+ActorMove = 315,
+/// &lt;summary&gt;
+///Actor Gauge
+/// &lt;/summary&gt;
+[Description("Actor Gauge")]
+ActorGauge = 460,
+/// &lt;summary&gt;
+///Actor Control
+/// &lt;/summary&gt;
+[Description("Actor Control")]
+ActorControl = 712,
 /// &lt;summary&gt;
 ///Actor Control Self
 /// &lt;/summary&gt;
 [Description("Actor Control Self")]
-ActorControlSelf = 839,
+ActorControlSelf = 691,
+/// &lt;summary&gt;
+///Airship Exploration Result
+/// &lt;/summary&gt;
+[Description("Airship Exploration Result")]
+AirshipExplorationResult = 277,
+/// &lt;summary&gt;
+///Airship Status List
+/// &lt;/summary&gt;
+[Description("Airship Status List")]
+AirshipStatusList = 552,
 /// &lt;summary&gt;
 ///Airship Status
 /// &lt;/summary&gt;
 [Description("Airship Status")]
-AirshipStatus = 250,
+AirshipStatus = 374,
 /// &lt;summary&gt;
-///Container Info
+///Actor Control Target
 /// &lt;/summary&gt;
-[Description("Container Info")]
-ContainerInfo = 576,
+[Description("Actor Control Target")]
+ActorControlTarget = 224,
+/// &lt;summary&gt;
+///Airship Timers
+/// &lt;/summary&gt;
+[Description("Airship Timers")]
+AirshipTimers = 966,
 /// &lt;summary&gt;
 ///Currency Crystal Info
 /// &lt;/summary&gt;
 [Description("Currency Crystal Info")]
-CurrencyCrystalInfo = 262,
-/// &lt;summary&gt;
-///Crafting Log
-/// &lt;/summary&gt;
-[Description("Crafting Log")]
-CraftingLog = 942,
+CurrencyCrystalInfo = 610,
 /// &lt;summary&gt;
 ///CFNotify
 /// &lt;/summary&gt;
 [Description("CFNotify")]
-CFNotify = 935,
+CFNotify = 591,
+/// &lt;summary&gt;
+///Crafting Log
+/// &lt;/summary&gt;
+[Description("Crafting Log")]
+CraftingLog = 534,
+/// &lt;summary&gt;
+///Container Info
+/// &lt;/summary&gt;
+[Description("Container Info")]
+ContainerInfo = 525,
 /// &lt;summary&gt;
 ///Desynth Result
 /// &lt;/summary&gt;
 [Description("Desynth Result")]
-DesynthResult = 753,
-/// &lt;summary&gt;
-///Event Play 16
-/// &lt;/summary&gt;
-[Description("Event Play 16")]
-EventPlay16 = 218,
-/// &lt;summary&gt;
-///Effect Result
-/// &lt;/summary&gt;
-[Description("Effect Result")]
-EffectResult = 606,
-/// &lt;summary&gt;
-///Event Start
-/// &lt;/summary&gt;
-[Description("Event Start")]
-EventStart = 986,
-/// &lt;summary&gt;
-///Examine Search Info
-/// &lt;/summary&gt;
-[Description("Examine Search Info")]
-ExamineSearchInfo = 622,
+DesynthResult = 485,
 /// &lt;summary&gt;
 ///Event Play 8
 /// &lt;/summary&gt;
 [Description("Event Play 8")]
-EventPlay8 = 643,
+EventPlay8 = 462,
 /// &lt;summary&gt;
-///Event Play 4
+///Event Play 16
 /// &lt;/summary&gt;
-[Description("Event Play 4")]
-EventPlay4 = 159,
+[Description("Event Play 16")]
+EventPlay16 = 602,
+/// &lt;summary&gt;
+///Event Start
+/// &lt;/summary&gt;
+[Description("Event Start")]
+EventStart = 760,
 /// &lt;summary&gt;
 ///Event Play 255
 /// &lt;/summary&gt;
 [Description("Event Play 255")]
-EventPlay255 = 391,
-/// &lt;summary&gt;
-///Effect
-/// &lt;/summary&gt;
-[Description("Effect")]
-Effect = 984,
+EventPlay255 = 823,
 /// &lt;summary&gt;
 ///Event Play 128
 /// &lt;/summary&gt;
 [Description("Event Play 128")]
-EventPlay128 = 162,
-/// &lt;summary&gt;
-///Event Play 64
-/// &lt;/summary&gt;
-[Description("Event Play 64")]
-EventPlay64 = 972,
-/// &lt;summary&gt;
-///Event Play
-/// &lt;/summary&gt;
-[Description("Event Play")]
-EventPlay = 818,
-/// &lt;summary&gt;
-///Event Finish
-/// &lt;/summary&gt;
-[Description("Event Finish")]
-EventFinish = 842,
-/// &lt;summary&gt;
-///Event Play 32
-/// &lt;/summary&gt;
-[Description("Event Play 32")]
-EventPlay32 = 207,
+EventPlay128 = 451,
 /// &lt;summary&gt;
 ///Effect Result Basic
 /// &lt;/summary&gt;
 [Description("Effect Result Basic")]
-EffectResultBasic = 930,
+EffectResultBasic = 427,
+/// &lt;summary&gt;
+///Event Play
+/// &lt;/summary&gt;
+[Description("Event Play")]
+EventPlay = 850,
+/// &lt;summary&gt;
+///Effect
+/// &lt;/summary&gt;
+[Description("Effect")]
+Effect = 487,
+/// &lt;summary&gt;
+///Event Play 4
+/// &lt;/summary&gt;
+[Description("Event Play 4")]
+EventPlay4 = 411,
+/// &lt;summary&gt;
+///Event Finish
+/// &lt;/summary&gt;
+[Description("Event Finish")]
+EventFinish = 104,
+/// &lt;summary&gt;
+///Event Play 32
+/// &lt;/summary&gt;
+[Description("Event Play 32")]
+EventPlay32 = 129,
 /// &lt;summary&gt;
 ///Examine
 /// &lt;/summary&gt;
 [Description("Examine")]
-Examine = 375,
+Examine = 166,
 /// &lt;summary&gt;
 ///Environment Control
 /// &lt;/summary&gt;
 [Description("Environment Control")]
-EnvironmentControl = 547,
+EnvironmentControl = 182,
+/// &lt;summary&gt;
+///Event Play 64
+/// &lt;/summary&gt;
+[Description("Event Play 64")]
+EventPlay64 = 194,
+/// &lt;summary&gt;
+///Examine Search Info
+/// &lt;/summary&gt;
+[Description("Examine Search Info")]
+ExamineSearchInfo = 339,
+/// &lt;summary&gt;
+///Effect Result
+/// &lt;/summary&gt;
+[Description("Effect Result")]
+EffectResult = 276,
 /// &lt;summary&gt;
 ///Free Company Info
 /// &lt;/summary&gt;
 [Description("Free Company Info")]
-FreeCompanyInfo = 110,
+FreeCompanyInfo = 795,
 /// &lt;summary&gt;
 ///Free Company Dialog
 /// &lt;/summary&gt;
 [Description("Free Company Dialog")]
-FreeCompanyDialog = 261,
+FreeCompanyDialog = 150,
 /// &lt;summary&gt;
 ///Gathering Log
 /// &lt;/summary&gt;
 [Description("Gathering Log")]
-GatheringLog = 170,
+GatheringLog = 892,
 /// &lt;summary&gt;
 ///Inventory Transaction Finish
 /// &lt;/summary&gt;
 [Description("Inventory Transaction Finish")]
-InventoryTransactionFinish = 305,
-/// &lt;summary&gt;
-///Inventory Transaction
-/// &lt;/summary&gt;
-[Description("Inventory Transaction")]
-InventoryTransaction = 695,
-/// &lt;summary&gt;
-///Item Market Board Info
-/// &lt;/summary&gt;
-[Description("Item Market Board Info")]
-ItemMarketBoardInfo = 854,
+InventoryTransactionFinish = 845,
 /// &lt;summary&gt;
 ///Item Info
 /// &lt;/summary&gt;
 [Description("Item Info")]
-ItemInfo = 235,
+ItemInfo = 148,
 /// &lt;summary&gt;
 ///Inventory Action Ack
 /// &lt;/summary&gt;
 [Description("Inventory Action Ack")]
-InventoryActionAck = 538,
+InventoryActionAck = 923,
 /// &lt;summary&gt;
-///Island Workshop Supply Demand
+///Inventory Transaction
 /// &lt;/summary&gt;
-[Description("Island Workshop Supply Demand")]
-IslandWorkshopSupplyDemand = 116,
+[Description("Inventory Transaction")]
+InventoryTransaction = 425,
 /// &lt;summary&gt;
 ///Init Zone
 /// &lt;/summary&gt;
 [Description("Init Zone")]
-InitZone = 578,
+InitZone = 420,
+/// &lt;summary&gt;
+///Island Workshop Supply Demand
+/// &lt;/summary&gt;
+[Description("Island Workshop Supply Demand")]
+IslandWorkshopSupplyDemand = 352,
+/// &lt;summary&gt;
+///Item Market Board Info
+/// &lt;/summary&gt;
+[Description("Item Market Board Info")]
+ItemMarketBoardInfo = 141,
 /// &lt;summary&gt;
 ///Logout
 /// &lt;/summary&gt;
 [Description("Logout")]
-Logout = 292,
-/// &lt;summary&gt;
-///Market Board Item Listing History
-/// &lt;/summary&gt;
-[Description("Market Board Item Listing History")]
-MarketBoardItemListingHistory = 604,
-/// &lt;summary&gt;
-///Market Board Search Result
-/// &lt;/summary&gt;
-[Description("Market Board Search Result")]
-MarketBoardSearchResult = 750,
-/// &lt;summary&gt;
-///Market Board Item Listing
-/// &lt;/summary&gt;
-[Description("Market Board Item Listing")]
-MarketBoardItemListing = 429,
-/// &lt;summary&gt;
-///Market Board Item Listing Count
-/// &lt;/summary&gt;
-[Description("Market Board Item Listing Count")]
-MarketBoardItemListingCount = 472,
+Logout = 694,
 /// &lt;summary&gt;
 ///Market Board Purchase
 /// &lt;/summary&gt;
 [Description("Market Board Purchase")]
-MarketBoardPurchase = 762,
+MarketBoardPurchase = 122,
+/// &lt;summary&gt;
+///Market Board Search Result
+/// &lt;/summary&gt;
+[Description("Market Board Search Result")]
+MarketBoardSearchResult = 403,
+/// &lt;summary&gt;
+///Market Board Item Listing
+/// &lt;/summary&gt;
+[Description("Market Board Item Listing")]
+MarketBoardItemListing = 105,
+/// &lt;summary&gt;
+///Market Board Item Listing Count
+/// &lt;/summary&gt;
+[Description("Market Board Item Listing Count")]
+MarketBoardItemListingCount = 528,
+/// &lt;summary&gt;
+///Market Board Item Listing History
+/// &lt;/summary&gt;
+[Description("Market Board Item Listing History")]
+MarketBoardItemListingHistory = 887,
 /// &lt;summary&gt;
 ///Npc Spawn
 /// &lt;/summary&gt;
 [Description("Npc Spawn")]
-NpcSpawn = 923,
+NpcSpawn = 744,
 /// &lt;summary&gt;
 ///Object Spawn
 /// &lt;/summary&gt;
 [Description("Object Spawn")]
-ObjectSpawn = 775,
-/// &lt;summary&gt;
-///Player Spawn
-/// &lt;/summary&gt;
-[Description("Player Spawn")]
-PlayerSpawn = 202,
-/// &lt;summary&gt;
-///Player Stats
-/// &lt;/summary&gt;
-[Description("Player Stats")]
-PlayerStats = 481,
-/// &lt;summary&gt;
-///Place Field Marker
-/// &lt;/summary&gt;
-[Description("Place Field Marker")]
-PlaceFieldMarker = 748,
+ObjectSpawn = 284,
 /// &lt;summary&gt;
 ///Place Field Marker Preset
 /// &lt;/summary&gt;
 [Description("Place Field Marker Preset")]
-PlaceFieldMarkerPreset = 991,
-/// &lt;summary&gt;
-///Playtime
-/// &lt;/summary&gt;
-[Description("Playtime")]
-Playtime = 674,
+PlaceFieldMarkerPreset = 522,
 /// &lt;summary&gt;
 ///Player Setup
 /// &lt;/summary&gt;
 [Description("Player Setup")]
-PlayerSetup = 598,
+PlayerSetup = 215,
+/// &lt;summary&gt;
+///Place Field Marker
+/// &lt;/summary&gt;
+[Description("Place Field Marker")]
+PlaceFieldMarker = 902,
 /// &lt;summary&gt;
 ///Prepare Zoning
 /// &lt;/summary&gt;
 [Description("Prepare Zoning")]
-PrepareZoning = 311,
+PrepareZoning = 819,
 /// &lt;summary&gt;
-///Retainer Information
+///Player Spawn
 /// &lt;/summary&gt;
-[Description("Retainer Information")]
-RetainerInformation = 129,
+[Description("Player Spawn")]
+PlayerSpawn = 318,
+/// &lt;summary&gt;
+///Player Stats
+/// &lt;/summary&gt;
+[Description("Player Stats")]
+PlayerStats = 752,
+/// &lt;summary&gt;
+///Playtime
+/// &lt;/summary&gt;
+[Description("Playtime")]
+Playtime = 400,
 /// &lt;summary&gt;
 ///Result Dialog
 /// &lt;/summary&gt;
 [Description("Result Dialog")]
-ResultDialog = 189,
+ResultDialog = 829,
 /// &lt;summary&gt;
-///Submarine Timers
+///Retainer Information
 /// &lt;/summary&gt;
-[Description("Submarine Timers")]
-SubmarineTimers = 313,
+[Description("Retainer Information")]
+RetainerInformation = 980,
 /// &lt;summary&gt;
 ///Status Effect List
 /// &lt;/summary&gt;
 [Description("Status Effect List")]
-StatusEffectList = 595,
+StatusEffectList = 798,
 /// &lt;summary&gt;
 ///Submarine Status List
 /// &lt;/summary&gt;
 [Description("Submarine Status List")]
-SubmarineStatusList = 611,
+SubmarineStatusList = 652,
 /// &lt;summary&gt;
-///Status Effect List 2
+///Submarine Timers
 /// &lt;/summary&gt;
-[Description("Status Effect List 2")]
-StatusEffectList2 = 645,
+[Description("Submarine Timers")]
+SubmarineTimers = 615,
 /// &lt;summary&gt;
 ///Submarine Progression Status
 /// &lt;/summary&gt;
 [Description("Submarine Progression Status")]
-SubmarineProgressionStatus = 871,
-/// &lt;summary&gt;
-///Status Effect List 3
-/// &lt;/summary&gt;
-[Description("Status Effect List 3")]
-StatusEffectList3 = 668,
+SubmarineProgressionStatus = 147,
 /// &lt;summary&gt;
 ///System Log Message
 /// &lt;/summary&gt;
 [Description("System Log Message")]
-SystemLogMessage = 349,
+SystemLogMessage = 858,
+/// &lt;summary&gt;
+///Status Effect List 2
+/// &lt;/summary&gt;
+[Description("Status Effect List 2")]
+StatusEffectList2 = 510,
+/// &lt;summary&gt;
+///Status Effect List 3
+/// &lt;/summary&gt;
+[Description("Status Effect List 3")]
+StatusEffectList3 = 235,
 /// &lt;summary&gt;
 ///Submarine Exploration Result
 /// &lt;/summary&gt;
 [Description("Submarine Exploration Result")]
-SubmarineExplorationResult = 778,
-/// &lt;summary&gt;
-///Update Hp Mp Tp
-/// &lt;/summary&gt;
-[Description("Update Hp Mp Tp")]
-UpdateHpMpTp = 867,
-/// &lt;summary&gt;
-///Update Inventory Slot
-/// &lt;/summary&gt;
-[Description("Update Inventory Slot")]
-UpdateInventorySlot = 299,
+SubmarineExplorationResult = 621,
 /// &lt;summary&gt;
 ///Update Class Info
 /// &lt;/summary&gt;
 [Description("Update Class Info")]
-UpdateClassInfo = 160,
+UpdateClassInfo = 699,
+/// &lt;summary&gt;
+///Update Hp Mp Tp
+/// &lt;/summary&gt;
+[Description("Update Hp Mp Tp")]
+UpdateHpMpTp = 234,
 /// &lt;summary&gt;
 ///Update Search Info
 /// &lt;/summary&gt;
 [Description("Update Search Info")]
-UpdateSearchInfo = 439,
+UpdateSearchInfo = 444,
+/// &lt;summary&gt;
+///Update Inventory Slot
+/// &lt;/summary&gt;
+[Description("Update Inventory Slot")]
+UpdateInventorySlot = 717,
 /// &lt;summary&gt;
 ///Weather Change
 /// &lt;/summary&gt;
 [Description("Weather Change")]
-WeatherChange = 999,
+WeatherChange = 146,
 /// &lt;summary&gt;
 ///Inventory Modify Handler
 /// &lt;/summary&gt;
 [Description("Inventory Modify Handler")]
-InventoryModifyHandler = 908,
+InventoryModifyHandler = 563,
 /// &lt;summary&gt;
 ///Market Board Purchase Handler
 /// &lt;/summary&gt;
 [Description("Market Board Purchase Handler")]
-MarketBoardPurchaseHandler = 939,
+MarketBoardPurchaseHandler = 884,
 /// &lt;summary&gt;
 ///Set Search Info Handler
 /// &lt;/summary&gt;
 [Description("Set Search Info Handler")]
-SetSearchInfoHandler = 473,
+SetSearchInfoHandler = 109,
 /// &lt;summary&gt;
 ///Update Position Handler
 /// &lt;/summary&gt;
 [Description("Update Position Handler")]
-UpdatePositionHandler = 941,
+UpdatePositionHandler = 936,
 /// &lt;summary&gt;
 ///Lobby Error
 /// &lt;/summary&gt;

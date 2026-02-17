@@ -29,13 +29,15 @@ public sealed class RotationSolverPlugin : IDalamudPlugin, IDisposable
     private static RotationConfigWindow? _rotationConfigWindow;
     private static ControlWindow? _controlWindow;
     private static NextActionWindow? _nextActionWindow;
-    private static CooldownWindow? _cooldownWindow;
+	private static InterceptedActionWindow? _interceptedActionWindow;
+	private static CooldownWindow? _cooldownWindow;
     private static ActionTimelineWindow? _actionTimelineWindow;
     private static WelcomeWindow? _changelogWindow;
     private static OverlayWindow? _overlayWindow;
     private static EasterEggWindow? _easterEggWindow;
+	private static FirstStartTutorialWindow? _firstStartTutorialWindow;
 
-    private static readonly List<IDisposable> _dis = [];
+	private static readonly List<IDisposable> _dis = [];
     public static string Name => "Rotation Solver Reborn";
     internal static readonly List<DrawingHighlightHotbarBase> _drawingElements = [];
 
@@ -87,38 +89,43 @@ public sealed class RotationSolverPlugin : IDalamudPlugin, IDisposable
         _rotationConfigWindow = new();
         _controlWindow = new();
         _nextActionWindow = new();
-        _cooldownWindow = new();
+		_interceptedActionWindow = new();
+		_cooldownWindow = new();
         _actionTimelineWindow = new();
         _changelogWindow = new();
         _overlayWindow = new();
         _easterEggWindow = new();
+		_firstStartTutorialWindow = new();
 
-        // Start cactbot bridge if enabled
-        //try
-        //{
-        //    if (Service.Config.EnableCactbotTimeline)
-        //    {
-        //        var cactbotBridge = new Helpers.CactbotTimelineBridge();
-        //        _dis.Add(cactbotBridge);
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    PluginLog.Warning($"Failed to start CactbotTimelineBridge: {ex.Message}");
-        //}
+		// Start cactbot bridge if enabled
+		//try
+		//{
+		//    if (Service.Config.EnableCactbotTimeline)
+		//    {
+		//        var cactbotBridge = new Helpers.CactbotTimelineBridge();
+		//        _dis.Add(cactbotBridge);
+		//    }
+		//}
+		//catch (Exception ex)
+		//{
+		//    PluginLog.Warning($"Failed to start CactbotTimelineBridge: {ex.Message}");
+		//}
 
-        windowSystem = new WindowSystem(Name);
+		windowSystem = new WindowSystem(Name);
         windowSystem.AddWindow(_rotationConfigWindow);
-        windowSystem.AddWindow(_controlWindow);
-        windowSystem.AddWindow(_nextActionWindow);
-        windowSystem.AddWindow(_cooldownWindow);
+        windowSystem.AddWindow(_controlWindow); 
+		windowSystem.AddWindow(_nextActionWindow);
+		windowSystem.AddWindow(_interceptedActionWindow);
+		windowSystem.AddWindow(_cooldownWindow);
         windowSystem.AddWindow(_actionTimelineWindow);
         windowSystem.AddWindow(_changelogWindow);
         windowSystem.AddWindow(_overlayWindow);
         windowSystem.AddWindow(_easterEggWindow);
-        //Notify.Success("Overlay Window was added!");
+		windowSystem.AddWindow(_firstStartTutorialWindow);
 
-        Svc.PluginInterface.UiBuilder.OpenConfigUi += OnOpenConfigUi;
+		//Notify.Success("Overlay Window was added!");
+
+		Svc.PluginInterface.UiBuilder.OpenConfigUi += OnOpenConfigUi;
         Svc.PluginInterface.UiBuilder.OpenMainUi += OnOpenConfigUi;
         Svc.PluginInterface.UiBuilder.Draw += OnDraw;
 
@@ -264,7 +271,31 @@ public sealed class RotationSolverPlugin : IDalamudPlugin, IDisposable
         _easterEggWindow?.IsOpen = true;
     }
 
-    internal static void UpdateDisplayWindow()
+	internal static void ShowConfigWindow(RotationConfigWindowTab? tab = null)
+	{
+		if (_rotationConfigWindow == null)
+		{
+			return;
+		}
+
+		_rotationConfigWindow.IsOpen = true;
+		if (tab.HasValue)
+		{
+			_rotationConfigWindow.SetActiveTab(tab.Value);
+		}
+	}
+
+	internal static void OpenFirstStartTutorial()
+	{
+		if (_firstStartTutorialWindow?.IsOpen == true)
+		{
+			return;
+		}
+
+		_firstStartTutorialWindow?.Toggle();
+	}
+
+	internal static void UpdateDisplayWindow()
     {
         bool isValid = MajorUpdater.IsValid && DataCenter.CurrentRotation != null;
 
@@ -274,7 +305,8 @@ public sealed class RotationSolverPlugin : IDalamudPlugin, IDisposable
 
         _controlWindow!.IsOpen = isValid && Service.Config.ShowControlWindow;
         _cooldownWindow!.IsOpen = isValid && Service.Config.ShowCooldownWindow;
-		_nextActionWindow!.IsOpen = isValid && Service.Config.ShowNextActionWindow;
+		_nextActionWindow!.IsOpen = isValid && Service.Config.ShowNextActionWindow; 
+		_interceptedActionWindow!.IsOpen = isValid && Service.Config.ShowInterceptedActionWindow;
 
 		// ActionTimeline window with additional checks
 		bool showActionTimeline = isValid && Service.Config.ShowActionTimelineWindow;
