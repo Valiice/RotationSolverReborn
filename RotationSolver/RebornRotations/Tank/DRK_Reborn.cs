@@ -13,8 +13,19 @@ public sealed class DRK_Reborn : DarkKnightRotation
     public bool BlackLantern { get; set; } = false;
 
     [Range(0, 1, ConfigUnitType.Percent)]
-    [RotationConfig(CombatType.PvE, Name = "Target health threshold needed to use Blackest Night with above option")]
+    [RotationConfig(CombatType.PvE, Name = "Target health threshold needed to use Blackest Night with above option", Parent = nameof(BlackLantern))]
     private float BlackLanternRatio { get; set; } = 0.5f;
+
+	[RotationConfig(CombatType.PvE, Name = "Use Oblation on lowest HP party member during AOE scenarios")]
+	public bool OblationLantern { get; set; } = false;
+
+	[RotationConfig(CombatType.PvE, Name = "Use Oblation last stack of Oblation for party members", Parent = nameof(OblationLantern))]
+	public bool OblationLanternStack { get; set; } = false;
+
+	[Range(0, 1, ConfigUnitType.Percent)]
+	[RotationConfig(CombatType.PvE, Name = "Target health threshold needed to use Oblation with above option", Parent = nameof(OblationLantern))]
+	private float OblationLanternRatio { get; set; } = 0.5f;
+	#endregion
 
     [Range(1, 10, ConfigUnitType.None)]
     [RotationConfig(CombatType.PvE, Name = "Number of enemies to start using AOE (Overrides defaults)")]
@@ -23,12 +34,11 @@ public sealed class DRK_Reborn : DarkKnightRotation
     [Range(0, 20, ConfigUnitType.Yalms)]
     [RotationConfig(CombatType.PvE, Name = "Min distance to use Unmend")]
     public float UnmendDistance { get; set; } = 5.5f;
-    #endregion
 
-    #region Countdown Logic
-    // Countdown logic to prepare for combat.
-    // Includes logic for using Provoke, tank stances, and burst medicines.
-    protected override IAction? CountDownAction(float remainTime)
+	#region Countdown Logic
+	// Countdown logic to prepare for combat.
+	// Includes logic for using Provoke, tank stances, and burst medicines.
+	protected override IAction? CountDownAction(float remainTime)
     {
         //Provoke when has Shield.
         if (remainTime <= CountDownAhead)
@@ -92,13 +102,17 @@ public sealed class DRK_Reborn : DarkKnightRotation
     [RotationDesc(ActionID.DarkMissionaryPvE, ActionID.ReprisalPvE)]
     protected override bool DefenseAreaAbility(IAction nextGCD, out IAction? act)
     {
-        if (!InTwoMIsBurst && BlackLantern && TheBlackestNightPvE.CanUse(out act) &&
-            TheBlackestNightPvE.Target.Target == LowestHealthPartyMember && TheBlackestNightPvE.Target.Target.GetHealthRatio() <= BlackLanternRatio)
+        if (!InTwoMIsBurst && OblationLantern && TheBlackestNightPvE.CanUse(out act, targetOverride: TargetType.LowHP) && !TheBlackestNightPvE.Target.Target.HasStatus(false, StatusID.Transcendent) && TheBlackestNightPvE.Target.Target.GetHealthRatio() <= BlackLanternRatio)
         {
             return true;
         }
 
-        if (!InTwoMIsBurst && DarkMissionaryPvE.CanUse(out act))
+		if (!InTwoMIsBurst && OblationLantern && OblationPvE.CanUse(out act, usedUp: OblationLanternStack, targetOverride: TargetType.LowHP) && !OblationPvE.Target.Target.HasStatus(false, StatusID.Transcendent) && OblationPvE.Target.Target.GetHealthRatio() <= OblationLanternRatio)
+		{
+			return true;
+		}
+
+		if (!InTwoMIsBurst && DarkMissionaryPvE.CanUse(out act))
         {
             return true;
         }
@@ -108,25 +122,24 @@ public sealed class DRK_Reborn : DarkKnightRotation
             return true;
         }
 
-        return base.DefenseAreaAbility(nextGCD, out act);
+		if (!InTwoMIsBurst && OblationPvE.CanUse(out act, skipStatusProvideCheck: false, targetOverride: TargetType.Self))
+		{
+			return true;
+		}
+
+		return base.DefenseAreaAbility(nextGCD, out act);
     }
 
     [RotationDesc(ActionID.OblationPvE, ActionID.TheBlackestNightPvE, ActionID.DarkMindPvE, ActionID.ShadowWallPvE, ActionID.ShadowedVigilPvE, ActionID.RampartPvE, ActionID.ReprisalPvE)]
     protected override bool DefenseSingleAbility(IAction nextGCD, out IAction? act)
     {
         //10
-        if (OblationPvE.CanUse(out act, usedUp: true, skipStatusProvideCheck: false))
+        if (OblationPvE.CanUse(out act, usedUp: true, skipStatusProvideCheck: false, targetOverride: TargetType.Self))
         {
             return true;
         }
 
-        if (TheBlackestNightPvE.CanUse(out act))
-        {
-            return true;
-        }
-
-        if (TheBlackestNightPvE.CanUse(out act) &&
-            TheBlackestNightPvE.Target.Target == Player)
+        if (TheBlackestNightPvE.CanUse(out act, targetOverride: TargetType.Self))
         {
             return true;
         }

@@ -32,8 +32,12 @@ public sealed class GNB_Reborn : GunbreakerRotation
     #region oGCD Logic
     protected override bool EmergencyAbility(IAction nextGCD, out IAction? act)
     {
-       
-        if (AbdomenTearPvE.CanUse(out act))
+		if (JugularRipPvE.CanUse(out act))
+		{
+			return true;
+		}
+
+		if (AbdomenTearPvE.CanUse(out act))
         {
             return true;
         }
@@ -43,12 +47,12 @@ public sealed class GNB_Reborn : GunbreakerRotation
             return true;
         }
 
-        if (FatedBrandPvE.CanUse(out act))
-        {
-            return true;
-        }
+		if (HypervelocityPvE.CanUse(out act))
+		{
+			return true;
+		}
 
-        if (HypervelocityPvE.CanUse(out act))
+		if (FatedBrandPvE.CanUse(out act))
         {
             return true;
         }
@@ -201,11 +205,6 @@ public sealed class GNB_Reborn : GunbreakerRotation
 		if (nextGCD.IsTheSameTo(false, (ActionID)GnashingFangPvE.ID) && !NoMercyPvE.Cooldown.IsCoolingDown)
         {
             return base.AttackAbility(nextGCD, out act);
-        }
-
-        if (JugularRipPvE.CanUse(out act))
-        {
-            return true;
         }
 
         if (DangerZonePvE.CanUse(out act) && !DoubleDownPvE.EnoughLevel)

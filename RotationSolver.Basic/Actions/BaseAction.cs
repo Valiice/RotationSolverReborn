@@ -130,8 +130,11 @@ public class BaseAction : IBaseAction
 
                 if (!Action.ClassJob.IsValid)
                 {
-                    // Log the error for debugging purposes
-                    PluginLog.Debug($"ClassJob is not valid for Action ID: {ID}");
+					// Log the error for debugging purposes
+					if (Service.Config.InDebug)
+					{
+						PluginLog.Debug($"ClassJob is not valid for Action ID: {ID}");
+					}
                     return value;
                 }
 
@@ -177,7 +180,7 @@ public class BaseAction : IBaseAction
 
     /// <inheritdoc/>
     public bool CanUse(out IAction act, bool skipStatusProvideCheck = false, bool skipStatusNeed = false, bool skipTargetStatusNeedCheck = false, bool skipComboCheck = false, bool skipCastingCheck = false,
-    bool usedUp = false, bool skipAoeCheck = false, bool skipTTKCheck = false, byte gcdCountForAbility = 0, bool checkActionManagerDirectly = false)
+    bool usedUp = false, bool skipAoeCheck = false, bool skipTTKCheck = false, byte gcdCountForAbility = 0, bool checkActionManagerDirectly = false, TargetType targetOverride = default)
     {
         act = this;
 
@@ -195,7 +198,7 @@ public class BaseAction : IBaseAction
             usedUp = true;
         }
 
-        if (!Info.BasicCheck(skipStatusProvideCheck, skipStatusNeed, skipComboCheck, skipCastingCheck, checkActionManagerDirectly))
+        if (!Info.BasicCheck(skipStatusProvideCheck, skipStatusNeed, skipComboCheck, skipCastingCheck, checkActionManagerDirectly, targetOverride))
         {
             return false;
         }
@@ -220,7 +223,7 @@ public class BaseAction : IBaseAction
                 }
             }
         }
-        PreviewTarget = TargetInfo.FindTarget(skipAoeCheck, skipStatusProvideCheck, skipTargetStatusNeedCheck);
+        PreviewTarget = TargetInfo.FindTarget(skipAoeCheck, skipStatusProvideCheck, skipTargetStatusNeedCheck, targetOverride);
         if (PreviewTarget == null)
         {
             return false;
