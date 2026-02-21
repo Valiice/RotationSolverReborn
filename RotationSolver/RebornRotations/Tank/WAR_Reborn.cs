@@ -1,3 +1,4 @@
+using ECommons.DalamudServices;
 using ECommons.GameHelpers;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using RotationSolver.Basic.Actions;
@@ -60,6 +61,17 @@ public sealed class WAR_Reborn : WarriorRotation
     [RotationConfig(CombatType.PvE, Name = "Equilibrium Heal Threshold")]
     public float EquilibriumHeal { get; set; } = 0.6f;
 
+    [RotationConfig(CombatType.PvE, Name = "Print overcap warnings to chat (debug)")]
+    public bool DebugOvercapMessages { get; set; } = false;
+
+    // Edge-detection state for overcap diagnostics (uses CombatTime floats, no DateTime allocs)
+    private bool _infuriateWasMaxCharges;
+    private float _infuriateMaxChargesSinceCombat = -1f;
+    private int _prevBeastGauge = -1;
+    private bool _irDelayNotified;
+    private float _irDelayStartCombat;
+    private bool _preIrDumpNotified;
+
     #endregion
 
     #region Countdown Logic
@@ -76,6 +88,12 @@ public sealed class WAR_Reborn : WarriorRotation
     #region oGCD Logic
     protected override bool AttackAbility(IAction nextGCD, out IAction? act)
     {
+        // Overcap detection (edge-triggered, only fires once per transition)
+        if (DebugOvercapMessages && InCombat)
+        {
+            CheckOvercapDiagnostics();
+        }
+
         // 1. INFURIATE OPTIMIZATION
         if (InfuriatePvE.CanUse(out act, gcdCountForAbility: 3))
         {
@@ -106,8 +124,10 @@ public sealed class WAR_Reborn : WarriorRotation
         }
 
         // 3. INNER RELEASE
+        // Allow IR in opener before Surging Tempest — Storm's Eye can be used during IR window
         if (!StatusHelper.PlayerWillStatusEndGCD(2, 0, true, StatusID.SurgingTempest)
-            || !StormsEyePvE.EnoughLevel)
+            || !StormsEyePvE.EnoughLevel
+            || CombatElapsedLessGCD(8))
         {
             if (InnerReleasePvE.CanUse(out act))
             {
@@ -116,10 +136,21 @@ public sealed class WAR_Reborn : WarriorRotation
                 if (BeastGauge > 50 && WouldInfuriateOvercapDuringIR()
                     && !StatusHelper.PlayerHasStatus(true, StatusID.NascentChaos))
                 {
+                    if (DebugOvercapMessages && !_irDelayNotified)
+                    {
+                        Svc.Chat.Print($"[WAR] Holding IR: Gauge={BeastGauge}, Infuriate {FormatCooldown(InfuriatePvE)} ({InfuriatePvE.Cooldown.CurrentCharges}/{InfuriatePvE.Cooldown.MaxCharges}) — spending gauge first");
+                        _irDelayNotified = true;
+                        _irDelayStartCombat = CombatTime;
+                    }
                     act = null;
                 }
                 else
                 {
+                    if (DebugOvercapMessages && _irDelayNotified)
+                    {
+                        Svc.Chat.Print($"[WAR] IR fired after {CombatTime - _irDelayStartCombat:F1}s delay (Gauge={BeastGauge})");
+                    }
+                    _irDelayNotified = false;
                     return true;
                 }
             }
@@ -291,12 +322,21 @@ public sealed class WAR_Reborn : WarriorRotation
             && WouldInfuriateOvercapDuringIR()
             && !StatusHelper.PlayerHasStatus(true, StatusID.NascentChaos))
         {
+            if (DebugOvercapMessages && !_preIrDumpNotified)
+            {
+                Svc.Chat.Print($"[WAR] Spending gauge before IR: Gauge={BeastGauge}, IR {FormatCooldown(InnerReleasePvE)}, Infuriate {FormatCooldown(InfuriatePvE)}");
+                _preIrDumpNotified = true;
+            }
             if (NumberOfHostilesInRange >= AOECount)
             {
                 if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true)) return true;
             }
             if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
             if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
+        }
+        else
+        {
+            _preIrDumpNotified = false;
         }
 
         // 2. Inner Release Window (Consume stacks immediately)
@@ -423,6 +463,68 @@ public sealed class WAR_Reborn : WarriorRotation
     /// Extended urgency check for Infuriate that combines the standard 20s threshold
     /// with a predictive check for Inner Release causing charge overcap.
     /// </summary>
+    private void CheckOvercapDiagnostics()
+    {
+        // Skip early combat — sync tracking to current state so we don't
+        // false-positive on the natural 2/2 charges you start every fight with
+        if (CombatElapsedLess(3))
+        {
+            _infuriateWasMaxCharges = InfuriatePvE.Cooldown.CurrentCharges >= InfuriatePvE.Cooldown.MaxCharges;
+            _infuriateMaxChargesSinceCombat = -1f;
+            _prevBeastGauge = BeastGauge;
+            return;
+        }
+
+        // Infuriate overcap: track time spent at max charges mid-fight
+        bool isMaxCharges = InfuriatePvE.Cooldown.CurrentCharges >= InfuriatePvE.Cooldown.MaxCharges;
+        if (isMaxCharges != _infuriateWasMaxCharges)
+        {
+            if (isMaxCharges)
+            {
+                // Just transitioned to max mid-fight — start timing
+                _infuriateMaxChargesSinceCombat = CombatTime;
+            }
+            else if (_infuriateMaxChargesSinceCombat >= 0f)
+            {
+                // Just left max — report how long we sat there
+                Svc.Chat.Print($"[WAR] INFURIATE OVERCAPPED for {CombatTime - _infuriateMaxChargesSinceCombat:F1}s at {InfuriatePvE.Cooldown.MaxCharges}/{InfuriatePvE.Cooldown.MaxCharges} charges");
+                _infuriateMaxChargesSinceCombat = -1f;
+            }
+            _infuriateWasMaxCharges = isMaxCharges;
+        }
+
+        // Beast gauge overcap: only check when gauge transitions to 100 from below
+        int gauge = BeastGauge;
+        if (gauge >= 100 && _prevBeastGauge >= 0 && _prevBeastGauge < 100)
+        {
+            int gaugeGain = GetLastActionGaugeGain();
+            int overcap = _prevBeastGauge + gaugeGain - 100;
+            if (overcap > 0)
+            {
+                Svc.Chat.Print($"[WAR] BEAST GAUGE OVERCAPPED by {overcap} (was {_prevBeastGauge}, +{gaugeGain} = {_prevBeastGauge + gaugeGain})");
+            }
+        }
+        _prevBeastGauge = gauge;
+    }
+
+    private static string FormatCooldown(IBaseAction action)
+    {
+        if (action.Cooldown.HasOneCharge) return "ready";
+        float remain = action.Cooldown.RecastTimeRemainOneCharge;
+        return remain > 0 ? $"in {remain:F1}s" : "ready";
+    }
+
+    private int GetLastActionGaugeGain()
+    {
+        // WAR gauge-generating actions and their amounts
+        if (IsLastGCD(false, StormsPathPvE)) return 20;
+        if (IsLastGCD(false, MythrilTempestPvE)) return 20;
+        if (IsLastGCD(false, MaimPvE)) return 10;
+        if (IsLastGCD(false, StormsEyePvE)) return 10;
+        if (IsLastAction(false, InfuriatePvE)) return 50;
+        return 0;
+    }
+
     private bool IsInfuriateUrgentExtended
     {
         get

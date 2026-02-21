@@ -1,3 +1,5 @@
+using ECommons.DalamudServices;
+
 namespace RotationSolver.RebornRotations.Tank;
 
 [Rotation("Reborn", CombatType.PvE, GameVersion = "7.41")]
@@ -25,6 +27,23 @@ public sealed class DRK_Reborn : DarkKnightRotation
 	[Range(0, 1, ConfigUnitType.Percent)]
 	[RotationConfig(CombatType.PvE, Name = "Target health threshold needed to use Oblation with above option", Parent = nameof(OblationLantern))]
 	private float OblationLanternRatio { get; set; } = 0.5f;
+
+    [RotationConfig(CombatType.PvE, Name = "Print overcap warnings to chat (debug)")]
+    public bool DebugOvercapMessages { get; set; } = false;
+
+    [RotationConfig(CombatType.PvE, Name = "Dump all resources near encounter end (e.g. Stone Sky Sea)")]
+    public bool PanicDump { get; set; } = false;
+
+    [Range(5, 60, ConfigUnitType.Seconds)]
+    [RotationConfig(CombatType.PvE, Name = "Seconds before encounter end to start panic dump", Parent = nameof(PanicDump))]
+    public float PanicDumpWindow { get; set; } = 15f;
+
+    // Edge-detection state for overcap diagnostics (uses CombatTime floats, no DateTime allocs)
+    private int _prevBloodGauge = -1;
+    private bool _mpWasMaxed;
+    private float _mpMaxedSinceCombat = -1f;
+    private bool _panicDumpStarted = false;
+
 	#endregion
 
     [Range(1, 10, ConfigUnitType.None)]
@@ -61,11 +80,6 @@ public sealed class DRK_Reborn : DarkKnightRotation
             return act;
         }
 
-        if (remainTime <= 4 && BloodWeaponPvE.CanUse(out act))
-        {
-            return act;
-        }
-
         if (remainTime < 0.54f && UnmendPvE.CanUse(out act))
         {
             return act;
@@ -76,13 +90,6 @@ public sealed class DRK_Reborn : DarkKnightRotation
     #endregion
 
     #region oGCD Logic
-    // Decision-making for emergency abilities, focusing on Blood Weapon usage.
-    protected override bool EmergencyAbility(IAction nextGCD, out IAction? act)
-    {
-
-        return base.EmergencyAbility(nextGCD, out act);
-    }
-
     [RotationDesc(ActionID.ShadowstridePvE)]
     protected override bool MoveForwardAbility(IAction nextGCD, out IAction? act)
     {
@@ -93,16 +100,10 @@ public sealed class DRK_Reborn : DarkKnightRotation
         return base.MoveForwardAbility(nextGCD, out act);
     }
 
-    protected override bool HealSingleAbility(IAction nextGCD, out IAction? act)
-    {
-
-        return base.HealSingleAbility(nextGCD, out act);
-    }
-
     [RotationDesc(ActionID.DarkMissionaryPvE, ActionID.ReprisalPvE)]
     protected override bool DefenseAreaAbility(IAction nextGCD, out IAction? act)
     {
-        if (!InTwoMIsBurst && OblationLantern && TheBlackestNightPvE.CanUse(out act, targetOverride: TargetType.LowHP) && !TheBlackestNightPvE.Target.Target.HasStatus(false, StatusID.Transcendent) && TheBlackestNightPvE.Target.Target.GetHealthRatio() <= BlackLanternRatio)
+        if (!InTwoMIsBurst && BlackLantern && TheBlackestNightPvE.CanUse(out act, targetOverride: TargetType.LowHP) && !TheBlackestNightPvE.Target.Target.HasStatus(false, StatusID.Transcendent) && TheBlackestNightPvE.Target.Target.GetHealthRatio() <= BlackLanternRatio)
         {
             return true;
         }
@@ -181,6 +182,12 @@ public sealed class DRK_Reborn : DarkKnightRotation
 
     protected override bool AttackAbility(IAction nextGCD, out IAction? act)
     {
+        // Overcap detection (edge-triggered, only fires once per transition)
+        if (DebugOvercapMessages && InCombat)
+        {
+            CheckOvercapDiagnostics();
+        }
+
         if (CheckDarkSide)
         {
             if (FloodOfDarknessPvE.CanUse(out act))
@@ -196,25 +203,11 @@ public sealed class DRK_Reborn : DarkKnightRotation
 
         if (IsBurst)
         {
-            if (InCombat && DeliriumPvE.CanUse(out act))
-            {
-                return true;
-            }
-
-            if (DeliriumPvE.EnoughLevel && DeliriumPvE.Cooldown.ElapsedAfterGCD(1) && !DeliriumPvE.Cooldown.ElapsedAfterGCD(3)
-                && BloodWeaponPvE.CanUse(out act))
-            {
-                return true;
-            }
-
-            if (!DeliriumPvE.EnoughLevel)
-            {
-                if (BloodWeaponPvE.CanUse(out act))
-                {
-                    return true;
-                }
-            }
             if (InCombat && LivingShadowPvE.CanUse(out act, skipAoeCheck: true))
+            {
+                return true;
+            }
+            if (!IsMoving && SaltedEarthPvE.CanUse(out act, skipAoeCheck: true))
             {
                 return true;
             }
@@ -222,16 +215,35 @@ public sealed class DRK_Reborn : DarkKnightRotation
 
         if (CombatElapsedLess(3))
         {
+            _panicDumpStarted = false;
             act = null;
             return false;
         }
 
-        if (!IsMoving && SaltedEarthPvE.CanUse(out act, skipAoeCheck: true))
+        // Panic dump: force all major cooldowns when encounter is nearly over
+        if (IsNearEncounterEnd)
         {
-            return true;
+            if (!_panicDumpStarted)
+            {
+                _panicDumpStarted = true;
+                Svc.Chat.Print($"[DRK] Panic dump started — {ContentTimeLeft:F0}s remaining, Blood: {Blood}");
+            }
+
+            if (InCombat && DeliriumPvE.CanUse(out act)) return true;
+            if (InCombat && LivingShadowPvE.CanUse(out act, skipAoeCheck: true)) return true;
+            if (ShadowbringerPvE.CanUse(out act, usedUp: true, skipAoeCheck: true)) return true;
         }
 
-        if (ShadowbringerPvE.CanUse(out act, skipAoeCheck: true))
+        // Delirium on cooldown (60s) — fires every minute, not just in 2-min burst windows
+        if (InCombat && DeliriumPvE.CanUse(out act)) return true;
+
+        // Blood Weapon pairs with Delirium — fire 1–3 GCDs after Delirium
+        if (DeliriumPvE.EnoughLevel && DeliriumPvE.Cooldown.ElapsedAfterGCD(1) && !DeliriumPvE.Cooldown.ElapsedAfterGCD(3)
+            && BloodWeaponPvE.CanUse(out act)) return true;
+
+        if (!DeliriumPvE.EnoughLevel && BloodWeaponPvE.CanUse(out act)) return true;
+
+        if (!IsMoving && SaltedEarthPvE.CanUse(out act, skipAoeCheck: true))
         {
             return true;
         }
@@ -246,17 +258,17 @@ public sealed class DRK_Reborn : DarkKnightRotation
             return true;
         }
 
+        if (SaltAndDarknessPvE.CanUse(out act))
+        {
+            return true;
+        }
+
         if (InTwoMIsBurst)
         {
             if (ShadowbringerPvE.CanUse(out act, usedUp: true, skipAoeCheck: true))
             {
                 return true;
             }
-        }
-
-        if (SaltAndDarknessPvE.CanUse(out act))
-        {
-            return true;
         }
 
         return base.AttackAbility(nextGCD, out act);
@@ -279,7 +291,7 @@ public sealed class DRK_Reborn : DarkKnightRotation
                 return true;
             }
 
-            if (QuietusPvE.CanUse(out act))
+            if (UseBlood && QuietusPvE.CanUse(out act))
             {
                 return true;
             }
@@ -301,7 +313,7 @@ public sealed class DRK_Reborn : DarkKnightRotation
             return true;
         }
 
-        if (BloodspillerPvE.CanUse(out act, skipComboCheck: true))
+        if (UseBlood && BloodspillerPvE.CanUse(out act, skipComboCheck: true))
         {
             return true;
         }
@@ -354,11 +366,27 @@ public sealed class DRK_Reborn : DarkKnightRotation
     // Indicates whether the Dark Knight can heal using a single ability.
     public override bool CanHealSingleAbility => false;
 
+    private unsafe float ContentTimeLeft
+    {
+        get
+        {
+            var eventFwk = FFXIVClientStructs.FFXIV.Client.Game.Event.EventFramework.Instance();
+            var director = eventFwk != null ? eventFwk->GetInstanceContentDirector() : null;
+            return director != null ? director->ContentDirector.ContentTimeLeft : 0f;
+        }
+    }
+
+    // True when the game's content timer enters the panic window.
+    // ContentTimeLeft is 0 when not in timed content — guard prevents false triggers.
+    private bool IsNearEncounterEnd => PanicDump && ContentTimeLeft > 0 && ContentTimeLeft <= PanicDumpWindow;
+
     // Logic to determine when to use blood-based abilities.
     private bool UseBlood
     {
         get
         {
+            if (IsNearEncounterEnd) return true;
+
             // Conditions based on player statuses and ability cooldowns.
             if (!DeliriumPvE.EnoughLevel || !LivingShadowPvE.EnoughLevel)
             {
@@ -370,16 +398,18 @@ public sealed class DRK_Reborn : DarkKnightRotation
                 return true;
             }
 
-            if ((StatusHelper.PlayerHasStatus(true, StatusID.Delirium_1972) || StatusHelper.PlayerHasStatus(true, StatusID.Delirium_3836)) && LivingShadowPvE.Cooldown.IsCoolingDown)
+            if (StatusHelper.PlayerHasStatus(true, StatusID.Delirium_1972) && LivingShadowPvE.Cooldown.IsCoolingDown)
             {
                 return true;
             }
 
-            return (DeliriumPvE.Cooldown.WillHaveOneChargeGCD(1) && !LivingShadowPvE.Cooldown.WillHaveOneChargeGCD(3)) || (Blood >= 90 && !LivingShadowPvE.Cooldown.WillHaveOneChargeGCD(1));
+            return (DeliriumPvE.Cooldown.WillHaveOneChargeGCD(1) && !LivingShadowPvE.Cooldown.WillHaveOneChargeGCD(3))
+                || (DeliriumPvE.Cooldown.WillHaveOneChargeGCD(3) && Blood >= 80 && !LivingShadowPvE.Cooldown.WillHaveOneChargeGCD(3))
+                || (Blood >= 90 && !LivingShadowPvE.Cooldown.WillHaveOneChargeGCD(1));
         }
     }
     // Determines if currently in a burst phase based on cooldowns of key abilities.
-    private bool InTwoMIsBurst => BloodWeaponPvE.Cooldown.IsCoolingDown && DeliriumPvE.Cooldown.IsCoolingDown && ((LivingShadowPvE.Cooldown.IsCoolingDown && !LivingShadowPvE.Cooldown.ElapsedAfter(15)) || !LivingShadowPvE.EnoughLevel);
+    private bool InTwoMIsBurst => DeliriumPvE.Cooldown.IsCoolingDown && ((LivingShadowPvE.Cooldown.IsCoolingDown && !LivingShadowPvE.Cooldown.ElapsedAfter(20)) || !LivingShadowPvE.EnoughLevel);
 
     // Manages DarkSide ability based on several conditions.
     private bool CheckDarkSide
@@ -396,7 +426,9 @@ public sealed class DRK_Reborn : DarkKnightRotation
                 return false;
             }
 
-            if ((InTwoMIsBurst && HasDarkArts) || (HasDarkArts && StatusHelper.PlayerHasStatus(true, StatusID.BlackestNight)) || (HasDarkArts && DarkSideEndAfterGCD(3)))
+            if (IsNearEncounterEnd) return true;
+
+            if (HasDarkArts && (InTwoMIsBurst || StatusHelper.PlayerHasStatus(true, StatusID.BlackestNight)))
             {
                 return true;
             }
@@ -408,6 +440,59 @@ public sealed class DRK_Reborn : DarkKnightRotation
 
             return (!TheBlackestNight || CurrentMp >= 6000) && CurrentMp >= 8500;
         }
+    }
+
+    private void CheckOvercapDiagnostics()
+    {
+        // Skip early combat — sync tracking to current state so we don't
+        // false-positive on natural full gauge/MP at pull
+        if (CombatElapsedLess(3))
+        {
+            _prevBloodGauge = Blood;
+            _mpWasMaxed = CurrentMp >= 10000;
+            _mpMaxedSinceCombat = -1f;
+            return;
+        }
+
+        // Blood gauge overcap: detect when gauge transitions to 100 from below
+        int gauge = Blood;
+        if (gauge >= 100 && _prevBloodGauge >= 0 && _prevBloodGauge < 100)
+        {
+            int gaugeGain = GetLastActionBloodGain();
+            int overcap = _prevBloodGauge + gaugeGain - 100;
+            if (overcap > 0)
+            {
+                Svc.Chat.Print($"[DRK] BLOOD GAUGE OVERCAPPED by {overcap} (was {_prevBloodGauge}, +{gaugeGain} = {_prevBloodGauge + gaugeGain})");
+            }
+        }
+        _prevBloodGauge = gauge;
+
+        // MP overcap: track time spent at maximum MP mid-fight
+        bool isMpMaxed = CurrentMp >= 10000;
+        if (isMpMaxed != _mpWasMaxed)
+        {
+            if (isMpMaxed)
+            {
+                // Just hit max MP — start timing
+                _mpMaxedSinceCombat = CombatTime;
+            }
+            else if (_mpMaxedSinceCombat >= 0f)
+            {
+                // Just left max — report how long we sat there
+                Svc.Chat.Print($"[DRK] MP OVERCAPPED for {CombatTime - _mpMaxedSinceCombat:F1}s at 10000/10000 MP");
+                _mpMaxedSinceCombat = -1f;
+            }
+            _mpWasMaxed = isMpMaxed;
+        }
+    }
+
+    private int GetLastActionBloodGain()
+    {
+        // DRK blood-generating weaponskills and their amounts
+        if (IsLastGCD(false, SouleaterPvE)) return 20;
+        if (IsLastGCD(false, StalwartSoulPvE)) return 20;
+        if (IsLastGCD(false, SyphonStrikePvE)) return 10;
+        return 0;
     }
     #endregion
 }
