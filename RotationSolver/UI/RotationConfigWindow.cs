@@ -60,6 +60,7 @@ public partial class RotationConfigWindow : Window
 
 	private static readonly string[] _supporters =
 	[
+	"A bunch of dots and dashed idk",
 	"Abracon",
 	"Akurosuki",
 	"Aniane",
@@ -69,33 +70,28 @@ public partial class RotationConfigWindow : Window
 	"catfourteen",
 	"Chaos_co",
     "Chris",
-	"clean",
 	"DeadCode",
 	"Drama",
-	"Ecliptive",
 	"Elena",
 	"Endings",
-	"Ephi",
+	"Heathcote",
 	"kaen",
+	"Kialdir",
 	"kuromiromi",
 	"Lemon",
 	"LouBird",
 	"Lyn Undercroft",
 	"Miracle Ace",
-	"Mirai",
 	"Miri",
 	"Moniika",
-	"Nefertem",
 	"Papaya",
 	"Plogons",
 	"prismagreen",
 	"purrpletime",
-	"q",
-	"Rini",
-	"Rockabye",
+	"Salmon",
 	"sambaggins",
 	"Savage",
-	"That One Aura",
+	"smf26",
 	"Toska",
 	"TuckingFypo-",
 	"Vaex_Darastrix",
@@ -419,7 +415,7 @@ public partial class RotationConfigWindow : Window
             _ = diagInfo.AppendLine($"Dalamud Staging: {DataCenter.DalamudStagingEnabled}");
             _ = diagInfo.AppendLine($"Game Language: {_cachedDiagInfo.Language}");
             _ = diagInfo.AppendLine($"Update Frequency: {Service.Config.MinUpdatingTime}");
-            _ = diagInfo.AppendLine($"Intercept: {Service.Config.InterceptAction2}");
+            _ = diagInfo.AppendLine($"Intercept: {Service.Config.InterceptAction3}");
             _ = diagInfo.AppendLine($"Player Level: {DataCenter.PlayerSyncedLevel()}");
 			_ = diagInfo.AppendLine($"Rotation Name: {_curRotationAttribute?.Name ?? string.Empty}");
 			_ = diagInfo.AppendLine($"Player Job: {Player.Job}");
@@ -550,7 +546,8 @@ public partial class RotationConfigWindow : Window
                         var _ when DataCenter.InVariantDungeon => "Duty - Variant",
                         var _ when DataCenter.IsInBozja => "Duty - Bozja",
                         var _ when DataCenter.IsInMonsterHunterDuty => "Duty - Monster Hunter",
-                        _ => "Duty",
+						var _ when DataCenter.Orbonne => "Duty - Orbonne Monastery",
+						_ => "Duty",
                     };
                 }
 
@@ -1606,7 +1603,7 @@ public partial class RotationConfigWindow : Window
 		using (ImRaii.Font _ = ImRaii.PushFont(FontManager.GetFont(16)))
 		using (ImRaii.Color __ = ImRaii.PushColor(ImGuiCol.Text, ImGui.ColorConvertFloat4ToU32(ImGuiColors.ParsedGreen)))
 		{
-			ImGui.TextWrapped($"Special thanks to {_supporters.Length} supporters:");
+			ImGui.TextWrapped($"Special thanks to the {_supporters.Length} supporters (including those not listed here):");
 		}
 
 		ImGui.Spacing();
@@ -4059,7 +4056,8 @@ public partial class RotationConfigWindow : Window
         ImGui.Text($"GeomancerLevel: {DutyRotation.GeomancerLevel}");
         ImGui.Spacing();
         ImGui.Text($"InVariantDungeon: {DataCenter.InVariantDungeon}");
-        ImGui.Text($"AloaloIsland: {DataCenter.AloaloIsland}");
+		ImGui.Text($"The Merchant's Tale: {DataCenter.TheMerchantsTale}");
+		ImGui.Text($"AloaloIsland: {DataCenter.AloaloIsland}");
         ImGui.Text($"MountRokkon: {DataCenter.MountRokkon}");
         ImGui.Text($"SildihnSubterrane: {DataCenter.SildihnSubterrane}");
         ImGui.Spacing();
@@ -4074,6 +4072,9 @@ public partial class RotationConfigWindow : Window
 		StatusID HellInACell = (StatusID)4734;
 		var HasHellInACell = StatusHelper.PlayerHasStatus(false, HellInACell);
 		ImGui.Text($"HasHellInACell: {HasHellInACell}");
+		ImGui.Spacing();
+		ImGui.Text($"IsInM11S: {DataCenter.IsInM11S}");
+		ImGui.Text($"IsTyrantCastingSpecialIndicator2: {DataCenter.IsTyrantCastingSpecialIndicator2()}");
 	}
 
     private static unsafe void DrawParty()

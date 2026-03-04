@@ -5,7 +5,7 @@ using RotationSolver.Basic.Actions;
 
 namespace RotationSolver.RebornRotations.Tank;
 
-[Rotation("Reborn", CombatType.PvE, GameVersion = "7.41")]
+[Rotation("Reborn", CombatType.PvE, GameVersion = "7.45")]
 [SourceCode(Path = "main/RebornRotations/Tank/WAR_Reborn.cs")]
 
 public sealed class WAR_Reborn : WarriorRotation
@@ -414,8 +414,16 @@ public sealed class WAR_Reborn : WarriorRotation
                 if (OverpowerPvE.CanUse(out act, skipAoeCheck: true)) return true;
             }
             if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true)) return true;
+            if (!DecimatePvE.Info.EnoughLevelAndQuest() && SteelCyclonePvE.CanUse(out act, skipAoeCheck: true)) return true;
             if (MythrilTempestPvE.CanUse(out act, skipAoeCheck: true)) return true;
             if (OverpowerPvE.CanUse(out act, skipAoeCheck: true)) return true;
+        }
+
+        // Single Target Gauge Spend
+        if (!StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest) || !StormsEyePvE.EnoughLevel)
+        {
+            if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
+            if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act)) return true;
         }
 
         // 6. Single Target Combo

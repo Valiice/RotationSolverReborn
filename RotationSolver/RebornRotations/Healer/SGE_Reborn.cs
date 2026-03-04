@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace RotationSolver.RebornRotations.Healer;
 
-[Rotation("Reborn", CombatType.PvE, GameVersion = "7.41")]
+[Rotation("Reborn", CombatType.PvE, GameVersion = "7.45")]
 [SourceCode(Path = "main/RebornRotations/Healer/SGE_Reborn.cs")]
 
 public sealed class SGE_Reborn : SageRotation
@@ -460,7 +460,7 @@ public sealed class SGE_Reborn : SageRotation
         {
             _lastEukrasiaActionAim = _EukrasiaActionAim;
             _EukrasiaActionAim = null;
-            if (HasEukrasia && !InCombat)
+            if (HasEukrasia && !InCombat && !HasHostilesInMaxRange)
             {
                 StatusHelper.StatusOff(StatusID.Eukrasia);
             }
