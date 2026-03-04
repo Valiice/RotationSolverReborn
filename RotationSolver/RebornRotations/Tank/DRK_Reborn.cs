@@ -38,11 +38,20 @@ public sealed class DRK_Reborn : DarkKnightRotation
     [RotationConfig(CombatType.PvE, Name = "Seconds before encounter end to start panic dump", Parent = nameof(PanicDump))]
     public float PanicDumpWindow { get; set; } = 15f;
 
+    [RotationConfig(CombatType.PvE, Name = "Dump all resources when target HP falls below threshold (e.g. savage kill window)")]
+    public bool LowTargetDump { get; set; } = false;
+
+    [Range(0, 1, ConfigUnitType.Percent)]
+    [RotationConfig(CombatType.PvE, Name = "Target HP% threshold to trigger resource dump", Parent = nameof(LowTargetDump))]
+    public float LowTargetDumpThreshold { get; set; } = 0.10f;
+
     // Edge-detection state for overcap diagnostics (uses CombatTime floats, no DateTime allocs)
     private int _prevBloodGauge = -1;
     private bool _mpWasMaxed;
     private float _mpMaxedSinceCombat = -1f;
     private bool _panicDumpStarted = false;
+    private bool _targetLowDumpStarted = false;
+    private bool _wasTargetLow = false;
 
 	#endregion
 
@@ -70,8 +79,9 @@ public sealed class DRK_Reborn : DarkKnightRotation
                 }
             }
         }
-        if (remainTime <= 2 && UseBurstMedicine(out IAction? act))
+        if (remainTime <= 1 && UseBurstMedicine(out IAction? act))
         {
+            Svc.Chat.Print($"[DRK] Pre-pull potion used — {remainTime:F1}s on countdown");
             return act;
         }
 
@@ -113,7 +123,7 @@ public sealed class DRK_Reborn : DarkKnightRotation
 			return true;
 		}
 
-		if (!InTwoMIsBurst && DarkMissionaryPvE.CanUse(out act))
+		if (DarkMissionaryPvE.CanUse(out act))
         {
             return true;
         }
@@ -122,11 +132,6 @@ public sealed class DRK_Reborn : DarkKnightRotation
         {
             return true;
         }
-
-		if (!InTwoMIsBurst && OblationPvE.CanUse(out act, skipStatusProvideCheck: false, targetOverride: TargetType.Self))
-		{
-			return true;
-		}
 
 		return base.DefenseAreaAbility(nextGCD, out act);
     }
@@ -180,6 +185,17 @@ public sealed class DRK_Reborn : DarkKnightRotation
         return base.DefenseSingleAbility(nextGCD, out act);
     }
 
+    protected override bool GeneralAbility(IAction nextGCD, out IAction? act)
+    {
+        // Prevent Oblation overcap — use on self when at max charges
+        if (OblationPvE.Cooldown.CurrentCharges >= OblationPvE.Cooldown.MaxCharges
+            && OblationPvE.CanUse(out act, skipStatusProvideCheck: true, targetOverride: TargetType.Self))
+        {
+            return true;
+        }
+        return base.GeneralAbility(nextGCD, out act);
+    }
+
     protected override bool AttackAbility(IAction nextGCD, out IAction? act)
     {
         // Overcap detection (edge-triggered, only fires once per transition)
@@ -201,6 +217,12 @@ public sealed class DRK_Reborn : DarkKnightRotation
             }
         }
 
+        // Opener: fire Living Shadow after GCD 1 (before Delirium is used — it has a cast delay so it needs to land early)
+        if (CombatElapsedLessGCD(3) && InCombat && LivingShadowPvE.CanUse(out act, skipAoeCheck: true))
+        {
+            return true;
+        }
+
         if (IsBurst)
         {
             if (InCombat && LivingShadowPvE.CanUse(out act, skipAoeCheck: true))
@@ -216,6 +238,8 @@ public sealed class DRK_Reborn : DarkKnightRotation
         if (CombatElapsedLess(3))
         {
             _panicDumpStarted = false;
+            _targetLowDumpStarted = false;
+            _wasTargetLow = false;
             act = null;
             return false;
         }
@@ -234,8 +258,35 @@ public sealed class DRK_Reborn : DarkKnightRotation
             if (ShadowbringerPvE.CanUse(out act, usedUp: true, skipAoeCheck: true)) return true;
         }
 
-        // Delirium on cooldown (60s) — fires every minute, not just in 2-min burst windows
-        if (InCombat && DeliriumPvE.CanUse(out act)) return true;
+        // Reset dump flag on phase transition (target HP rises above 10% or target changes)
+        bool isTargetLowNow = IsTargetLow;
+        if (_wasTargetLow && !isTargetLowNow)
+            _targetLowDumpStarted = false;
+        _wasTargetLow = isTargetLowNow;
+
+        // Dump cooldowns when target is nearly dead (savage kill window)
+        if (isTargetLowNow)
+        {
+            if (!_targetLowDumpStarted)
+            {
+                _targetLowDumpStarted = true;
+                Svc.Chat.Print($"[DRK] Target low dump started — {HostileTarget?.GetHealthRatio() * 100:F1}% HP, Blood: {Blood}");
+            }
+
+            if (InCombat && DeliriumPvE.CanUse(out act)) return true;
+            if (InCombat && LivingShadowPvE.CanUse(out act, skipAoeCheck: true)) return true;
+            if (ShadowbringerPvE.CanUse(out act, usedUp: true, skipAoeCheck: true)) return true;
+        }
+
+        // Pot: use during 2-min burst window (covers re-pots at 6min, 12min etc, and no-countdown fallback)
+        if (InTwoMIsBurst && UseBurstMedicine(out act))
+        {
+            Svc.Chat.Print($"[DRK] Burst potion used at {CombatTime:F0}s — Blood: {Blood}");
+            return true;
+        }
+
+        // Delirium on cooldown (60s) — delayed in opener until after GCD 3 (Souleater) for proper alignment
+        if (!CombatElapsedLessGCD(3) && InCombat && DeliriumPvE.CanUse(out act)) return true;
 
         // Blood Weapon pairs with Delirium — fire 1–3 GCDs after Delirium
         if (DeliriumPvE.EnoughLevel && DeliriumPvE.Cooldown.ElapsedAfterGCD(1) && !DeliriumPvE.Cooldown.ElapsedAfterGCD(3)
@@ -380,12 +431,14 @@ public sealed class DRK_Reborn : DarkKnightRotation
     // ContentTimeLeft is 0 when not in timed content — guard prevents false triggers.
     private bool IsNearEncounterEnd => PanicDump && ContentTimeLeft > 0 && ContentTimeLeft <= PanicDumpWindow;
 
+    private bool IsTargetLow => LowTargetDump && HostileTarget != null && HostileTarget.GetHealthRatio() <= LowTargetDumpThreshold;
+
     // Logic to determine when to use blood-based abilities.
     private bool UseBlood
     {
         get
         {
-            if (IsNearEncounterEnd) return true;
+            if (IsNearEncounterEnd || IsTargetLow) return true;
 
             // Conditions based on player statuses and ability cooldowns.
             if (!DeliriumPvE.EnoughLevel || !LivingShadowPvE.EnoughLevel)
@@ -426,7 +479,7 @@ public sealed class DRK_Reborn : DarkKnightRotation
                 return false;
             }
 
-            if (IsNearEncounterEnd) return true;
+            if (IsNearEncounterEnd || IsTargetLow) return true;
 
             if (HasDarkArts && (InTwoMIsBurst || StatusHelper.PlayerHasStatus(true, StatusID.BlackestNight)))
             {

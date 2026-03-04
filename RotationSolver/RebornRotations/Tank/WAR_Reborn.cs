@@ -21,11 +21,11 @@ public sealed class WAR_Reborn : WarriorRotation
     [RotationConfig(CombatType.PvE, Name = "Bloodwhetting/Raw intuition heal threshold")]
     public float HealIntuition { get; set; } = 0.7f;
 
-    [RotationConfig(CombatType.PvE, Name = "Use both stacks of Onslaught during burst while standing still")]
+    [RotationConfig(CombatType.PvE, Name = "Use all available Onslaught stacks during burst while standing still")]
     public bool YEETBurst { get; set; } = true;
 
-    [RotationConfig(CombatType.PvE, Name = "Use a stack of Onslaught when its about to overcap while standing still")]
-    public bool YEETCooldown { get; set; } = false;
+    [RotationConfig(CombatType.PvE, Name = "Use a stack of Onslaught when about to overcap (below 3 stacks) while standing still")]
+    public bool YEETCooldown { get; set; } = true;
 
     [RotationConfig(CombatType.PvE, Name = "Use Primal Rend while moving (Dangerous)")]
     public bool YEET { get; set; } = false;
@@ -64,6 +64,13 @@ public sealed class WAR_Reborn : WarriorRotation
     [RotationConfig(CombatType.PvE, Name = "Print overcap warnings to chat (debug)")]
     public bool DebugOvercapMessages { get; set; } = false;
 
+    [RotationConfig(CombatType.PvE, Name = "Dump all Beast Gauge when target HP falls below threshold (e.g. savage kill window)")]
+    public bool LowTargetDump { get; set; } = false;
+
+    [Range(0, 1, ConfigUnitType.Percent)]
+    [RotationConfig(CombatType.PvE, Name = "Target HP% threshold to trigger Beast Gauge dump", Parent = nameof(LowTargetDump))]
+    public float LowTargetDumpThreshold { get; set; } = 0.10f;
+
     // Edge-detection state for overcap diagnostics (uses CombatTime floats, no DateTime allocs)
     private bool _infuriateWasMaxCharges;
     private float _infuriateMaxChargesSinceCombat = -1f;
@@ -71,6 +78,8 @@ public sealed class WAR_Reborn : WarriorRotation
     private bool _irDelayNotified;
     private float _irDelayStartCombat;
     private bool _preIrDumpNotified;
+    private bool _targetLowDumpStarted = false;
+    private bool _wasTargetLow = false;
 
     #endregion
 
@@ -160,19 +169,19 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
-        // 4. OROGENY / UPHEAVAL
+        // 4. PRIMAL WRATH — immediately after Primal Rend (first weave slot)
+        if (StatusHelper.PlayerHasStatus(false, StatusID.Wrathful) && PrimalWrathPvE.CanUse(out act, skipAoeCheck: true))
+        {
+            return true;
+        }
+
+        // 5. OROGENY / UPHEAVAL
         if (NumberOfHostilesInRange >= AOECount && OrogenyPvE.CanUse(out act, skipAoeCheck: true))
         {
             return true;
         }
 
         if (UpheavalPvE.CanUse(out act))
-        {
-            return true;
-        }
-
-        // 5. PRIMAL WRATH
-        if (StatusHelper.PlayerHasStatus(false, StatusID.Wrathful) && PrimalWrathPvE.CanUse(out act, skipAoeCheck: true))
         {
             return true;
         }
@@ -307,6 +316,26 @@ public sealed class WAR_Reborn : WarriorRotation
     #region GCD Logic
     protected override bool GeneralGCD(out IAction? act)
     {
+        // 0. EXECUTE DUMP — spend all Beast Gauge when target is nearly dead
+        bool isTargetLowNow = IsTargetLow;
+        if (_wasTargetLow && !isTargetLowNow)
+            _targetLowDumpStarted = false;
+        _wasTargetLow = isTargetLowNow;
+
+        if (isTargetLowNow)
+        {
+            if (!_targetLowDumpStarted)
+            {
+                _targetLowDumpStarted = true;
+                Svc.Chat.Print($"[WAR] Target low dump started — {HostileTarget?.GetHealthRatio() * 100:F1}% HP, Gauge: {BeastGauge}");
+            }
+
+            if (NumberOfHostilesInRange >= AOECount)
+                if (DecimatePvE.CanUse(out act, skipStatusProvideCheck: true, skipAoeCheck: true)) return true;
+            if (FellCleavePvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
+            if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
+        }
+
         bool hasSurgingTempest = !StatusHelper.PlayerWillStatusEndGCD(3, 0, true, StatusID.SurgingTempest);
 
         // 1. Spend "Free" Resources (Inner Chaos / Primal Rend)
@@ -363,7 +392,10 @@ public sealed class WAR_Reborn : WarriorRotation
             if (!FellCleavePvE.Info.EnoughLevelAndQuest() && InnerBeastPvE.CanUse(out act, skipStatusProvideCheck: true)) return true;
         }
 
-        // 4. Primal Rend 
+        // 4. Primal Rend / Primal Ruination
+        // Always finish the combo if proc is active — don't gate Ruination on Surging Tempest
+        if (InnerReleaseStacks == 0 && PrimalRuinationPvE.CanUse(out act)) return true;
+
         if (hasSurgingTempest && InnerReleaseStacks == 0)
         {
             if (PrimalRendPvE.CanUse(out act, skipAoeCheck: true))
@@ -371,7 +403,6 @@ public sealed class WAR_Reborn : WarriorRotation
                 if (PrimalRendPvE.Target.Target != null && PrimalRendPvE.Target.Target.DistanceToPlayer() <= PrimalRendDistance2) return true;
                 if (YEET || (YEETStill && !IsMoving)) return true;
             }
-            if (PrimalRuinationPvE.CanUse(out act)) return true;
         }
 
         // 5. AoE Combo
@@ -439,6 +470,8 @@ public sealed class WAR_Reborn : WarriorRotation
 
     #region Extra Methods
     private static bool IsBurstStatus => !StatusHelper.PlayerWillStatusEndGCD(0, 0, false, StatusID.InnerStrength);
+
+    private bool IsTargetLow => LowTargetDump && HostileTarget != null && HostileTarget.GetHealthRatio() <= LowTargetDumpThreshold;
 
     /// <summary>
     /// Predicts whether Infuriate will gain a charge during an Inner Release window,
