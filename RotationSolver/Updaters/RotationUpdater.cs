@@ -196,8 +196,8 @@ internal static class RotationUpdater
             string key = string.Empty;
             if (a is IBaseAction act)
             {
-                // Filter out special actions, usually related to duty specifc mechanics but not duty actions
-                if (act.Info.IsSpecialAction)
+				// Filter out special actions, usually related to duty specifc mechanics but not duty actions
+				if (act.Info.IsSpecialAction)
                 {
                     continue;
                 }
@@ -211,7 +211,7 @@ internal static class RotationUpdater
                 {
                     continue;
                 }
-                if (!act.Info.IsOnSlot)
+                else if (!act.Info.IsOnSlot && act.ID != 14415 && act.ID != 14414)
                 {
                     key = string.Empty;
                 }
@@ -492,11 +492,24 @@ internal static class RotationUpdater
 
                 foreach (Type rotationType in customRotationGroup.Rotations)
                 {
-                    CombatType? comType = rotationType.GetCustomAttribute<RotationAttribute>()?.Type;
+                    var rotAttr = rotationType.GetCustomAttribute<RotationAttribute>();
+                    if (rotAttr == null)
+                    {
+                        continue;
+                    }
+
+                    // Skip rotations that are explicitly disabled
+                    if (rotAttr.Disabled)
+                    {
+                        continue;
+                    }
+
+                    CombatType? comType = rotAttr.Type;
                     if (comType == null)
                     {
                         continue;
                     }
+
                     var possibleRotation = GetRotation(rotationType);
                     if (possibleRotation == null)
                     {

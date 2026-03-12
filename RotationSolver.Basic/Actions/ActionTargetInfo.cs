@@ -1444,6 +1444,7 @@ public struct ActionTargetInfo(IBaseAction action)
 				TargetType.Heal => FindHealTarget(healRatio),
 				TargetType.Interrupt => FindInterruptTarget(),
 				TargetType.Tank => FindTankTarget(),
+				TargetType.Tankbuster => FindTankbusterTarget(),
 				TargetType.Melee => battleChara != null ? RandomMeleeTarget(battleChara) : null,
 				TargetType.Range => battleChara != null ? RandomRangeTarget(battleChara) : null,
 				TargetType.Magical => battleChara != null ? RandomMagicalTarget(battleChara) : null,
@@ -1521,6 +1522,7 @@ public struct ActionTargetInfo(IBaseAction action)
 				TargetType.Heal => FindHealTarget(healRatio),
 				TargetType.Interrupt => FindInterruptTarget(),
 				TargetType.Tank => FindTankTarget(),
+				TargetType.Tankbuster => FindTankbusterTarget(),
 				TargetType.Melee => battleChara != null ? RandomMeleeTarget(battleChara) : null,
 				TargetType.Range => battleChara != null ? RandomRangeTarget(battleChara) : null,
 				TargetType.Magical => battleChara != null ? RandomMagicalTarget(battleChara) : null,
@@ -2167,6 +2169,25 @@ public struct ActionTargetInfo(IBaseAction action)
                 return Player.Object;
             }
 
+            // If there are two party members and the other is the player's chocobo,
+            // treat this as effectively solo and return the player.
+            if (DataCenter.PartyMembers.Count == 2 && Player.Object != null)
+            {
+                bool hasPlayer = false;
+                bool hasChocobo = false;
+                foreach (var m in DataCenter.PartyMembers)
+                {
+                    if (m == null) continue;
+                    if (m.GameObjectId == Player.Object.GameObjectId) hasPlayer = true;
+                    else if (ObjectHelper.IsPlayerCharacterChocobo(m)) hasChocobo = true;
+                }
+
+                if (hasPlayer && hasChocobo)
+                {
+                    return Player.Object;
+                }
+            }
+
             // Build filtered candidate list
             List<IBattleChara> candidates = [];
             foreach (IBattleChara m in DataCenter.PartyMembers)
@@ -2262,13 +2283,32 @@ public struct ActionTargetInfo(IBaseAction action)
                 return null;
             }
 
-            if (DataCenter.PartyMembers.Count == 1)
+			if (DataCenter.PartyMembers.Count == 1)
             {
                 return Player.Object;
             }
 
-            // Build filtered candidate list
-            List<IBattleChara> candidates = [];
+			// If there are two party members and the other is the player's chocobo,
+			// treat this as effectively solo and return the player.
+			if (DataCenter.PartyMembers.Count == 2 && Player.Object != null)
+			{
+				bool hasPlayer = false;
+				bool hasChocobo = false;
+				foreach (var m in DataCenter.PartyMembers)
+				{
+					if (m == null) continue;
+					if (m.GameObjectId == Player.Object.GameObjectId) hasPlayer = true;
+					else if (ObjectHelper.IsPlayerCharacterChocobo(m)) hasChocobo = true;
+				}
+
+				if (hasPlayer && hasChocobo)
+				{
+					return Player.Object;
+				}
+			}
+
+			// Build filtered candidate list
+			List<IBattleChara> candidates = [];
             foreach (IBattleChara m in DataCenter.PartyMembers)
             {
                 if (m == null) continue;
@@ -3222,6 +3262,36 @@ public struct ActionTargetInfo(IBaseAction action)
 			return battleChara == null ? null : RandomPickByJobs(battleChara, JobRole.Tank);
 		}
 
+		IBattleChara? FindTankbusterTarget()
+		{
+			// Use DataCenter.TankbusterTargets (populated from VFX) when available
+			if (DataCenter.TankbusterTargets == null || DataCenter.TankbusterTargets.Count == 0 || Player.Object == null)
+			{
+				return null;
+			}
+
+			// Prefer self first
+			foreach (var t in DataCenter.TankbusterTargets)
+			{
+				if (ObjectHelper.IsAlive(t) && !t.IsConditionCannotTarget() && t.GameObjectId == Player.Object.GameObjectId)
+				{
+					return t;
+				}
+			}
+
+			// Prefer alive, targetable party members
+			foreach (var t in DataCenter.TankbusterTargets)
+			{
+				if (ObjectHelper.IsAlive(t) && !t.IsConditionCannotTarget())
+				{
+					return t;
+				}
+			}
+
+			// Fallback to first entry
+			return DataCenter.TankbusterTargets[0];
+		}
+
 		return null;
 	}
 
@@ -3387,7 +3457,8 @@ public enum TargetType : byte
 	PvPTanks,
 	PvPDPS,
 	HighHPPercent,
-	LowHPPercent
+	LowHPPercent,
+	Tankbuster
 }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 

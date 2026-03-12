@@ -1,6 +1,6 @@
 ﻿namespace RotationSolver.RebornRotations.Magical;
 
-[Rotation("Reborn", CombatType.PvE, GameVersion = "7.41")]
+[Rotation("Reborn", CombatType.PvE, GameVersion = "7.45")]
 [SourceCode(Path = "main/RebornRotations/Magical/RDM_Reborn.cs")]
 
 public sealed class RDM_Reborn : RedMageRotation
@@ -45,7 +45,7 @@ public sealed class RDM_Reborn : RedMageRotation
         }
 
         //Remove Swift
-        if (HasDualcast && remainTime < 0f)
+        if (HasDualcast && remainTime < 0f && !InCombat)
         {
             StatusHelper.StatusOff(StatusID.Dualcast);
         }
