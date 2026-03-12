@@ -5,15 +5,19 @@ namespace RotationSolver.RebornRotations.Tank;
 
 public sealed class GNB_Reborn : GunbreakerRotation
 {
-    #region Config Options
+	#region Config Options
+	[RotationConfig(CombatType.PvE, Name = "Restrict automatic use of Aurora to only being used on self")]
+	public bool AuroraSelf { get; set; } = false;
+	[RotationConfig(CombatType.PvE, Name = "Restrict automatic use of Heart of Stone/Heart of Corundum to only being used on self")]
+	public bool HeartOfStoneSelf { get; set; } = false;
 
-    [Range(0, 20, ConfigUnitType.Yalms)]
-    [RotationConfig(CombatType.PvE, Name = "Min distance to use Lightning Shot")]
-    public float LightningShotDistance { get; set; } = 5.5f;
-    #endregion
+	[Range(0, 20, ConfigUnitType.Yalms)]
+	[RotationConfig(CombatType.PvE, Name = "Min distance to use Lightning Shot")]
+	public float LightningShotDistance { get; set; } = 5.5f;
+	#endregion
 
-    #region Countdown Logic
-    protected override IAction? CountDownAction(float remainTime)
+	#region Countdown Logic
+	protected override IAction? CountDownAction(float remainTime)
     {
         if (remainTime <= 0.7 && LightningShotPvE.CanUse(out IAction? act))
         {
@@ -95,14 +99,28 @@ public sealed class GNB_Reborn : GunbreakerRotation
             return true;
         }
         //15
-        if (HeartOfCorundumPvE.CanUse(out act))
-        {
-            return true;
-        }
 
-		if (!HeartOfCorundumPvE.EnoughLevel && HeartOfStonePvE.CanUse(out act))
+		if (HeartOfStonePvE.EnoughLevel)
 		{
-			return true;
+			if (!HeartOfStoneSelf && HeartOfCorundumPvE.EnoughLevel && HeartOfCorundumPvE.CanUse(out act, targetOverride: TargetType.Tankbuster))
+			{
+				return true;
+			}
+
+			if (HeartOfStoneSelf && HeartOfCorundumPvE.EnoughLevel && HeartOfCorundumPvE.CanUse(out act))
+			{
+				return true;
+			}
+
+			if (!HeartOfStoneSelf && !HeartOfCorundumPvE.EnoughLevel && HeartOfStonePvE.CanUse(out act, targetOverride: TargetType.Tankbuster))
+			{
+				return true;
+			}
+
+			if (HeartOfStoneSelf && !HeartOfCorundumPvE.EnoughLevel && HeartOfStonePvE.CanUse(out act))
+			{
+				return true;
+			}
 		}
 
 		//30
@@ -134,11 +152,16 @@ public sealed class GNB_Reborn : GunbreakerRotation
 
         if (!IsLastAbility(ActionID.AuroraPvE))
         {
-            if (AuroraPvE.CanUse(out act))
+            if (!AuroraSelf && AuroraPvE.CanUse(out act, targetOverride: TargetType.LowHP))
             {
                 return true;
             }
-        }
+
+			if (AuroraSelf && AuroraPvE.CanUse(out act))
+			{
+				return true;
+			}
+		}
 
         return base.HealSingleAbility(nextGCD, out act);
     }
