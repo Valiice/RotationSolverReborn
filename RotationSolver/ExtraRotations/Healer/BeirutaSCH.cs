@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace RotationSolver.ExtraRotations.Healer;
 
-[Rotation("BeirutaSCH", CombatType.PvE, GameVersion = "7.45")]
+[Rotation("BeirutaSCH", CombatType.PvE, GameVersion = "7.45", Description = "Semi-Automatic Savage/Ultimate rotation, need to used with CD planner or manual inputs")]
 [SourceCode(Path = "main/ExtraRotations/Healer/BeirutaSCH.cs")]
 public sealed class BeirutaSCH : ScholarRotation
 {
@@ -12,8 +12,7 @@ public sealed class BeirutaSCH : ScholarRotation
 
     [RotationConfig(CombatType.PvE, Name =
         "Please note that this rotation is optimised for high-end encounters.\n" +
-        "• Healing actions are designed to be used automatically, while mitigation is kept minimal to better support CD planner or manual input\n" +
-        "• Sacred Soil, Summon Seraph, Seraphism, and Expedient should generally be used manually or via the CD planner\n" +
+        "• Only the actions listed in the description will be automatically used and everything else should be used manually or through CD planner\n" +
         "• Please set Intercept to GCD usage only, and use Concitation manually where required\n" +
         "• Disabling AutoBurst is sufficient if you need to delay burst timing in this rotation\n" +
         "• Applying Protraction to yourself will be treated as a signal to prepare Deployment Tactics\n" +
@@ -23,8 +22,24 @@ public sealed class BeirutaSCH : ScholarRotation
         "• Without burst delay, this restriction will occur during the 30-second window at 0s and 180s then every multiple of 180s thereafter\n")]
     public bool RotationNotes { get; set; } = true;
 
+    [RotationConfig(CombatType.PvE, Name = "Use all Energy Drain During Burst")]
+    public bool EnableEnergyDrainGatlingMode { get; set; } = true;
+
     [RotationConfig(CombatType.PvE, Name = "Use first stack of Consolation ASAP when Seraph is out")]
     public bool UseFirstConsolationAsapWhenSeraphIsOut { get; set; } = true;
+
+    [RotationConfig(CombatType.PvE, Name = "Use Swiftcast for movement")]
+    public bool UseSwiftcastForMovement { get; set; } = true;
+
+    [Range(0, 5, ConfigUnitType.Seconds, 0.1f)]
+    [RotationConfig(CombatType.PvE, Name = "Minimum movement time before allowing movement-based actions")]
+    public float MovementTimeThreshold { get; set; } = 0.9f;
+
+    [RotationConfig(CombatType.PvE, Name = "Lock healing actions while Macrocosmos is active")]
+    public bool LockHealingActionsDuringMacrocosmos { get; set; } = true;
+
+    [RotationConfig(CombatType.PvE, Name = "Prioritise Aetherflow before Dissipation")]
+    public bool PrioritizeAetherflowOverDissipation { get; set; } = false;
 
     [Range(0, 1, ConfigUnitType.Percent)]
     [RotationConfig(CombatType.PvE, Name = "Party HP percent threshold to use Emergency Tactics with Succor")]
@@ -63,7 +78,7 @@ public sealed class BeirutaSCH : ScholarRotation
     public float HealAreaGcdAccessionHeal { get; set; } = 0.6f;
 
     [Range(0, 1, ConfigUnitType.Percent)]
-    [RotationConfig(CombatType.PvE, Name = "Average party HP percent to use Accession in HealAreaGCD while moving for 1s or more and not under Emergency Tactics")]
+    [RotationConfig(CombatType.PvE, Name = "Average party HP percent to use Accession in HealAreaGCD while moving and not under Emergency Tactics")]
     public float HealAreaGcdMovingAccessionHeal { get; set; } = 0.8f;
 
     [Range(0, 10000, ConfigUnitType.None)]
@@ -110,59 +125,36 @@ public sealed class BeirutaSCH : ScholarRotation
     private const float AetherpactStartHpThreshold = 0.8f;
     private const float ExcogHealHpThreshold = 0.4f;
     private const float BallparkDamagePercent = 0.08f;
-    private const float RuinIIMovementThresholdSeconds = 1f;
+    private const float SwiftcastPostActionLockSeconds = 2f;
 
     private const int DotOffsetMobs = 1;
     private const int MinimumFairyGaugeForLinkPriority = 70;
 
-    private static float EstimateRemainingSeconds(dynamic cooldown, float maxProbeSeconds, float stepSeconds = 0.5f)
-{
-    if (cooldown.HasOneCharge) return 0f;
-
-    for (float t = 0f; t <= maxProbeSeconds; t += stepSeconds)
-    {
-        if (cooldown.WillHaveOneCharge(t))
-            return t;
-    }
-
-    return -1f;
-}
-
-private float SummonSeraphRem()
-{
-    if (!SummonSeraphPvE.EnoughLevel) return -1f;
-    return EstimateRemainingSeconds(SummonSeraphPvE.Cooldown, 180f, 0.5f);
-}
-
-private float DissipationRem()
-{
-    if (!DissipationPvE.EnoughLevel) return -1f;
-    return EstimateRemainingSeconds(DissipationPvE.Cooldown, 180f, 0.5f);
-}
-
-private bool ShouldUseSummonEos()
-{
-    float summonSeraphRem = SummonSeraphRem();
-    float dissipationRem = DissipationRem();
-
-    return summonSeraphRem < 90f || dissipationRem < 140f;
-}
     private const bool UseDissipationDuringBurst = true;
     private const bool EnableBallparkTtkEstimator = true;
 
     private long _chainStratagemUsedAtMs;
     private long _adloquiumUsedAtMs;
+    private float _lastSwiftcastLockingActionCombatTime = float.MinValue;
 
     #endregion
 
     #region Simple Status Helpers
 
-    // Local shortcuts for commonly checked player/party states.
     private bool HasGalvanize => StatusHelper.PlayerHasStatus(true, StatusID.Galvanize);
     private bool HasProtraction => StatusHelper.PlayerHasStatus(true, StatusID.Protraction);
+    private bool HasMacrocosmos => StatusHelper.PlayerHasStatus(true, StatusID.Macrocosmos);
 
     private bool HasWhisperingDawn => HasPartyMemberWithOwnStatus(StatusID.WhisperingDawn);
     private bool HasAngelsWhisper => HasPartyMemberWithOwnStatus(StatusID.AngelsWhisper);
+
+    private bool HasSufficientMovement =>
+        IsMoving &&
+        MovingTime > MovementTimeThreshold;
+
+    private bool HasHealingLockout =>
+        LockHealingActionsDuringMacrocosmos &&
+        HasMacrocosmos;
 
     private bool InFirst5sAfterChainStratagem =>
         _chainStratagemUsedAtMs != 0 &&
@@ -176,11 +168,117 @@ private bool ShouldUseSummonEos()
         _adloquiumUsedAtMs != 0 &&
         Environment.TickCount64 - _adloquiumUsedAtMs < DeploymentTacticsAfterAdloquiumWindowMs;
 
+    private bool IsSwiftcastPostActionLockActive =>
+        InCombat &&
+        _lastSwiftcastLockingActionCombatTime > float.MinValue / 2 &&
+        CombatTime - _lastSwiftcastLockingActionCombatTime <= SwiftcastPostActionLockSeconds;
+
+    #endregion
+
+    #region Helper Methods
+
+    private static float EstimateRemainingSeconds(dynamic cooldown, float maxProbeSeconds, float stepSeconds = 0.5f)
+    {
+        if (cooldown.HasOneCharge) return 0f;
+
+        for (float t = 0f; t <= maxProbeSeconds; t += stepSeconds)
+        {
+            if (cooldown.WillHaveOneCharge(t))
+                return t;
+        }
+
+        return -1f;
+    }
+
+    private float SummonSeraphRem()
+    {
+        if (!SummonSeraphPvE.EnoughLevel) return -1f;
+        return EstimateRemainingSeconds(SummonSeraphPvE.Cooldown, 180f, 0.5f);
+    }
+
+    private float DissipationRem()
+    {
+        if (!DissipationPvE.EnoughLevel) return -1f;
+        return EstimateRemainingSeconds(DissipationPvE.Cooldown, 180f, 0.5f);
+    }
+
+    private bool CurrentTargetInLast5sOfChainStratagem
+    {
+        get
+        {
+            if (CurrentTarget == null)
+                return false;
+
+            return CurrentTarget.HasStatus(true, StatusID.ChainStratagem) &&
+                   CurrentTarget.WillStatusEnd(5f, true, StatusID.ChainStratagem);
+        }
+    }
+
+    private bool ShouldUseSummonEos()
+    {
+        float summonSeraphRem = SummonSeraphRem();
+        float dissipationRem = DissipationRem();
+
+        return summonSeraphRem < 90f || dissipationRem < 140f;
+    }
+
+    private void UpdateActionTracking()
+    {
+        if (!InCombat)
+        {
+            _lastSwiftcastLockingActionCombatTime = float.MinValue;
+            return;
+        }
+
+        if (IsLastAction(ActionID.BiolysisPvE) ||
+            IsLastAction(ActionID.ArtOfWarPvE) ||
+            IsLastAction(ActionID.ManifestationPvE) ||
+            IsLastAction(ActionID.AccessionPvE) ||
+            IsLastAction(ActionID.RuinIiPvE))
+        {
+            _lastSwiftcastLockingActionCombatTime = CombatTime;
+        }
+    }
+
+    private bool IsMovementPreferredNextGCD(IAction nextGCD)
+    {
+        if (nextGCD == ArtOfWarPvE ||
+            nextGCD == ManifestationPvE ||
+            nextGCD == AccessionPvE ||
+            nextGCD == RuinIiPvE)
+        {
+            return true;
+        }
+
+        if (CanUseCurrentBio(out IAction? bioAct) &&
+            nextGCD == bioAct)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool ShouldSwiftcastForMovement(IAction nextGCD)
+    {
+        if (!UseSwiftcastForMovement ||
+            !InCombat ||
+            !HasSufficientMovement ||
+            HasSwift ||
+            IsLastAction(ActionID.SwiftcastPvE) ||
+            ShouldDeferToRaise() ||
+            IsSwiftcastPostActionLockActive)
+        {
+            return false;
+        }
+
+        return !IsMovementPreferredNextGCD(nextGCD);
+    }
+
     #endregion
 
     #region Countdown Logic
 
-    // Pre-pull opener logic.
     protected override IAction? CountDownAction(float remainTime)
     {
         if (SummonEosPvE.CanUse(out IAction? act))
@@ -212,10 +310,26 @@ private bool ShouldUseSummonEos()
 
     #region oGCD Logic
 
-    // Highest-priority emergency oGCD handling.
     protected override bool EmergencyAbility(IAction nextGCD, out IAction? act)
     {
+        UpdateActionTracking();
+
         int closeTargetCount = NumberOfHostilesInRangeOf(5);
+
+        if (HasHealingLockout)
+        {
+            if (TryUseBurstSupportActions(out act))
+                return true;
+
+            if (!HasAetherflow && AetherflowPvE.CanUse(out act))
+                return true;
+
+            if (ShouldUseBanefulImpaction(closeTargetCount, out act))
+                return true;
+
+            act = null;
+            return false;
+        }
 
         if (ShouldUseRecitationForDeploymentTactics() && RecitationPvE.CanUse(out act))
             return true;
@@ -233,9 +347,9 @@ private bool ShouldUseSummonEos()
         if (UseFirstConsolationAsapWhenSeraphIsOut &&
             ConsolationPvE.Cooldown.CurrentCharges == 2 &&
             ConsolationPvE.CanUse(out act))
-{
+        {
             return true;
-    }
+        }
 
         if (ShouldRemoveAetherpact())
         {
@@ -258,7 +372,6 @@ private bool ShouldUseSummonEos()
         return base.EmergencyAbility(nextGCD, out act);
     }
 
-    // AoE healing oGCD handling.
     [RotationDesc(
         ActionID.ConsolationPvE,
         ActionID.IndomitabilityPvE,
@@ -266,7 +379,12 @@ private bool ShouldUseSummonEos()
         ActionID.FeyBlessingPvE)]
     protected override bool HealAreaAbility(IAction nextGCD, out IAction? act)
     {
+        UpdateActionTracking();
+
         act = null;
+
+        if (HasHealingLockout)
+            return false;
 
         if (PartyMembersAverHP < ConsolationHeal &&
             ConsolationPvE.CanUse(out act, usedUp: true))
@@ -306,22 +424,24 @@ private bool ShouldUseSummonEos()
         return base.HealAreaAbility(nextGCD, out act);
     }
 
-    // Single-target healing oGCD handling.
     [RotationDesc(
         ActionID.AetherpactPvE,
-        ActionID.ExcogitationPvE,
-        ActionID.LustratePvE,
-        ActionID.SacredSoilPvE,
-        ActionID.WhisperingDawnPvE,
-        ActionID.FeyBlessingPvE)]
+        ActionID.ExcogitationPvE)]
     protected override bool HealSingleAbility(IAction nextGCD, out IAction? act)
     {
+        UpdateActionTracking();
+
         act = null;
+
+        if (HasHealingLockout)
+            return false;
+
         bool hasLink = HasPartyMemberWithOwnStatus(StatusID.FeyUnion_1223);
 
         if (AetherpactPvE.CanUse(out act) &&
             FairyGauge >= MinimumFairyGaugeForLinkPriority &&
             !hasLink &&
+            PartyMembersAverHP > 0.8f &&
             CanUseSingleAbilityTarget(AetherpactPvE.Target.Target) &&
             AetherpactPvE.Target.Target.GetHealthRatio() <= AetherpactStartHpThreshold)
         {
@@ -331,6 +451,7 @@ private bool ShouldUseSummonEos()
         if (!HasRecitation &&
             !IsLastAbility(false, RecitationPvE) &&
             ExcogitationPvE.CanUse(out act) &&
+            PartyMembersAverHP > 0.8f &&
             CanUseSingleAbilityTarget(ExcogitationPvE.Target.Target) &&
             ExcogitationPvE.Target.Target.GetHealthRatio() < ExcogHealHpThreshold)
         {
@@ -340,6 +461,7 @@ private bool ShouldUseSummonEos()
         if (!hasLink &&
             FairyGauge > 20 &&
             AetherpactPvE.CanUse(out act) &&
+            PartyMembersAverHP > 0.8f &&
             CanUseSingleAbilityTarget(AetherpactPvE.Target.Target))
         {
             return true;
@@ -348,40 +470,32 @@ private bool ShouldUseSummonEos()
         return base.HealSingleAbility(nextGCD, out act);
     }
 
-    // Area mitigation / defensive oGCD handling.
-    [RotationDesc(
-        ActionID.FeyIlluminationPvE,
-        ActionID.ExpedientPvE,
-        ActionID.ConsolationPvE,
-        ActionID.SacredSoilPvE)]
+    [RotationDesc(ActionID.ConsolationPvE)]
     protected override bool DefenseAreaAbility(IAction nextGCD, out IAction? act)
     {
-        if (ConsolationPvE.CanUse(out act, usedUp: true))
-            return true;
+        UpdateActionTracking();
 
-        if (SacredSoilPvE.CanUse(out act))
-            return true;
-
-        if (ExpedientPvE.CanUse(out act))
-            return true;
-
-        if ((SummonSeraphPvE.Cooldown.IsCoolingDown || CurrentMp <= EmergencyHealingMPThreshold) &&
-            SeraphismPvE.CanUse(out act))
+        if (HasHealingLockout)
         {
-            return true;
+            act = null;
+            return false;
         }
 
-        if (FeyIlluminationPvE.CanUse(out act))
+        if (ConsolationPvE.CanUse(out act, usedUp: true))
             return true;
 
         return base.DefenseAreaAbility(nextGCD, out act);
     }
 
-    // Single-target mitigation oGCD handling.
     [RotationDesc(ActionID.ExcogitationPvE)]
     protected override bool DefenseSingleAbility(IAction nextGCD, out IAction? act)
     {
+        UpdateActionTracking();
+
         act = null;
+
+        if (HasHealingLockout)
+            return false;
 
         if (!HasRecitation &&
             !IsLastAbility(false, RecitationPvE) &&
@@ -394,28 +508,37 @@ private bool ShouldUseSummonEos()
         return base.DefenseSingleAbility(nextGCD, out act);
     }
 
-    // Movement speed utility.
     [RotationDesc(ActionID.ExpedientPvE)]
     protected override bool SpeedAbility(IAction nextGCD, out IAction? act)
     {
+        UpdateActionTracking();
+
         if (InCombat && ExpedientPvE.CanUse(out act, usedUp: true))
             return true;
 
         return base.SpeedAbility(nextGCD, out act);
     }
 
-    
-
-    // Damage-oriented oGCD handling.
     [RotationDesc(
         ActionID.ChainStratagemPvE,
         ActionID.EnergyDrainPvE,
         ActionID.BanefulImpactionPvE,
         ActionID.AetherflowPvE,
-        ActionID.DissipationPvE)]
+        ActionID.DissipationPvE,
+        ActionID.SwiftcastPvE)]
     protected override bool AttackAbility(IAction nextGCD, out IAction? act)
     {
+        UpdateActionTracking();
+
         int closeTargetCount = NumberOfHostilesInRangeOf(5);
+
+        if (ShouldSwiftcastForMovement(nextGCD) &&
+        !IsSwiftcastPostActionLockActive &&
+            MovingTime > MovementTimeThreshold + 0.5f &&
+            SwiftcastPvE.CanUse(out act))
+        {
+            return true;
+        }
 
         if (TryUseBurstSupportActions(out act))
             return true;
@@ -427,13 +550,20 @@ private bool ShouldUseSummonEos()
              DissipationPvE.IsEnabled) ||
             AetherflowPvE.Cooldown.WillHaveOneChargeGCD(3);
 
+        if (EnableEnergyDrainGatlingMode &&
+            InFirst20sAfterChainStratagem &&
+            EnergyDrainPvE.CanUse(out act, usedUp: true))
+        {
+            return true;
+        }
+
         if (CombatTime > 5 && shouldDumpAether && EnergyDrainPvE.CanUse(out act, usedUp: true))
             return true;
 
         if (!HasAetherflow && AetherflowPvE.CanUse(out act))
             return true;
 
-        if (HasBuffs && IsBurst &&UseBurstMedicine(out act))
+        if (ChainStratagemPvE.Cooldown.WillHaveOneCharge(5) && IsBurst && UseBurstMedicine(out act))
             return true;
 
         if (ShouldUseBanefulImpaction(closeTargetCount, out act))
@@ -446,10 +576,17 @@ private bool ShouldUseSummonEos()
 
     #region GCD Logic
 
-    // AoE healing GCD choices.
-    [RotationDesc(ActionID.SuccorPvE, ActionID.ConcitationPvE, ActionID.AccessionPvE)]
+    [RotationDesc(ActionID.ConcitationPvE, ActionID.AccessionPvE)]
     protected override bool HealAreaGCD(out IAction? act)
     {
+        UpdateActionTracking();
+
+        if (HasHealingLockout)
+        {
+            act = null;
+            return false;
+        }
+
         if (ShouldDeferToRaise())
             return base.HealAreaGCD(out act);
 
@@ -468,7 +605,7 @@ private bool ShouldUseSummonEos()
         }
 
         if (!HasEmergencyTactics &&
-            MovingTime >= RuinIIMovementThresholdSeconds &&
+            HasSufficientMovement &&
             PartyMembersAverHP < HealAreaGcdMovingAccessionHeal &&
             AccessionPvE.CanUse(out act, skipCastingCheck: true))
         {
@@ -492,10 +629,17 @@ private bool ShouldUseSummonEos()
         return base.HealAreaGCD(out act);
     }
 
-    // Single-target healing GCD choices.
     [RotationDesc(ActionID.ManifestationPvE)]
     protected override bool HealSingleGCD(out IAction? act)
     {
+        UpdateActionTracking();
+
+        if (HasHealingLockout)
+        {
+            act = null;
+            return false;
+        }
+
         if (ShouldDeferToRaise())
             return base.HealSingleGCD(out act);
 
@@ -509,46 +653,52 @@ private bool ShouldUseSummonEos()
         return base.HealSingleGCD(out act);
     }
 
-    // Area shielding / defensive GCD choices.
-    [RotationDesc(ActionID.SuccorPvE, ActionID.ConcitationPvE, ActionID.AccessionPvE)]
+    [RotationDesc(ActionID.AccessionPvE)]
     protected override bool DefenseAreaGCD(out IAction? act)
     {
+        UpdateActionTracking();
+
+        if (HasHealingLockout)
+        {
+            act = null;
+            return false;
+        }
+
         if (ShouldDeferToRaise())
             return base.DefenseAreaGCD(out act);
 
         if (AccessionPvE.CanUse(out act, skipCastingCheck: true))
             return true;
 
-        if (ConcitationPvE.CanUse(out act))
-            return true;
-
         return base.DefenseAreaGCD(out act);
     }
 
-    // Raise logic.
     [RotationDesc(ActionID.ResurrectionPvE)]
     protected override bool RaiseGCD(out IAction? act)
     {
+        UpdateActionTracking();
+
         if (ResurrectionPvE.CanUse(out act))
             return true;
 
         return base.RaiseGCD(out act);
     }
 
-    // Main damage / filler GCD logic.
     protected override bool GeneralGCD(out IAction? act)
     {
+        UpdateActionTracking();
+
         if (ShouldDeferToRaise())
             return base.GeneralGCD(out act);
 
         if (CurrentMp < EmergencyHealingMPThreshold)
             return base.GeneralGCD(out act);
 
-         if (ShouldUseSummonEos() &&
-    SummonEosPvE.CanUse(out act))
-{
-    return true;
-}
+        if (ShouldUseSummonEos() &&
+            SummonEosPvE.CanUse(out act))
+        {
+            return true;
+        }
 
         if (ShouldUseDeploymentAdloquium() &&
             AdloquiumPvE.CanUse(out act, targetOverride: TargetType.Self))
@@ -562,6 +712,7 @@ private bool ShouldUseSummonEos()
 
         if (InCombat &&
             InFirst20sAfterChainStratagem &&
+            CurrentTargetInLast5sOfChainStratagem &&
             nearbyHostiles < GetAoWBreakevenTargets() &&
             CurrentTargetBioMissingOrEnding(ChainStratagemDotRefreshSeconds) &&
             CurrentTarget != null &&
@@ -669,11 +820,14 @@ private bool ShouldUseSummonEos()
                 return true;
         }
 
-        if (MovingTime > RuinIIMovementThresholdSeconds &&
-            RuinIiPvE.CanUse(out act))
-        {
-            return true;
-        }
+        if (HasSufficientMovement &&
+    !HasSwift &&
+    (!UseSwiftcastForMovement || !SwiftcastPvE.CanUse(out _)) &&
+    !IsSwiftcastPostActionLockActive &&
+    RuinIiPvE.CanUse(out act))
+{
+    return true;
+}
 
         return base.GeneralGCD(out act);
     }
@@ -682,7 +836,6 @@ private bool ShouldUseSummonEos()
 
     #region Decision Helpers
 
-    // Determines whether Recitation should be used to force a crit shield for Deployment Tactics.
     private bool ShouldUseRecitationForDeploymentTactics()
     {
         if (!OnlyUseDeploymentTacticsOnCriticalShields ||
@@ -703,7 +856,6 @@ private bool ShouldUseSummonEos()
         };
     }
 
-    // Determines whether to cast Adloquium in preparation for Deployment Tactics.
     private bool ShouldUseDeploymentAdloquium()
     {
         if (!DeploymentTacticsPvE.Cooldown.WillHaveOneChargeGCD(2) || HasGalvanize)
@@ -725,13 +877,11 @@ private bool ShouldUseSummonEos()
         };
     }
 
-    // Defers non-raise GCDs when raise logic is active under Swiftcast rules.
     private bool ShouldDeferToRaise() =>
         (HasSwift || IsLastAction(ActionID.SwiftcastPvE)) &&
         SwiftLogic &&
         MergedStatus.HasFlag(AutoStatus.Raise);
 
-    // Shared burst support logic used by both emergency and attack oGCD paths.
     private bool TryUseBurstSupportActions(out IAction? act)
     {
         act = null;
@@ -745,13 +895,29 @@ private bool ShouldUseSummonEos()
             return true;
         }
 
-        if (!HasAetherflow && DissipationPvE.CanUse(out act))
-            return true;
+        if (!HasAetherflow)
+        {
+            if (PrioritizeAetherflowOverDissipation)
+            {
+                if (AetherflowPvE.CanUse(out act))
+                    return true;
+
+                if (DissipationPvE.CanUse(out act))
+                    return true;
+            }
+            else
+            {
+                if (DissipationPvE.CanUse(out act))
+                    return true;
+
+                if (AetherflowPvE.CanUse(out act))
+                    return true;
+            }
+        }
 
         return false;
     }
 
-    // Shared Baneful Impaction conditions.
     private bool ShouldUseBanefulImpaction(int closeTargetCount, out IAction? act)
     {
         act = null;
@@ -769,7 +935,6 @@ private bool ShouldUseSummonEos()
 
     #region Party / Target Helpers
 
-    // Counts nearby party members worth covering with Emergency Tactics Succor.
     private int CountEmergencyTacticsTargets()
     {
         int count = 0;
@@ -790,7 +955,6 @@ private bool ShouldUseSummonEos()
         return count;
     }
 
-    // Checks whether Fey Union should be cancelled because the target is healthy enough.
     private bool ShouldRemoveAetherpact()
     {
         foreach (IBattleChara member in PartyMembers)
@@ -805,7 +969,6 @@ private bool ShouldUseSummonEos()
         return false;
     }
 
-    // Checks whether any party member has a given self-owned status.
     private bool HasPartyMemberWithOwnStatus(StatusID statusId)
     {
         foreach (IBattleChara member in PartyMembers)
@@ -817,7 +980,6 @@ private bool ShouldUseSummonEos()
         return false;
     }
 
-    // Lockout checks for single-target healing oGCDs.
     private bool HasSingleAbilityLockoutStatus(IBattleChara? target)
     {
         if (target == null)
@@ -834,7 +996,6 @@ private bool ShouldUseSummonEos()
         }
     }
 
-    // Lockout checks for single-target mitigation oGCDs.
     private bool HasDefenseSingleLockoutStatus(IBattleChara? target)
     {
         if (target == null)
@@ -853,7 +1014,6 @@ private bool ShouldUseSummonEos()
         }
     }
 
-    // Validates whether a single-target heal oGCD is allowed on this target.
     private bool CanUseSingleAbilityTarget(IBattleChara? target)
     {
         if (target == null || HasSingleAbilityLockoutStatus(target))
@@ -862,7 +1022,6 @@ private bool ShouldUseSummonEos()
         return ExcogTargetIsTank(target) || PartyMembersAverHP > SingleAbilityNonTankPartyAverageGate;
     }
 
-    // Checks whether the given target is one of the party tanks.
     private bool ExcogTargetIsTank(IBattleChara? target)
     {
         if (target == null)
@@ -881,7 +1040,6 @@ private bool ShouldUseSummonEos()
 
     #region Damage / DoT Helpers
 
-    // Calculates the target count where Art of War becomes preferable to DoTing.
     private int GetAoWBreakevenTargets()
     {
         if (!ArtOfWarPvE.EnoughLevel)
@@ -896,7 +1054,6 @@ private bool ShouldUseSummonEos()
         return 5 - DotOffsetMobs;
     }
 
-    // Very rough target HP estimate needed to survive long enough for DoT value.
     private float CalculateExpectedHpToLive12Seconds()
     {
         if (Player is null || !EnableBallparkTtkEstimator)
@@ -909,7 +1066,6 @@ private bool ShouldUseSummonEos()
         return BallparkDamagePercent * Player.MaxHp * partyMemberCount * 12;
     }
 
-    // Checks whether the currently relevant Bio effect is missing or expiring soon.
     private bool CurrentTargetBioMissingOrEnding(float remainingSeconds)
     {
         if (CurrentTarget == null)
@@ -927,7 +1083,6 @@ private bool ShouldUseSummonEos()
               CurrentTarget.WillStatusEnd(remainingSeconds, true, StatusID.Bio)));
     }
 
-    // Uses the highest-level currently available Bio spell.
     private bool CanUseCurrentBio(out IAction? act, bool skipStatusProvideCheck = false)
     {
         if (BiolysisPvE.EnoughLevel &&
@@ -956,7 +1111,6 @@ private bool ShouldUseSummonEos()
 
     #region Timestamp Helpers
 
-    // Stores timing windows used by burst/deployment follow-up logic.
     private void StampChainStratagemUse() => _chainStratagemUsedAtMs = Environment.TickCount64;
 
     private void StampAdloquiumUse() => _adloquiumUsedAtMs = Environment.TickCount64;
