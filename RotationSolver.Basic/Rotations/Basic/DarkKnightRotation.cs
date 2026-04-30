@@ -110,6 +110,18 @@ public partial class DarkKnightRotation
         }
     }
 
+    /// <summary>
+    /// Holds the remaining amount of Delirium stacks (legacy Delirium_1972 status)
+    /// </summary>
+    public static byte LowDeliriumStacks
+    {
+        get
+        {
+            byte stacks = StatusHelper.PlayerStatusStack(true, StatusID.Delirium_1972);
+            return stacks == byte.MaxValue ? (byte)3 : stacks;
+        }
+    }
+
     /// <inheritdoc/>
     public override void DisplayBaseStatus()
     {
@@ -134,7 +146,6 @@ public partial class DarkKnightRotation
     /// 
     /// </summary>
     protected static bool HasDarkArtsPvP => Player != null && StatusHelper.PlayerHasStatus(true, StatusID.DarkArts_3034);
-    #endregion
 
     #region PvE Actions Unassignable
 
@@ -165,27 +176,6 @@ public partial class DarkKnightRotation
     public static bool ImpalementReady => Service.GetAdjustedActionId(ActionID.QuietusPvE) == ActionID.ImpalementPvE;
     #endregion
 
-    #region Draw Debug
-
-    /// <inheritdoc/>
-    public override void DisplayBaseStatus()
-    {
-        ImGui.Text("BloodWeaponStacks: " + BloodWeaponStacks.ToString());
-        ImGui.Text("DeliriumStacks: " + DeliriumStacks.ToString());
-        ImGui.Text("LowDeliriumStacks: " + LowDeliriumStacks.ToString());
-        ImGui.Text("ShadowTime: " + ShadowTime.ToString());
-        ImGui.Text("DarkSideTime: " + DarkSideTime.ToString());
-        ImGui.Text("HasDarkArts: " + HasDarkArts.ToString());
-        ImGui.Text("Blood: " + Blood.ToString());
-        ImGui.Text("HasDelirium: " + HasDelirium.ToString());
-        ImGui.Text("ScarletDeliriumReady: " + ScarletDeliriumReady.ToString());
-        ImGui.Text("ComeuppanceReady: " + ComeuppanceReady.ToString());
-        ImGui.Text("TorcleaverReady: " + TorcleaverReady.ToString());
-        ImGui.Text("ImpalementReady: " + ImpalementReady.ToString());
-        ImGui.Text("DeliriumComboStep: " + DeliriumComboStep.ToString());
-    }
-    #endregion
-
     #region PvE Actions
     static partial void ModifyHardSlashPvE(ref ActionSetting setting)
     {
@@ -203,11 +193,6 @@ public partial class DarkKnightRotation
         {
             AoeCount = 2,
         };
-    }
-
-    static partial void ModifyGritPvE(ref ActionSetting setting)
-    {
-        setting.IsFriendly = true;
     }
 
     static partial void ModifyReleaseGritPvE(ref ActionSetting setting)
