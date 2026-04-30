@@ -10,28 +10,7 @@ namespace RotationSolver.ExtraRotations.Magical;
 public sealed class ChurinSMN : SummonerRotation
 {
     #region Properties
-    private bool CanBurst => MergedStatus.HasFlag(AutoStatus.Burst) && SearingLightPvE.IsEnabled;
-    private bool InBigSummon => !SummonBahamutPvE.EnoughLevel || InBahamut || InPhoenix || InSolarBahamut;
-    private static bool HasFurtherRuin => StatusHelper.PlayerHasStatus(true, StatusID.FurtherRuin_2701);
-    private static bool HasCrimsonStrike => StatusHelper.PlayerHasStatus(true, StatusID.CrimsonStrikeReady_4403);
-    private static bool HasRadiantAegis => StatusHelper.PlayerHasStatus(true, StatusID.RadiantAegis);
-    private static bool HasGarudaFavor => StatusHelper.PlayerHasStatus(true, StatusID.GarudasFavor);
-    private static bool HasIfritFavor => StatusHelper.PlayerHasStatus(true, StatusID.IfritsFavor);
-    private static bool HasTitanFavor => StatusHelper.PlayerHasStatus(true, StatusID.TitansFavor);
-    private static bool NoPrimalReady => !IsIfritReady && !IsGarudaReady && !IsTitanReady;
-    private static bool AnyPrimalReady => IsIfritReady || IsGarudaReady || IsTitanReady;
-    private static bool HasAnyFavor => HasGarudaFavor || HasIfritFavor || HasTitanFavor;
-    private static bool HasAnyAttunement => InGaruda || InIfrit || InTitan;
-    private static bool NoAttunement => !InIfrit && !InGaruda && !InTitan;
-    private static bool InSolar => DataCenter.PlayerSyncedLevel() == 100 ? !InBahamut && !InPhoenix && InSolarBahamut : InBahamut && !InPhoenix;
-    private bool BahamutBurst => ((SummonSolarBahamutPvE.EnoughLevel && InSolarBahamut) 
-    || (SummonSolarBahamutPvE.EnoughLevel && (InBahamut || InPhoenix)) 
-    || (!SummonSolarBahamutPvE.EnoughLevel && InBahamut) 
-    || !SummonBahamutPvE.EnoughLevel) && CanBurst;
     private static SMNGauge SummonerGauge => Svc.Gauges.Get<SMNGauge>();
-    private static double LateWeaveWindow => (float)(WeaponTotal * 0.45);
-    private static bool CanWeave => WeaponRemain > AnimationLock;
-    private static bool CanLateWeave => WeaponRemain < LateWeaveWindow && CanWeave;
     private static float SummonTimer => SummonerGauge.SummonTimerRemaining / 1000f;
     #endregion
 
@@ -160,7 +139,7 @@ public sealed class ChurinSMN : SummonerRotation
 
         // Attunement Status
         ImGui.Text("=== Attunement Status ===");
-        ImGui.Text($"Current Attunement: {(InIfrit ? "Ifrit" : InGaruda ? "Garuda" : InTitan ? "Titan" : "None")}");
+        ImGui.Text($"Current Attunement: {(RubyAttunement ? "Ruby" : TopazAttunement ? "Topaz" : EmeraldAttunement ? "Emerald" : "None")}");
         ImGui.Text($"Attunement Count: {AttunementCount}");
         ImGui.NewLine();
         ImGui.Text("Attunement Order:");
@@ -625,7 +604,7 @@ public sealed class ChurinSMN : SummonerRotation
                 return false;
             }
 
-            if (InIfrit)
+            if (RubyAttunement)
             {
                 return RubyRitePvE.CanUse(out act)
                 || RubyRuinIiiPvE.CanUse(out act)
@@ -633,7 +612,7 @@ public sealed class ChurinSMN : SummonerRotation
                 || RubyRuinPvE.CanUse(out act);
             }
 
-            if (InGaruda)
+            if (EmeraldAttunement)
             {
                 return EmeraldRitePvE.CanUse(out act)
                 || EmeraldRuinIiiPvE.CanUse(out act)
@@ -641,7 +620,7 @@ public sealed class ChurinSMN : SummonerRotation
                 || EmeraldRuinPvE.CanUse(out act);
             }
 
-            if (InTitan)
+            if (TopazAttunement)
             {
                 return TopazRitePvE.CanUse(out act)
                 || TopazRuinIiiPvE.CanUse(out act)
@@ -659,19 +638,19 @@ public sealed class ChurinSMN : SummonerRotation
                 return false;
             }
 
-            if (InIfrit)
+            if (RubyAttunement)
             {
                 return RubyCatastrophePvE.CanUse(out act)
                 || RubyDisasterPvE.CanUse(out act)
                 || RubyOutburstPvE.CanUse(out act);
             }
-            if (InGaruda)
+            if (EmeraldAttunement)
             {
                 return EmeraldCatastrophePvE.CanUse(out act)
                 || EmeraldDisasterPvE.CanUse(out act)
                 || EmeraldOutburstPvE.CanUse(out act);
             }
-            if (InTitan)
+            if (TopazAttunement)
             {
                 return TopazCatastrophePvE.CanUse(out act)
                 || TopazDisasterPvE.CanUse(out act)
@@ -696,7 +675,7 @@ public sealed class ChurinSMN : SummonerRotation
     private bool TitanAttunement(out IAction? act)
         {
             act = null;
-            if (InIfrit || InGaruda || HasGarudaFavor || HasIfritFavor || !HasTitanFavor && AttunementCount < 1)
+            if (RubyAttunement || EmeraldAttunement || HasGarudaFavor || HasIfritFavor || (!HasTitanFavor && AttunementCount < 1))
             {
                 return false;
             }
@@ -723,7 +702,7 @@ public sealed class ChurinSMN : SummonerRotation
     private bool GarudaAttunement(out IAction? act)
         {
             act = null;
-            if (InTitan || InIfrit || HasIfritFavor || HasTitanFavor || (!HasGarudaFavor && AttunementCount < 1))
+            if (TopazAttunement || RubyAttunement || HasIfritFavor || HasTitanFavor || (!HasGarudaFavor && AttunementCount < 1))
             {
                 return false;
             }
@@ -806,7 +785,7 @@ public sealed class ChurinSMN : SummonerRotation
         {
             act = null;
 
-            if (InTitan || InGaruda || HasGarudaFavor || HasTitanFavor || (!HasIfritFavor && !HasCrimsonStrike && AttunementCount < 1))
+            if (TopazAttunement || EmeraldAttunement || HasGarudaFavor || HasTitanFavor || (!HasIfritFavor && !HasCrimsonStrike && AttunementCount < 1))
             {
                 return false;
             }
@@ -1058,17 +1037,17 @@ public sealed class ChurinSMN : SummonerRotation
 
             if (nextGCD.IsTheSameTo(false, RubyRitePvE))
             {
-                return AddSwiftcastOnRuby && ElementalMasteryTrait.EnoughLevel && !InGaruda;
+                return AddSwiftcastOnRuby && ElementalMasteryTrait.EnoughLevel && !RubyAttunement;
             }
 
             if (nextGCD.IsTheSameTo(false, SlipstreamPvE))
             {
-                return AddSwiftcastOnGaruda && ElementalMasteryTrait.EnoughLevel && InGaruda;
+                return AddSwiftcastOnGaruda && ElementalMasteryTrait.EnoughLevel && EmeraldAttunement;
             }
 
             if (nextGCD.IsTheSameTo(false, RubyRitePvE, RubyCatastrophePvE) && IsMoving)
             {
-                return !HasFurtherRuin && InIfrit && (!StatusHelper.PlayerHasStatus(true, StatusID.IfritsFavor) || !AddCrimsonCyclone && CrimsonCyclonePvE.Target.Target.DistanceToPlayer() > CrimsonCycloneDistance);
+                return !HasFurtherRuin && RubyAttunement && (!StatusHelper.PlayerHasStatus(true, StatusID.IfritsFavor) || !AddCrimsonCyclone && CrimsonCyclonePvE.Target.Target.DistanceToPlayer() > CrimsonCycloneDistance);
             }
         }
         return false;
@@ -1358,7 +1337,7 @@ public sealed class ChurinSMN : SummonerRotation
     {
 		var isCastingRubyRite = Player != null && Player.CastActionId == (uint)ActionID.RubyRitePvE;
 		var castAlmostFinished = Player != null && IsCasting && isCastingRubyRite && WeaponRemain < 1f;
-		var attunementUsedUp = (HasIfritFavor && !InIfrit) || (Player != null && IsLastGCD(ActionID.RubyRitePvE) && castAlmostFinished && AttunementCount <= 1);
+		var attunementUsedUp = (HasIfritFavor && !RubyAttunement) || (Player != null && IsLastGCD(ActionID.RubyRitePvE) && castAlmostFinished && AttunementCount <= 1);
 		var hasOneAttunementLeft = (castAlmostFinished && AttunementCount <= 2) || (Player != null && IsLastGCD(ActionID.RubyRitePvE) && AttunementCount == 1);
 		var crimsonCycloneTargetInRange = CrimsonCyclonePvE.Target.Target.DistanceToPlayer() <= CrimsonCycloneDistance;
 		var defaultCycloneCondition = (CrimsonCycloneTargetTooFar || crimsonCycloneTargetInRange) && attunementUsedUp;
@@ -1372,28 +1351,28 @@ public sealed class ChurinSMN : SummonerRotation
         switch (InBigSummonCount)
         {
             case <= 1 or 3:
-                SetRuin3Flag(InGaruda && (!HasGarudaFavor || IsLastGCD(ActionID.SlipstreamPvE)) && Ruin3Count < 1);
+                SetRuin3Flag(EmeraldAttunement && (!HasGarudaFavor || IsLastGCD(ActionID.SlipstreamPvE)) && Ruin3Count < 1);
                 SetIfritAttunementFlags(true, false, false, defaultCycloneCondition);
                 break;
             case 4:
                 SetIfritAttunementFlags(true, false, false, defaultCycloneCondition);
-                SetRuin3Flag(!IsIfritReady && !InIfrit && IsLastGCD(ActionID.CrimsonStrikePvE) && IsTitanReady && IsGarudaReady && Ruin3Count < 1);
-                SetRuin4Flag(InGaruda && !HasGarudaFavor && HasFurtherRuin);
+                SetRuin3Flag(!IsIfritReady && !RubyAttunement && IsLastGCD(ActionID.CrimsonStrikePvE) && IsTitanReady && IsGarudaReady && Ruin3Count < 1);
+                SetRuin4Flag(EmeraldAttunement && !HasGarudaFavor && HasFurtherRuin);
                 break;
             case 5:
                 SetIfritAttunementFlags(false, true, false, hasOneAttunementLeft && (CrimsonCycloneTargetTooFar || crimsonCycloneTargetInRange));
-                SetSkipAttunementFlag((InIfrit &&  !HasIfritFavor && !HasCrimsonStrike && AttunementCount == 1 && IsGarudaReady && IsLastGCD(ActionID.CrimsonStrikePvE)) || (InGaruda && !HasGarudaFavor && AttunementCount < 3 && IsTitanReady));
+                SetSkipAttunementFlag((RubyAttunement &&  !HasIfritFavor && !HasCrimsonStrike && AttunementCount == 1 && IsGarudaReady && IsLastGCD(ActionID.CrimsonStrikePvE)) || (EmeraldAttunement && !HasGarudaFavor && AttunementCount < 3 && IsTitanReady));
                 break;
             case 6:
                 SetRuin3Flag(attunementUsedUp && Ruin3Count < 1);
                 SetIfritAttunementFlags(true, false, false, defaultCycloneCondition && Ruin3Count == 1);
                 break;   
             case 8:
-                SetRuin3Flag(!InIfrit && !HasCrimsonStrike && !HasIfritFavor && IsLastGCD(ActionID.CrimsonStrikePvE) && !IsIfritReady && IsGarudaReady && IsTitanReady && Ruin3Count < 1);
+                SetRuin3Flag(!RubyAttunement && !HasCrimsonStrike && !HasIfritFavor && IsLastGCD(ActionID.CrimsonStrikePvE) && !IsIfritReady && IsGarudaReady && IsTitanReady && Ruin3Count < 1);
                 break;
             case 9:
                 SetIfritAttunementFlags(true, true, false, hasOneAttunementLeft && (CrimsonCycloneTargetTooFar || crimsonCycloneTargetInRange));
-                if (InGaruda)
+                if (EmeraldAttunement)
                 {
                     if (!HasGarudaFavor && AttunementCount > 3)
                     {
@@ -1405,15 +1384,15 @@ public sealed class ChurinSMN : SummonerRotation
             case 10:
                 SetIfritAttunementFlags(true, true, false, hasOneAttunementLeft && (CrimsonCycloneTargetTooFar || crimsonCycloneTargetInRange));
                 SetRuin3Flag(attunementUsedUp && Ruin3Count < 1 && IsTitanReady);
-                SetRuin4Flag(InGaruda && !HasGarudaFavor && AttunementCount > 2 && HasFurtherRuin);
+                SetRuin4Flag(EmeraldAttunement && !HasGarudaFavor && AttunementCount > 2 && HasFurtherRuin);
                 break;
             case 11:
                 SetIfritAttunementFlags(true, false, false, defaultCycloneCondition && Ruin3Count == 1);
                 SetRuin3Flag(attunementUsedUp && Ruin3Count < 1);
-                SetRuin4Flag(InGaruda && !HasGarudaFavor && AttunementCount > 3 && HasFurtherRuin);
+                SetRuin4Flag(EmeraldAttunement && !HasGarudaFavor && AttunementCount > 3 && HasFurtherRuin);
                 break;
             case 12:
-                SetRuin3Flag(InGaruda && !HasGarudaFavor && AttunementCount > 3 && Ruin3Count < 1);
+                SetRuin3Flag(EmeraldAttunement && !HasGarudaFavor && AttunementCount > 3 && Ruin3Count < 1);
                 SetIfritAttunementFlags(true, false, true, CrimsonCycloneTargetTooFar || crimsonCycloneTargetInRange);
                 break;
             default:

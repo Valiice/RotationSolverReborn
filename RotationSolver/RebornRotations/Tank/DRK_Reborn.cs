@@ -2,21 +2,21 @@ using ECommons.DalamudServices;
 
 namespace RotationSolver.RebornRotations.Tank;
 
-[Rotation("Reborn", CombatType.PvE, GameVersion = "7.45")]
+[Rotation("Reborn", CombatType.PvE, GameVersion = "7.5")]
 [SourceCode(Path = "main/RebornRotations/Tank/DRK_Reborn.cs")]
 
 public sealed class DRK_Reborn : DarkKnightRotation
 {
-    #region Config Options
-    [RotationConfig(CombatType.PvE, Name = "Keep at least 3000 MP")]
-    public bool TheBlackestNight { get; set; } = true;
+	#region Config Options
+	[RotationConfig(CombatType.PvE, Name = "Keep at least 3000 MP")]
+	public bool TheBlackestNight { get; set; } = true;
 
-    [RotationConfig(CombatType.PvE, Name = "Use The Blackest Night on lowest HP party member during AOE scenarios")]
-    public bool BlackLantern { get; set; } = false;
+	[RotationConfig(CombatType.PvE, Name = "Use The Blackest Night on lowest HP party member during AOE scenarios")]
+	public bool BlackLantern { get; set; } = false;
 
-    [Range(0, 1, ConfigUnitType.Percent)]
-    [RotationConfig(CombatType.PvE, Name = "Target health threshold needed to use Blackest Night with above option", Parent = nameof(BlackLantern))]
-    private float BlackLanternRatio { get; set; } = 0.5f;
+	[Range(0, 1, ConfigUnitType.Percent)]
+	[RotationConfig(CombatType.PvE, Name = "Target health threshold needed to use Blackest Night with above option", Parent = nameof(BlackLantern))]
+	private float BlackLanternRatio { get; set; } = 0.5f;
 
 	[RotationConfig(CombatType.PvE, Name = "Use Oblation on lowest HP party member during AOE scenarios")]
 	public bool OblationLantern { get; set; } = false;
@@ -85,19 +85,19 @@ public sealed class DRK_Reborn : DarkKnightRotation
             return act;
         }
 
-        if (remainTime <= 3 && TheBlackestNightPvE.CanUse(out act))
-        {
-            return act;
-        }
+		if (remainTime <= 3 && TheBlackestNightPvE.CanUse(out act))
+		{
+			return act;
+		}
 
         if (remainTime < 0.54f && UnmendPvE.CanUse(out act))
         {
             return act;
         }
 
-        return base.CountDownAction(remainTime);
-    }
-    #endregion
+		return base.CountDownAction(remainTime);
+	}
+	#endregion
 
     #region oGCD Logic
     [RotationDesc(ActionID.ShadowstridePvE)]
@@ -128,62 +128,62 @@ public sealed class DRK_Reborn : DarkKnightRotation
             return true;
         }
 
-        if (!InTwoMIsBurst && ReprisalPvE.CanUse(out act, skipAoeCheck: true))
-        {
-            return true;
-        }
+		if (!InTwoMIsBurst && ReprisalPvE.CanUse(out act, skipAoeCheck: true))
+		{
+			return true;
+		}
 
 		return base.DefenseAreaAbility(nextGCD, out act);
-    }
+	}
 
-    [RotationDesc(ActionID.OblationPvE, ActionID.TheBlackestNightPvE, ActionID.DarkMindPvE, ActionID.ShadowWallPvE, ActionID.ShadowedVigilPvE, ActionID.RampartPvE, ActionID.ReprisalPvE)]
-    protected override bool DefenseSingleAbility(IAction nextGCD, out IAction? act)
-    {
-        //10
-        if (OblationPvE.CanUse(out act, usedUp: true, skipStatusProvideCheck: false, targetOverride: TargetType.Self))
-        {
-            return true;
-        }
+	[RotationDesc(ActionID.OblationPvE, ActionID.TheBlackestNightPvE, ActionID.DarkMindPvE, ActionID.ShadowWallPvE, ActionID.ShadowedVigilPvE, ActionID.RampartPvE, ActionID.ReprisalPvE)]
+	protected override bool DefenseSingleAbility(IAction nextGCD, out IAction? act)
+	{
+		//10
+		if (OblationPvE.CanUse(out act, usedUp: true, skipStatusProvideCheck: false, targetOverride: TargetType.Self))
+		{
+			return true;
+		}
 
-        if (TheBlackestNightPvE.CanUse(out act, targetOverride: TargetType.Self))
-        {
-            return true;
-        }
-        //20
-        if (DarkMindPvE.CanUse(out act))
-        {
-            return true;
-        }
+		if (TheBlackestNightPvE.CanUse(out act, targetOverride: TargetType.Self))
+		{
+			return true;
+		}
+		//20
+		if (DarkMindPvE.CanUse(out act))
+		{
+			return true;
+		}
 
-        //30
-        if ((!RampartPvE.Cooldown.IsCoolingDown || RampartPvE.Cooldown.ElapsedAfter(60)) && ShadowWallPvE.CanUse(out act))
-        {
-            return true;
-        }
+		//30
+		if ((!RampartPvE.Cooldown.IsCoolingDown || RampartPvE.Cooldown.ElapsedAfter(60)) && ShadowWallPvE.CanUse(out act))
+		{
+			return true;
+		}
 
-        if ((!RampartPvE.Cooldown.IsCoolingDown || RampartPvE.Cooldown.ElapsedAfter(60)) && ShadowedVigilPvE.CanUse(out act))
-        {
-            return true;
-        }
+		if ((!RampartPvE.Cooldown.IsCoolingDown || RampartPvE.Cooldown.ElapsedAfter(60)) && ShadowedVigilPvE.CanUse(out act))
+		{
+			return true;
+		}
 
-        //20
-        if (ShadowWallPvE.Cooldown.IsCoolingDown && ShadowWallPvE.Cooldown.ElapsedAfter(60) && RampartPvE.CanUse(out act))
-        {
-            return true;
-        }
+		//20
+		if (ShadowWallPvE.Cooldown.IsCoolingDown && ShadowWallPvE.Cooldown.ElapsedAfter(60) && RampartPvE.CanUse(out act))
+		{
+			return true;
+		}
 
-        if (ShadowedVigilPvE.Cooldown.IsCoolingDown && ShadowedVigilPvE.Cooldown.ElapsedAfter(60) && RampartPvE.CanUse(out act))
-        {
-            return true;
-        }
+		if (ShadowedVigilPvE.Cooldown.IsCoolingDown && ShadowedVigilPvE.Cooldown.ElapsedAfter(60) && RampartPvE.CanUse(out act))
+		{
+			return true;
+		}
 
-        if (ReprisalPvE.CanUse(out act))
-        {
-            return true;
-        }
+		if (ReprisalPvE.CanUse(out act))
+		{
+			return true;
+		}
 
-        return base.DefenseSingleAbility(nextGCD, out act);
-    }
+		return base.DefenseSingleAbility(nextGCD, out act);
+	}
 
     protected override bool GeneralAbility(IAction nextGCD, out IAction? act)
     {
@@ -211,11 +211,11 @@ public sealed class DRK_Reborn : DarkKnightRotation
                 return true;
             }
 
-            if (EdgeOfDarknessPvE.CanUse(out act))
-            {
-                return true;
-            }
-        }
+			if (EdgeOfDarknessPvE.CanUse(out act))
+			{
+				return true;
+			}
+		}
 
         // Opener: fire Living Shadow after GCD 1 (before Delirium is used — it has a cast delay so it needs to land early)
         if (CombatElapsedLessGCD(3) && InCombat && LivingShadowPvE.CanUse(out act, skipAoeCheck: true))
@@ -304,10 +304,10 @@ public sealed class DRK_Reborn : DarkKnightRotation
             return true;
         }
 
-        if (CarveAndSpitPvE.CanUse(out act))
-        {
-            return true;
-        }
+		if (CarveAndSpitPvE.CanUse(out act))
+		{
+			return true;
+		}
 
         if (SaltAndDarknessPvE.CanUse(out act))
         {
@@ -326,13 +326,13 @@ public sealed class DRK_Reborn : DarkKnightRotation
     }
     #endregion
 
-    #region GCD Logic
-    protected override bool GeneralGCD(out IAction? act)
-    {
-        if (DisesteemPvE.CanUse(out act, skipComboCheck: true, skipAoeCheck: true))
-        {
-            return true;
-        }
+	#region GCD Logic
+	protected override bool GeneralGCD(out IAction? act)
+	{
+		if (DisesteemPvE.CanUse(out act, skipComboCheck: true, skipAoeCheck: true))
+		{
+			return true;
+		}
 
         //AOE Delirium
         if (NumberOfHostilesInRange >= AOECount)
@@ -348,21 +348,21 @@ public sealed class DRK_Reborn : DarkKnightRotation
             }
         }
 
-        // Single Target Delirium
-        if (TorcleaverPvE.CanUse(out act, skipComboCheck: true))
-        {
-            return true;
-        }
+		// Single Target Delirium
+		if (TorcleaverPvE.CanUse(out act, skipComboCheck: true))
+		{
+			return true;
+		}
 
-        if (ComeuppancePvE.CanUse(out act, skipComboCheck: true))
-        {
-            return true;
-        }
+		if (ComeuppancePvE.CanUse(out act, skipComboCheck: true))
+		{
+			return true;
+		}
 
-        if (ScarletDeliriumPvE.CanUse(out act, skipComboCheck: true))
-        {
-            return true;
-        }
+		if (ScarletDeliriumPvE.CanUse(out act, skipComboCheck: true))
+		{
+			return true;
+		}
 
         if (UseBlood && BloodspillerPvE.CanUse(out act, skipComboCheck: true))
         {
@@ -383,16 +383,16 @@ public sealed class DRK_Reborn : DarkKnightRotation
             }
         }
 
-        //Single Target
-        if (!HasDelirium && SouleaterPvE.CanUse(out act))
-        {
-            return true;
-        }
+		//Single Target
+		if (!HasDelirium && SouleaterPvE.CanUse(out act))
+		{
+			return true;
+		}
 
-        if (!HasDelirium && SyphonStrikePvE.CanUse(out act))
-        {
-            return true;
-        }
+		if (!HasDelirium && SyphonStrikePvE.CanUse(out act))
+		{
+			return true;
+		}
 
         if (!HasDelirium && HardSlashPvE.CanUse(out act))
         {
@@ -409,13 +409,13 @@ public sealed class DRK_Reborn : DarkKnightRotation
             return false;
         }
 
-        return base.GeneralGCD(out act);
-    }
-    #endregion
+		return base.GeneralGCD(out act);
+	}
+	#endregion
 
-    #region Extra Methods
-    // Indicates whether the Dark Knight can heal using a single ability.
-    public override bool CanHealSingleAbility => false;
+	#region Extra Methods
+	// Indicates whether the Dark Knight can heal using a single ability.
+	public override bool CanHealSingleAbility => false;
 
     private unsafe float ContentTimeLeft
     {
@@ -446,10 +446,10 @@ public sealed class DRK_Reborn : DarkKnightRotation
                 return true;
             }
 
-            if (StatusHelper.PlayerHasStatus(true, StatusID.Delirium_3836))
-            {
-                return true;
-            }
+			if (StatusHelper.PlayerHasStatus(true, StatusID.Delirium_3836))
+			{
+				return true;
+			}
 
             if (StatusHelper.PlayerHasStatus(true, StatusID.Delirium_1972) && LivingShadowPvE.Cooldown.IsCoolingDown)
             {
@@ -464,20 +464,20 @@ public sealed class DRK_Reborn : DarkKnightRotation
     // Determines if currently in a burst phase based on cooldowns of key abilities.
     private bool InTwoMIsBurst => DeliriumPvE.Cooldown.IsCoolingDown && ((LivingShadowPvE.Cooldown.IsCoolingDown && !LivingShadowPvE.Cooldown.ElapsedAfter(20)) || !LivingShadowPvE.EnoughLevel);
 
-    // Manages DarkSide ability based on several conditions.
-    private bool CheckDarkSide
-    {
-        get
-        {
-            if (DarkSideEndAfterGCD(3))
-            {
-                return true;
-            }
+	// Manages DarkSide ability based on several conditions.
+	private bool CheckDarkSide
+	{
+		get
+		{
+			if (DarkSideEndAfterGCD(3))
+			{
+				return true;
+			}
 
-            if (CombatElapsedLess(3))
-            {
-                return false;
-            }
+			if (CombatElapsedLess(3))
+			{
+				return false;
+			}
 
             if (IsNearEncounterEnd || IsTargetLow) return true;
 
@@ -486,10 +486,10 @@ public sealed class DRK_Reborn : DarkKnightRotation
                 return true;
             }
 
-            if (InTwoMIsBurst && BloodWeaponPvE.Cooldown.IsCoolingDown && LivingShadowPvE.Cooldown.IsCoolingDown && SaltedEarthPvE.Cooldown.IsCoolingDown && ShadowbringerPvE.Cooldown.CurrentCharges == 0 && CarveAndSpitPvE.Cooldown.IsCoolingDown)
-            {
-                return true;
-            }
+			if (InTwoMIsBurst && BloodWeaponPvE.Cooldown.IsCoolingDown && LivingShadowPvE.Cooldown.IsCoolingDown && SaltedEarthPvE.Cooldown.IsCoolingDown && ShadowbringerPvE.Cooldown.CurrentCharges == 0 && CarveAndSpitPvE.Cooldown.IsCoolingDown)
+			{
+				return true;
+			}
 
             return (!TheBlackestNight || CurrentMp >= 6000) && CurrentMp >= 8500;
         }

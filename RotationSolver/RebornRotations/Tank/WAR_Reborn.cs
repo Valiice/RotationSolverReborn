@@ -5,21 +5,21 @@ using RotationSolver.Basic.Actions;
 
 namespace RotationSolver.RebornRotations.Tank;
 
-[Rotation("Reborn", CombatType.PvE, GameVersion = "7.45")]
+[Rotation("Reborn", CombatType.PvE, GameVersion = "7.5")]
 [SourceCode(Path = "main/RebornRotations/Tank/WAR_Reborn.cs")]
 
 public sealed class WAR_Reborn : WarriorRotation
 {
-    #region Config Options
-    [RotationConfig(CombatType.PvE, Name = "Only use Nascent Flash if Tank Stance is off")]
-    public bool NeverscentFlash { get; set; } = false;
+	#region Config Options
+	[RotationConfig(CombatType.PvE, Name = "Only use Nascent Flash if Tank Stance is off")]
+	public bool NeverscentFlash { get; set; } = false;
 
-    [RotationConfig(CombatType.PvE, Name = "Use Bloodwhetting/Raw intuition on single enemies")]
-    public bool SoloIntuition { get; set; } = false;
+	[RotationConfig(CombatType.PvE, Name = "Use Bloodwhetting/Raw intuition on single enemies")]
+	public bool SoloIntuition { get; set; } = false;
 
-    [Range(0, 1, ConfigUnitType.Percent)]
-    [RotationConfig(CombatType.PvE, Name = "Bloodwhetting/Raw intuition heal threshold")]
-    public float HealIntuition { get; set; } = 0.7f;
+	[Range(0, 1, ConfigUnitType.Percent)]
+	[RotationConfig(CombatType.PvE, Name = "Bloodwhetting/Raw intuition heal threshold")]
+	public float HealIntuition { get; set; } = 0.7f;
 
     [RotationConfig(CombatType.PvE, Name = "Use all available Onslaught stacks during burst while standing still")]
     public bool YEETBurst { get; set; } = true;
@@ -27,15 +27,15 @@ public sealed class WAR_Reborn : WarriorRotation
     [RotationConfig(CombatType.PvE, Name = "Use a stack of Onslaught when about to overcap (below 3 stacks) while standing still")]
     public bool YEETCooldown { get; set; } = true;
 
-    [RotationConfig(CombatType.PvE, Name = "Use Primal Rend while moving (Dangerous)")]
-    public bool YEET { get; set; } = false;
+	[RotationConfig(CombatType.PvE, Name = "Use Primal Rend while moving (Dangerous)")]
+	public bool YEET { get; set; } = false;
 
-    [RotationConfig(CombatType.PvE, Name = "Use Primal Rend while standing still outside of configured melee range (Dangerous)")]
-    public bool YEETStill { get; set; } = false;
+	[RotationConfig(CombatType.PvE, Name = "Use Primal Rend while standing still outside of configured melee range (Dangerous)")]
+	public bool YEETStill { get; set; } = false;
 
-    [Range(1, 20, ConfigUnitType.Yalms)]
-    [RotationConfig(CombatType.PvE, Name = "Max distance you can be from the boss for Primal Rend use (Danger, setting too high will get you killed)")]
-    public float PrimalRendDistance2 { get; set; } = 3.5f;
+	[Range(1, 20, ConfigUnitType.Yalms)]
+	[RotationConfig(CombatType.PvE, Name = "Max distance you can be from the boss for Primal Rend use (Danger, setting too high will get you killed)")]
+	public float PrimalRendDistance2 { get; set; } = 3.5f;
 
     [Range(0, 20, ConfigUnitType.Yalms)]
     [RotationConfig(CombatType.PvE, Name = "Min distance to use Tomahawk")]
@@ -53,13 +53,13 @@ public sealed class WAR_Reborn : WarriorRotation
     [RotationConfig(CombatType.PvE, Name = "Nascent Flash Heal Threshold")]
     public float FlashHeal { get; set; } = 0.6f;
 
-    [Range(0, 1, ConfigUnitType.Percent)]
-    [RotationConfig(CombatType.PvE, Name = "Thrill Of Battle Heal Threshold")]
-    public float ThrillOfBattleHeal { get; set; } = 0.6f;
+	[Range(0, 1, ConfigUnitType.Percent)]
+	[RotationConfig(CombatType.PvE, Name = "Thrill Of Battle Heal Threshold")]
+	public float ThrillOfBattleHeal { get; set; } = 0.6f;
 
-    [Range(0, 1, ConfigUnitType.Percent)]
-    [RotationConfig(CombatType.PvE, Name = "Equilibrium Heal Threshold")]
-    public float EquilibriumHeal { get; set; } = 0.6f;
+	[Range(0, 1, ConfigUnitType.Percent)]
+	[RotationConfig(CombatType.PvE, Name = "Equilibrium Heal Threshold")]
+	public float EquilibriumHeal { get; set; } = 0.6f;
 
     [RotationConfig(CombatType.PvE, Name = "Print overcap warnings to chat (debug)")]
     public bool DebugOvercapMessages { get; set; } = false;
@@ -83,16 +83,16 @@ public sealed class WAR_Reborn : WarriorRotation
 
     #endregion
 
-    #region Countdown Logic
-    protected override IAction? CountDownAction(float remainTime)
-    {
-        if (remainTime < 0.54f && TomahawkPvE.CanUse(out IAction? act))
-        {
-            return act;
-        }
-        return base.CountDownAction(remainTime);
-    }
-    #endregion
+	#region Countdown Logic
+	protected override IAction? CountDownAction(float remainTime)
+	{
+		if (remainTime < 0.54f && TomahawkPvE.CanUse(out IAction? act))
+		{
+			return act;
+		}
+		return base.CountDownAction(remainTime);
+	}
+	#endregion
 
     #region oGCD Logic
     protected override bool AttackAbility(IAction nextGCD, out IAction? act)
@@ -181,10 +181,10 @@ public sealed class WAR_Reborn : WarriorRotation
             return true;
         }
 
-        if (UpheavalPvE.CanUse(out act))
-        {
-            return true;
-        }
+		if (UpheavalPvE.CanUse(out act))
+		{
+			return true;
+		}
 
         // 6. ONSLAUGHT
         bool isBurstStatus = IsBurstStatus;
@@ -198,22 +198,22 @@ public sealed class WAR_Reborn : WarriorRotation
             return true;
         }
 
-        if (YEETCooldown && OnslaughtPvE.CanUse(out act, usedUp: true) &&
-           !IsMoving &&
-           !IsLastAction(false, OnslaughtPvE) &&
-           OnslaughtPvE.Cooldown.WillHaveXChargesGCD(OnslaughtMax, 1) &&
-            StatusHelper.PlayerHasStatus(true, StatusID.SurgingTempest))
-        {
-            return true;
-        }
+		if (YEETCooldown && OnslaughtPvE.CanUse(out act, usedUp: true) &&
+		   !IsMoving &&
+		   !IsLastAction(false, OnslaughtPvE) &&
+		   OnslaughtPvE.Cooldown.WillHaveXChargesGCD(OnslaughtMax, 1) &&
+			StatusHelper.PlayerHasStatus(true, StatusID.SurgingTempest))
+		{
+			return true;
+		}
 
-        if (MergedStatus.HasFlag(AutoStatus.MoveForward) && MoveForwardAbility(nextGCD, out act))
-        {
-            return true;
-        }
+		if (MergedStatus.HasFlag(AutoStatus.MoveForward) && MoveForwardAbility(nextGCD, out act))
+		{
+			return true;
+		}
 
-        return base.AttackAbility(nextGCD, out act);
-    }
+		return base.AttackAbility(nextGCD, out act);
+	}
 
     protected override bool GeneralAbility(IAction nextGCD, out IAction? act)
     {
@@ -236,52 +236,52 @@ public sealed class WAR_Reborn : WarriorRotation
             }
         }
 
-        if (StatusHelper.PlayerHasStatus(true, StatusID.PrimalRendReady) && InCombat && UseBurstMedicine(out act))
-        {
-            return true;
-        }
-        return base.GeneralAbility(nextGCD, out act);
-    }
+		if (StatusHelper.PlayerHasStatus(true, StatusID.PrimalRendReady) && InCombat && UseBurstMedicine(out act))
+		{
+			return true;
+		}
+		return base.GeneralAbility(nextGCD, out act);
+	}
 
-    [RotationDesc(ActionID.ShakeItOffPvE)]
-    protected override bool HealSingleAbility(IAction nextGCD, out IAction? act)
-    {
-        if (ShakeItOffPvE.CanUse(out act, skipAoeCheck: true))
-        {
-            return true;
-        }
+	[RotationDesc(ActionID.ShakeItOffPvE)]
+	protected override bool HealSingleAbility(IAction nextGCD, out IAction? act)
+	{
+		if (ShakeItOffPvE.CanUse(out act, skipAoeCheck: true))
+		{
+			return true;
+		}
 
-        return base.HealSingleAbility(nextGCD, out act);
-    }
+		return base.HealSingleAbility(nextGCD, out act);
+	}
 
-    [RotationDesc(ActionID.RawIntuitionPvE, ActionID.VengeancePvE, ActionID.RampartPvE, ActionID.RawIntuitionPvE, ActionID.ReprisalPvE)]
-    protected override bool DefenseSingleAbility(IAction nextGCD, out IAction? act)
-    {
-        bool RawSingleTargets = SoloIntuition;
-        act = null;
+	[RotationDesc(ActionID.RawIntuitionPvE, ActionID.VengeancePvE, ActionID.RampartPvE, ActionID.RawIntuitionPvE, ActionID.ReprisalPvE)]
+	protected override bool DefenseSingleAbility(IAction nextGCD, out IAction? act)
+	{
+		bool RawSingleTargets = SoloIntuition;
+		act = null;
 
-        if (StatusHelper.PlayerHasStatus(true, StatusID.Holmgang_409) && Player?.GetHealthRatio() < 0.3f)
-        {
-            return false;
-        }
+		if (StatusHelper.PlayerHasStatus(true, StatusID.Holmgang_409) && Player?.GetHealthRatio() < 0.3f)
+		{
+			return false;
+		}
 
-        if (RawIntuitionPvE.CanUse(out act) && (RawSingleTargets || NumberOfHostilesInRange > 2))
-        {
-            return true;
-        }
+		if (RawIntuitionPvE.CanUse(out act) && (RawSingleTargets || NumberOfHostilesInRange > 2))
+		{
+			return true;
+		}
 
-        if (!StatusHelper.PlayerWillStatusEndGCD(0, 0, true, StatusID.Bloodwhetting, StatusID.RawIntuition))
-        {
-            return false;
-        }
+		if (!StatusHelper.PlayerWillStatusEndGCD(0, 0, true, StatusID.Bloodwhetting, StatusID.RawIntuition))
+		{
+			return false;
+		}
 
-        if (ReprisalPvE.CanUse(out act, skipAoeCheck: true))
-        {
-            return true;
-        }
+		if (ReprisalPvE.CanUse(out act, skipAoeCheck: true))
+		{
+			return true;
+		}
 
-        if ((!RampartPvE.Cooldown.IsCoolingDown || RampartPvE.Cooldown.ElapsedAfter(60)) && !StatusHelper.PlayerHasStatus(true, StatusID.ArmsLength))
-        {
+		if ((!RampartPvE.Cooldown.IsCoolingDown || RampartPvE.Cooldown.ElapsedAfter(60)) && !StatusHelper.PlayerHasStatus(true, StatusID.ArmsLength))
+		{
 			if (DamnationPvE.EnoughLevel && DamnationPvE.CanUse(out act))
 			{
 				return true;
@@ -293,25 +293,25 @@ public sealed class WAR_Reborn : WarriorRotation
 			}
 		}
 
-        if (((VengeancePvE.Cooldown.IsCoolingDown && VengeancePvE.Cooldown.ElapsedAfter(60)) || !VengeancePvE.EnoughLevel) && RampartPvE.CanUse(out act))
-        {
-            return true;
-        }
+		if (((VengeancePvE.Cooldown.IsCoolingDown && VengeancePvE.Cooldown.ElapsedAfter(60)) || !VengeancePvE.EnoughLevel) && RampartPvE.CanUse(out act))
+		{
+			return true;
+		}
 
-        return base.DefenseSingleAbility(nextGCD, out act);
-    }
+		return base.DefenseSingleAbility(nextGCD, out act);
+	}
 
-    [RotationDesc(ActionID.ShakeItOffPvE, ActionID.ReprisalPvE)]
-    protected override bool DefenseAreaAbility(IAction nextGCD, out IAction? act)
-    {
-        if (ShakeItOffPvE.CanUse(out act, skipAoeCheck: true))
-        {
-            return true;
-        }
+	[RotationDesc(ActionID.ShakeItOffPvE, ActionID.ReprisalPvE)]
+	protected override bool DefenseAreaAbility(IAction nextGCD, out IAction? act)
+	{
+		if (ShakeItOffPvE.CanUse(out act, skipAoeCheck: true))
+		{
+			return true;
+		}
 
-        return base.DefenseAreaAbility(nextGCD, out act);
-    }
-    #endregion
+		return base.DefenseAreaAbility(nextGCD, out act);
+	}
+	#endregion
 
     #region GCD Logic
     protected override bool GeneralGCD(out IAction? act)
@@ -454,27 +454,27 @@ public sealed class WAR_Reborn : WarriorRotation
             return false;
         }
 
-        return base.GeneralGCD(out act);
-    }
+		return base.GeneralGCD(out act);
+	}
 
-    [RotationDesc(ActionID.NascentFlashPvE)]
-    protected override bool HealSingleGCD(out IAction? act)
-    {
-        if (!NeverscentFlash && NascentFlashPvE.CanUse(out act)
-            && (InCombat && NascentFlashPvE.Target.Target?.GetHealthRatio() < FlashHeal))
-        {
-            return true;
-        }
+	[RotationDesc(ActionID.NascentFlashPvE)]
+	protected override bool HealSingleGCD(out IAction? act)
+	{
+		if (!NeverscentFlash && NascentFlashPvE.CanUse(out act)
+			&& (InCombat && NascentFlashPvE.Target.Target?.GetHealthRatio() < FlashHeal))
+		{
+			return true;
+		}
 
-        if (NeverscentFlash && NascentFlashPvE.CanUse(out act)
-            && (InCombat && !StatusHelper.PlayerHasStatus(true, StatusID.Defiance) && NascentFlashPvE.Target.Target?.GetHealthRatio() < FlashHeal))
-        {
-            return true;
-        }
+		if (NeverscentFlash && NascentFlashPvE.CanUse(out act)
+			&& (InCombat && !StatusHelper.PlayerHasStatus(true, StatusID.Defiance) && NascentFlashPvE.Target.Target?.GetHealthRatio() < FlashHeal))
+		{
+			return true;
+		}
 
-        return base.HealSingleGCD(out act);
-    }
-    #endregion
+		return base.HealSingleGCD(out act);
+	}
+	#endregion
 
     #region Extra Methods
     private static bool IsBurstStatus => !StatusHelper.PlayerWillStatusEndGCD(0, 0, false, StatusID.InnerStrength);
