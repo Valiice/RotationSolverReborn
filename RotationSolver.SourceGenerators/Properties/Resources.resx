@@ -27366,118 +27366,118 @@ TidalspoutTarget = 4726,
 Satisfied = 4727,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4728"&gt;&lt;strong&gt;_rsv_4728_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
-/// &lt;para&gt;_rsv_4728_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4728"&gt;&lt;strong&gt;More than Satisfied&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Greatly empowered by aether drained perhaps in excess from the not-so-innocent.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47281100S74Cfc3B0E74Cfc3B0 = 4728,
+MoreThanSatisfied = 4728,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4729"&gt;&lt;strong&gt;_rsv_4729_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4729_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4729"&gt;&lt;strong&gt;Curse of the Bombpyre&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Being fed upon by a vampette bat which will explode in response to certain attacks.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47291100S74Cfc3B0E74Cfc3B0 = 4729,
+CurseOfTheBombpyre = 4729,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4730"&gt;&lt;strong&gt;_rsv_4730_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4730_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4730"&gt;&lt;strong&gt;Hell Awaits&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Wounded by contact with a charnel cell. Taking damage from the same attack again will result in instant death.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47301100S74Cfc3B0E74Cfc3B0 = 4730,
+HellAwaits = 4730,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4731"&gt;&lt;strong&gt;_rsv_4731_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4731_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4731"&gt;&lt;strong&gt;Hell in a Cell&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Trapped in a mortal struggle. Will be freed upon destruction of the charnel cell.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47311100S74Cfc3B0E74Cfc3B0 = 4731,
+HellInACell = 4731,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4732"&gt;&lt;strong&gt;_rsv_4732_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4732_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4732"&gt;&lt;strong&gt;Hell in a Cell&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Trapped in a mortal struggle. Will be freed upon destruction of the charnel cell.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47321100S74Cfc3B0E74Cfc3B0 = 4732,
+HellInACell_4732 = 4732,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4733"&gt;&lt;strong&gt;_rsv_4733_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4733_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4733"&gt;&lt;strong&gt;Hell in a Cell&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Trapped in a mortal struggle. Will be freed upon destruction of the charnel cell.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47331100S74Cfc3B0E74Cfc3B0 = 4733,
+HellInACell_4733 = 4733,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4734"&gt;&lt;strong&gt;_rsv_4734_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4734_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4734"&gt;&lt;strong&gt;Hell in a Cell&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Trapped in a mortal struggle. Will be freed upon destruction of the charnel cell.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47341100S74Cfc3B0E74Cfc3B0 = 4734,
+HellInACell_4734 = 4734,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4735"&gt;&lt;strong&gt;_rsv_4735_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4735_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4735"&gt;&lt;strong&gt;Hell in a Cell&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Trapped in a mortal struggle. Will be freed upon destruction of the charnel cell.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47351100S74Cfc3B0E74Cfc3B0 = 4735,
+HellInACell_4735 = 4735,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4736"&gt;&lt;strong&gt;_rsv_4736_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4736_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4736"&gt;&lt;strong&gt;Hell in a Cell&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Trapped in a mortal struggle. Will be freed upon destruction of the charnel cell.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47361100S74Cfc3B0E74Cfc3B0 = 4736,
+HellInACell_4736 = 4736,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4737"&gt;&lt;strong&gt;_rsv_4737_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4737_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4737"&gt;&lt;strong&gt;Hell in a Cell&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Trapped in a mortal struggle. Will be freed upon destruction of the charnel cell.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47371100S74Cfc3B0E74Cfc3B0 = 4737,
+HellInACell_4737 = 4737,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4738"&gt;&lt;strong&gt;_rsv_4738_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4738_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4738"&gt;&lt;strong&gt;Hell in a Cell&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Trapped in a mortal struggle. Will be freed upon destruction of the charnel cell.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47381100S74Cfc3B0E74Cfc3B0 = 4738,
+HellInACell_4738 = 4738,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4739"&gt;&lt;strong&gt;_rsv_4739_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
-/// &lt;para&gt;_rsv_4739_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4739"&gt;&lt;strong&gt;Heel of the Cell&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Damage from those other than designated opponent is nullified.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47391100S74Cfc3B0E74Cfc3B0 = 4739,
+HeelOfTheCell = 4739,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4740"&gt;&lt;strong&gt;_rsv_4740_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
-/// &lt;para&gt;_rsv_4740_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4740"&gt;&lt;strong&gt;Heel of the Cell&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Damage from those other than designated opponent is nullified.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47401100S74Cfc3B0E74Cfc3B0 = 4740,
+HeelOfTheCell_4740 = 4740,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4741"&gt;&lt;strong&gt;_rsv_4741_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
-/// &lt;para&gt;_rsv_4741_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4741"&gt;&lt;strong&gt;Heel of the Cell&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Damage from those other than designated opponent is nullified.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47411100S74Cfc3B0E74Cfc3B0 = 4741,
+HeelOfTheCell_4741 = 4741,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4742"&gt;&lt;strong&gt;_rsv_4742_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
-/// &lt;para&gt;_rsv_4742_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4742"&gt;&lt;strong&gt;Heel of the Cell&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Damage from those other than designated opponent is nullified.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47421100S74Cfc3B0E74Cfc3B0 = 4742,
+HeelOfTheCell_4742 = 4742,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4743"&gt;&lt;strong&gt;_rsv_4743_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
-/// &lt;para&gt;_rsv_4743_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4743"&gt;&lt;strong&gt;Heel of the Cell&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Damage from those other than designated opponent is nullified.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47431100S74Cfc3B0E74Cfc3B0 = 4743,
+HeelOfTheCell_4743 = 4743,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4744"&gt;&lt;strong&gt;_rsv_4744_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
-/// &lt;para&gt;_rsv_4744_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4744"&gt;&lt;strong&gt;Heel of the Cell&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Damage from those other than designated opponent is nullified.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47441100S74Cfc3B0E74Cfc3B0 = 4744,
+HeelOfTheCell_4744 = 4744,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4745"&gt;&lt;strong&gt;_rsv_4745_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
-/// &lt;para&gt;_rsv_4745_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4745"&gt;&lt;strong&gt;Heel of the Cell&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Damage from those other than designated opponent is nullified.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47451100S74Cfc3B0E74Cfc3B0 = 4745,
+HeelOfTheCell_4745 = 4745,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4746"&gt;&lt;strong&gt;_rsv_4746_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
-/// &lt;para&gt;_rsv_4746_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4746"&gt;&lt;strong&gt;Heel of the Cell&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Damage from those other than designated opponent is nullified.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47461100S74Cfc3B0E74Cfc3B0 = 4746,
+HeelOfTheCell_4746 = 4746,
 
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#status/4747"&gt;&lt;strong&gt;Flesh Forward&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
@@ -27508,30 +27508,6 @@ SharedGrotesquerie = 4750,
 /// &lt;para&gt;Covered in hemorrhagic cells which will spray in the indicated direction when this effect expires.&lt;/para&gt;
 /// &lt;/summary&gt;
 DirectedGrotesquerie = 4751,
-
-/// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4752"&gt;&lt;strong&gt;_rsv_4752_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4752_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
-/// &lt;/summary&gt;
-Rsv47521100S74Cfc3B0E74Cfc3B0 = 4752,
-
-/// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4753"&gt;&lt;strong&gt;_rsv_4753_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4753_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
-/// &lt;/summary&gt;
-Rsv47531100S74Cfc3B0E74Cfc3B0 = 4753,
-
-/// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4754"&gt;&lt;strong&gt;_rsv_4754_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4754_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
-/// &lt;/summary&gt;
-Rsv47541100S74Cfc3B0E74Cfc3B0 = 4754,
-
-/// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4755"&gt;&lt;strong&gt;_rsv_4755_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4755_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
-/// &lt;/summary&gt;
-Rsv47551100S74Cfc3B0E74Cfc3B0 = 4755,
 
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#status/4758"&gt;&lt;strong&gt;Fantastical Regeneration&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
@@ -27576,46 +27552,34 @@ RottingFlesh = 4763,
 MitoticPhase = 4764,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4765"&gt;&lt;strong&gt;_rsv_4765_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4765_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4765"&gt;&lt;strong&gt;Lindwurm's Portent&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Age-old magicks will cause damage to the surrounding area when this effect expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47651100S74Cfc3B0E74Cfc3B0 = 4765,
+LindwurmsPortent = 4765,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4766"&gt;&lt;strong&gt;_rsv_4766_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4766_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4766"&gt;&lt;strong&gt;Faraway Portent&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Age-old magicks will fire in the direction of the most distant ally when this effect expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47661100S74Cfc3B0E74Cfc3B0 = 4766,
+FarawayPortent = 4766,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4767"&gt;&lt;strong&gt;_rsv_4767_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4767_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4767"&gt;&lt;strong&gt;Nearby Portent&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Age-old magicks will fire in the direction of the nearest ally when this effect expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47671100S74Cfc3B0E74Cfc3B0 = 4767,
+NearbyPortent = 4767,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4768"&gt;&lt;strong&gt;_rsv_4768_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4768_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4768"&gt;&lt;strong&gt;Hot-blooded&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Sparking with fire aether. Moving from current position will result in fire damage.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47681100S74Cfc3B0E74Cfc3B0 = 4768,
+Hotblooded = 4768,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4769"&gt;&lt;strong&gt;_rsv_4769_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4769_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4770"&gt;&lt;strong&gt;Mutating Cells&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Infected by cells that will change to a different mutation when this effect expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv47691100S74Cfc3B0E74Cfc3B0 = 4769,
-
-/// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4770"&gt;&lt;strong&gt;_rsv_4770_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4770_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
-/// &lt;/summary&gt;
-Rsv47701100S74Cfc3B0E74Cfc3B0 = 4770,
-
-/// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4771"&gt;&lt;strong&gt;_rsv_4771_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4771_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
-/// &lt;/summary&gt;
-Rsv47711100S74Cfc3B0E74Cfc3B0 = 4771,
+MutatingCells = 4770,
 
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#status/4772"&gt;&lt;strong&gt;Fate of the Wurm&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
@@ -27921,34 +27885,34 @@ PositiveCharge_4823 = 4823,
 NegativeCharge_4824 = 4824,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4825"&gt;&lt;strong&gt;_rsv_4825_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4825_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4825"&gt;&lt;strong&gt;Synchronized Firesnaking&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Tethered by Red Hot's aether. Attacks against Deep Blue are nullified.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv48251100S74Cfc3B0E74Cfc3B0 = 4825,
+SynchronizedFiresnaking = 4825,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4826"&gt;&lt;strong&gt;_rsv_4826_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4826_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4826"&gt;&lt;strong&gt;Synchronized Watersnaking&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Tethered by Deep Blue's aether. Attacks against Red Hot are nullified.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv48261100S74Cfc3B0E74Cfc3B0 = 4826,
+SynchronizedWatersnaking = 4826,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4827"&gt;&lt;strong&gt;_rsv_4827_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4827_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4827"&gt;&lt;strong&gt;Xtreme Firesnaking&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Extended exposure to Red Hot's scathing aether will result in damage taken when this effect expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv48271100S74Cfc3B0E74Cfc3B0 = 4827,
+XtremeFiresnaking = 4827,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4828"&gt;&lt;strong&gt;_rsv_4828_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4828_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4828"&gt;&lt;strong&gt;Xtreme Watersnaking&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Extended exposure to Deep Blue's roiling aether will result in damage taken when this effect expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv48281100S74Cfc3B0E74Cfc3B0 = 4828,
+XtremeWatersnaking = 4828,
 
 /// &lt;summary&gt;
-/// &lt;see href="https://garlandtools.org/db/#status/4829"&gt;&lt;strong&gt;_rsv_4829_-1_1_0_0_S74CFC3B0_E74CFC3B0&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
-/// &lt;para&gt;_rsv_4829_-1_1_1_0_S74CFC3B0_E74CFC3B0&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4829"&gt;&lt;strong&gt;Watery Grave&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Lack of oxygen is causing damage over time. While damage from sources outside the watery grave is reduced instant death will occur when this effect expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-Rsv48291100S74Cfc3B0E74Cfc3B0 = 4829,
+WateryGrave_4829 = 4829,
 
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#status/4831"&gt;&lt;strong&gt;Outsider&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
@@ -28206,19 +28170,22 @@ UnnamedStatus_4880 = 4880,
 UnnamedStatus_4881 = 4881,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4882"&gt;&lt;strong&gt;Unbecoming&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Being unmade thus sustaining damage over time.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_4882 = 4882,
+Unbecoming = 4882,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4883"&gt;&lt;strong&gt;Quantum Nullification&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Unraveling in concert with another resulting in damage over time.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_4883 = 4883,
+QuantumNullification = 4883,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/4884"&gt;&lt;strong&gt;Quantum Entanglement&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Unraveling in concert with another resulting in damage over time.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_4884 = 4884,
+QuantumEntanglement = 4884,
 
 /// &lt;summary&gt;
 /// &lt;para&gt;&lt;/para&gt;
@@ -29775,29 +29742,34 @@ UnnamedStatus_5189 = 5189,
 UnnamedStatus_5190 = 5190,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5191"&gt;&lt;strong&gt;Motion Tracker&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Under motion-sensing surveillance.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_5191 = 5191,
+MotionTracker = 5191,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5192"&gt;&lt;strong&gt;Forward March&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Have received the order to advance. Order will be executed when status expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_5192 = 5192,
+ForwardMarch_5192 = 5192,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5193"&gt;&lt;strong&gt;About Face&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Have received the order to retreat. Order will be executed when status expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_5193 = 5193,
+AboutFace_5193 = 5193,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5194"&gt;&lt;strong&gt;Left Face&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Have received the order to move left. Order will be executed when status expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_5194 = 5194,
+LeftFace_5194 = 5194,
 
 /// &lt;summary&gt;
-/// &lt;para&gt;&lt;/para&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5195"&gt;&lt;strong&gt;Right Face&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Have received the order to move right. Order will be executed when status expires.&lt;/para&gt;
 /// &lt;/summary&gt;
-UnnamedStatus_5195 = 5195,
+RightFace_5195 = 5195,
 
 /// &lt;summary&gt;
 /// &lt;para&gt;&lt;/para&gt;
@@ -30073,6 +30045,1774 @@ UnnamedStatus_5249 = 5249,
 /// &lt;para&gt;&lt;/para&gt;
 /// &lt;/summary&gt;
 UnnamedStatus_5250 = 5250,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5251 = 5251,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5252 = 5252,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5253 = 5253,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5254 = 5254,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5255 = 5255,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5256 = 5256,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5257 = 5257,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5258 = 5258,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5259 = 5259,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5260 = 5260,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5261 = 5261,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5262 = 5262,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5263 = 5263,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5264 = 5264,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5265 = 5265,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5266 = 5266,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5267 = 5267,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5268 = 5268,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5269 = 5269,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5270 = 5270,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5271 = 5271,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5272 = 5272,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5273 = 5273,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5274 = 5274,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5275 = 5275,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5276 = 5276,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5277 = 5277,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5278 = 5278,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5279 = 5279,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5280 = 5280,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5281 = 5281,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5282 = 5282,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5283 = 5283,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5284 = 5284,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5285 = 5285,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5286 = 5286,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5287 = 5287,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5288 = 5288,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5289 = 5289,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5290 = 5290,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5291 = 5291,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5292 = 5292,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5293 = 5293,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5294 = 5294,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5295 = 5295,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5296 = 5296,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5297 = 5297,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5298 = 5298,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5299 = 5299,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5300 = 5300,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5301 = 5301,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5302 = 5302,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5303 = 5303,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5304 = 5304,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5305 = 5305,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5306 = 5306,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5307 = 5307,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5308 = 5308,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5309 = 5309,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5310 = 5310,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5311 = 5311,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5312 = 5312,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5313 = 5313,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5314 = 5314,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5315 = 5315,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5316 = 5316,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5317 = 5317,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5318 = 5318,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5319 = 5319,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5320 = 5320,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5321 = 5321,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5322 = 5322,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5323 = 5323,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5324 = 5324,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5325 = 5325,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5326 = 5326,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5327 = 5327,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5328 = 5328,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5329 = 5329,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5330 = 5330,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5331 = 5331,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5332 = 5332,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5333 = 5333,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5334 = 5334,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5335 = 5335,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5336 = 5336,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5337 = 5337,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5338 = 5338,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5339 = 5339,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5340 = 5340,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5341 = 5341,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5342 = 5342,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5343"&gt;&lt;strong&gt;Light Vision&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Guided by a luminous beacon increasing movement speed. Invulnerable to Unbecoming.&lt;/para&gt;
+/// &lt;/summary&gt;
+LightVision = 5343,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5344 = 5344,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5345 = 5345,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5346 = 5346,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5347 = 5347,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5348 = 5348,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5349 = 5349,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5350 = 5350,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5351 = 5351,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5352"&gt;&lt;strong&gt;Cloak of Waning Light&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Shrouded in astral aether. Damage taken from umbral attacks is increased.&lt;/para&gt;
+/// &lt;/summary&gt;
+CloakOfWaningLight = 5352,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5353"&gt;&lt;strong&gt;Cloak of Waxing Dark&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Shrouded in umbral aether. Damage taken from astral attacks is increased.&lt;/para&gt;
+/// &lt;/summary&gt;
+CloakOfWaxingDark = 5353,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5354 = 5354,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5355"&gt;&lt;strong&gt;Healing Glyph&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Damage taken is reduced. Regenerating HP over time.&lt;/para&gt;
+/// &lt;/summary&gt;
+HealingGlyph = 5355,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5356 = 5356,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5357"&gt;&lt;strong&gt;Gauntlet Taken&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with the one who threw the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletTaken = 5357,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5358"&gt;&lt;strong&gt;Gauntlet Taken&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with the one who threw the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletTaken_5358 = 5358,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5359"&gt;&lt;strong&gt;Gauntlet Taken&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with the one who threw the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletTaken_5359 = 5359,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5360"&gt;&lt;strong&gt;Gauntlet Taken&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with the one who threw the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletTaken_5360 = 5360,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5361"&gt;&lt;strong&gt;Gauntlet Taken&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with the one who threw the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletTaken_5361 = 5361,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5362"&gt;&lt;strong&gt;Gauntlet Taken&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with the one who threw the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletTaken_5362 = 5362,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5363"&gt;&lt;strong&gt;Gauntlet Taken&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with the one who threw the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletTaken_5363 = 5363,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5364"&gt;&lt;strong&gt;Gauntlet Taken&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with the one who threw the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletTaken_5364 = 5364,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5365"&gt;&lt;strong&gt;Gauntlet Thrown&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with one who has taken up the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletThrown = 5365,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5366"&gt;&lt;strong&gt;Gauntlet Thrown&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with one who has taken up the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletThrown_5366 = 5366,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5367"&gt;&lt;strong&gt;Gauntlet Thrown&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with one who has taken up the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletThrown_5367 = 5367,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5368"&gt;&lt;strong&gt;Gauntlet Thrown&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with one who has taken up the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletThrown_5368 = 5368,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5369"&gt;&lt;strong&gt;Gauntlet Thrown&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with one who has taken up the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletThrown_5369 = 5369,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5370"&gt;&lt;strong&gt;Gauntlet Thrown&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with one who has taken up the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletThrown_5370 = 5370,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5371"&gt;&lt;strong&gt;Gauntlet Thrown&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with one who has taken up the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletThrown_5371 = 5371,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5372"&gt;&lt;strong&gt;Gauntlet Thrown&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Locked in a deadly duel with one who has taken up the gauntlet. Attacks from all other combatants are nullified.&lt;/para&gt;
+/// &lt;/summary&gt;
+GauntletThrown_5372 = 5372,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5373 = 5373,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5374 = 5374,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5375 = 5375,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5376"&gt;&lt;strong&gt;Perfect Defense&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Impervious to all damage while countering attacks.&lt;/para&gt;
+/// &lt;/summary&gt;
+PerfectDefense = 5376,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5377"&gt;&lt;strong&gt;Perfect Defense&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Impervious to all damage while countering attacks.&lt;/para&gt;
+/// &lt;/summary&gt;
+PerfectDefense_5377 = 5377,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5378 = 5378,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5379 = 5379,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5380 = 5380,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5381 = 5381,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5382 = 5382,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5383 = 5383,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5384 = 5384,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5385 = 5385,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5386 = 5386,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5387 = 5387,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5388 = 5388,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5389 = 5389,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5390 = 5390,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5391 = 5391,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5392 = 5392,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5393 = 5393,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5394 = 5394,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5395 = 5395,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5396 = 5396,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5397 = 5397,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5398"&gt;&lt;strong&gt;Easterly Winds&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Marked by wind magicks that will summon a powerful gale from the east when this effect expires.&lt;/para&gt;
+/// &lt;/summary&gt;
+EasterlyWinds = 5398,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5399"&gt;&lt;strong&gt;Westerly Winds&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Marked by wind magicks that will summon a powerful gale from the west when this effect expires.&lt;/para&gt;
+/// &lt;/summary&gt;
+WesterlyWinds = 5399,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5400 = 5400,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5401 = 5401,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5402 = 5402,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5403 = 5403,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5404 = 5404,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5405 = 5405,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5406 = 5406,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5407"&gt;&lt;strong&gt;Strung Up&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Being manipulated to continuously attack allies.&lt;/para&gt;
+/// &lt;/summary&gt;
+StrungUp = 5407,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5408 = 5408,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5409 = 5409,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5410 = 5410,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5411 = 5411,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5412 = 5412,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5413 = 5413,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5414 = 5414,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5415 = 5415,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5416 = 5416,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5417 = 5417,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5418 = 5418,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5419 = 5419,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5420 = 5420,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5421 = 5421,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5422 = 5422,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5423 = 5423,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5424 = 5424,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5425 = 5425,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5426 = 5426,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5427 = 5427,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5428 = 5428,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5429 = 5429,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5430 = 5430,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5431 = 5431,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5432 = 5432,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5433 = 5433,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5434 = 5434,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5435 = 5435,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5436 = 5436,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5437 = 5437,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5438 = 5438,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5439 = 5439,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5442 = 5442,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5443 = 5443,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5444 = 5444,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5445 = 5445,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5446 = 5446,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5447 = 5447,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5448 = 5448,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5449 = 5449,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5450 = 5450,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5451 = 5451,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5452 = 5452,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5453 = 5453,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5454 = 5454,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5455 = 5455,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5456 = 5456,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5457 = 5457,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5458 = 5458,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5459 = 5459,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5460 = 5460,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5461 = 5461,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5462 = 5462,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5463 = 5463,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5464 = 5464,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5465 = 5465,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5466 = 5466,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5467"&gt;&lt;strong&gt;Vulnerability Down&lt;/strong&gt;&lt;/see&gt; ↑ (All Classes)
+/// &lt;para&gt;Damage taken is reduced.&lt;/para&gt;
+/// &lt;/summary&gt;
+VulnerabilityDown_5467 = 5467,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5468 = 5468,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5469 = 5469,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5470 = 5470,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5471 = 5471,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5472 = 5472,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5473"&gt;&lt;strong&gt;Doom&lt;/strong&gt;&lt;/see&gt; ↓ (All Classes)
+/// &lt;para&gt;Certain death when counter reaches zero. Effect dissipates once fully healed.&lt;/para&gt;
+/// &lt;/summary&gt;
+Doom_5473 = 5473,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5474 = 5474,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5475 = 5475,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5476 = 5476,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5477 = 5477,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5478 = 5478,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5479 = 5479,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5480 = 5480,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5481 = 5481,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5482 = 5482,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5483 = 5483,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5484 = 5484,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5485 = 5485,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5486 = 5486,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5487 = 5487,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5488 = 5488,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5489 = 5489,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5490 = 5490,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5491 = 5491,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5492 = 5492,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5493 = 5493,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5494 = 5494,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5495 = 5495,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5496 = 5496,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5497 = 5497,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5498 = 5498,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5499 = 5499,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5500 = 5500,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5501 = 5501,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5502 = 5502,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5503 = 5503,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5504 = 5504,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5505 = 5505,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5506 = 5506,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5507 = 5507,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5508 = 5508,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5509 = 5509,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5510 = 5510,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5511 = 5511,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5512 = 5512,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5513 = 5513,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5514 = 5514,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5515 = 5515,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5516 = 5516,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5517 = 5517,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5518 = 5518,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5519 = 5519,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5520 = 5520,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5521 = 5521,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5522 = 5522,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5523 = 5523,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5524 = 5524,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5525 = 5525,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5526 = 5526,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5527 = 5527,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5528 = 5528,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5529 = 5529,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5530 = 5530,
+
+/// &lt;summary&gt;
+/// &lt;see href="https://garlandtools.org/db/#status/5531"&gt;&lt;strong&gt;Mountain Buster&lt;/strong&gt;&lt;/see&gt; ↑ (SMN)
+/// &lt;para&gt;Damage taken is reduced.&lt;/para&gt;
+/// &lt;/summary&gt;
+MountainBuster = 5531,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5532 = 5532,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5533 = 5533,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5534 = 5534,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5535 = 5535,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5536 = 5536,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5537 = 5537,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5538 = 5538,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5539 = 5539,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5540 = 5540,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5541 = 5541,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5542 = 5542,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5543 = 5543,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5544 = 5544,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5545 = 5545,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5546 = 5546,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5547 = 5547,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5548 = 5548,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5549 = 5549,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5550 = 5550,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5551 = 5551,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5552 = 5552,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5553 = 5553,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5554 = 5554,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5555 = 5555,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5556 = 5556,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5557 = 5557,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5558 = 5558,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5559 = 5559,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5560 = 5560,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5561 = 5561,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5562 = 5562,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5563 = 5563,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5564 = 5564,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5565 = 5565,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5566 = 5566,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5567 = 5567,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5568 = 5568,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5569 = 5569,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5570 = 5570,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5571 = 5571,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5572 = 5572,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5573 = 5573,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5574 = 5574,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5575 = 5575,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5576 = 5576,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5577 = 5577,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5578 = 5578,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5579 = 5579,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5580 = 5580,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5581 = 5581,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5582 = 5582,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5583 = 5583,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5584 = 5584,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5585 = 5585,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5586 = 5586,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5587 = 5587,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5588 = 5588,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5589 = 5589,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5590 = 5590,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5591 = 5591,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5592 = 5592,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5593 = 5593,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5594 = 5594,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5595 = 5595,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5596 = 5596,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5597 = 5597,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5598 = 5598,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5599 = 5599,
+
+/// &lt;summary&gt;
+/// &lt;para&gt;&lt;/para&gt;
+/// &lt;/summary&gt;
+UnnamedStatus_5600 = 5600,
 </value>
   </data>
   <data name="ContentType" xml:space="preserve">
@@ -31110,7 +32850,7 @@ BlizzardIvPvE = 3576,
 FireIvPvE = 3577,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/3578"&gt;&lt;strong&gt;Painflare&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [3578] [Ability]
-/// &lt;para&gt;Deals unaspected damage with a potency of 150 to target and all enemies nearby it. Aetherflow Gauge Cost: 1&lt;/para&gt;
+/// &lt;para&gt;Deals unaspected damage with a potency of 220 to target and all enemies nearby it. Aetherflow Gauge Cost: 1&lt;/para&gt;
 /// &lt;/summary&gt;
 PainflarePvE = 3578,
 /// &lt;summary&gt;
@@ -33205,7 +34945,7 @@ ChaoticCyclonePvE = 16463,
 NascentFlashPvE = 16464,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/16465"&gt;&lt;strong&gt;Inner Chaos&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (WAR) [16465] [Weaponskill]
-/// &lt;para&gt;Delivers a critical direct hit with a potency of 660. Damage dealt is increased when under an effect that raises critical hit rate or direct hit rate. Additional Effect: Reduces the recast time of Infuriate by 5 seconds Beast Gauge Cost: 50 Can only be executed while under the effect of Nascent Chaos. Effect fades upon execution. ※This action cannot be assigned to a hotbar. ※Fell Cleave changes to Inner Chaos when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers a critical direct hit with a potency of 700. Damage dealt is increased when under an effect that raises critical hit rate or direct hit rate. Additional Effect: Reduces the recast time of Infuriate by 5 seconds Beast Gauge Cost: 50 Can only be executed while under the effect of Nascent Chaos. Effect fades upon execution. ※This action cannot be assigned to a hotbar. ※Fell Cleave changes to Inner Chaos when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 InnerChaosPvE = 16465,
 /// &lt;summary&gt;
@@ -35085,7 +36825,7 @@ PanhaimaPvE = 24311,
 DosisIiiPvE = 24312,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/24313"&gt;&lt;strong&gt;Phlegma III&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SGE) [24313] [Spell]
-/// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 600 for the first enemy and 50% less for all remaining enemies. Additional Effect: Restores HP to targets under the effect of Kardion granted by you Cure Potency: Maximum Charges: 2 Recast timer cannot be affected by status effects or gear attributes.&lt;/para&gt;
+/// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 690 for the first enemy and 50% less for all remaining enemies. Additional Effect: Restores HP to targets under the effect of Kardion granted by you Cure Potency: Maximum Charges: 2 Recast timer cannot be affected by status effects or gear attributes.&lt;/para&gt;
 /// &lt;/summary&gt;
 PhlegmaIiiPvE = 24313,
 /// &lt;summary&gt;
@@ -35215,7 +36955,7 @@ UnveiledGallowsPvE = 24391,
 GrimSwathePvE = 24392,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/24393"&gt;&lt;strong&gt;Gluttony&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (RPR) [24393] [Ability]
-/// &lt;para&gt;Summons your avatar to deal unaspected damage to target and all enemies nearby it with a potency of 520 for the first enemy and 25% less for all remaining enemies. Additional Effect: Grants 2 stacks of Duration: 30s Soul Gauge Cost: 50&lt;/para&gt;
+/// &lt;para&gt;Summons your avatar to deal unaspected damage to target and all enemies nearby it with a potency of 560 for the first enemy and 25% less for all remaining enemies. Additional Effect: Grants 2 stacks of Duration: 30s Soul Gauge Cost: 50&lt;/para&gt;
 /// &lt;/summary&gt;
 GluttonyPvE = 24393,
 /// &lt;summary&gt;
@@ -35365,7 +37105,7 @@ BloodwhettingPvE = 25751,
 OrogenyPvE = 25752,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/25753"&gt;&lt;strong&gt;Primal Rend&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (WAR) [25753] [Weaponskill]
-/// &lt;para&gt;Jumps to the target and delivers a critical direct hit to target and all enemies nearby it with a potency of 700 for the first enemy and 50% less for all remaining enemies. Damage dealt is increased when under an effect that raises critical hit rate or direct hit rate. Can only be executed while under the effect of Primal Rend Ready granted by Inner Release. Cannot be executed while bound.&lt;/para&gt;
+/// &lt;para&gt;Jumps to the target and delivers a critical direct hit to target and all enemies nearby it with a potency of 720 for the first enemy and 50% less for all remaining enemies. Damage dealt is increased when under an effect that raises critical hit rate or direct hit rate. Can only be executed while under the effect of Primal Rend Ready granted by Inner Release. Cannot be executed while bound.&lt;/para&gt;
 /// &lt;/summary&gt;
 PrimalRendPvE = 25753,
 /// &lt;summary&gt;
@@ -36110,7 +37850,7 @@ LeveilleurDosisIiiPvE = 28439,
 LiturgyOfTheBellPvE_28509 = 28509,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29054"&gt;&lt;strong&gt;Guard&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (Jobs of the Disciples of War or Magic) [29054] [Ability]
-/// &lt;para&gt;Reduces damage taken by 90% and grants immunity to Stun Heavy Bind Silence Deep Freeze and knockback and draw-in effects. Duration: 4s Movement speed is reduced by 33% for the duration of this effect. Effect ends upon reuse using another action or when the effect duration expires.&lt;/para&gt;
+/// &lt;para&gt;Reduces damage taken by 99% and grants immunity to Stun Heavy Bind Silence Deep Freeze and knockback and draw-in effects. Duration: 4s Movement speed is reduced by 33% for the duration of this effect. Effect ends upon reuse using another action or when the effect duration expires.&lt;/para&gt;
 /// &lt;/summary&gt;
 GuardPvP = 29054,
 /// &lt;summary&gt;
@@ -36360,7 +38100,7 @@ GlareIiiPvP = 29223,
 CureIiPvP = 29224,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29225"&gt;&lt;strong&gt;Cure III&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (WHM) [29225] [Spell]
-/// &lt;para&gt;Restores HP of self or target with a cure potency of 16,000 and all other nearby party members with a cure potency of 12,000. Can only be executed while under the effect of Cure III Ready. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+/// &lt;para&gt;Restores own or target party member's HP and all party members nearby target. Cure Potency: 16,000 Can only be executed while under the effect of Cure III Ready. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
 /// &lt;/summary&gt;
 CureIiiPvP = 29225,
 /// &lt;summary&gt;
@@ -36660,7 +38400,7 @@ HoningOvationPvP_29427 = 29427,
 FanDancePvP = 29428,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29429"&gt;&lt;strong&gt;Curing Waltz&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (DNC) [29429] [Ability]
-/// &lt;para&gt;Restores own HP and the HP of all nearby party members. Cure Potency: 12,000 Additional Effect: Party member designated as your Dance Partner will also heal self and nearby party members This action's effects extend through obstructions.&lt;/para&gt;
+/// &lt;para&gt;Restores own HP and the HP of all nearby party members. Cure Potency: 10,000 Additional Effect: Party member designated as your Dance Partner will also heal self and nearby party members This action's effects extend through obstructions.&lt;/para&gt;
 /// &lt;/summary&gt;
 CuringWaltzPvP = 29429,
 /// &lt;summary&gt;
@@ -36740,7 +38480,7 @@ WheelingThrustPvP = 29488,
 HeavensThrustPvP = 29489,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29490"&gt;&lt;strong&gt;Chaotic Spring&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (DRG) [29490] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 9,000. Ignores the effects of Guard when dealing damage. Additional Effect: Absorbs 150% of damage dealt as HP This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 9,000. Ignores the effects of Guard when dealing damage. Additional Effect: Absorbs 200% of damage dealt as HP This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
 /// &lt;/summary&gt;
 ChaoticSpringPvP = 29490,
 /// &lt;summary&gt;
@@ -36815,7 +38555,7 @@ HyoshoRanryuPvP = 29506,
 ThreeMudraPvP = 29507,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29508"&gt;&lt;strong&gt;Meisui&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (NIN) [29508] [Spell]
-/// &lt;para&gt;Restores own or target party member's HP. Cure Potency: 8,000 Additional Effect: Grants healing over time effect to target Cure Potency: 4,000 Duration: 12s Additional Effect: Nullifies one status affliction that can be removed by Purify Can only be executed while under the effect of Three Mudra. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+/// &lt;para&gt;Restores own or target party member's HP. Cure Potency: 8,000 Additional Effect: Grants healing over time effect to target Cure Potency: 5,000 Duration: 12s Additional Effect: Nullifies one status affliction that can be removed by Purify Can only be executed while under the effect of Three Mudra. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
 /// &lt;/summary&gt;
 MeisuiPvP = 29508,
 /// &lt;summary&gt;
@@ -36875,12 +38615,12 @@ MangetsuPvP = 29527,
 OkaPvP = 29528,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29530"&gt;&lt;strong&gt;Ogi Namikiri&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SAM) [29530] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 8,000 to all enemies in a cone before you. Potency is increased to 12,000 when attacking only a single target. Additional Effect: When attacking two or more targets creates a barrier around self that absorbs damage equivalent to a heal of 10,000 potency Duration: 10s This weaponskill does not share a recast timer with any other actions. ※Action changes to Kaeshi: Namikiri upon execution.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 8,000 to all enemies in a cone before you. Potency is increased to 12,000 when attacking only a single target. Additional Effect: When attacking two or more targets creates a barrier around self that absorbs damage equivalent to a heal of 8,000 potency Duration: 10s This weaponskill does not share a recast timer with any other actions. ※Action changes to Kaeshi: Namikiri upon execution.&lt;/para&gt;
 /// &lt;/summary&gt;
 OgiNamikiriPvP = 29530,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29531"&gt;&lt;strong&gt;Kaeshi: Namikiri&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SAM) [29531] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 8,000 to all enemies in a cone before you. Potency is increased to 12,000 when attacking only a single target. Combo Action: Ogi Namikiri Additional Effect: When attacking two or more targets creates a barrier around self that absorbs damage equivalent to a heal of 10,000 potency Duration: 10s ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 8,000 to all enemies in a cone before you. Potency is increased to 12,000 when attacking only a single target. Combo Action: Ogi Namikiri Additional Effect: When attacking two or more targets creates a barrier around self that absorbs damage equivalent to a heal of 8,000 potency Duration: 10s ※This action cannot be assigned to a hotbar.&lt;/para&gt;
 /// &lt;/summary&gt;
 KaeshiNamikiriPvP = 29531,
 /// &lt;summary&gt;
@@ -36900,7 +38640,7 @@ HissatsuChitenPvP = 29533,
 MineuchiPvP = 29535,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29536"&gt;&lt;strong&gt;Meikyo Shisui&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SAM) [29536] [Ability]
-/// &lt;para&gt;Grants Meikyo Shisui. Meikyo Shisui Effect: Nullifies status afflictions that can be removed by Purify as well as knockback and draw-in effects while increasing HP recovered via healing actions by 20% Duration: 3s Additional Effect: Grants Tendo Setsugekka Ready Duration: 10s ※Action changes to Tendo Setsugekka upon execution.&lt;/para&gt;
+/// &lt;para&gt;Grants Meikyo Shisui. Meikyo Shisui Effect: Nullifies status afflictions that can be removed by Purify as well as knockback and draw-in effects while increasing HP recovered via healing actions by 15% Duration: 3s Additional Effect: Grants Tendo Setsugekka Ready Duration: 10s ※Action changes to Tendo Setsugekka upon execution.&lt;/para&gt;
 /// &lt;/summary&gt;
 MeikyoShisuiPvP = 29536,
 /// &lt;summary&gt;
@@ -36995,7 +38735,7 @@ FirePvP = 29649,
 FireIvPvP = 29650,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29651"&gt;&lt;strong&gt;Flare&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (BLM) [29651] [Spell]
-/// &lt;para&gt;Deals fire damage with a potency of 13,500 to target and all enemies nearby it. Additional Effect: Grants Astral Fire III Duration: 15s Effect cannot be stacked with Umbral Ice. Can only be executed while under the effect of Soul Resonance. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+/// &lt;para&gt;Deals fire damage with a potency of 15,000 to target and all enemies nearby it. Additional Effect: Grants Astral Fire III Duration: 15s Effect cannot be stacked with Umbral Ice. Can only be executed while under the effect of Soul Resonance. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
 /// &lt;/summary&gt;
 FlarePvP = 29651,
 /// &lt;summary&gt;
@@ -37010,7 +38750,7 @@ BlizzardPvP = 29653,
 BlizzardIvPvP = 29654,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29655"&gt;&lt;strong&gt;Freeze&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (BLM) [29655] [Spell]
-/// &lt;para&gt;Deals ice damage with a potency of 9,000 to target and all enemies nearby it. Additional Effect: Grants Umbral Ice III Duration: 15s Effect cannot be stacked with Astral Fire. Can only be executed while under the effect of Soul Resonance. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+/// &lt;para&gt;Deals ice damage with a potency of 10,000 to target and all enemies nearby it. Additional Effect: Grants Umbral Ice III Duration: 15s Effect cannot be stacked with Astral Fire. Can only be executed while under the effect of Soul Resonance. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
 /// &lt;/summary&gt;
 FreezePvP = 29655,
 /// &lt;summary&gt;
@@ -37070,7 +38810,7 @@ SlipstreamPvP = 29669,
 RadiantAegisPvP = 29670,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29671"&gt;&lt;strong&gt;Mountain Buster&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SMN) [29671] [Spell]
-/// &lt;para&gt;Deals earth damage with a potency of 12,000 to all enemies in a cone before you. Additional Effect: Stun Duration: 2s This action does not share a recast timer with any other actions.&lt;/para&gt;
+/// &lt;para&gt;Deals earth damage with a potency of 12,000 to all enemies in a cone before you. Additional Effect: Stun Duration: 2s Additional Effect: Reduces damage taken by 15% Duration: 5s This action does not share a recast timer with any other actions.&lt;/para&gt;
 /// &lt;/summary&gt;
 MountainBusterPvP = 29671,
 /// &lt;summary&gt;
@@ -37095,7 +38835,7 @@ EverlastingFlightPvP = 29680,
 ScarletFlamePvP = 29681,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29699"&gt;&lt;strong&gt;Corps-a-corps&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (RDM) [29699] [Ability]
-/// &lt;para&gt;Rushes target and delivers an attack with a potency of 3,000. Additional Effect: Afflicts target with Monomachy Monomachy Effect: Increases damage dealt to target by 10% while lowering damage taken from target by 10% Duration: 8s Maximum Charges: 2 Cannot be executed while bound.&lt;/para&gt;
+/// &lt;para&gt;Rushes target and delivers an attack with a potency of 3,000. Additional Effect: Afflicts target with Monomachy Monomachy Effect: Increases damage dealt to target by 15% while lowering damage taken from target by 15% Duration: 8s Maximum Charges: 2 Cannot be executed while bound.&lt;/para&gt;
 /// &lt;/summary&gt;
 CorpsacorpsPvP = 29699,
 /// &lt;summary&gt;
@@ -37110,7 +38850,7 @@ DisplacementPvP = 29700,
 FleetingRaijuPvP = 29707,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29711"&gt;&lt;strong&gt;Recuperate&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (Jobs of the Disciples of War or Magic) [29711] [Ability]
-/// &lt;para&gt;Restores own HP. Cure Potency: 15,000&lt;/para&gt;
+/// &lt;para&gt;Restores own HP. Cure Potency: 16,000&lt;/para&gt;
 /// &lt;/summary&gt;
 RecuperatePvP = 29711,
 /// &lt;summary&gt;
@@ -37150,7 +38890,7 @@ VariantRampartPvE = 29733,
 VariantRaiseIiPvE = 29734,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29735"&gt;&lt;strong&gt;Guard&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (Jobs of the Disciples of War or Magic) [29735] [Ability]
-/// &lt;para&gt;Reduces damage taken by 90% and grants immunity to Stun Heavy Bind Silence Deep Freeze and knockback and draw-in effects. Duration: 4s Movement speed is reduced by 33% for the duration of this effect. Effect ends upon reuse using another action or when the effect duration expires.&lt;/para&gt;
+/// &lt;para&gt;Reduces damage taken by 99% and grants immunity to Stun Heavy Bind Silence Deep Freeze and knockback and draw-in effects. Duration: 4s Movement speed is reduced by 33% for the duration of this effect. Effect ends upon reuse using another action or when the effect duration expires.&lt;/para&gt;
 /// &lt;/summary&gt;
 GuardPvP_29735 = 29735,
 /// &lt;summary&gt;
@@ -37515,17 +39255,17 @@ JaggedMawPvE = 34618,
 BloodiedMawPvE = 34619,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34620"&gt;&lt;strong&gt;Vicewinder&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34620] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 500. Maximum Charges: 2 Shares a recast timer with Vicepit.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 540. Maximum Charges: 2 Shares a recast timer with Vicepit.&lt;/para&gt;
 /// &lt;/summary&gt;
 VicewinderPvE = 34620,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34621"&gt;&lt;strong&gt;Hunter's Coil&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34621] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 570. 620 when executed from a target's flank. Additional Effect: Grants Hunter's Instinct Hunter's Instinct Effect: Increases damage dealt by 10% Duration: 40s Can only be executed after successfully landing Vicewinder or Swiftskin's Coil. This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 630. 680 when executed from a target's flank. Additional Effect: Grants Hunter's Instinct Hunter's Instinct Effect: Increases damage dealt by 10% Duration: 40s Can only be executed after successfully landing Vicewinder or Swiftskin's Coil. This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
 /// &lt;/summary&gt;
 HuntersCoilPvE = 34621,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34622"&gt;&lt;strong&gt;Swiftskin's Coil&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34622] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 570. 620 when executed from a target's rear. Additional Effect: Grants Swiftscaled Swiftscaled Effect: Reduces weaponskill cast time and recast time spell cast time and recast time and auto-attack delay by 15% Duration: 40s Can only be executed after successfully landing Vicewinder or Hunter's Coil. This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 630. 680 when executed from a target's rear. Additional Effect: Grants Swiftscaled Swiftscaled Effect: Reduces weaponskill cast time and recast time spell cast time and recast time and auto-attack delay by 15% Duration: 40s Can only be executed after successfully landing Vicewinder or Hunter's Coil. This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
 /// &lt;/summary&gt;
 SwiftskinsCoilPvE = 34622,
 /// &lt;summary&gt;
@@ -37545,32 +39285,32 @@ HuntersDenPvE = 34624,
 SwiftskinsDenPvE = 34625,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34626"&gt;&lt;strong&gt;Reawaken&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34626] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 750 for the first enemy and 80% less for all remaining enemies. Additional Effect: Grants stacks of Anguine Tribute Duration: 30s Serpent Offerings Gauge Cost: 50&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 750 for the first enemy and 75% less for all remaining enemies. Additional Effect: Grants stacks of Anguine Tribute Duration: 30s Serpent Offerings Gauge Cost: 50&lt;/para&gt;
 /// &lt;/summary&gt;
 ReawakenPvE = 34626,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34627"&gt;&lt;strong&gt;First Generation&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34627] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 80% less for all remaining enemies. Potency is increased to 680 when executed after Reawaken. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Steel Fangs and Steel Maw change to First Generation when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 75% less for all remaining enemies. Potency is increased to 680 when executed after Reawaken. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Steel Fangs and Steel Maw change to First Generation when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 FirstGenerationPvE = 34627,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34628"&gt;&lt;strong&gt;Second Generation&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34628] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 80% less for all remaining enemies. Potency is increased to 680 when executed after First Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Reaving Fangs and Reaving Maw change to Second Generation when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 75% less for all remaining enemies. Potency is increased to 680 when executed after First Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Reaving Fangs and Reaving Maw change to Second Generation when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 SecondGenerationPvE = 34628,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34629"&gt;&lt;strong&gt;Third Generation&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34629] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 80% less for all remaining enemies. Potency is increased to 680 when executed after Second Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Hunter's Coil and Hunter's Den change to Third Generation when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 75% less for all remaining enemies. Potency is increased to 680 when executed after Second Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Hunter's Coil and Hunter's Den change to Third Generation when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 ThirdGenerationPvE = 34629,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34630"&gt;&lt;strong&gt;Fourth Generation&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34630] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 80% less for all remaining enemies. Potency is increased to 680 when executed after Third Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Swiftskin's Coil and Swiftskin's Den change to Fourth Generation when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 75% less for all remaining enemies. Potency is increased to 680 when executed after Third Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Swiftskin's Coil and Swiftskin's Den change to Fourth Generation when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 FourthGenerationPvE = 34630,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34631"&gt;&lt;strong&gt;Ouroboros&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34631] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 1,150 to the first enemy and 80% less for all remaining enemies. Reawakened effect expires upon execution. Requires at least one stack of Anguine Tribute. This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Reawaken changes to Ouroboros when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 1,150 to the first enemy and 75% less for all remaining enemies. Reawakened effect expires upon execution. Requires at least one stack of Anguine Tribute. This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Reawaken changes to Ouroboros when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 OuroborosPvE = 34631,
 /// &lt;summary&gt;
@@ -37615,22 +39355,22 @@ TwinfangThreshPvE = 34638,
 TwinbloodThreshPvE = 34639,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34640"&gt;&lt;strong&gt;First Legacy&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34640] [Ability]
-/// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 80% less for all remaining enemies. Can only be executed after successfully landing First Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to First Legacy when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 75% less for all remaining enemies. Can only be executed after successfully landing First Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to First Legacy when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 FirstLegacyPvE = 34640,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34641"&gt;&lt;strong&gt;Second Legacy&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34641] [Ability]
-/// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 80% less for all remaining enemies. Can only be executed after successfully landing Second Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Second Legacy when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 75% less for all remaining enemies. Can only be executed after successfully landing Second Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Second Legacy when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 SecondLegacyPvE = 34641,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34642"&gt;&lt;strong&gt;Third Legacy&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34642] [Ability]
-/// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 80% less for all remaining enemies. Can only be executed after successfully landing Third Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Third Legacy when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 75% less for all remaining enemies. Can only be executed after successfully landing Third Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Third Legacy when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 ThirdLegacyPvE = 34642,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/34643"&gt;&lt;strong&gt;Fourth Legacy&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34643] [Ability]
-/// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 80% less for all remaining enemies. Can only be executed after successfully landing Fourth Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Fourth Legacy when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 75% less for all remaining enemies. Can only be executed after successfully landing Fourth Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Fourth Legacy when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 FourthLegacyPvE = 34643,
 /// &lt;summary&gt;
@@ -37925,7 +39665,7 @@ DamnationPvE = 36923,
 PrimalWrathPvE = 36924,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/36925"&gt;&lt;strong&gt;Primal Ruination&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (WAR) [36925] [Weaponskill]
-/// &lt;para&gt;Delivers a critical direct hit to target and all enemies nearby it with a potency of 780 for the first enemy and 50% less for all remaining enemies. Increases damage dealt when under an effect that raises critical hit rate or direct hit rate. Can only be executed while under the effect of Primal Ruination Ready. ※This action cannot be assigned to a hotbar. ※Primal Rend changes to Primal Ruination when requirements for execution are met.&lt;/para&gt;
+/// &lt;para&gt;Delivers a critical direct hit to target and all enemies nearby it with a potency of 800 for the first enemy and 50% less for all remaining enemies. Increases damage dealt when under an effect that raises critical hit rate or direct hit rate. Can only be executed while under the effect of Primal Ruination Ready. ※This action cannot be assigned to a hotbar. ※Primal Rend changes to Primal Ruination when requirements for execution are met.&lt;/para&gt;
 /// &lt;/summary&gt;
 PrimalRuinationPvE = 36925,
 /// &lt;summary&gt;
@@ -38245,7 +39985,7 @@ RetracePvE = 36988,
 FlareStarPvE = 36989,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/36990"&gt;&lt;strong&gt;Necrotize&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [36990] [Ability]
-/// &lt;para&gt;Deals unaspected damage with a potency of 460. Aetherflow Gauge Cost: 1&lt;/para&gt;
+/// &lt;para&gt;Deals unaspected damage with a potency of 500. Aetherflow Gauge Cost: 1&lt;/para&gt;
 /// &lt;/summary&gt;
 NecrotizePvE = 36990,
 /// &lt;summary&gt;
@@ -38450,7 +40190,7 @@ SunSignPvE = 37031,
 EukrasianDyskrasiaPvE = 37032,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/37033"&gt;&lt;strong&gt;Psyche&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SGE) [37033] [Ability]
-/// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 600 for the first enemy and 50% less for all remaining enemies.&lt;/para&gt;
+/// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 690 for the first enemy and 50% less for all remaining enemies.&lt;/para&gt;
 /// &lt;/summary&gt;
 PsychePvE = 37033,
 /// &lt;summary&gt;
@@ -38545,12 +40285,12 @@ BarbarousBitePvP = 39161,
 RavenousBitePvP = 39163,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/39166"&gt;&lt;strong&gt;Bloodcoil&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (VPR) [39166] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 8,000. Additional Effect: Absorbs 100% of damage dealt as HP ※Action changes to Sanguine Feast upon execution.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 10,000. Additional Effect: Absorbs 100% of damage dealt as HP ※Action changes to Sanguine Feast upon execution.&lt;/para&gt;
 /// &lt;/summary&gt;
 BloodcoilPvP = 39166,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/39167"&gt;&lt;strong&gt;Sanguine Feast&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (VPR) [39167] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 8,000. Combo Action: Bloodcoil Additional Effect: Absorbs 100% of damage dealt as HP ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 10,000. Combo Action: Bloodcoil Additional Effect: Absorbs 100% of damage dealt as HP ※This action cannot be assigned to a hotbar.&lt;/para&gt;
 /// &lt;/summary&gt;
 SanguineFeastPvP = 39167,
 /// &lt;summary&gt;
@@ -38635,7 +40375,7 @@ FourthLegacyPvP = 39182,
 SerpentsTailPvP = 39183,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/39184"&gt;&lt;strong&gt;Slither&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (VPR) [39184] [Ability]
-/// &lt;para&gt;Rush to a target's side. Additional Effect: Increases movement speed by 25% Duration: 4s Maximum Charges: 2 Unable to cast if bound.&lt;/para&gt;
+/// &lt;para&gt;Rush to a target's side. Additional Effect: Increases movement speed by 50% Duration: 4s Maximum Charges: 2 Unable to cast if bound.&lt;/para&gt;
 /// &lt;/summary&gt;
 SlitherPvP = 39184,
 /// &lt;summary&gt;
@@ -38755,7 +40495,7 @@ FangedMusePvP = 39208,
 LivingMusePvP = 39209,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/39210"&gt;&lt;strong&gt;Smudge&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (PCT) [39210] [Ability]
-/// &lt;para&gt;Quickly dash 15 yalms forward. Additional Effect: Increases movement speed by 25% Duration: 4s Additional Effect: Grants Quick Sketch Quick Sketch Effect: Next motif is rendered instantly Duration: 10s Cannot be executed while bound.&lt;/para&gt;
+/// &lt;para&gt;Quickly dash 15 yalms forward. Additional Effect: Increases movement speed by 25% Duration: 3s Additional Effect: Grants Quick Sketch Quick Sketch Effect: Next motif is rendered instantly Duration: 10s Cannot be executed while bound.&lt;/para&gt;
 /// &lt;/summary&gt;
 SmudgePvP = 39210,
 /// &lt;summary&gt;
@@ -38790,7 +40530,7 @@ StarPrismPvP = 39216,
 MogOfTheAgesPvP = 39782,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/39783"&gt;&lt;strong&gt;Retribution of the Madeen&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (PCT) [39783] [Spell]
-/// &lt;para&gt;Render your Madeen portrait to life dealing unaspected damage with a potency of 16,000 to all enemies in a straight line. Additional Effect: Stun Duration: 2s Can only be cast while under the effect of Madeen Portrait. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+/// &lt;para&gt;Render your Madeen portrait to life dealing unaspected damage with a potency of 14,000 to all enemies in a straight line. Additional Effect: Stun Duration: 2s Can only be cast while under the effect of Madeen Portrait. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
 /// &lt;/summary&gt;
 RetributionOfTheMadeenPvP = 39783,
 /// &lt;summary&gt;
@@ -38905,12 +40645,12 @@ DokumoriPvP = 41451,
 ZeshoMeppoPvP = 41452,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/41454"&gt;&lt;strong&gt;Tendo Setsugekka&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SAM) [41454] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 10,000. Additional Effect: Restores own HP Cure Potency: 10,000 Can only be executed while under the effect of Tendo Setsugekka Ready. ※This action cannot be assigned to a hotbar. ※Action changes to Tendo Kaeshi Setsugekka upon execution.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 10,000. Additional Effect: Restores own HP Cure Potency: 8,000 Can only be executed while under the effect of Tendo Setsugekka Ready. ※This action cannot be assigned to a hotbar. ※Action changes to Tendo Kaeshi Setsugekka upon execution.&lt;/para&gt;
 /// &lt;/summary&gt;
 TendoSetsugekkaPvP = 41454,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/41455"&gt;&lt;strong&gt;Tendo Kaeshi Setsugekka&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SAM) [41455] [Weaponskill]
-/// &lt;para&gt;Delivers an attack with a potency of 10,000. Combo Action: Tendo Setsugekka Additional Effect: Restores own HP Cure Potency: 10,000 ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 10,000. Combo Action: Tendo Setsugekka Additional Effect: Restores own HP Cure Potency: 8,000 ※This action cannot be assigned to a hotbar.&lt;/para&gt;
 /// &lt;/summary&gt;
 TendoKaeshiSetsugekkaPvP = 41455,
 /// &lt;summary&gt;
@@ -39075,7 +40815,7 @@ EmboldenPvP = 41494,
 PrefulgencePvP = 41495,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/41496"&gt;&lt;strong&gt;Forte&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (RDM) [41496] [Ability]
-/// &lt;para&gt;Creates a barrier around self that reduces damage taken by 50% and absorbs damage equivalent to a heal of 4,000 potency. Duration: 4s Grants Thorned Flourish when barrier is completely absorbed. Duration: 10s ※Action changes to Vice of Thorns while under the effect of Thorned Flourish.&lt;/para&gt;
+/// &lt;para&gt;Creates a barrier around self that reduces damage taken by 50% and absorbs damage equivalent to a heal of 4,000 potency. Duration: 5s Grants Thorned Flourish when barrier is completely absorbed. Duration: 10s ※Action changes to Vice of Thorns while under the effect of Thorned Flourish.&lt;/para&gt;
 /// &lt;/summary&gt;
 FortePvP = 41496,
 /// &lt;summary&gt;
@@ -39345,7 +41085,7 @@ HolyCannonPvE = 41627,
 DarkCannonPvE = 41628,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/41629"&gt;&lt;strong&gt;Shock Cannon&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (Any Disciple of War or Magic (excluding limited jobs)) [41629] [Weaponskill]
-/// &lt;para&gt;Deals lightning damage with a potency of 210 to target and all enemies nearby it. Potency scales with item level. Additional Effect: Paralysis Duration: 18s Shares a recast timer with Dark Cannon.&lt;/para&gt;
+/// &lt;para&gt;Deals unaspected damage with a potency of 210 to target and all enemies nearby it. Potency scales with item level. Additional Effect: Paralysis Duration: 18s Shares a recast timer with Dark Cannon.&lt;/para&gt;
 /// &lt;/summary&gt;
 ShockCannonPvE = 41629,
 /// &lt;summary&gt;
@@ -39500,7 +41240,7 @@ RampartPvP = 43244,
 FullSwingPvP = 43245,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/43246"&gt;&lt;strong&gt;Bloodbath&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (MNK DRG NIN SAM RPR VPR) [43246] [Ability]
-/// &lt;para&gt;Increases damage dealt by 10% and converts 100% of damage dealt into HP. Duration: 10s&lt;/para&gt;
+/// &lt;para&gt;Increases damage dealt by 25% and converts 100% of damage dealt into HP. Duration: 10s&lt;/para&gt;
 /// &lt;/summary&gt;
 BloodbathPvP = 43246,
 /// &lt;summary&gt;
@@ -39510,7 +41250,7 @@ BloodbathPvP = 43246,
 SwiftPvP = 43247,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/43248"&gt;&lt;strong&gt;Smite&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (MNK DRG NIN SAM RPR VPR) [43248] [Ability]
-/// &lt;para&gt;Delivers an attack with a potency of 6,000. Potency increases up to 18,000 as the target's HP decreases reaching its maximum value when the target has 25% HP or less. Recast time resets upon earning a kill or an assist.&lt;/para&gt;
+/// &lt;para&gt;Delivers an attack with a potency of 6,000. Potency increases up to 18,000 as the target's HP decreases reaching its maximum value when the target has 25% HP or less. Ignores the effects of Guard when dealing damage. Recast time resets upon earning a kill or an assist.&lt;/para&gt;
 /// &lt;/summary&gt;
 SmitePvP = 43248,
 /// &lt;summary&gt;
@@ -39540,7 +41280,7 @@ CometPvP = 43252,
 RustPvP = 43254,
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/43255"&gt;&lt;strong&gt;Haelan&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (WHM SCH AST SGE) [43255] [Spell]
-/// &lt;para&gt;Restores target's HP. Cure Potency: 15,000&lt;/para&gt;
+/// &lt;para&gt;Restores target's HP. Cure Potency: 16,000 Potency reduced to 8,000 when targeting self.&lt;/para&gt;
 /// &lt;/summary&gt;
 HaelanPvP = 43255,
 /// &lt;summary&gt;
@@ -40786,7 +42526,7 @@ public abstract partial class CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29054"&gt;&lt;strong&gt;Guard&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (Jobs of the Disciples of War or Magic) [29054] [Ability]
-    /// &lt;para&gt;Reduces damage taken by 90% and grants immunity to Stun Heavy Bind Silence Deep Freeze and knockback and draw-in effects. Duration: 4s Movement speed is reduced by 33% for the duration of this effect. Effect ends upon reuse using another action or when the effect duration expires.&lt;/para&gt;
+    /// &lt;para&gt;Reduces damage taken by 99% and grants immunity to Stun Heavy Bind Silence Deep Freeze and knockback and draw-in effects. Duration: 4s Movement speed is reduced by 33% for the duration of this effect. Effect ends upon reuse using another action or when the effect duration expires.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction GuardPvP =&gt; _GuardPvPCreator.Value;
@@ -40901,7 +42641,7 @@ public abstract partial class CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29711"&gt;&lt;strong&gt;Recuperate&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (Jobs of the Disciples of War or Magic) [29711] [Ability]
-    /// &lt;para&gt;Restores own HP. Cure Potency: 15,000&lt;/para&gt;
+    /// &lt;para&gt;Restores own HP. Cure Potency: 16,000&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction RecuperatePvP =&gt; _RecuperatePvPCreator.Value;
@@ -40924,7 +42664,7 @@ public abstract partial class CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29735"&gt;&lt;strong&gt;Guard&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (Jobs of the Disciples of War or Magic) [29735] [Ability]
-    /// &lt;para&gt;Reduces damage taken by 90% and grants immunity to Stun Heavy Bind Silence Deep Freeze and knockback and draw-in effects. Duration: 4s Movement speed is reduced by 33% for the duration of this effect. Effect ends upon reuse using another action or when the effect duration expires.&lt;/para&gt;
+    /// &lt;para&gt;Reduces damage taken by 99% and grants immunity to Stun Heavy Bind Silence Deep Freeze and knockback and draw-in effects. Duration: 4s Movement speed is reduced by 33% for the duration of this effect. Effect ends upon reuse using another action or when the effect duration expires.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction GuardPvP_29735 =&gt; _GuardPvP_29735Creator.Value;
@@ -41085,7 +42825,7 @@ public abstract partial class CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/43246"&gt;&lt;strong&gt;Bloodbath&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (MNK DRG NIN SAM RPR VPR) [43246] [Ability]
-    /// &lt;para&gt;Increases damage dealt by 10% and converts 100% of damage dealt into HP. Duration: 10s&lt;/para&gt;
+    /// &lt;para&gt;Increases damage dealt by 25% and converts 100% of damage dealt into HP. Duration: 10s&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction BloodbathPvP =&gt; _BloodbathPvPCreator.Value;
@@ -41131,7 +42871,7 @@ public abstract partial class CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/43248"&gt;&lt;strong&gt;Smite&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (MNK DRG NIN SAM RPR VPR) [43248] [Ability]
-    /// &lt;para&gt;Delivers an attack with a potency of 6,000. Potency increases up to 18,000 as the target's HP decreases reaching its maximum value when the target has 25% HP or less. Recast time resets upon earning a kill or an assist.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 6,000. Potency increases up to 18,000 as the target's HP decreases reaching its maximum value when the target has 25% HP or less. Ignores the effects of Guard when dealing damage. Recast time resets upon earning a kill or an assist.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction SmitePvP =&gt; _SmitePvPCreator.Value;
@@ -41269,7 +43009,7 @@ public abstract partial class CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/43255"&gt;&lt;strong&gt;Haelan&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (WHM SCH AST SGE) [43255] [Spell]
-    /// &lt;para&gt;Restores target's HP. Cure Potency: 15,000&lt;/para&gt;
+    /// &lt;para&gt;Restores target's HP. Cure Potency: 16,000 Potency reduced to 8,000 when targeting self.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction HaelanPvP =&gt; _HaelanPvPCreator.Value;
@@ -51800,7 +53540,7 @@ public abstract partial class DutyRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/41629"&gt;&lt;strong&gt;Shock Cannon&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (Any Disciple of War or Magic (excluding limited jobs)) [41629] [Weaponskill] Duty Action
-    /// &lt;para&gt;Deals lightning damage with a potency of 210 to target and all enemies nearby it. Potency scales with item level. Additional Effect: Paralysis Duration: 18s Shares a recast timer with Dark Cannon.&lt;/para&gt;
+    /// &lt;para&gt;Deals unaspected damage with a potency of 210 to target and all enemies nearby it. Potency scales with item level. Additional Effect: Paralysis Duration: 18s Shares a recast timer with Dark Cannon.&lt;/para&gt;
     /// &lt;/summary&gt;
     [ID(41629)]
     public IBaseAction ShockCannonPvE =&gt; _ShockCannonPvECreator.Value;
@@ -56827,7 +58567,7 @@ public abstract partial class WarriorRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/16465"&gt;&lt;strong&gt;Inner Chaos&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (WAR) [16465] [Weaponskill]
-    /// &lt;para&gt;Delivers a critical direct hit with a potency of 660. Damage dealt is increased when under an effect that raises critical hit rate or direct hit rate. Additional Effect: Reduces the recast time of Infuriate by 5 seconds Beast Gauge Cost: 50 Can only be executed while under the effect of Nascent Chaos. Effect fades upon execution. ※This action cannot be assigned to a hotbar. ※Fell Cleave changes to Inner Chaos when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers a critical direct hit with a potency of 700. Damage dealt is increased when under an effect that raises critical hit rate or direct hit rate. Additional Effect: Reduces the recast time of Infuriate by 5 seconds Beast Gauge Cost: 50 Can only be executed while under the effect of Nascent Chaos. Effect fades upon execution. ※This action cannot be assigned to a hotbar. ※Fell Cleave changes to Inner Chaos when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction InnerChaosPvE =&gt; _InnerChaosPvECreator.Value;
@@ -56896,7 +58636,7 @@ public abstract partial class WarriorRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/25753"&gt;&lt;strong&gt;Primal Rend&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (WAR) [25753] [Weaponskill]
-    /// &lt;para&gt;Jumps to the target and delivers a critical direct hit to target and all enemies nearby it with a potency of 700 for the first enemy and 50% less for all remaining enemies. Damage dealt is increased when under an effect that raises critical hit rate or direct hit rate. Can only be executed while under the effect of Primal Rend Ready granted by Inner Release. Cannot be executed while bound.&lt;/para&gt;
+    /// &lt;para&gt;Jumps to the target and delivers a critical direct hit to target and all enemies nearby it with a potency of 720 for the first enemy and 50% less for all remaining enemies. Damage dealt is increased when under an effect that raises critical hit rate or direct hit rate. Can only be executed while under the effect of Primal Rend Ready granted by Inner Release. Cannot be executed while bound.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction PrimalRendPvE =&gt; _PrimalRendPvECreator.Value;
@@ -57241,7 +58981,7 @@ public abstract partial class WarriorRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/36925"&gt;&lt;strong&gt;Primal Ruination&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (WAR) [36925] [Weaponskill]
-    /// &lt;para&gt;Delivers a critical direct hit to target and all enemies nearby it with a potency of 780 for the first enemy and 50% less for all remaining enemies. Increases damage dealt when under an effect that raises critical hit rate or direct hit rate. Can only be executed while under the effect of Primal Ruination Ready. ※This action cannot be assigned to a hotbar. ※Primal Rend changes to Primal Ruination when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers a critical direct hit to target and all enemies nearby it with a potency of 800 for the first enemy and 50% less for all remaining enemies. Increases damage dealt when under an effect that raises critical hit rate or direct hit rate. Can only be executed while under the effect of Primal Ruination Ready. ※This action cannot be assigned to a hotbar. ※Primal Rend changes to Primal Ruination when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction PrimalRuinationPvE =&gt; _PrimalRuinationPvECreator.Value;
@@ -58261,7 +60001,7 @@ public abstract partial class DragoonRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29490"&gt;&lt;strong&gt;Chaotic Spring&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (DRG) [29490] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 9,000. Ignores the effects of Guard when dealing damage. Additional Effect: Absorbs 150% of damage dealt as HP This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 9,000. Ignores the effects of Guard when dealing damage. Additional Effect: Absorbs 200% of damage dealt as HP This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction ChaoticSpringPvP =&gt; _ChaoticSpringPvPCreator.Value;
@@ -60920,7 +62660,7 @@ public abstract partial class WhiteMageRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29225"&gt;&lt;strong&gt;Cure III&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (WHM) [29225] [Spell]
-    /// &lt;para&gt;Restores HP of self or target with a cure potency of 16,000 and all other nearby party members with a cure potency of 12,000. Can only be executed while under the effect of Cure III Ready. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+    /// &lt;para&gt;Restores own or target party member's HP and all party members nearby target. Cure Potency: 16,000 Can only be executed while under the effect of Cure III Ready. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction CureIiiPvP =&gt; _CureIiiPvPCreator.Value;
@@ -62114,7 +63854,7 @@ public abstract partial class BlackMageRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29651"&gt;&lt;strong&gt;Flare&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (BLM) [29651] [Spell]
-    /// &lt;para&gt;Deals fire damage with a potency of 13,500 to target and all enemies nearby it. Additional Effect: Grants Astral Fire III Duration: 15s Effect cannot be stacked with Umbral Ice. Can only be executed while under the effect of Soul Resonance. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+    /// &lt;para&gt;Deals fire damage with a potency of 15,000 to target and all enemies nearby it. Additional Effect: Grants Astral Fire III Duration: 15s Effect cannot be stacked with Umbral Ice. Can only be executed while under the effect of Soul Resonance. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction FlarePvP =&gt; _FlarePvPCreator.Value;
@@ -62183,7 +63923,7 @@ public abstract partial class BlackMageRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29655"&gt;&lt;strong&gt;Freeze&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (BLM) [29655] [Spell]
-    /// &lt;para&gt;Deals ice damage with a potency of 9,000 to target and all enemies nearby it. Additional Effect: Grants Umbral Ice III Duration: 15s Effect cannot be stacked with Astral Fire. Can only be executed while under the effect of Soul Resonance. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+    /// &lt;para&gt;Deals ice damage with a potency of 10,000 to target and all enemies nearby it. Additional Effect: Grants Umbral Ice III Duration: 15s Effect cannot be stacked with Astral Fire. Can only be executed while under the effect of Soul Resonance. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction FreezePvP =&gt; _FreezePvPCreator.Value;
@@ -62713,13 +64453,13 @@ static partial void ModifySoulResonancePvP(ref ActionSetting setting);
 
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29662"&gt;&lt;strong&gt;Soul Resonance&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (BLM) [29662] [Limit Break]
-/// &lt;para&gt;Grants 6 stacks of Soul Resonance upgrading Fire to Flare and Blizzard to Freeze. Duration: 30s Additional Effect: Grants Elemental Star Elemental Star Effect: Action changes to Flare Star while under the effect of Astral Fire or Frost Star while under the effect of Umbral Ice Duration: 30s Can only be executed when the limit gauge is full. Gauge Charge Time: 60s&lt;/para&gt;
+/// &lt;para&gt;Grants 6 stacks of Soul Resonance upgrading Fire to Flare and Blizzard to Freeze. Duration: 30s Additional Effect: Grants Elemental Star Elemental Star Effect: Action changes to Flare Star while under the effect of Astral Fire or Frost Star while under the effect of Umbral Ice Duration: 60s Can only be executed when the limit gauge is full. Gauge Charge Time: 60s&lt;/para&gt;
 /// &lt;/summary&gt;
 
 private IBaseAction SoulResonancePvP =&gt; _SoulResonancePvPCreator.Value;
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/29662"&gt;&lt;strong&gt;Soul Resonance&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (BLM) [29662] [Limit Break]
-/// &lt;para&gt;Grants 6 stacks of Soul Resonance upgrading Fire to Flare and Blizzard to Freeze. Duration: 30s Additional Effect: Grants Elemental Star Elemental Star Effect: Action changes to Flare Star while under the effect of Astral Fire or Frost Star while under the effect of Umbral Ice Duration: 30s Can only be executed when the limit gauge is full. Gauge Charge Time: 60s&lt;/para&gt;
+/// &lt;para&gt;Grants 6 stacks of Soul Resonance upgrading Fire to Flare and Blizzard to Freeze. Duration: 30s Additional Effect: Grants Elemental Star Elemental Star Effect: Action changes to Flare Star while under the effect of Astral Fire or Frost Star while under the effect of Umbral Ice Duration: 60s Can only be executed when the limit gauge is full. Gauge Charge Time: 60s&lt;/para&gt;
 /// &lt;/summary&gt;
 private sealed protected override IBaseAction LimitBreakPvP =&gt; SoulResonancePvP;
 
@@ -62945,7 +64685,7 @@ public abstract partial class SummonerRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/3578"&gt;&lt;strong&gt;Painflare&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [3578] [Ability]
-    /// &lt;para&gt;Deals unaspected damage with a potency of 150 to target and all enemies nearby it. Aetherflow Gauge Cost: 1&lt;/para&gt;
+    /// &lt;para&gt;Deals unaspected damage with a potency of 220 to target and all enemies nearby it. Aetherflow Gauge Cost: 1&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction PainflarePvE =&gt; _PainflarePvECreator.Value;
@@ -64624,7 +66364,7 @@ public abstract partial class SummonerRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29671"&gt;&lt;strong&gt;Mountain Buster&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SMN) [29671] [Spell]
-    /// &lt;para&gt;Deals earth damage with a potency of 12,000 to all enemies in a cone before you. Additional Effect: Stun Duration: 2s This action does not share a recast timer with any other actions.&lt;/para&gt;
+    /// &lt;para&gt;Deals earth damage with a potency of 12,000 to all enemies in a cone before you. Additional Effect: Stun Duration: 2s Additional Effect: Reduces damage taken by 15% Duration: 5s This action does not share a recast timer with any other actions.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction MountainBusterPvP =&gt; _MountainBusterPvPCreator.Value;
@@ -64739,7 +66479,7 @@ public abstract partial class SummonerRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/36990"&gt;&lt;strong&gt;Necrotize&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SMN) [36990] [Ability]
-    /// &lt;para&gt;Deals unaspected damage with a potency of 460. Aetherflow Gauge Cost: 1&lt;/para&gt;
+    /// &lt;para&gt;Deals unaspected damage with a potency of 500. Aetherflow Gauge Cost: 1&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction NecrotizePvE =&gt; _NecrotizePvECreator.Value;
@@ -65265,7 +67005,7 @@ private sealed protected override IBaseAction LimitBreakPvP =&gt; SummonBahamutP
     public static IBaseTrait EnhancedSummonBahamutIiTrait { get; } = new BaseTrait(619);
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/50664"&gt;&lt;strong&gt;Arcane Mastery&lt;/strong&gt;&lt;/see&gt; (SMN) [664]
-    /// &lt;para&gt;Increases the potency of Ruin III to 400 Astral Impulse to 500 Ruin IV to 520 Ruby Rite to 580 Topaz Rite to 340 Emerald Rite to 280 Fountain of Fire to 580 Crimson Strike to 520 Crimson Cyclone to 520 Mountain Buster to 160 Slipstream to 520 Inferno to 800 Earthen Fury to 800 and Aerial Blast to 800.&lt;/para&gt;
+    /// &lt;para&gt;Increases the potency of Ruin III to 400 Astral Impulse to 500 Ruin IV to 520 Ruby Rite to 620 Topaz Rite to 340 Emerald Rite to 280 Fountain of Fire to 580 Crimson Strike to 560 Crimson Cyclone to 560 Mountain Buster to 160 Slipstream to 520 Inferno to 800 Earthen Fury to 800 and Aerial Blast to 800.&lt;/para&gt;
     /// &lt;/summary&gt;
     public static IBaseTrait ArcaneMasteryTrait { get; } = new BaseTrait(664);
 
@@ -68103,7 +69843,7 @@ public abstract partial class NinjaRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29508"&gt;&lt;strong&gt;Meisui&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (NIN) [29508] [Spell]
-    /// &lt;para&gt;Restores own or target party member's HP. Cure Potency: 8,000 Additional Effect: Grants healing over time effect to target Cure Potency: 4,000 Duration: 12s Additional Effect: Nullifies one status affliction that can be removed by Purify Can only be executed while under the effect of Three Mudra. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+    /// &lt;para&gt;Restores own or target party member's HP. Cure Potency: 8,000 Additional Effect: Grants healing over time effect to target Cure Potency: 5,000 Duration: 12s Additional Effect: Nullifies one status affliction that can be removed by Purify Can only be executed while under the effect of Three Mudra. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction MeisuiPvP =&gt; _MeisuiPvPCreator.Value;
@@ -74041,7 +75781,7 @@ public abstract partial class SamuraiRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29530"&gt;&lt;strong&gt;Ogi Namikiri&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SAM) [29530] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 8,000 to all enemies in a cone before you. Potency is increased to 12,000 when attacking only a single target. Additional Effect: When attacking two or more targets creates a barrier around self that absorbs damage equivalent to a heal of 10,000 potency Duration: 10s This weaponskill does not share a recast timer with any other actions. ※Action changes to Kaeshi: Namikiri upon execution.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 8,000 to all enemies in a cone before you. Potency is increased to 12,000 when attacking only a single target. Additional Effect: When attacking two or more targets creates a barrier around self that absorbs damage equivalent to a heal of 8,000 potency Duration: 10s This weaponskill does not share a recast timer with any other actions. ※Action changes to Kaeshi: Namikiri upon execution.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction OgiNamikiriPvP =&gt; _OgiNamikiriPvPCreator.Value;
@@ -74064,7 +75804,7 @@ public abstract partial class SamuraiRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29531"&gt;&lt;strong&gt;Kaeshi: Namikiri&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SAM) [29531] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 8,000 to all enemies in a cone before you. Potency is increased to 12,000 when attacking only a single target. Combo Action: Ogi Namikiri Additional Effect: When attacking two or more targets creates a barrier around self that absorbs damage equivalent to a heal of 10,000 potency Duration: 10s ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 8,000 to all enemies in a cone before you. Potency is increased to 12,000 when attacking only a single target. Combo Action: Ogi Namikiri Additional Effect: When attacking two or more targets creates a barrier around self that absorbs damage equivalent to a heal of 8,000 potency Duration: 10s ※This action cannot be assigned to a hotbar.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction KaeshiNamikiriPvP =&gt; _KaeshiNamikiriPvPCreator.Value;
@@ -74156,7 +75896,7 @@ public abstract partial class SamuraiRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29536"&gt;&lt;strong&gt;Meikyo Shisui&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SAM) [29536] [Ability]
-    /// &lt;para&gt;Grants Meikyo Shisui. Meikyo Shisui Effect: Nullifies status afflictions that can be removed by Purify as well as knockback and draw-in effects while increasing HP recovered via healing actions by 20% Duration: 3s Additional Effect: Grants Tendo Setsugekka Ready Duration: 10s ※Action changes to Tendo Setsugekka upon execution.&lt;/para&gt;
+    /// &lt;para&gt;Grants Meikyo Shisui. Meikyo Shisui Effect: Nullifies status afflictions that can be removed by Purify as well as knockback and draw-in effects while increasing HP recovered via healing actions by 15% Duration: 3s Additional Effect: Grants Tendo Setsugekka Ready Duration: 10s ※Action changes to Tendo Setsugekka upon execution.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction MeikyoShisuiPvP =&gt; _MeikyoShisuiPvPCreator.Value;
@@ -74340,7 +76080,7 @@ public abstract partial class SamuraiRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/41454"&gt;&lt;strong&gt;Tendo Setsugekka&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SAM) [41454] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 10,000. Additional Effect: Restores own HP Cure Potency: 10,000 Can only be executed while under the effect of Tendo Setsugekka Ready. ※This action cannot be assigned to a hotbar. ※Action changes to Tendo Kaeshi Setsugekka upon execution.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 10,000. Additional Effect: Restores own HP Cure Potency: 8,000 Can only be executed while under the effect of Tendo Setsugekka Ready. ※This action cannot be assigned to a hotbar. ※Action changes to Tendo Kaeshi Setsugekka upon execution.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction TendoSetsugekkaPvP =&gt; _TendoSetsugekkaPvPCreator.Value;
@@ -74363,7 +76103,7 @@ public abstract partial class SamuraiRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/41455"&gt;&lt;strong&gt;Tendo Kaeshi Setsugekka&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (SAM) [41455] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 10,000. Combo Action: Tendo Setsugekka Additional Effect: Restores own HP Cure Potency: 10,000 ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 10,000. Combo Action: Tendo Setsugekka Additional Effect: Restores own HP Cure Potency: 8,000 ※This action cannot be assigned to a hotbar.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction TendoKaeshiSetsugekkaPvP =&gt; _TendoKaeshiSetsugekkaPvPCreator.Value;
@@ -74588,7 +76328,7 @@ private sealed protected override IBaseAction LimitBreakPvP =&gt; ZantetsukenPvP
     public static IBaseTrait EnhancedMeikyoShisuiIiTrait { get; } = new BaseTrait(593);
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/50655"&gt;&lt;strong&gt;Way of the Samurai III&lt;/strong&gt;&lt;/see&gt; (SAM) [655]
-    /// &lt;para&gt;Increases the potency of Jinpu to 140 Shifu to 140 Enhanced Enpi to 270 Gekko to 160 Higanbana damage over time to 50 Kasha to 160 Yukikaze to 160 Midare Setsugekka to 640 Kaeshi: Setsugekka to 640 Shoha to 640 Ogi Namikiri to 1,000 and Kaeshi: Namikiri to 1,000.&lt;/para&gt;
+    /// &lt;para&gt;Increases the potency of Jinpu to 140 Shifu to 140 Enhanced Enpi to 270 Gekko to 160 Higanbana damage over time to 50 Kasha to 160 Yukikaze to 160 Midare Setsugekka to 680 Kaeshi: Setsugekka to 680 Shoha to 640 Ogi Namikiri to 1,000 and Kaeshi: Namikiri to 1,000.&lt;/para&gt;
     /// &lt;/summary&gt;
     public static IBaseTrait WayOfTheSamuraiIiiTrait { get; } = new BaseTrait(655);
 
@@ -75483,7 +77223,7 @@ public abstract partial class RedMageRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29699"&gt;&lt;strong&gt;Corps-a-corps&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (RDM) [29699] [Ability]
-    /// &lt;para&gt;Rushes target and delivers an attack with a potency of 3,000. Additional Effect: Afflicts target with Monomachy Monomachy Effect: Increases damage dealt to target by 10% while lowering damage taken from target by 10% Duration: 8s Maximum Charges: 2 Cannot be executed while bound.&lt;/para&gt;
+    /// &lt;para&gt;Rushes target and delivers an attack with a potency of 3,000. Additional Effect: Afflicts target with Monomachy Monomachy Effect: Increases damage dealt to target by 15% while lowering damage taken from target by 15% Duration: 8s Maximum Charges: 2 Cannot be executed while bound.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction CorpsacorpsPvP =&gt; _CorpsacorpsPvPCreator.Value;
@@ -75897,7 +77637,7 @@ public abstract partial class RedMageRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/41496"&gt;&lt;strong&gt;Forte&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (RDM) [41496] [Ability]
-    /// &lt;para&gt;Creates a barrier around self that reduces damage taken by 50% and absorbs damage equivalent to a heal of 4,000 potency. Duration: 4s Grants Thorned Flourish when barrier is completely absorbed. Duration: 10s ※Action changes to Vice of Thorns while under the effect of Thorned Flourish.&lt;/para&gt;
+    /// &lt;para&gt;Creates a barrier around self that reduces damage taken by 50% and absorbs damage equivalent to a heal of 4,000 potency. Duration: 5s Grants Thorned Flourish when barrier is completely absorbed. Duration: 10s ※Action changes to Vice of Thorns while under the effect of Thorned Flourish.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction FortePvP =&gt; _FortePvPCreator.Value;
@@ -81951,7 +83691,7 @@ public abstract partial class DancerRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/29429"&gt;&lt;strong&gt;Curing Waltz&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (DNC) [29429] [Ability]
-    /// &lt;para&gt;Restores own HP and the HP of all nearby party members. Cure Potency: 12,000 Additional Effect: Party member designated as your Dance Partner will also heal self and nearby party members This action's effects extend through obstructions.&lt;/para&gt;
+    /// &lt;para&gt;Restores own HP and the HP of all nearby party members. Cure Potency: 10,000 Additional Effect: Party member designated as your Dance Partner will also heal self and nearby party members This action's effects extend through obstructions.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction CuringWaltzPvP =&gt; _CuringWaltzPvPCreator.Value;
@@ -82823,7 +84563,7 @@ public abstract partial class ReaperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/24393"&gt;&lt;strong&gt;Gluttony&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (RPR) [24393] [Ability]
-    /// &lt;para&gt;Summons your avatar to deal unaspected damage to target and all enemies nearby it with a potency of 520 for the first enemy and 25% less for all remaining enemies. Additional Effect: Grants 2 stacks of Duration: 30s Soul Gauge Cost: 50&lt;/para&gt;
+    /// &lt;para&gt;Summons your avatar to deal unaspected damage to target and all enemies nearby it with a potency of 560 for the first enemy and 25% less for all remaining enemies. Additional Effect: Grants 2 stacks of Duration: 30s Soul Gauge Cost: 50&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction GluttonyPvE =&gt; _GluttonyPvECreator.Value;
@@ -83802,7 +85542,7 @@ private sealed protected override IBaseAction LimitBreakPvP =&gt; TenebraeLemuru
     public static IBaseTrait EnhancedPlentifulHarvestTrait { get; } = new BaseTrait(597);
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/50657"&gt;&lt;strong&gt;Melee Mastery III&lt;/strong&gt;&lt;/see&gt; (RPR) [657]
-    /// &lt;para&gt;Increases the potency of Slice to 420 Waxing Slice to 260 Infernal Slice to 280 Soul Slice to 520 Gibbet to 500 Gallows to 500 Unveiled Gibbet to 440 Unveiled Gallows to 440 Void Reaping to 560 Cross Reaping to 560 Harvest Moon to 800 and Lemure's Slice to 280.&lt;/para&gt;
+    /// &lt;para&gt;Increases the potency of Slice to 420 Waxing Slice to 260 Infernal Slice to 280 Soul Slice to 520 Gibbet to 500 Gallows to 500 Unveiled Gibbet to 440 Unveiled Gallows to 440 Void Reaping to 580 Cross Reaping to 580 Harvest Moon to 800 and Lemure's Slice to 280.&lt;/para&gt;
     /// &lt;/summary&gt;
     public static IBaseTrait MeleeMasteryIiiTrait { get; } = new BaseTrait(657);
 
@@ -84536,7 +86276,7 @@ public abstract partial class SageRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/24313"&gt;&lt;strong&gt;Phlegma III&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SGE) [24313] [Spell]
-    /// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 600 for the first enemy and 50% less for all remaining enemies. Additional Effect: Restores HP to targets under the effect of Kardion granted by you Cure Potency: Maximum Charges: 2 Recast timer cannot be affected by status effects or gear attributes.&lt;/para&gt;
+    /// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 690 for the first enemy and 50% less for all remaining enemies. Additional Effect: Restores HP to targets under the effect of Kardion granted by you Cure Potency: Maximum Charges: 2 Recast timer cannot be affected by status effects or gear attributes.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction PhlegmaIiiPvE =&gt; _PhlegmaIiiPvECreator.Value;
@@ -84904,7 +86644,7 @@ public abstract partial class SageRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/37033"&gt;&lt;strong&gt;Psyche&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (SGE) [37033] [Ability]
-    /// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 600 for the first enemy and 50% less for all remaining enemies.&lt;/para&gt;
+    /// &lt;para&gt;Deals unaspected damage to target and all enemies nearby it with a potency of 690 for the first enemy and 50% less for all remaining enemies.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction PsychePvE =&gt; _PsychePvECreator.Value;
@@ -85180,7 +86920,7 @@ private sealed protected override IBaseAction LimitBreakPvP =&gt; MesotesPvP;
     public static IBaseTrait EnhancedPhysisIiTrait { get; } = new BaseTrait(638);
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/50669"&gt;&lt;strong&gt;Magick Mastery&lt;/strong&gt;&lt;/see&gt; (SGE) [669]
-    /// &lt;para&gt;Increases the potency of Dosis III to 380 Eukrasian Dosis III to 85 Toxikon II to 380 and Pneuma to 380.&lt;/para&gt;
+    /// &lt;para&gt;Increases the potency of Dosis III to 380 Eukrasian Dosis III damage over time to 90 Toxikon II to 380 and Pneuma to 380.&lt;/para&gt;
     /// &lt;/summary&gt;
     public static IBaseTrait MagickMasteryTrait { get; } = new BaseTrait(669);
 
@@ -85546,7 +87286,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34620"&gt;&lt;strong&gt;Vicewinder&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34620] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 500. Maximum Charges: 2 Shares a recast timer with Vicepit.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 540. Maximum Charges: 2 Shares a recast timer with Vicepit.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction VicewinderPvE =&gt; _VicewinderPvECreator.Value;
@@ -85569,7 +87309,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34621"&gt;&lt;strong&gt;Hunter's Coil&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34621] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 570. 620 when executed from a target's flank. Additional Effect: Grants Hunter's Instinct Hunter's Instinct Effect: Increases damage dealt by 10% Duration: 40s Can only be executed after successfully landing Vicewinder or Swiftskin's Coil. This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 630. 680 when executed from a target's flank. Additional Effect: Grants Hunter's Instinct Hunter's Instinct Effect: Increases damage dealt by 10% Duration: 40s Can only be executed after successfully landing Vicewinder or Swiftskin's Coil. This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction HuntersCoilPvE =&gt; _HuntersCoilPvECreator.Value;
@@ -85592,7 +87332,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34622"&gt;&lt;strong&gt;Swiftskin's Coil&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34622] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 570. 620 when executed from a target's rear. Additional Effect: Grants Swiftscaled Swiftscaled Effect: Reduces weaponskill cast time and recast time spell cast time and recast time and auto-attack delay by 15% Duration: 40s Can only be executed after successfully landing Vicewinder or Hunter's Coil. This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 630. 680 when executed from a target's rear. Additional Effect: Grants Swiftscaled Swiftscaled Effect: Reduces weaponskill cast time and recast time spell cast time and recast time and auto-attack delay by 15% Duration: 40s Can only be executed after successfully landing Vicewinder or Hunter's Coil. This weaponskill does not share a recast timer with any other actions.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction SwiftskinsCoilPvE =&gt; _SwiftskinsCoilPvECreator.Value;
@@ -85684,7 +87424,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34626"&gt;&lt;strong&gt;Reawaken&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34626] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 750 for the first enemy and 80% less for all remaining enemies. Additional Effect: Grants stacks of Anguine Tribute Duration: 30s Serpent Offerings Gauge Cost: 50&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 750 for the first enemy and 75% less for all remaining enemies. Additional Effect: Grants stacks of Anguine Tribute Duration: 30s Serpent Offerings Gauge Cost: 50&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction ReawakenPvE =&gt; _ReawakenPvECreator.Value;
@@ -85707,7 +87447,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34627"&gt;&lt;strong&gt;First Generation&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34627] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 80% less for all remaining enemies. Potency is increased to 680 when executed after Reawaken. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Steel Fangs and Steel Maw change to First Generation when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 75% less for all remaining enemies. Potency is increased to 680 when executed after Reawaken. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Steel Fangs and Steel Maw change to First Generation when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction FirstGenerationPvE =&gt; _FirstGenerationPvECreator.Value;
@@ -85730,7 +87470,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34628"&gt;&lt;strong&gt;Second Generation&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34628] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 80% less for all remaining enemies. Potency is increased to 680 when executed after First Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Reaving Fangs and Reaving Maw change to Second Generation when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 75% less for all remaining enemies. Potency is increased to 680 when executed after First Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Reaving Fangs and Reaving Maw change to Second Generation when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction SecondGenerationPvE =&gt; _SecondGenerationPvECreator.Value;
@@ -85753,7 +87493,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34629"&gt;&lt;strong&gt;Third Generation&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34629] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 80% less for all remaining enemies. Potency is increased to 680 when executed after Second Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Hunter's Coil and Hunter's Den change to Third Generation when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 75% less for all remaining enemies. Potency is increased to 680 when executed after Second Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Hunter's Coil and Hunter's Den change to Third Generation when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction ThirdGenerationPvE =&gt; _ThirdGenerationPvECreator.Value;
@@ -85776,7 +87516,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34630"&gt;&lt;strong&gt;Fourth Generation&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34630] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 80% less for all remaining enemies. Potency is increased to 680 when executed after Third Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Swiftskin's Coil and Swiftskin's Den change to Fourth Generation when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 480 to the first enemy and 75% less for all remaining enemies. Potency is increased to 680 when executed after Third Generation. Anguine Tribute Cost: 1 This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Swiftskin's Coil and Swiftskin's Den change to Fourth Generation when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction FourthGenerationPvE =&gt; _FourthGenerationPvECreator.Value;
@@ -85799,7 +87539,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34631"&gt;&lt;strong&gt;Ouroboros&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34631] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 1,150 to the first enemy and 80% less for all remaining enemies. Reawakened effect expires upon execution. Requires at least one stack of Anguine Tribute. This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Reawaken changes to Ouroboros when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 1,150 to the first enemy and 75% less for all remaining enemies. Reawakened effect expires upon execution. Requires at least one stack of Anguine Tribute. This weaponskill does not share a recast timer with any other actions. ※This action cannot be assigned to a hotbar. ※Reawaken changes to Ouroboros when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction OuroborosPvE =&gt; _OuroborosPvECreator.Value;
@@ -86006,7 +87746,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34640"&gt;&lt;strong&gt;First Legacy&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34640] [Ability]
-    /// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 80% less for all remaining enemies. Can only be executed after successfully landing First Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to First Legacy when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 75% less for all remaining enemies. Can only be executed after successfully landing First Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to First Legacy when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction FirstLegacyPvE =&gt; _FirstLegacyPvECreator.Value;
@@ -86029,7 +87769,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34641"&gt;&lt;strong&gt;Second Legacy&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34641] [Ability]
-    /// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 80% less for all remaining enemies. Can only be executed after successfully landing Second Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Second Legacy when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 75% less for all remaining enemies. Can only be executed after successfully landing Second Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Second Legacy when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction SecondLegacyPvE =&gt; _SecondLegacyPvECreator.Value;
@@ -86052,7 +87792,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34642"&gt;&lt;strong&gt;Third Legacy&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34642] [Ability]
-    /// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 80% less for all remaining enemies. Can only be executed after successfully landing Third Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Third Legacy when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 75% less for all remaining enemies. Can only be executed after successfully landing Third Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Third Legacy when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction ThirdLegacyPvE =&gt; _ThirdLegacyPvECreator.Value;
@@ -86075,7 +87815,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/34643"&gt;&lt;strong&gt;Fourth Legacy&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvE&lt;/i&gt; (VPR) [34643] [Ability]
-    /// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 80% less for all remaining enemies. Can only be executed after successfully landing Fourth Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Fourth Legacy when requirements for execution are met.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 320 to the first enemy and 75% less for all remaining enemies. Can only be executed after successfully landing Fourth Generation. ※This action cannot be assigned to a hotbar. ※Serpent's Tail changes to Fourth Legacy when requirements for execution are met.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction FourthLegacyPvE =&gt; _FourthLegacyPvECreator.Value;
@@ -86397,7 +88137,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/39166"&gt;&lt;strong&gt;Bloodcoil&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (VPR) [39166] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 8,000. Additional Effect: Absorbs 100% of damage dealt as HP ※Action changes to Sanguine Feast upon execution.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 10,000. Additional Effect: Absorbs 100% of damage dealt as HP ※Action changes to Sanguine Feast upon execution.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction BloodcoilPvP =&gt; _BloodcoilPvPCreator.Value;
@@ -86420,7 +88160,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/39167"&gt;&lt;strong&gt;Sanguine Feast&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (VPR) [39167] [Weaponskill]
-    /// &lt;para&gt;Delivers an attack with a potency of 8,000. Combo Action: Bloodcoil Additional Effect: Absorbs 100% of damage dealt as HP ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+    /// &lt;para&gt;Delivers an attack with a potency of 10,000. Combo Action: Bloodcoil Additional Effect: Absorbs 100% of damage dealt as HP ※This action cannot be assigned to a hotbar.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction SanguineFeastPvP =&gt; _SanguineFeastPvPCreator.Value;
@@ -86811,7 +88551,7 @@ public abstract partial class ViperRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/39184"&gt;&lt;strong&gt;Slither&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (VPR) [39184] [Ability]
-    /// &lt;para&gt;Rush to a target's side. Additional Effect: Increases movement speed by 25% Duration: 4s Maximum Charges: 2 Unable to cast if bound.&lt;/para&gt;
+    /// &lt;para&gt;Rush to a target's side. Additional Effect: Increases movement speed by 50% Duration: 4s Maximum Charges: 2 Unable to cast if bound.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction SlitherPvP =&gt; _SlitherPvPCreator.Value;
@@ -87042,13 +88782,13 @@ static partial void ModifyWorldswallowerPvP(ref ActionSetting setting);
 
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/39190"&gt;&lt;strong&gt;World-swallower&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (VPR) [39190] [Limit Break]
-/// &lt;para&gt;Delivers a jumping physical attack to target and all enemies nearby it with a potency of 15,000. Additional Effect: Grants Reawakened and increases movement speed by 50% Duration: 20s Additional Effect: Afflicts target with Noxious Gnash Noxious Gnash Effect: Increases damage you deal target by 25% Duration: 12s Additional Effect: Heavy +75% Duration: 5s Can only be executed when the limit gauge is full. Gauge Charge Time: 90s ※Dual Fang Combo changes to First Generation while under the effect of Reawakened. ※Bloodcoil changes to Ouroboros while under the effect of Reawakened.&lt;/para&gt;
+/// &lt;para&gt;Delivers a jumping physical attack to target and all enemies nearby it with a potency of 15,000. Additional Effect: Grants Reawakened and increases movement speed by 50% Duration: 20s Additional Effect: Absorbs 50% of damage dealt as HP Additional Effect: Afflicts target with Noxious Gnash Noxious Gnash Effect: Increases damage you deal target by 25% Duration: 12s Additional Effect: Heavy +75% Duration: 5s Can only be executed when the limit gauge is full. Gauge Charge Time: 90s ※Dual Fang Combo changes to First Generation while under the effect of Reawakened. ※Bloodcoil changes to Ouroboros while under the effect of Reawakened.&lt;/para&gt;
 /// &lt;/summary&gt;
 
 private IBaseAction WorldswallowerPvP =&gt; _WorldswallowerPvPCreator.Value;
 /// &lt;summary&gt;
 /// &lt;see href="https://garlandtools.org/db/#action/39190"&gt;&lt;strong&gt;World-swallower&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (VPR) [39190] [Limit Break]
-/// &lt;para&gt;Delivers a jumping physical attack to target and all enemies nearby it with a potency of 15,000. Additional Effect: Grants Reawakened and increases movement speed by 50% Duration: 20s Additional Effect: Afflicts target with Noxious Gnash Noxious Gnash Effect: Increases damage you deal target by 25% Duration: 12s Additional Effect: Heavy +75% Duration: 5s Can only be executed when the limit gauge is full. Gauge Charge Time: 90s ※Dual Fang Combo changes to First Generation while under the effect of Reawakened. ※Bloodcoil changes to Ouroboros while under the effect of Reawakened.&lt;/para&gt;
+/// &lt;para&gt;Delivers a jumping physical attack to target and all enemies nearby it with a potency of 15,000. Additional Effect: Grants Reawakened and increases movement speed by 50% Duration: 20s Additional Effect: Absorbs 50% of damage dealt as HP Additional Effect: Afflicts target with Noxious Gnash Noxious Gnash Effect: Increases damage you deal target by 25% Duration: 12s Additional Effect: Heavy +75% Duration: 5s Can only be executed when the limit gauge is full. Gauge Charge Time: 90s ※Dual Fang Combo changes to First Generation while under the effect of Reawakened. ※Bloodcoil changes to Ouroboros while under the effect of Reawakened.&lt;/para&gt;
 /// &lt;/summary&gt;
 private sealed protected override IBaseAction LimitBreakPvP =&gt; WorldswallowerPvP;
 
@@ -88565,7 +90305,7 @@ public abstract partial class PictomancerRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/39210"&gt;&lt;strong&gt;Smudge&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (PCT) [39210] [Ability]
-    /// &lt;para&gt;Quickly dash 15 yalms forward. Additional Effect: Increases movement speed by 25% Duration: 4s Additional Effect: Grants Quick Sketch Quick Sketch Effect: Next motif is rendered instantly Duration: 10s Cannot be executed while bound.&lt;/para&gt;
+    /// &lt;para&gt;Quickly dash 15 yalms forward. Additional Effect: Increases movement speed by 25% Duration: 3s Additional Effect: Grants Quick Sketch Quick Sketch Effect: Next motif is rendered instantly Duration: 10s Cannot be executed while bound.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction SmudgePvP =&gt; _SmudgePvPCreator.Value;
@@ -88726,7 +90466,7 @@ public abstract partial class PictomancerRotation : CustomRotation
     
     /// &lt;summary&gt;
     /// &lt;see href="https://garlandtools.org/db/#action/39783"&gt;&lt;strong&gt;Retribution of the Madeen&lt;/strong&gt;&lt;/see&gt; &lt;i&gt;PvP&lt;/i&gt; (PCT) [39783] [Spell]
-    /// &lt;para&gt;Render your Madeen portrait to life dealing unaspected damage with a potency of 16,000 to all enemies in a straight line. Additional Effect: Stun Duration: 2s Can only be cast while under the effect of Madeen Portrait. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
+    /// &lt;para&gt;Render your Madeen portrait to life dealing unaspected damage with a potency of 14,000 to all enemies in a straight line. Additional Effect: Stun Duration: 2s Can only be cast while under the effect of Madeen Portrait. ※This action cannot be assigned to a hotbar.&lt;/para&gt;
     /// &lt;/summary&gt;
     
     public IBaseAction RetributionOfTheMadeenPvP =&gt; _RetributionOfTheMadeenPvPCreator.Value;
@@ -88949,385 +90689,385 @@ private sealed protected override IBaseAction LimitBreakPvP =&gt; AdventOfChocob
   </data>
   <data name="OpCode" xml:space="preserve">
     <value>/// &lt;summary&gt;
-///Actor Gauge
-/// &lt;/summary&gt;
-[Description("Actor Gauge")]
-ActorGauge = 984,
-/// &lt;summary&gt;
-///Airship Status List
-/// &lt;/summary&gt;
-[Description("Airship Status List")]
-AirshipStatusList = 679,
-/// &lt;summary&gt;
-///Airship Status
-/// &lt;/summary&gt;
-[Description("Airship Status")]
-AirshipStatus = 117,
-/// &lt;summary&gt;
 ///Actor Control Self
 /// &lt;/summary&gt;
 [Description("Actor Control Self")]
-ActorControlSelf = 969,
-/// &lt;summary&gt;
-///Actor Set Pos
-/// &lt;/summary&gt;
-[Description("Actor Set Pos")]
-ActorSetPos = 133,
+ActorControlSelf = 999,
 /// &lt;summary&gt;
 ///Airship Exploration Result
 /// &lt;/summary&gt;
 [Description("Airship Exploration Result")]
-AirshipExplorationResult = 749,
+AirshipExplorationResult = 331,
 /// &lt;summary&gt;
-///Actor Control Target
+///Airship Status
 /// &lt;/summary&gt;
-[Description("Actor Control Target")]
-ActorControlTarget = 369,
+[Description("Airship Status")]
+AirshipStatus = 401,
 /// &lt;summary&gt;
-///Actor Cast
+///Actor Gauge
 /// &lt;/summary&gt;
-[Description("Actor Cast")]
-ActorCast = 953,
-/// &lt;summary&gt;
-///Actor Control
-/// &lt;/summary&gt;
-[Description("Actor Control")]
-ActorControl = 785,
-/// &lt;summary&gt;
-///Airship Timers
-/// &lt;/summary&gt;
-[Description("Airship Timers")]
-AirshipTimers = 195,
+[Description("Actor Gauge")]
+ActorGauge = 802,
 /// &lt;summary&gt;
 ///Actor Move
 /// &lt;/summary&gt;
 [Description("Actor Move")]
-ActorMove = 688,
+ActorMove = 211,
 /// &lt;summary&gt;
-///Currency Crystal Info
+///Airship Status List
 /// &lt;/summary&gt;
-[Description("Currency Crystal Info")]
-CurrencyCrystalInfo = 719,
+[Description("Airship Status List")]
+AirshipStatusList = 824,
 /// &lt;summary&gt;
-///Crafting Log
+///Actor Control
 /// &lt;/summary&gt;
-[Description("Crafting Log")]
-CraftingLog = 322,
+[Description("Actor Control")]
+ActorControl = 808,
+/// &lt;summary&gt;
+///Actor Set Pos
+/// &lt;/summary&gt;
+[Description("Actor Set Pos")]
+ActorSetPos = 340,
+/// &lt;summary&gt;
+///Actor Control Target
+/// &lt;/summary&gt;
+[Description("Actor Control Target")]
+ActorControlTarget = 938,
+/// &lt;summary&gt;
+///Airship Timers
+/// &lt;/summary&gt;
+[Description("Airship Timers")]
+AirshipTimers = 143,
+/// &lt;summary&gt;
+///Actor Cast
+/// &lt;/summary&gt;
+[Description("Actor Cast")]
+ActorCast = 837,
 /// &lt;summary&gt;
 ///CFNotify
 /// &lt;/summary&gt;
 [Description("CFNotify")]
-CFNotify = 436,
+CFNotify = 607,
 /// &lt;summary&gt;
 ///Container Info
 /// &lt;/summary&gt;
 [Description("Container Info")]
-ContainerInfo = 637,
+ContainerInfo = 476,
+/// &lt;summary&gt;
+///Currency Crystal Info
+/// &lt;/summary&gt;
+[Description("Currency Crystal Info")]
+CurrencyCrystalInfo = 259,
+/// &lt;summary&gt;
+///Crafting Log
+/// &lt;/summary&gt;
+[Description("Crafting Log")]
+CraftingLog = 620,
 /// &lt;summary&gt;
 ///Desynth Result
 /// &lt;/summary&gt;
 [Description("Desynth Result")]
-DesynthResult = 630,
-/// &lt;summary&gt;
-///Event Finish
-/// &lt;/summary&gt;
-[Description("Event Finish")]
-EventFinish = 447,
-/// &lt;summary&gt;
-///Examine
-/// &lt;/summary&gt;
-[Description("Examine")]
-Examine = 625,
+DesynthResult = 551,
 /// &lt;summary&gt;
 ///Environment Control
 /// &lt;/summary&gt;
 [Description("Environment Control")]
-EnvironmentControl = 746,
-/// &lt;summary&gt;
-///Effect Result Basic
-/// &lt;/summary&gt;
-[Description("Effect Result Basic")]
-EffectResultBasic = 636,
-/// &lt;summary&gt;
-///Examine Search Info
-/// &lt;/summary&gt;
-[Description("Examine Search Info")]
-ExamineSearchInfo = 467,
-/// &lt;summary&gt;
-///Event Play 4
-/// &lt;/summary&gt;
-[Description("Event Play 4")]
-EventPlay4 = 588,
+EnvironmentControl = 511,
 /// &lt;summary&gt;
 ///Event Start
 /// &lt;/summary&gt;
 [Description("Event Start")]
-EventStart = 385,
-/// &lt;summary&gt;
-///Event Play 8
-/// &lt;/summary&gt;
-[Description("Event Play 8")]
-EventPlay8 = 660,
-/// &lt;summary&gt;
-///Effect Result
-/// &lt;/summary&gt;
-[Description("Effect Result")]
-EffectResult = 390,
-/// &lt;summary&gt;
-///Effect
-/// &lt;/summary&gt;
-[Description("Effect")]
-Effect = 676,
-/// &lt;summary&gt;
-///Event Play
-/// &lt;/summary&gt;
-[Description("Event Play")]
-EventPlay = 766,
+EventStart = 705,
 /// &lt;summary&gt;
 ///Event Play 32
 /// &lt;/summary&gt;
 [Description("Event Play 32")]
-EventPlay32 = 115,
-/// &lt;summary&gt;
-///Event Play 64
-/// &lt;/summary&gt;
-[Description("Event Play 64")]
-EventPlay64 = 968,
-/// &lt;summary&gt;
-///Event Play 255
-/// &lt;/summary&gt;
-[Description("Event Play 255")]
-EventPlay255 = 364,
+EventPlay32 = 662,
 /// &lt;summary&gt;
 ///Event Play 16
 /// &lt;/summary&gt;
 [Description("Event Play 16")]
-EventPlay16 = 832,
+EventPlay16 = 846,
+/// &lt;summary&gt;
+///Effect
+/// &lt;/summary&gt;
+[Description("Effect")]
+Effect = 922,
+/// &lt;summary&gt;
+///Event Play
+/// &lt;/summary&gt;
+[Description("Event Play")]
+EventPlay = 953,
+/// &lt;summary&gt;
+///Event Finish
+/// &lt;/summary&gt;
+[Description("Event Finish")]
+EventFinish = 527,
+/// &lt;summary&gt;
+///Effect Result Basic
+/// &lt;/summary&gt;
+[Description("Effect Result Basic")]
+EffectResultBasic = 451,
+/// &lt;summary&gt;
+///Event Play 8
+/// &lt;/summary&gt;
+[Description("Event Play 8")]
+EventPlay8 = 560,
+/// &lt;summary&gt;
+///Effect Result
+/// &lt;/summary&gt;
+[Description("Effect Result")]
+EffectResult = 234,
+/// &lt;summary&gt;
+///Event Play 4
+/// &lt;/summary&gt;
+[Description("Event Play 4")]
+EventPlay4 = 373,
+/// &lt;summary&gt;
+///Examine
+/// &lt;/summary&gt;
+[Description("Examine")]
+Examine = 363,
 /// &lt;summary&gt;
 ///Event Play 128
 /// &lt;/summary&gt;
 [Description("Event Play 128")]
-EventPlay128 = 817,
+EventPlay128 = 194,
+/// &lt;summary&gt;
+///Examine Search Info
+/// &lt;/summary&gt;
+[Description("Examine Search Info")]
+ExamineSearchInfo = 275,
+/// &lt;summary&gt;
+///Event Play 64
+/// &lt;/summary&gt;
+[Description("Event Play 64")]
+EventPlay64 = 195,
+/// &lt;summary&gt;
+///Event Play 255
+/// &lt;/summary&gt;
+[Description("Event Play 255")]
+EventPlay255 = 178,
 /// &lt;summary&gt;
 ///Free Company Info
 /// &lt;/summary&gt;
 [Description("Free Company Info")]
-FreeCompanyInfo = 426,
+FreeCompanyInfo = 650,
 /// &lt;summary&gt;
 ///Free Company Dialog
 /// &lt;/summary&gt;
 [Description("Free Company Dialog")]
-FreeCompanyDialog = 990,
+FreeCompanyDialog = 185,
 /// &lt;summary&gt;
 ///Gathering Log
 /// &lt;/summary&gt;
 [Description("Gathering Log")]
-GatheringLog = 903,
-/// &lt;summary&gt;
-///Item Info
-/// &lt;/summary&gt;
-[Description("Item Info")]
-ItemInfo = 345,
+GatheringLog = 516,
 /// &lt;summary&gt;
 ///Inventory Action Ack
 /// &lt;/summary&gt;
 [Description("Inventory Action Ack")]
-InventoryActionAck = 173,
-/// &lt;summary&gt;
-///Island Workshop Supply Demand
-/// &lt;/summary&gt;
-[Description("Island Workshop Supply Demand")]
-IslandWorkshopSupplyDemand = 155,
-/// &lt;summary&gt;
-///Init Zone
-/// &lt;/summary&gt;
-[Description("Init Zone")]
-InitZone = 754,
+InventoryActionAck = 778,
 /// &lt;summary&gt;
 ///Item Market Board Info
 /// &lt;/summary&gt;
 [Description("Item Market Board Info")]
-ItemMarketBoardInfo = 650,
+ItemMarketBoardInfo = 706,
 /// &lt;summary&gt;
-///Inventory Transaction Finish
+///Island Workshop Supply Demand
 /// &lt;/summary&gt;
-[Description("Inventory Transaction Finish")]
-InventoryTransactionFinish = 765,
+[Description("Island Workshop Supply Demand")]
+IslandWorkshopSupplyDemand = 465,
 /// &lt;summary&gt;
 ///Inventory Transaction
 /// &lt;/summary&gt;
 [Description("Inventory Transaction")]
-InventoryTransaction = 699,
+InventoryTransaction = 991,
+/// &lt;summary&gt;
+///Init Zone
+/// &lt;/summary&gt;
+[Description("Init Zone")]
+InitZone = 152,
+/// &lt;summary&gt;
+///Item Info
+/// &lt;/summary&gt;
+[Description("Item Info")]
+ItemInfo = 315,
+/// &lt;summary&gt;
+///Inventory Transaction Finish
+/// &lt;/summary&gt;
+[Description("Inventory Transaction Finish")]
+InventoryTransactionFinish = 517,
 /// &lt;summary&gt;
 ///Logout
 /// &lt;/summary&gt;
 [Description("Logout")]
-Logout = 798,
-/// &lt;summary&gt;
-///Market Board Purchase
-/// &lt;/summary&gt;
-[Description("Market Board Purchase")]
-MarketBoardPurchase = 773,
-/// &lt;summary&gt;
-///Market Board Item Listing Count
-/// &lt;/summary&gt;
-[Description("Market Board Item Listing Count")]
-MarketBoardItemListingCount = 111,
+Logout = 820,
 /// &lt;summary&gt;
 ///Market Board Search Result
 /// &lt;/summary&gt;
 [Description("Market Board Search Result")]
-MarketBoardSearchResult = 370,
+MarketBoardSearchResult = 173,
+/// &lt;summary&gt;
+///Market Board Item Listing Count
+/// &lt;/summary&gt;
+[Description("Market Board Item Listing Count")]
+MarketBoardItemListingCount = 834,
 /// &lt;summary&gt;
 ///Market Board Item Listing History
 /// &lt;/summary&gt;
 [Description("Market Board Item Listing History")]
-MarketBoardItemListingHistory = 242,
+MarketBoardItemListingHistory = 522,
+/// &lt;summary&gt;
+///Market Board Purchase
+/// &lt;/summary&gt;
+[Description("Market Board Purchase")]
+MarketBoardPurchase = 962,
 /// &lt;summary&gt;
 ///Market Board Item Listing
 /// &lt;/summary&gt;
 [Description("Market Board Item Listing")]
-MarketBoardItemListing = 557,
+MarketBoardItemListing = 879,
 /// &lt;summary&gt;
 ///Npc Spawn
 /// &lt;/summary&gt;
 [Description("Npc Spawn")]
-NpcSpawn = 808,
+NpcSpawn = 686,
 /// &lt;summary&gt;
 ///Object Spawn
 /// &lt;/summary&gt;
 [Description("Object Spawn")]
-ObjectSpawn = 622,
-/// &lt;summary&gt;
-///Place Field Marker Preset
-/// &lt;/summary&gt;
-[Description("Place Field Marker Preset")]
-PlaceFieldMarkerPreset = 572,
+ObjectSpawn = 581,
 /// &lt;summary&gt;
 ///Player Setup
 /// &lt;/summary&gt;
 [Description("Player Setup")]
-PlayerSetup = 142,
-/// &lt;summary&gt;
-///Place Field Marker
-/// &lt;/summary&gt;
-[Description("Place Field Marker")]
-PlaceFieldMarker = 257,
-/// &lt;summary&gt;
-///Player Stats
-/// &lt;/summary&gt;
-[Description("Player Stats")]
-PlayerStats = 682,
-/// &lt;summary&gt;
-///Playtime
-/// &lt;/summary&gt;
-[Description("Playtime")]
-Playtime = 365,
+PlayerSetup = 852,
 /// &lt;summary&gt;
 ///Player Spawn
 /// &lt;/summary&gt;
 [Description("Player Spawn")]
-PlayerSpawn = 265,
+PlayerSpawn = 835,
 /// &lt;summary&gt;
 ///Prepare Zoning
 /// &lt;/summary&gt;
 [Description("Prepare Zoning")]
-PrepareZoning = 416,
+PrepareZoning = 812,
+/// &lt;summary&gt;
+///Place Field Marker
+/// &lt;/summary&gt;
+[Description("Place Field Marker")]
+PlaceFieldMarker = 727,
+/// &lt;summary&gt;
+///Playtime
+/// &lt;/summary&gt;
+[Description("Playtime")]
+Playtime = 604,
+/// &lt;summary&gt;
+///Place Field Marker Preset
+/// &lt;/summary&gt;
+[Description("Place Field Marker Preset")]
+PlaceFieldMarkerPreset = 565,
+/// &lt;summary&gt;
+///Player Stats
+/// &lt;/summary&gt;
+[Description("Player Stats")]
+PlayerStats = 114,
 /// &lt;summary&gt;
 ///Result Dialog
 /// &lt;/summary&gt;
 [Description("Result Dialog")]
-ResultDialog = 607,
+ResultDialog = 575,
 /// &lt;summary&gt;
 ///Retainer Information
 /// &lt;/summary&gt;
 [Description("Retainer Information")]
-RetainerInformation = 646,
-/// &lt;summary&gt;
-///Submarine Exploration Result
-/// &lt;/summary&gt;
-[Description("Submarine Exploration Result")]
-SubmarineExplorationResult = 652,
-/// &lt;summary&gt;
-///Status Effect List
-/// &lt;/summary&gt;
-[Description("Status Effect List")]
-StatusEffectList = 564,
+RetainerInformation = 749,
 /// &lt;summary&gt;
 ///Submarine Progression Status
 /// &lt;/summary&gt;
 [Description("Submarine Progression Status")]
-SubmarineProgressionStatus = 566,
+SubmarineProgressionStatus = 660,
 /// &lt;summary&gt;
-///System Log Message
+///Status Effect List
 /// &lt;/summary&gt;
-[Description("System Log Message")]
-SystemLogMessage = 212,
-/// &lt;summary&gt;
-///Status Effect List 3
-/// &lt;/summary&gt;
-[Description("Status Effect List 3")]
-StatusEffectList3 = 904,
-/// &lt;summary&gt;
-///Status Effect List 2
-/// &lt;/summary&gt;
-[Description("Status Effect List 2")]
-StatusEffectList2 = 908,
-/// &lt;summary&gt;
-///Submarine Timers
-/// &lt;/summary&gt;
-[Description("Submarine Timers")]
-SubmarineTimers = 127,
+[Description("Status Effect List")]
+StatusEffectList = 279,
 /// &lt;summary&gt;
 ///Submarine Status List
 /// &lt;/summary&gt;
 [Description("Submarine Status List")]
-SubmarineStatusList = 677,
+SubmarineStatusList = 780,
+/// &lt;summary&gt;
+///Submarine Timers
+/// &lt;/summary&gt;
+[Description("Submarine Timers")]
+SubmarineTimers = 412,
+/// &lt;summary&gt;
+///Submarine Exploration Result
+/// &lt;/summary&gt;
+[Description("Submarine Exploration Result")]
+SubmarineExplorationResult = 952,
+/// &lt;summary&gt;
+///Status Effect List 2
+/// &lt;/summary&gt;
+[Description("Status Effect List 2")]
+StatusEffectList2 = 299,
+/// &lt;summary&gt;
+///System Log Message
+/// &lt;/summary&gt;
+[Description("System Log Message")]
+SystemLogMessage = 482,
+/// &lt;summary&gt;
+///Status Effect List 3
+/// &lt;/summary&gt;
+[Description("Status Effect List 3")]
+StatusEffectList3 = 822,
 /// &lt;summary&gt;
 ///Update Search Info
 /// &lt;/summary&gt;
 [Description("Update Search Info")]
-UpdateSearchInfo = 383,
-/// &lt;summary&gt;
-///Update Hp Mp Tp
-/// &lt;/summary&gt;
-[Description("Update Hp Mp Tp")]
-UpdateHpMpTp = 612,
-/// &lt;summary&gt;
-///Update Class Info
-/// &lt;/summary&gt;
-[Description("Update Class Info")]
-UpdateClassInfo = 161,
+UpdateSearchInfo = 242,
 /// &lt;summary&gt;
 ///Update Inventory Slot
 /// &lt;/summary&gt;
 [Description("Update Inventory Slot")]
-UpdateInventorySlot = 736,
+UpdateInventorySlot = 188,
+/// &lt;summary&gt;
+///Update Class Info
+/// &lt;/summary&gt;
+[Description("Update Class Info")]
+UpdateClassInfo = 556,
+/// &lt;summary&gt;
+///Update Hp Mp Tp
+/// &lt;/summary&gt;
+[Description("Update Hp Mp Tp")]
+UpdateHpMpTp = 957,
 /// &lt;summary&gt;
 ///Weather Change
 /// &lt;/summary&gt;
 [Description("Weather Change")]
-WeatherChange = 770,
+WeatherChange = 288,
 /// &lt;summary&gt;
 ///Inventory Modify Handler
 /// &lt;/summary&gt;
 [Description("Inventory Modify Handler")]
-InventoryModifyHandler = 585,
+InventoryModifyHandler = 891,
 /// &lt;summary&gt;
 ///Market Board Purchase Handler
 /// &lt;/summary&gt;
 [Description("Market Board Purchase Handler")]
-MarketBoardPurchaseHandler = 465,
+MarketBoardPurchaseHandler = 779,
 /// &lt;summary&gt;
 ///Set Search Info Handler
 /// &lt;/summary&gt;
 [Description("Set Search Info Handler")]
-SetSearchInfoHandler = 634,
+SetSearchInfoHandler = 773,
 /// &lt;summary&gt;
 ///Update Position Handler
 /// &lt;/summary&gt;
 [Description("Update Position Handler")]
-UpdatePositionHandler = 270,
+UpdatePositionHandler = 300,
 /// &lt;summary&gt;
 ///Lobby Error
 /// &lt;/summary&gt;
