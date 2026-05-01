@@ -1770,7 +1770,7 @@ public static class ObjectHelper
 
 		if (!Service.Config.InterruptibleMoreCheck)
 		{
-			return false;
+			return true;
 		}
 
 		if (_effectRangeCheck.TryGetValue(battleChara.CastActionId, out bool check))

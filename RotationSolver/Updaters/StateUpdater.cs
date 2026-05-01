@@ -497,7 +497,7 @@ internal static class StateUpdater
 
 	private static bool ShouldAddInterrupt()
 	{
-		return DataCenter.InCombat && DataCenter.InterruptTarget != null && Service.Config.InterruptibleMoreCheck;
+		return DataCenter.InCombat && DataCenter.InterruptTarget != null;
 	}
 
 	private static bool ShouldAddTankStance()
