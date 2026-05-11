@@ -215,26 +215,34 @@ public sealed class WAR_Reborn : WarriorRotation
 		return base.AttackAbility(nextGCD, out act);
 	}
 
-    protected override bool GeneralAbility(IAction nextGCD, out IAction? act)
-    {
-        if ((InCombat && Player?.GetHealthRatio() < HealIntuition && NumberOfHostilesInRange > 0) || (InCombat && PartyMembers.Count() is 1 && NumberOfHostilesInRange > 0))
-        {
-            if (BloodwhettingPvE.CanUse(out act)) return true;
-            if (!BloodwhettingPvE.Info.EnoughLevelAndQuest() && RawIntuitionPvE.CanUse(out act)) return true;
-        }
+	protected override bool GeneralAbility(IAction nextGCD, out IAction? act)
+	{
+		int _partyCount = 0;
+		foreach (var _ in PartyMembers) _partyCount++;
+		if ((InCombat && Player?.GetHealthRatio() < HealIntuition && NumberOfHostilesInRange > 0) || (InCombat && _partyCount == 1 && NumberOfHostilesInRange > 0))
+		{
+			if (BloodwhettingPvE.CanUse(out act))
+			{
+				return true;
+			}
+			if (!BloodwhettingPvE.Info.EnoughLevelAndQuest() && RawIntuitionPvE.CanUse(out act))
+			{
+				return true;
+			}
+		}
 
-        if (Player?.GetHealthRatio() < ThrillOfBattleHeal)
-        {
-            if (ThrillOfBattlePvE.CanUse(out act)) return true;
-        }
+		if (Player?.GetHealthRatio() < ThrillOfBattleHeal)
+		{
+			if (ThrillOfBattlePvE.CanUse(out act)) return true;
+		}
 
-        if (!StatusHelper.PlayerHasStatus(true, StatusID.Holmgang_409))
-        {
-            if (Player?.GetHealthRatio() < EquilibriumHeal)
-            {
-                if (EquilibriumPvE.CanUse(out act)) return true;
-            }
-        }
+		if (!StatusHelper.PlayerHasStatus(true, StatusID.Holmgang_409))
+		{
+			if (Player?.GetHealthRatio() < EquilibriumHeal)
+			{
+				if (EquilibriumPvE.CanUse(out act)) return true;
+			}
+		}
 
 		if (StatusHelper.PlayerHasStatus(true, StatusID.PrimalRendReady) && InCombat && UseBurstMedicine(out act))
 		{
