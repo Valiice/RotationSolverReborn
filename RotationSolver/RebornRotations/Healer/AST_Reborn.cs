@@ -101,7 +101,7 @@ public sealed class AST_Reborn : AstrologianRotation
 	#region Countdown Logic
 	protected override IAction? CountDownAction(float remainTime)
 	{
-		if (remainTime < MaleficPvE.Info.CastTime + CountDownAhead && MaleficPvE.CanUse(out IAction? act))
+		if (remainTime < MaleficPvE.Info.CastTime + CountDownAhead && MaleficPvE.CanUse(out var act))
 		{
 			return act;
 		}
@@ -627,12 +627,14 @@ public sealed class AST_Reborn : AstrologianRotation
 	{
 		get
 		{
-			int aliveHealerCount = 0;
-			IEnumerable<IBattleChara> healers = PartyMembers.GetJobCategory(JobRole.Healer);
-			foreach (IBattleChara h in healers)
+			var aliveHealerCount = 0;
+			var healers = PartyMembers.GetJobCategory(JobRole.Healer);
+			foreach (var h in healers)
 			{
 				if (!h.IsDead)
+				{
 					aliveHealerCount++;
+				}
 			}
 
 			return base.CanHealSingleSpell && (GCDHeal || aliveHealerCount == 1);
@@ -642,12 +644,14 @@ public sealed class AST_Reborn : AstrologianRotation
 	{
 		get
 		{
-			int aliveHealerCount = 0;
-			IEnumerable<IBattleChara> healers = PartyMembers.GetJobCategory(JobRole.Healer);
-			foreach (IBattleChara h in healers)
+			var aliveHealerCount = 0;
+			var healers = PartyMembers.GetJobCategory(JobRole.Healer);
+			foreach (var h in healers)
 			{
 				if (!h.IsDead)
+				{
 					aliveHealerCount++;
+				}
 			}
 
 			return base.CanHealAreaSpell && (GCDHeal || aliveHealerCount == 1);

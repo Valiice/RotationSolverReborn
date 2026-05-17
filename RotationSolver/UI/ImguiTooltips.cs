@@ -56,7 +56,7 @@ internal static class ImguiTooltips
 
 		using var color = ImRaii.PushColor(ImGuiCol.BorderShadow, ImGuiColors.DalamudWhite);
 
-		float globalScale = ImGuiHelpers.GlobalScale;
+		var globalScale = ImGuiHelpers.GlobalScale;
 		ImGui.SetNextWindowSizeConstraints(new Vector2(150, 0) * globalScale, new Vector2(1200, 1500) * globalScale);
 		ImGui.SetWindowPos(TooltipId, ImGui.GetIO().MousePos);
 

@@ -441,12 +441,7 @@ public sealed class BLU_Reborn : BlueMageRotation
 			return true;
 		}
 
-		if (WingedReprobationPvE.CanUse(out act))
-		{
-			return true;
-		}
-
-		if (WingedReprobationPvE.CanUse(out act))
+		if (WingedReprobationPvE.CanUse(out act, skipStatusProvideCheck: true, usedUp: true))
 		{
 			return true;
 		}
@@ -534,7 +529,7 @@ public sealed class BLU_Reborn : BlueMageRotation
 		{
 			return true;
 		}
-		
+
 		if (GoblinPunchPvE.CanUse(out act))
 		{
 			if (GoblinPunchPvE.Target.Target != null && CanHitPositional(EnemyPositional.Front, GoblinPunchPvE.Target.Target))
@@ -936,12 +931,14 @@ public sealed class BLU_Reborn : BlueMageRotation
 	{
 		get
 		{
-			int aliveHealerCount = 0;
-			IEnumerable<IBattleChara> healers = PartyMembers.GetJobCategory(JobRole.Healer);
-			foreach (IBattleChara h in healers)
+			var aliveHealerCount = 0;
+			var healers = PartyMembers.GetJobCategory(JobRole.Healer);
+			foreach (var h in healers)
 			{
 				if (!h.IsDead)
+				{
 					aliveHealerCount++;
+				}
 			}
 
 			return base.CanHealSingleSpell && (IsHealer || aliveHealerCount == 0);
@@ -951,12 +948,14 @@ public sealed class BLU_Reborn : BlueMageRotation
 	{
 		get
 		{
-			int aliveHealerCount = 0;
-			IEnumerable<IBattleChara> healers = PartyMembers.GetJobCategory(JobRole.Healer);
-			foreach (IBattleChara h in healers)
+			var aliveHealerCount = 0;
+			var healers = PartyMembers.GetJobCategory(JobRole.Healer);
+			foreach (var h in healers)
 			{
 				if (!h.IsDead)
+				{
 					aliveHealerCount++;
+				}
 			}
 
 			return base.CanHealAreaSpell && (IsHealer || aliveHealerCount == 0);

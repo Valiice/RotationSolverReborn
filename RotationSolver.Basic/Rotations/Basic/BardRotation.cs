@@ -178,7 +178,7 @@ public partial class BardRotation
 	static partial void ModifyRepellingShotPvE(ref ActionSetting setting)
 	{
 		setting.UnlockedByQuestID = 65604;
-		setting.SpecialType = SpecialActionType.MovingBackward;
+		setting.SpecialType = SpecialActionType.FixedDistanceMoveBackward;
 	}
 
 	static partial void ModifyQuickNockPvE(ref ActionSetting setting)
@@ -402,9 +402,12 @@ public partial class BardRotation
 		setting.ActionCheck = () =>
 		{
 			var coda = JobGauge.Coda;
-			for (int i = 0; i < coda.Length; i++)
+			for (var i = 0; i < coda.Length; i++)
 			{
-				if (coda[i] != Song.None) return true;
+				if (coda[i] != Song.None)
+				{
+					return true;
+				}
 			}
 			return false;
 		};
@@ -446,16 +449,21 @@ public partial class BardRotation
 	// PvP
 	static partial void ModifyPowerfulShotPvP(ref ActionSetting setting)
 	{
-
+		setting.ActionCheck = () => !StatusHelper.PlayerHasStatus(true, StatusID.Repertoire);
 	}
 
 	static partial void ModifyPitchPerfectPvP(ref ActionSetting setting)
 	{
 		setting.StatusNeed = [StatusID.Repertoire];
+		setting.CreateConfig = () => new ActionConfig()
+		{
+			AoeCount = 1,
+		};
 	}
 
 	static partial void ModifyApexArrowPvP(ref ActionSetting setting)
 	{
+		setting.ActionCheck = () => !StatusHelper.PlayerHasStatus(true, StatusID.BlastArrowReady_3142);
 		setting.StatusProvide = [StatusID.BlastArrowReady_3142, StatusID.FrontlinersMarch];
 		setting.CreateConfig = () => new ActionConfig()
 		{
@@ -480,7 +488,7 @@ public partial class BardRotation
 
 	static partial void ModifyRepellingShotPvP(ref ActionSetting setting)
 	{
-		setting.SpecialType = SpecialActionType.MovingBackward;
+		setting.SpecialType = SpecialActionType.HostileMovingAttack;
 	}
 
 	static partial void ModifyEncoreOfLightPvP(ref ActionSetting setting)

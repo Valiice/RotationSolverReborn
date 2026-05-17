@@ -28,7 +28,7 @@ internal static class ImGuiHelper
 
 	internal static void DisplayCommandHelp(this Enum command, string extraCommand = "", Func<Enum, string>? getHelp = null, bool sameLine = true)
 	{
-		string cmdStr = command.GetCommandStr(extraCommand);
+		var cmdStr = command.GetCommandStr(extraCommand);
 
 		if (ImGui.Button(cmdStr))
 		{
@@ -44,7 +44,7 @@ internal static class ImGuiHelper
 			}
 		}
 
-		string? help = getHelp?.Invoke(command);
+		var help = getHelp?.Invoke(command);
 
 		if (!string.IsNullOrEmpty(help))
 		{
@@ -84,7 +84,7 @@ internal static class ImGuiHelper
 
 	public static void DisplayEvent(this ActionEventInfo info)
 	{
-		string name = info.Name;
+		var name = info.Name;
 		if (ImGui.InputText($"{UiString.ConfigWindow_Events_ActionName.GetDescription()}##ActionName{info.GetHashCode()}", ref name, 100))
 		{
 			info.Name = name;
@@ -121,10 +121,10 @@ internal static class ImGuiHelper
 			return;
 		}
 
-		string searchingKey = searchTxt;
+		var searchingKey = searchTxt;
 
 		List<(T, string)> members = [];
-		foreach (T? item in items)
+		foreach (var item in items)
 		{
 			members.Add((item, getSearchName(item)));
 		}
@@ -145,7 +145,7 @@ internal static class ImGuiHelper
 				return;
 			}
 
-			foreach ((T, string) member in members)
+			foreach (var member in members)
 			{
 				if (ImGui.Selectable(member.Item2))
 				{
@@ -156,7 +156,7 @@ internal static class ImGuiHelper
 		}
 		else
 		{
-			foreach ((T, string) member in members)
+			foreach (var member in members)
 			{
 				if (ImGui.Selectable(member.Item2))
 				{
@@ -170,9 +170,9 @@ internal static class ImGuiHelper
 	private static float GetMaxButtonSize<T>(List<(T, string)> members)
 	{
 		float maxSize = 0;
-		foreach ((T, string) member in members)
+		foreach (var member in members)
 		{
-			float size = ImGuiHelpers.GetButtonSize(member.Item2).X;
+			var size = ImGuiHelpers.GetButtonSize(member.Item2).X;
 			if (size > maxSize)
 			{
 				maxSize = size;
@@ -183,12 +183,12 @@ internal static class ImGuiHelper
 
 	public static unsafe bool SelectableCombo(string popUp, string[] items, ref int index, ImFontPtr? font = null, Vector4? color = null)
 	{
-		int count = items.Length;
-		int originIndex = index;
+		var count = items.Length;
+		var originIndex = index;
 		index = Math.Max(0, index) % count;
-		string name = items[index] + "##" + popUp;
+		var name = items[index] + "##" + popUp;
 
-		bool result = originIndex != index;
+		var result = originIndex != index;
 
 		if (SelectableButton(name, font, color))
 		{
@@ -214,7 +214,7 @@ internal static class ImGuiHelper
 		ImGui.SetNextWindowSizeConstraints(Vector2.Zero, Vector2.One * 500);
 		if (ImGui.BeginPopup(popUp))
 		{
-			for (int i = 0; i < count; i++)
+			for (var i = 0; i < count; i++)
 			{
 				if (ImGui.Selectable(items[i]))
 				{
@@ -242,9 +242,9 @@ internal static class ImGuiHelper
 		ImGui.PushStyleColor(ImGuiCol.ButtonActive, ImGui.ColorConvertFloat4ToU32(*ImGui.GetStyleColorVec4(ImGuiCol.HeaderActive)));
 		ImGui.PushStyleColor(ImGuiCol.ButtonHovered, ImGui.ColorConvertFloat4ToU32(*ImGui.GetStyleColorVec4(ImGuiCol.HeaderHovered)));
 		ImGui.PushStyleColor(ImGuiCol.Button, 0);
-		bool result = ImGui.Button(name);
+		var result = ImGui.Button(name);
 		ImGui.PopStyleColor(3);
-		foreach (IDisposable item in disposables)
+		foreach (var item in disposables)
 		{
 			item.Dispose();
 		}
@@ -259,7 +259,7 @@ internal static class ImGuiHelper
 			return;
 		}
 
-		float distance = (wholeWidth - width) / 2;
+		var distance = (wholeWidth - width) / 2;
 		if (leftAlign)
 		{
 			distance = MathF.Max(distance, 0);
@@ -287,7 +287,7 @@ internal static class ImGuiHelper
 			return false;
 		}
 
-		uint buttonColor = selected ? ImGui.ColorConvertFloat4ToU32(*ImGui.GetStyleColorVec4(ImGuiCol.Header)) : 0;
+		var buttonColor = selected ? ImGui.ColorConvertFloat4ToU32(*ImGui.GetStyleColorVec4(ImGuiCol.Header)) : 0;
 		return SilenceImageButton(handle, size, uv0, uv1, buttonColor, id);
 	}
 
@@ -304,7 +304,7 @@ internal static class ImGuiHelper
 		ImGui.PushStyleColor(ImGuiCol.ButtonHovered, ImGui.ColorConvertFloat4ToU32(*ImGui.GetStyleColorVec4(ImGuiCol.HeaderHovered)));
 		ImGui.PushStyleColor(ImGuiCol.Button, buttonColor);
 
-		bool buttonClicked = NoPaddingImageButton(handle, size, uv0, uv1, id);
+		var buttonClicked = NoPaddingImageButton(handle, size, uv0, uv1, id);
 		ImGui.PopStyleColor(StyleColorCount);
 
 		return buttonClicked;
@@ -332,7 +332,7 @@ internal static class ImGuiHelper
 		ImGui.PushStyleColor(ImGuiCol.ButtonActive, 0);
 		ImGui.PushStyleColor(ImGuiCol.ButtonHovered, 0);
 		ImGui.PushStyleColor(ImGuiCol.Button, 0);
-		bool buttonClicked = NoPaddingImageButton(handle, size, uv0, uv1, id);
+		var buttonClicked = NoPaddingImageButton(handle, size, uv0, uv1, id);
 		ImGui.PopStyleColor(StyleColorCount);
 
 		return buttonClicked;
@@ -345,16 +345,16 @@ internal static class ImGuiHelper
 			return false;
 		}
 
-		ImGuiStylePtr style = ImGui.GetStyle();
-		Vector2 originalPadding = style.FramePadding;
+		var style = ImGui.GetStyle();
+		var originalPadding = style.FramePadding;
 		style.FramePadding = Vector2.Zero;
 
 		//https://xkcd.com/2347/
 		ImGui.PushID(id + "literally anything");
 		//https://xkcd.com/2347/
 
-		bool buttonClicked = false;
-		bool drawn = false;
+		var buttonClicked = false;
+		var drawn = false;
 		try
 		{
 			if (!handle.Handle.IsNull)
@@ -394,9 +394,9 @@ internal static class ImGuiHelper
 			return false;
 		}
 
-		Vector2 size = new Vector2(texture.Width, texture.Height) * MathF.Min(1, MathF.Min(maxWidth, wholeWidth) / texture.Width);
+		var size = new Vector2(texture.Width, texture.Height) * MathF.Min(1, MathF.Min(maxWidth, wholeWidth) / texture.Width);
 
-		bool buttonClicked = false;
+		var buttonClicked = false;
 		DrawItemMiddle(() =>
 		{
 			if (texture?.Handle != null)
@@ -421,8 +421,8 @@ internal static class ImGuiHelper
 			new(width, 0)
 		];
 
-		ImDrawListPtr drawList = ImGui.GetWindowDrawList();
-		foreach (Vector2 offset in offsets)
+		var drawList = ImGui.GetWindowDrawList();
+		foreach (var offset in offsets)
 		{
 			drawList.AddText(pos + offset, Black, text);
 		}
@@ -434,11 +434,11 @@ internal static class ImGuiHelper
 
 	internal static void DrawActionOverlay(Vector2 cursor, float width, float percent)
 	{
-		float pixPerUnit = width / 82f;
+		var pixPerUnit = width / 82f;
 
-		_ = IconSet.GetTexture("ui/uld/icona_frame_hr1.tex", out IDalamudTextureWrap? coverFrame);
-		_ = IconSet.GetTexture("ui/uld/icona_recast_hr1.tex", out IDalamudTextureWrap? coverRecast);
-		_ = IconSet.GetTexture("ui/uld/icona_recast2_hr1.tex", out IDalamudTextureWrap? coverRecast2);
+		_ = IconSet.GetTexture("ui/uld/icona_frame_hr1.tex", out var coverFrame);
+		_ = IconSet.GetTexture("ui/uld/icona_recast_hr1.tex", out var coverRecast);
+		_ = IconSet.GetTexture("ui/uld/icona_recast2_hr1.tex", out var coverRecast2);
 
 		try
 		{
@@ -459,7 +459,7 @@ internal static class ImGuiHelper
 				if (coverRecast?.Handle != null)
 				{
 					ImGui.SetCursorPos(cursor - new Vector2(pixPerUnit * 3, 0));
-					int P = (int)(percent * 81f);
+					var P = (int)(percent * 81f);
 					Vector2 step = new(88f / coverRecast.Width, 96f / coverRecast.Height);
 					Vector2 start = new((P % 9) * step.X, (P / 9) * step.Y);
 					ImGui.Image(coverRecast.Handle, new Vector2(pixPerUnit * 88, pixPerUnit * 94),
@@ -480,7 +480,7 @@ internal static class ImGuiHelper
 			if (percent > 1f && coverRecast2?.Handle != null)
 			{
 				ImGui.SetCursorPos(cursor - new Vector2(pixPerUnit * 3, 0));
-				int P = (int)(percent % 1f * 81f);
+				var P = (int)(percent % 1f * 81f);
 				Vector2 step = new(88f / coverRecast2.Width, 96f / coverRecast2.Height);
 				Vector2 start = new(((P % 9) + 9) * step.X, (P / 9) * step.Y);
 				ImGui.Image(coverRecast2.Handle, new Vector2(pixPerUnit * 88, pixPerUnit * 94),
@@ -508,7 +508,7 @@ internal static class ImGuiHelper
 			{
 				if (pairs != null)
 				{
-					foreach ((string name, Action action, string[] keys) in pairs)
+					foreach ((var name, var action, var keys) in pairs)
 					{
 						if (action == null)
 						{
@@ -569,7 +569,7 @@ internal static class ImGuiHelper
 
 		if (pairs != null)
 		{
-			foreach ((Action action, VirtualKey[] keys) in pairs)
+			foreach ((var action, var keys) in pairs)
 			{
 				if (action == null)
 				{
@@ -609,15 +609,15 @@ internal static class ImGuiHelper
 
 		ArgumentNullException.ThrowIfNull(keys);
 
-		string name = string.Join(' ', keys);
+		var name = string.Join(' ', keys);
 
-		if (!_lastChecked.TryGetValue(name, out bool last))
+		if (!_lastChecked.TryGetValue(name, out var last))
 		{
 			last = false;
 		}
 
-		bool now = true;
-		foreach (VirtualKey k in keys)
+		var now = true;
+		foreach (var k in keys)
 		{
 			if (!Svc.KeyState[k])
 			{
@@ -658,7 +658,7 @@ internal static class ImGuiHelper
 
 	public static bool IsInRect(Vector2 leftTop, Vector2 size)
 	{
-		Vector2 pos = ImGui.GetMousePos() - leftTop;
+		var pos = ImGui.GetMousePos() - leftTop;
 		return pos.X > 0 && pos.Y > 0 && pos.X < size.X && pos.Y < size.Y;
 	}
 
@@ -677,7 +677,7 @@ internal static class ImGuiHelper
 
 	public static void Draw(this CombatType type)
 	{
-		bool first = true;
+		var first = true;
 		if (type.HasFlag(CombatType.PvE))
 		{
 			if (!first)

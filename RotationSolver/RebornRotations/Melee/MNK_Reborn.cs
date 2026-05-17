@@ -46,7 +46,7 @@ public sealed class MNK_Reborn : MonkRotation
 	protected override IAction? CountDownAction(float remainTime)
 	{
 		// gap closer at the end of countdown
-		if (remainTime <= 0.5 && ThunderclapPvE.CanUse(out IAction? act))
+		if (remainTime <= 0.5 && ThunderclapPvE.CanUse(out var act))
 		{
 			return act; // need to face target to trigger
 		}

@@ -27,7 +27,7 @@ jobs:
 
       - name: Download Dalamud Latest
         run: |
-          Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/stg/latest.zip -OutFile latest.zip
+          Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/latest.zip -OutFile latest.zip
           Expand-Archive -Force latest.zip -DestinationPath "$env:AppData\XIVLauncher\addon\Hooks\dev"
 
       - name: Restore Nuget Packages for RSR
@@ -41,16 +41,3 @@ jobs:
         with:
           files: ./build/RotationSolver/latest.zip
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build Doc Gen Tool
-        run: |
-          dotnet pack -c Release RotationSolver.DocumentationGenerator/RotationSolver.DocumentationGenerator.csproj
-          dotnet tool restore --add-source RotationSolver.DocumentationGenerator/nupkg
-      - name: Build Docs
-        run: dotnet tool run docgen build/RotationSolver.Basic.xml build/RebornRotations.xml
-      - name: Publish Docs
-        uses: Andrew-Chen-Wang/github-wiki-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: _doc/
-          commit-message: Update wiki to ${{ env.tag }}

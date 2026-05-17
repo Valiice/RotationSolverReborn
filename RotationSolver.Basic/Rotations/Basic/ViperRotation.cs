@@ -286,13 +286,25 @@ public partial class ViperRotation
 		get
 		{
 			if (!HasHunterAndSwift)
+			{
 				return null;
+			}
+
 			if (HuntersTime == null || SwiftTime == null)
+			{
 				return null;
+			}
+
 			if (HuntersTime < SwiftTime)
+			{
 				return "Hunter";
+			}
+
 			if (SwiftTime < HuntersTime)
+			{
 				return "Swift";
+			}
+
 			return "Equal";
 		}
 	}
@@ -486,7 +498,7 @@ public partial class ViperRotation
 
 	static partial void ModifyWrithingSnapPvE(ref ActionSetting setting)
 	{
-		setting.SpecialType = SpecialActionType.MeleeRange;
+		setting.SpecialType = SpecialActionType.MeleeRangedAttack;
 	}
 
 	static partial void ModifySlitherPvE(ref ActionSetting setting)

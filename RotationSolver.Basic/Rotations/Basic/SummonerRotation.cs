@@ -787,7 +787,7 @@ public partial class SummonerRotation
 
 	static partial void ModifyCrimsonCyclonePvE(ref ActionSetting setting)
 	{
-		//setting.SpecialType = SpecialActionType.HostileMovingForward;
+		setting.SpecialType = SpecialActionType.HostileMovingAttack;
 		setting.StatusProvide = [StatusID.CrimsonStrikeReady_4403];
 		setting.StatusNeed = [StatusID.IfritsFavor];
 		setting.CreateConfig = () => new ActionConfig()
@@ -912,7 +912,7 @@ public partial class SummonerRotation
 
 	static partial void ModifyCrimsonCyclonePvP(ref ActionSetting setting)
 	{
-		//setting.SpecialType = SpecialActionType.HostileMovingForward;
+		setting.SpecialType = SpecialActionType.HostileMovingAttack;
 		setting.StatusProvide = [StatusID.CrimsonStrikeReady_4403];
 		setting.CreateConfig = () => new ActionConfig()
 		{
@@ -942,6 +942,12 @@ public partial class SummonerRotation
 	static partial void ModifyDeathflarePvP(ref ActionSetting setting)
 	{
 		setting.StatusNeed = [StatusID.DreadwyrmTrance_3228];
+		setting.MPOverride = () => 0;
+		setting.IsFriendly = false;
+		setting.CreateConfig = () => new ActionConfig()
+		{
+			AoeCount = 1,
+		};
 	}
 
 	static partial void ModifyAstralImpulsePvP(ref ActionSetting setting)
@@ -952,11 +958,33 @@ public partial class SummonerRotation
 	static partial void ModifyBrandOfPurgatoryPvP(ref ActionSetting setting)
 	{
 		setting.StatusNeed = [StatusID.FirebirdTrance];
+		setting.MPOverride = () => 0;
+		setting.IsFriendly = false;
+		setting.CreateConfig = () => new ActionConfig()
+		{
+			AoeCount = 1,
+		};
 	}
 
 	static partial void ModifyFountainOfFirePvP(ref ActionSetting setting)
 	{
 		setting.ActionCheck = () => Service.GetAdjustedActionId(ActionID.RuinIiiPvP) == ActionID.FountainOfFirePvP;
+	}
+
+	static partial void ModifyMegaflarePvP(ref ActionSetting setting)
+	{
+		setting.CreateConfig = () => new ActionConfig()
+		{
+			IsEnabled = false,
+		};
+	}
+
+	static partial void ModifyEverlastingFlightPvP(ref ActionSetting setting)
+	{
+		setting.CreateConfig = () => new ActionConfig()
+		{
+			IsEnabled = false,
+		};
 	}
 	#endregion
 

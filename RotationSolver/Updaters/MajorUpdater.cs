@@ -101,7 +101,9 @@ internal static class MajorUpdater
 	private static void RSRTeachingClearUpdate(IFramework framework)
 	{
 		if (!_shouldRunThisCycle)
+		{
 			return;
+		}
 
 		if (Service.Config.TeachingMode)
 		{
@@ -119,7 +121,9 @@ internal static class MajorUpdater
 	private static void RSRInvalidUpdate(IFramework framework)
 	{
 		if (!_shouldRunThisCycle)
+		{
 			return;
+		}
 
 		if (!_isValidThisCycle)
 		{
@@ -143,7 +147,9 @@ internal static class MajorUpdater
 	private static void RSRActivatedCoreUpdate(IFramework framework)
 	{
 		if (!_shouldRunThisCycle)
+		{
 			return;
+		}
 
 		var autoOnEnabled = Service.Config.AutoOnYes && (Service.Config.StartOnAllianceIsInCombat2
 			|| Service.Config.StartOnAttackedBySomeone2
@@ -164,7 +170,9 @@ internal static class MajorUpdater
 		}
 
 		if (!_isActivatedThisCycle)
+		{
 			return;
+		}
 
 		// Target updater always needs to be first to update
 		try
@@ -199,6 +207,15 @@ internal static class MajorUpdater
 
 		try
 		{
+			AutoAttackUpdater.Update();
+		}
+		catch (Exception ex)
+		{
+			LogOnce("(RSRActivatedCore): AutoAttackUpdater.Update Exception", ex);
+		}
+
+		try
+		{
 			ActionUpdater.UpdateNextAction();
 		}
 		catch (Exception ex)
@@ -206,7 +223,7 @@ internal static class MajorUpdater
 			LogOnce("(RSRActivatedCore): ActionUpdater.UpdateNextAction Exception", ex);
 		}
 
-		bool canDoAction = false;
+		var canDoAction = false;
 		try
 		{
 			canDoAction = ActionUpdater.CanDoAction();
@@ -277,14 +294,16 @@ internal static class MajorUpdater
 	private static void RSRActivatedHighlightUpdate(IFramework framework)
 	{
 		if (!_shouldRunThisCycle || !_isActivatedThisCycle)
+		{
 			return;
+		}
 
 		// Handle Teaching Mode Highlighting
 		if (Service.Config.TeachingMode && ActionUpdater.NextAction is not null)
 		{
 			try
 			{
-				IAction nextAction = ActionUpdater.NextAction;
+				var nextAction = ActionUpdater.NextAction;
 				HotbarID? hotbar = null;
 				if (nextAction is IBaseItem item)
 				{
@@ -325,7 +344,9 @@ internal static class MajorUpdater
 	private static void RSRCommonUpdate(IFramework framework)
 	{
 		if (!_shouldRunThisCycle)
+		{
 			return;
+		}
 
 		try
 		{
@@ -347,23 +368,25 @@ internal static class MajorUpdater
 	private static void RSRCleanupUpdate(IFramework framework)
 	{
 		if (!_shouldRunThisCycle)
+		{
 			return;
+		}
 
 		try
 		{
 			// Handle system warnings
 			if (DataCenter.SystemWarnings.Count > 0)
 			{
-				DateTime now = DateTime.Now;
+				var now = DateTime.Now;
 				List<string> keysToRemove = [];
-				foreach (KeyValuePair<string, DateTime> kvp in DataCenter.SystemWarnings)
+				foreach (var kvp in DataCenter.SystemWarnings)
 				{
 					if (kvp.Value + TimeSpan.FromMinutes(10) < now)
 					{
 						keysToRemove.Add(kvp.Key);
 					}
 				}
-				foreach (string key in keysToRemove)
+				foreach (var key in keysToRemove)
 				{
 					_ = DataCenter.SystemWarnings.Remove(key);
 				}
@@ -389,13 +412,17 @@ internal static class MajorUpdater
 						if (vfx.Duration >= 0.5f)
 						{
 							if (vfx.TimeDuration.TotalSeconds <= vfx.Duration)
+							{
 								_vfxRemaining.Add(vfx);
+							}
 						}
 						else
 						{
 							// Unknown / very short duration: keep for up to 5 seconds by default
 							if (vfx.TimeDuration.TotalSeconds <= 5.0)
+							{
 								_vfxRemaining.Add(vfx);
+							}
 						}
 					}
 					catch
@@ -421,7 +448,9 @@ internal static class MajorUpdater
 	private static void RSRRotationAndStateUpdate(IFramework framework)
 	{
 		if (!_shouldRunThisCycle)
+		{
 			return;
+		}
 
 		try
 		{
@@ -452,7 +481,9 @@ internal static class MajorUpdater
 	private static void RSRMiscAndTargetFreelyUpdate(IFramework framework)
 	{
 		if (!_shouldRunThisCycle)
+		{
 			return;
+		}
 
 		try
 		{
@@ -460,21 +491,23 @@ internal static class MajorUpdater
 
 			if ((Service.Config.TargetFreely || DataCenter.TargetFreelyOverride) && !DataCenter.IsPvP && DataCenter.State && DataCenter.InCombat)
 			{
-				IAction? nextAction2 = ActionUpdater.NextAction;
+				var nextAction2 = ActionUpdater.NextAction;
 				if (nextAction2 == null)
 				{
 					if (Player.Object != null && Svc.Targets.Target == null)
 					{
 						// Try to find the closest enemy and target it
 						IBattleChara? closestEnemy = null;
-						float minDistance = float.MaxValue;
+						var minDistance = float.MaxValue;
 
 						foreach (var enemy in DataCenter.AllHostileTargets)
 						{
 							if (enemy == null || !enemy.IsEnemy() || enemy == Player.Object)
+							{
 								continue;
+							}
 
-							float distance = Vector3.Distance(Player.Object.Position, enemy.Position);
+							var distance = Vector3.Distance(Player.Object.Position, enemy.Position);
 							if (distance < minDistance)
 							{
 								minDistance = distance;
@@ -507,7 +540,9 @@ internal static class MajorUpdater
 	private static void RSRResetUpdate(IFramework framework)
 	{
 		if (!_shouldRunThisCycle)
+		{
 			return;
+		}
 
 		_shouldRunThisCycle = false;
 	}
@@ -519,18 +554,22 @@ internal static class MajorUpdater
 		{
 			var sheet = Svc.Data.GetExcelSheet<GeneralAction>();
 			if (sheet == null)
+			{
 				return null;
+			}
 
 			_generalActionLookup = [];
-			foreach (GeneralAction gAct in sheet)
+			foreach (var gAct in sheet)
 			{
 				var actionRowId = gAct.Action.RowId;
 				if (actionRowId != 0)
+				{
 					_generalActionLookup.TryAdd(actionRowId, gAct.RowId);
+				}
 			}
 		}
 
-		return _generalActionLookup.TryGetValue(baseAction.ID, out uint generalActionRowId)
+		return _generalActionLookup.TryGetValue(baseAction.ID, out var generalActionRowId)
 			? new HotbarID(HotbarSlotType.GeneralAction, generalActionRowId)
 			: null;
 	}
@@ -565,5 +604,6 @@ internal static class MajorUpdater
 
 		MiscUpdater.Dispose();
 		ActionUpdater.ClearNextAction();
+		AutoAttackUpdater.Disable();
 	}
 }
